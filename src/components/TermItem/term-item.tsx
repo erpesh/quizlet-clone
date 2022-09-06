@@ -8,6 +8,13 @@ interface termItemProps {
 }
 
 const TermItem: FC<termItemProps> = ({id, data, setData}) => {
+
+  const removeCard = () => {
+    let terms = data.terms;
+    data.terms.splice(id, 1);
+    setData({...data, terms})
+  }
+
   return (
       <div>
         <div>{id}</div>
@@ -28,6 +35,7 @@ const TermItem: FC<termItemProps> = ({id, data, setData}) => {
                 setData({...data, terms: items})
               }}
           />
+          <button onClick={removeCard}>Remove</button>
         </div>
       </div>
   );
