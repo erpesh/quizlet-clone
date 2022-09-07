@@ -17,7 +17,7 @@ const TermItem: FC<termItemProps> = ({id, data, setData}) => {
 
   return (
       <div>
-        <div>{id}</div>
+        <div>{id + 1}</div>
         <div>
           <input
               placeholder="Enter term"
