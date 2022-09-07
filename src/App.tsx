@@ -5,6 +5,7 @@ import {Routes, Route} from "react-router-dom";
 import Header from "./components/Header/header"
 import Footer from "./components/Footer"
 import Create from "./pages/Create/create";
+import MainSet from "./pages/MainSet/main-set";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/create" element={<Create/>}/>
+          <Route path="/:id" element={<MainSet/>}/>
         </Routes>
       <Footer/>
     </div>

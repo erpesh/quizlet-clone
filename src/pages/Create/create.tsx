@@ -3,6 +3,7 @@ import dataCreateInterface from "../../interfaces/data-create-interface";
 import TermItem from "../../components/TermItem/term-item";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
+import {useNavigate} from "react-router-dom";
 
 const initialCreateState = {
   author: {
@@ -18,11 +19,13 @@ const initialCreateState = {
     {term: "", definition: "", id: Math.random()},
     {term: "", definition: "", id: Math.random()},
     {term: "", definition: "", id: Math.random()},
-  ]
+  ],
+  isPrivate: true
 }
 
 const Create = () => {
 
+  const navigate = useNavigate();
   const [data, setData] = useState<dataCreateInterface>(initialCreateState);
 
   const studySetsCollectionRef = collection(db, "studySets");
@@ -43,6 +46,7 @@ const Create = () => {
                 name: auth.currentUser?.displayName
               }
         });
+    navigate(`/${data.id}`)
   }
 
   return (

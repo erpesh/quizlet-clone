@@ -15,4 +15,5 @@ export default interface dataCreateInterface {
   title: string,
   description: string,
   terms: termInterface[],
+  isPrivate: boolean
 }
