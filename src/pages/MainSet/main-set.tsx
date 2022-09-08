@@ -7,13 +7,13 @@ const MainSet = () => {
   const {id} = useParams();
   const studySetsCollectionRef = collection(db, "studySets");
 
-  const getTerms = async () => {
+  const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
     console.log(data.docs.map(doc => doc.data()))
   }
 
   return (
-      <div onClick={getTerms}>
+      <div onClick={getStudySets}>
         {id}
       </div>
   );

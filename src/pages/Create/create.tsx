@@ -36,7 +36,7 @@ const Create = () => {
     setData({...data, terms: terms})
   }
 
-  const handleSubmit = async () => {
+  const addStudySet = async () => {
     await addDoc(studySetsCollectionRef,
         {
           ...data,
@@ -71,7 +71,7 @@ const Create = () => {
               />))}
         </div>
         <button onClick={addCard}>Add card</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={addStudySet}>Submit</button>
       </div>
   );
 };

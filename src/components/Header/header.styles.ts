@@ -2,11 +2,15 @@ import styled from "styled-components";
 import colors from "../../assets/colors";
 
 export const Container = styled.header`
+  position: sticky;
+  top: 0;
   display: flex;
+  background: #FFFFFF;
   justify-content: space-between;
   align-items: center;
   height: 4rem;
   padding: 0 1rem;
+  z-index: 100;
 `
 export const NavPart = styled.div`
   height: 100%;
@@ -41,7 +45,7 @@ export const NavItem = styled.div`
     }
   }
 `
-export const ButtonContainer = styled.div`
+export const DefaultContainer = styled.div`
   height: 100%; 
   display: flex;
   align-items: center;
