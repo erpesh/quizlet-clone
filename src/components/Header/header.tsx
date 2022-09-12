@@ -8,10 +8,13 @@ import {
   LogoContainer,
   NavPart,
   NavItem,
-  DefaultContainer
+  DefaultContainer,
+  AuthButton
 } from "./header.styles";
 import {ReactComponent as Logo} from "../../assets/images/logo.svg";
 import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.svg";
+import {ReactComponent as GoogleLogo} from "../../assets/images/google-logo.svg";
+import {ReactComponent as LogoutIcon} from "../../assets/images/log-out-icon.svg";
 import colors from "../../assets/colors";
 import {CreateButton} from "../CreateButton/create-button.styles";
 import Search from "../Search/search";
@@ -69,9 +72,11 @@ const Header = () => {
           <DefaultContainer>
             <Search/>
           </DefaultContainer>
-          {!isAuth ?
-              <div onClick={signInWithGoogle}>Log in</div> :
-              <div onClick={signUserOut}>Log out</div>}
+          <DefaultContainer>
+            {!isAuth ?
+                <AuthButton onClick={signInWithGoogle}>Sign in</AuthButton> :
+                <AuthButton onClick={signUserOut}>Log out</AuthButton>}
+          </DefaultContainer>
         </NavPart>
       </Container>
   );

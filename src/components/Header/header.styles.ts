@@ -5,7 +5,7 @@ export const Container = styled.header`
   position: sticky;
   top: 0;
   display: flex;
-  background: #FFFFFF;
+  background: ${colors.whiteColor};
   justify-content: space-between;
   align-items: center;
   height: 4rem;
@@ -49,4 +49,17 @@ export const DefaultContainer = styled.div`
   height: 100%; 
   display: flex;
   align-items: center;
+`
+export const AuthButton = styled.button`
+  display: flex;
+  align-items: center;
+  border: none;
+  padding: 0.375rem 0.75rem;
+  font-size: .875rem;
+  background: ${colors.yellowButton};
+  border-radius: 0.25rem;
+  cursor: pointer;
+  :hover {
+    opacity: 0.5;
+  }
 `
