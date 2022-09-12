@@ -14,7 +14,7 @@ import {
 import {ReactComponent as Logo} from "../../assets/images/logo.svg";
 import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.svg";
 import colors from "../../assets/colors";
-import {CreateButton} from "../CreateButton/create-button.styles";
+import {BlueButton} from "../BlueButton/blue-button.styles";
 import Search from "../Search/search";
 
 
@@ -54,13 +54,14 @@ const Header = () => {
             </Link>
           </NavItem>
           <DefaultContainer>
-            <CreateButton
+            <BlueButton
                 onClick={() => navigate("/create")}
                 padding="0.45rem 0.85rem"
                 radius="0.25rem"
+                fontSize=".875rem"
             >
               Create
-            </CreateButton>
+            </BlueButton>
           </DefaultContainer>
         </NavPart>
         <NavPart>
