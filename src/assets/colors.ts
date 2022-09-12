@@ -6,5 +6,6 @@ const colors = {
   whiteColor: "#FFF",
   googleBlue: "#4285f4",
   yellowButton: "#ffcd1f",
+  ink400: "#1a1d28",
 }
 export default colors;

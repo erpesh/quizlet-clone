@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {auth, provider} from "../../firebase-config";
 import {signInWithPopup} from "firebase/auth";
@@ -13,15 +13,10 @@ import {
 } from "./header.styles";
 import {ReactComponent as Logo} from "../../assets/images/logo.svg";
 import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.svg";
-import {ReactComponent as GoogleLogo} from "../../assets/images/google-logo.svg";
-import {ReactComponent as LogoutIcon} from "../../assets/images/log-out-icon.svg";
 import colors from "../../assets/colors";
 import {CreateButton} from "../CreateButton/create-button.styles";
 import Search from "../Search/search";
 
-// interface HeaderProps {
-//   setIsAuth: (isAuth: boolean) => void
-// }
 
 const Header = () => {
 
