@@ -22,3 +22,11 @@ export const TextWithBackground = styled.em`
   background-size: 100% 100%;
   padding: 2.1875rem; 
 `
+export const HomeCardsContainer = styled.section`
+  
+`
+export const HomeCardContainer = styled.div`
+  display: grid;
+  margin: 0 5rem;
+  
+`
