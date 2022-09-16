@@ -8,7 +8,7 @@ export const HighlightedTextContainer = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10rem 0;
+  padding: 10rem 0 6rem;
 `
 export const HighlightedText = styled.h2`
   margin-left: auto;
@@ -21,12 +21,4 @@ export const TextWithBackground = styled.em`
   background-repeat: no-repeat;
   background-size: 100% 100%;
   padding: 2.1875rem; 
-`
-export const HomeCardsContainer = styled.section`
-  
-`
-export const HomeCardContainer = styled.div`
-  display: grid;
-  margin: 0 5rem;
-  
 `

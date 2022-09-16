@@ -10,7 +10,8 @@ export const Container = styled.header`
   align-items: center;
   height: 4rem;
   padding: 0 1rem;
-  z-index: 100;
+  z-index: 102;
+  border-bottom: 1px solid darkgrey;
 `
 export const NavPart = styled.div`
   height: 100%;

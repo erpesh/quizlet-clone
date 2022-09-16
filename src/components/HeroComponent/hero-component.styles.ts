@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import backgroundImage from "../../../assets/images/hero-background.svg";
-import colors from "../../../assets/colors";
+import backgroundImage from "../../assets/images/hero-background.svg";
+import colors from "../../assets/colors";
 
 export const HeroContainer = styled.section`
   background-image: url("${backgroundImage}");

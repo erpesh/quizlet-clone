@@ -8,8 +8,8 @@ import {
   HeroText, Text,
   UIContainer
 } from "./hero-component.styles";
-import home1 from "../../../assets/images/hero-picture.avif";
-import {BlueButton} from "../../../components/BlueButton/blue-button.styles";
+import home1 from "../../assets/images/hero-picture.avif";
+import {BlueButton} from "../BlueButton/blue-button.styles";
 
 const HeroComponent = () => {
   return (
