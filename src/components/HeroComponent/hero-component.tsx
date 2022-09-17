@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   H1, HeroButtonContainer,
   HeroContainer,
@@ -10,8 +10,12 @@ import {
 } from "./hero-component.styles";
 import home1 from "../../assets/images/hero-picture.avif";
 import {BlueButton} from "../BlueButton/blue-button.styles";
+import AuthContext from "../../context/auth-context";
 
 const HeroComponent = () => {
+
+  const {signInWithGoogle} = useContext(AuthContext);
+
   return (
       <HeroContainer>
         <UIContainer>
@@ -30,6 +34,7 @@ const HeroComponent = () => {
                     padding="1.375rem 2rem"
                     radius="0.5rem"
                     fontSize="1rem"
+                    onClick={signInWithGoogle}
                 >
                   Get started
                 </BlueButton>

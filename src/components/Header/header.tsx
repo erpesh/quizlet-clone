@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import {auth, provider} from "../../firebase-config";
-import {signInWithPopup} from "firebase/auth";
+import {auth} from "../../firebase-config";
 import {signOut} from "firebase/auth";
 import {
   Container,
@@ -16,20 +15,13 @@ import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.sv
 import colors from "../../assets/colors";
 import {BlueButton} from "../BlueButton/blue-button.styles";
 import Search from "../Search/search";
+import AuthContext from "../../context/auth-context";
 
 
 const Header = () => {
 
-  const [isAuth, setIsAuth] = useState(false);
+  const {signInWithGoogle, isAuth, setIsAuth} = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-        .then(result => {
-          localStorage.setItem("isAuth", "true");
-          setIsAuth(true);
-        })
-  }
 
   const signUserOut = () => {
     signOut(auth)

@@ -11,6 +11,7 @@ import homeCard2 from "../../assets/images/home-card2.avif";
 import homeCard3 from "../../assets/images/home-card3.avif";
 import homeCard4 from "../../assets/images/home-card4.avif";
 import HomeCard from "../../components/HomeCard/home-card";
+import Footer from "../../components/Footer/footer";
 
 const Home = () => {
   return (
@@ -45,6 +46,7 @@ const Home = () => {
             header="Explanations you can trust."
             text="Quizlet explanations show you step-by-step approaches to solve tough problems. Find solutions in 64 subjects, all written and verified by experts."
         />
+        <Footer/>
       </PageContainer>
   );
 };
