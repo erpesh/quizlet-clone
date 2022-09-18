@@ -61,6 +61,6 @@ export const AuthButton = styled.button`
   border-radius: 0.25rem;
   cursor: pointer;
   :hover {
-    opacity: 0.5;
+    background: rgb(255, 205, 31, .75);
   }
 `

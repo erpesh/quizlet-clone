@@ -1,16 +1,10 @@
 import styled from "styled-components";
-import colors from "../../assets/colors";
+import colors from "../../../assets/colors";
 
-export const PageContainer = styled.div`
-  display: flex;
-  padding: 0 10%;
-  flex-direction: column;
-  background: ${colors.pageBackgroundColor};
-`
 export const SetHeader = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.5rem;
   padding: 1.5rem 0 2rem;
 `
 export const SetHeaderHeading = styled.div`
@@ -19,8 +13,14 @@ export const SetHeaderHeading = styled.div`
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.2;
+  margin-bottom: 1.5rem;
 `
-export const TextAreaContainer = styled.div`
+export const TitleEffect = styled.span`
+  color: ${colors.gray600};
+  font-size: .75rem;
+  font-weight: 600;
+`
+export const InputContainer = styled.div`
   grid-area: headingDescription;
   overflow: hidden;
   position: relative;
@@ -47,7 +47,7 @@ export const TextAreaInput = styled.textarea`
   outline: none;
   overflow: hidden;
 `
-export const Label = styled.label`
+export const TextAreaLabel = styled.label`
   font-weight: 600;
   width: 100%;
   @media (min-width: 38.8125rem) {
@@ -87,6 +87,55 @@ export const TextAreaWrapper = styled.div`
   right: 0;
   top: 0;
 `
+export const InputLabel = styled.label`
+  background: ${colors.whiteColor};
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  border-radius: 0.5rem;
+  color: ${colors.gray600};
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 3rem;
+  -webkit-justify-content: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.25rem 1rem;
+  position: relative;
+`
 export const TitleInput = styled.input`
-
+  @media (min-width: 38.8125rem) {
+    font-size: 1rem;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.5; 
+  }
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: initial;
+  border: none;
+  box-shadow: none;
+  color: ${colors.textGray800};
+  cursor: text;
+  -webkit-filter: none;
+  filter: none;
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  font-size: 1rem;
+  font-weight: 600;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1.5;
+  padding-right: 1rem;
 `

@@ -19,4 +19,7 @@ export const BlueButton = styled.button<Props>`
   border-radius: ${p => p.radius};
   height: fit-content;
   width: fit-content;
+  :hover {
+    background: ${colors.onHoverBlue};
+  }
 `

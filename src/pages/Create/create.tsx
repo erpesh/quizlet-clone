@@ -6,34 +6,22 @@ import {auth, db} from "../../firebase-config";
 import {useNavigate} from "react-router-dom";
 import {
   PageContainer,
+} from "./styles/create.styles";
+import {
   SetHeader,
   SetHeaderHeading,
-  TextAreaContainer,
+  InputContainer,
   TextAreaInput,
   TitleInput,
   TextAreaSpacer,
-  Label,
-  TextAreaWrapper
-} from "./create.styles";
+  TextAreaLabel,
+  TextAreaWrapper,
+  TitleEffect,
+  InputLabel
+} from "./styles/heading.styles";
 import {BlueButton} from "../../components/BlueButton/blue-button.styles";
+import {INITIAL_CREATE_STATE} from "./initial-state";
 
-const INITIAL_CREATE_STATE = {
-  author: {
-    name: null,
-    id: null
-  },
-  id: Date.now(),
-  title: "",
-  description: "",
-  terms: [
-    {term: "", definition: "", id: Math.random()},
-    {term: "", definition: "", id: Math.random()},
-    {term: "", definition: "", id: Math.random()},
-    {term: "", definition: "", id: Math.random()},
-    {term: "", definition: "", id: Math.random()},
-  ],
-  isPrivate: true
-}
 
 const Create = () => {
 
@@ -74,13 +62,25 @@ const Create = () => {
               Create
             </BlueButton>
           </SetHeaderHeading>
-          <TextAreaContainer>
+          <InputContainer>
+            <div>
+              <InputLabel>
+                {!!data.title && <TitleEffect>Title</TitleEffect>}
+                <TitleInput
+                    placeholder="Enter a title, like “Biology - Chapter 22: Evolution”"
+                    onChange={e => setData({...data, title: e.target.value})}
+                />
+              </InputLabel>
+            </div>
+          </InputContainer>
+          <InputContainer>
             <div style={{position: "relative"}}>
-              <Label>
+              <TextAreaLabel>
                 <div>
                   <div>
                     <TextAreaSpacer></TextAreaSpacer>
                     <TextAreaWrapper>
+                      {!!data.description && <TitleEffect>Description</TitleEffect>}
                       <TextAreaInput
                           placeholder="Add a description..."
                           onChange={e => setData({...data, description: e.target.value})}
@@ -88,16 +88,10 @@ const Create = () => {
                     </TextAreaWrapper>
                   </div>
                 </div>
-              </Label>
+              </TextAreaLabel>
             </div>
-          </TextAreaContainer>
+          </InputContainer>
         </SetHeader>
-        <div>
-          <input
-              placeholder="Enter a title, like “Biology - Chapter 22: Evolution”"
-              onChange={e => setData({...data, title: e.target.value})}
-          />
-        </div>
         <div>
           {data.terms.map((item, id) => (
               <TermItem
