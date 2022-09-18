@@ -1,6 +1,7 @@
 import {createContext, Dispatch, FC, useState} from "react";
 import {signInWithPopup} from "firebase/auth";
-import {auth, provider} from "../firebase-config";
+import {auth, db, provider} from "../firebase-config";
+import {collection, getDocs} from "firebase/firestore";
 
 const INITIAL_STATE = {
   isAuth: false,

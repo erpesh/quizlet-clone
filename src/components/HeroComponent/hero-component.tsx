@@ -11,10 +11,12 @@ import {
 import home1 from "../../assets/images/hero-picture.avif";
 import {BlueButton} from "../BlueButton/blue-button.styles";
 import AuthContext from "../../context/auth-context";
+import {useNavigate} from "react-router-dom";
 
 const HeroComponent = () => {
 
-  const {signInWithGoogle} = useContext(AuthContext);
+  const {signInWithGoogle, isAuth} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   return (
       <HeroContainer>
@@ -34,7 +36,7 @@ const HeroComponent = () => {
                     padding="1.375rem 2rem"
                     radius="0.5rem"
                     fontSize="1rem"
-                    onClick={signInWithGoogle}
+                    onClick={isAuth? () => navigate("/create") : signInWithGoogle}
                 >
                   Get started
                 </BlueButton>

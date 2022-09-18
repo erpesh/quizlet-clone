@@ -9,11 +9,13 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState("");
   const studySetsCollectionRef = collection(db, "studySets");
 
-  const searchSubmit = () => {
-    // const getStudySets = async () => {
-    //   const data = await getDocs(studySetsCollectionRef);
-    //   console.log(data.docs.map(doc => doc.data()))
-    // }
+  const searchSubmit = (e: any) => {
+    e.preventDefault();
+    const getStudySets = async () => {
+      const data = await getDocs(studySetsCollectionRef);
+      console.log(data.docs.map(doc => doc.data()))
+    }
+    getStudySets()
   }
 
   return (

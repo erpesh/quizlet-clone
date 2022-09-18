@@ -7,5 +7,6 @@ const colors = {
   googleBlue: "#4285f4",
   yellowButton: "#ffcd1f",
   ink400: "#1a1d28",
+  neutralInk200: "#f6f7fb"
 }
 export default colors;
