@@ -1,6 +1,6 @@
 import {useState} from "react";
 import setDataInterface from "../../interfaces/set-data.interface";
-import TermItem from "../../components/TermItem/term-item";
+import CreateCard from "../../components/CreateCard/create-card";
 import {addDoc, collection} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate} from "react-router-dom";
@@ -42,12 +42,13 @@ const Create = () => {
         <Heading data={data} setData={setData}/>
         <div>
           {data.terms.map((item, id) => (
-              <TermItem
+              <CreateCard
                   key={item.id}
                   id={id}
                   data={data}
                   setData={setData}
-              />))}
+              />
+          ))}
         </div>
         <button onClick={addCard}>Add card</button>
         <button onClick={addStudySet}>Submit</button>

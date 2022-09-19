@@ -6,9 +6,11 @@ const colors = {
   navHover: "#a8b1ff",
   whiteColor: "#FFF",
   googleBlue: "#4285f4",
-  yellowButton: "rgb(255, 205, 31)",
+  yellowMain: "rgb(255, 205, 31)",
   ink400: "#1a1d28",
   neutralInk200: "#f6f7fb",
   gray600: "#586380",
+  UIColorGray: "#303545",
+  UIColorGray60: "#939bb4",
 }
 export default colors;

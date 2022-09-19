@@ -57,7 +57,7 @@ export const AuthButton = styled.button`
   border: none;
   padding: 0.375rem 0.75rem;
   font-size: .875rem;
-  background: ${colors.yellowButton};
+  background: ${colors.yellowMain};
   border-radius: 0.25rem;
   cursor: pointer;
   :hover {
