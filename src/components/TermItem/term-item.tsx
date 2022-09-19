@@ -1,13 +1,13 @@
 import {FC} from "react";
-import dataCreateInterface from "../../interfaces/data-create-interface";
+import setDataInterface from "../../interfaces/set-data.interface";
 
-interface termItemProps {
+interface Props {
   id: number,
-  data: dataCreateInterface,
-  setData: (data: dataCreateInterface) => void
+  data: setDataInterface,
+  setData: (data: setDataInterface) => void
 }
 
-const TermItem: FC<termItemProps> = ({id, data, setData}) => {
+const TermItem: FC<Props> = ({id, data, setData}) => {
 
   const removeCard = () => {
     let terms = data.terms;

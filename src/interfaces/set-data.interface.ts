@@ -9,7 +9,7 @@ interface termInterface {
   definition: string
 }
 
-export default interface dataCreateInterface {
+export default interface setDataInterface {
   author: authorInterface,
   id: number,
   title: string,
