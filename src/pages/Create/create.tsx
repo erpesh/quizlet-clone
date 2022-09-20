@@ -50,8 +50,6 @@ const Create = () => {
               />
           ))}
         </div>
-        <button onClick={addCard}>Add card</button>
-        <button onClick={addStudySet}>Submit</button>
       </PageContainer>
   );
 };

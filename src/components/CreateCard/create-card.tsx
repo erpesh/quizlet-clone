@@ -35,10 +35,18 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
 
   const removeCard = () => {
     let terms = data.terms;
-    data.terms.splice(id, 1);
-    setData({...data, terms})
+    terms.splice(id, 1);
+    setData({...data, terms: terms})
   }
-
+  const addCardBetween = () => {
+    let items = data.terms;
+    items.splice(id + 1, 0, {
+      id: Math.random(),
+      term: '',
+      definition: ''
+    })
+    setData({...data, terms: items})
+  }
   const handleTermInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     let items = data.terms;
     items[id].term = !!event.currentTarget.textContent ? event.currentTarget.textContent : "";
@@ -58,7 +66,7 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
             <DeleteButtonContainer>
             <span style={{display: "inline-block", verticalAlign: "bottom"}}>
               <span style={{display: "inline-block"}}>
-                <DeleteButton>
+                <DeleteButton onClick={removeCard}>
                   <DeleteButtonWrapper>
                     <DeleteIcon width={"18px"} height={"18px"}/>
                   </DeleteButtonWrapper>
@@ -121,6 +129,7 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                   tabIndex={-1}
                   type={"button"}
                   title={"+ Add card"}
+                  onClick={addCardBetween}
               >
                 <SeparateButtonWrap>
                   <PlusIcon/>
