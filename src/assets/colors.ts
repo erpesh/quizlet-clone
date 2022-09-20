@@ -12,5 +12,6 @@ const colors = {
   gray600: "#586380",
   UIColorGray: "#303545",
   UIColorGray60: "#939bb4",
+  primaryButton: "#3ccfcf",
 }
 export default colors;

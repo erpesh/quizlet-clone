@@ -24,7 +24,7 @@ export const InputContainer = styled.div`
   grid-area: headingDescription;
   overflow: hidden;
   position: relative;
-  z-index: 301;
+  z-index: 100;
 `
 export const TextAreaInput = styled.textarea`
   background-color: ${colors.whiteColor};
