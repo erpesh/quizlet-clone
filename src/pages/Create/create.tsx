@@ -9,6 +9,7 @@ import {
 } from "./create.styles";
 import {INITIAL_CREATE_STATE} from "./initial-state";
 import Heading from "./Heading/heading";
+import CreateTools from "./CreateTools/create-tools";
 
 
 const Create = () => {
@@ -40,6 +41,7 @@ const Create = () => {
   return (
       <PageContainer>
         <Heading data={data} setData={setData}/>
+        <CreateTools/>
         <div>
           {data.terms.map((item, id) => (
               <CreateCard

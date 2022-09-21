@@ -48,7 +48,7 @@ const Heading: FC<Props> = ({data, setData}) => {
             <TextAreaLabel>
               <div>
                 <div>
-                  <TextAreaSpacer></TextAreaSpacer>
+                  <TextAreaSpacer/>
                   <TextAreaWrapper>
                     {!!data.description && <TitleEffect>Description</TitleEffect>}
                     <TextAreaInput
@@ -61,6 +61,7 @@ const Heading: FC<Props> = ({data, setData}) => {
             </TextAreaLabel>
           </div>
         </InputContainer>
+        
       </SetHeader>
   );
 };
