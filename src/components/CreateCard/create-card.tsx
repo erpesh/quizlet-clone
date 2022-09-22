@@ -50,19 +50,19 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
   const handleTermInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     let items = data.terms;
     items[id].term = !!event.currentTarget.textContent ? event.currentTarget.textContent : "";
-    setData({...data, terms: items})
+    setData({...data, terms: items});
   }
   const handleDefinitionInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     let items = data.terms;
     items[id].definition = !!event.currentTarget.textContent ? event.currentTarget.textContent : "";
-    setData({...data, terms: items})
+    setData({...data, terms: items});
   }
 
   return (
       <>
         <CardContainer>
           <TopPart>
-            <IDSpan>{id + 1}</IDSpan>
+            <IDSpan onClick={() => console.log(defaultTermValue, defaultDefinitionValue, data)}>{id + 1}</IDSpan>
             <DeleteButtonContainer>
             <span style={{display: "inline-block", verticalAlign: "bottom"}}>
               <span style={{display: "inline-block"}}>

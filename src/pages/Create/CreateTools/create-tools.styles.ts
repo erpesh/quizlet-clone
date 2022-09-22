@@ -6,7 +6,13 @@ export const UIContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 81.25em;
-  padding: 0 2.5rem;
+  width: 100%;
+`
+export const Container = styled.div`
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  
 `
 export const LinkButton = styled.button`
   color: ${colors.mainBlueColor};
@@ -40,29 +46,6 @@ export const LinkButton = styled.button`
   }
 `
 export const RightSide = styled.div`
-  float: right;
+  //float: right;
 `
-export const SwitchButton = styled.button`
-  -ms-flex-align: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-align-items: center;
-  align-items: center;
-  border: none;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font: inherit;
-  -webkit-justify-content: center;
-  justify-content: center;
-  border-radius: 50%;
-  padding: 0.625rem;
-  width: 2.5rem;
-  background: ${colors.mainBlueColor};
-  color: ${colors.whiteColor};
-  font-weight: 600;
-  min-height: 2.5rem;
-`
+

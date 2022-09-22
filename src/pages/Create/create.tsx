@@ -41,7 +41,7 @@ const Create = () => {
   return (
       <PageContainer>
         <Heading data={data} setData={setData}/>
-        <CreateTools/>
+        <CreateTools data={data} setData={setData}/>
         <div>
           {data.terms.map((item, id) => (
               <CreateCard

@@ -1,25 +1,28 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
   UIContainer,
   LinkButton,
-    RightSide,
-    SwitchButton
+  RightSide,
+  Container,
 } from "./create-tools.styles";
-import {ReactComponent as SwitchIcon} from "../../../assets/images/switch-icon.svg";
+import setDataInterface from "../../../interfaces/set-data.interface";
 
-const CreateTools = () => {
+interface Props {
+  data: setDataInterface,
+  setData: (data: setDataInterface) => void
+}
+
+const CreateTools: FC<Props> = ({data, setData}) => {
+
   return (
       <UIContainer>
-        <div style={{marginTop: "1.25rem"}}>
+        <Container>
           <LinkButton>
             <span>+ Import from Word, Excel, Google Docs, etc.</span>
           </LinkButton>
           <RightSide>
-            <SwitchButton>
-              <SwitchIcon fill={"white"}/>
-            </SwitchButton>
           </RightSide>
-        </div>
+        </Container>
       </UIContainer>
   );
 };
