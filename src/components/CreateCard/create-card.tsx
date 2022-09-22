@@ -6,7 +6,6 @@ import {
   BottomPart,
   TermContentWrap,
   TermContentPart,
-  ProseMirror,
   InputLabel,
   InputLabelText,
   IDSpan,
@@ -16,7 +15,8 @@ import {
   TermRowSeparator,
   RowBetweenButton,
   SeparateAddButton,
-  SeparateButtonWrap
+  SeparateButtonWrap,
+  ProseMirrorInput
 } from "./create-card.styles";
 import {ReactComponent as DeleteIcon} from "../../assets/images/delete-icon.svg";
 import {ReactComponent as PlusIcon} from "../../assets/images/plus-icon.svg";
@@ -29,9 +29,6 @@ interface Props {
 }
 
 const CreateCard: FC<Props> = ({id, data, setData}) => {
-
-  const defaultTermValue = useRef(data.terms[id].term);
-  const defaultDefinitionValue = useRef(data.terms[id].definition);
 
   const removeCard = () => {
     let terms = data.terms;
@@ -49,12 +46,12 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
   }
   const handleTermInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     let items = data.terms;
-    items[id].term = !!event.currentTarget.textContent ? event.currentTarget.textContent : "";
+    items[id].term = event.target.value;
     setData({...data, terms: items});
   }
   const handleDefinitionInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     let items = data.terms;
-    items[id].definition = !!event.currentTarget.textContent ? event.currentTarget.textContent : "";
+    items[id].definition = event.target.value;
     setData({...data, terms: items});
   }
 
@@ -62,7 +59,7 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
       <>
         <CardContainer>
           <TopPart>
-            <IDSpan onClick={() => console.log(defaultTermValue, defaultDefinitionValue, data)}>{id + 1}</IDSpan>
+            <IDSpan onClick={() => console.log(data)}>{id + 1}</IDSpan>
             <DeleteButtonContainer>
             <span style={{display: "inline-block", verticalAlign: "bottom"}}>
               <span style={{display: "inline-block"}}>
@@ -82,12 +79,10 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                   <div style={{position: "relative"}}>
                     <div style={{paddingTop: "1rem"}}>
                       <div className="PMEditor">
-                        <ProseMirror
-                            contentEditable={true}
-                            suppressContentEditableWarning={true}
-                            onInput={handleTermInput}
+                        <ProseMirrorInput
                             placeholder={!data.terms[id].term ? "Enter the Term" : ""}
-                            dangerouslySetInnerHTML={{__html: defaultTermValue.current}}
+                            onChange={handleTermInput}
+                            value={data.terms[id].term}
                         />
                       </div>
                       <div className={"PMEditorBorder"}/>
@@ -102,12 +97,10 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                   <div style={{position: "relative"}}>
                     <div style={{paddingTop: "1rem"}}>
                       <div className="PMEditor">
-                        <ProseMirror
-                            contentEditable={true}
-                            suppressContentEditableWarning={true}
-                            onInput={handleDefinitionInput}
+                        <ProseMirrorInput
                             placeholder={!data.terms[id].definition ? "Enter the Definition" : ""}
-                            dangerouslySetInnerHTML={{__html: defaultDefinitionValue.current}}
+                            onChange={handleDefinitionInput}
+                            value={data.terms[id].definition}
                         />
                       </div>
                       <div className={"PMEditorBorder"}/>

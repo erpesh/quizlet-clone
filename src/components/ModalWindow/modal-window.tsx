@@ -16,7 +16,9 @@ const ModalWindow: FC<Props> = ({isModalActive, setIsModalActive}) => {
             className={isModalActive? "modal__container active": "modal__container"}
             onClick={(event => event.stopPropagation())}
         >
-          
+          {/*<div style={{overflowY: "scroll", height:"400px"}}>*/}
+
+          {/*</div>*/}
         </div>
       </div>
   );

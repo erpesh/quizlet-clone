@@ -42,7 +42,11 @@ export const TermContentPart = styled.div`
   padding-right: 1.25rem;
   width: 50%;
 `
-export const ProseMirror = styled.div`
+export const ProseMirrorInput = styled.input`
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.444444444444444;
+  cursor: text;
   word-break: break-word;
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -53,6 +57,8 @@ export const ProseMirror = styled.div`
   white-space: pre-wrap;
   box-shadow: none;
   outline: none;
+  width: 100%;
+  border: none;
 
   ::before {
     color: ${colors.UIColorGray60};

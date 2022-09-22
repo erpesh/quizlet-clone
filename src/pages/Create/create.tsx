@@ -10,12 +10,14 @@ import {
 import {INITIAL_CREATE_STATE} from "./initial-state";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
+import ModalWindow from "../../components/ModalWindow/modal-window";
 
 
 const Create = () => {
 
   const navigate = useNavigate();
   const [data, setData] = useState<setDataInterface>(INITIAL_CREATE_STATE);
+  const [isModalActive, setIsModalActive] = useState(false);
 
   const studySetsCollectionRef = collection(db, "studySets");
 
@@ -41,7 +43,7 @@ const Create = () => {
   return (
       <PageContainer>
         <Heading data={data} setData={setData}/>
-        <CreateTools data={data} setData={setData}/>
+        <CreateTools data={data} setData={setData} setIsModalActive={setIsModalActive}/>
         <div>
           {data.terms.map((item, id) => (
               <CreateCard
@@ -52,6 +54,10 @@ const Create = () => {
               />
           ))}
         </div>
+        <ModalWindow
+            isModalActive={isModalActive}
+            setIsModalActive={setIsModalActive}
+        />
       </PageContainer>
   );
 };
