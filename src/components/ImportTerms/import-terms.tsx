@@ -32,13 +32,17 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
 
+  const placeHolderHandler = (examples: string[][]) => {
+    return examples.map(item => item.join(firstSeparator)).join(secondSeparator);
+  }
+
   const parseInput = (text: string) => {
     const splitBySecond = text.split(secondSeparator);
     let splitByFirst = [];
     for (let i = 0; i < splitBySecond.length; i++) {
       splitByFirst.push(splitBySecond[i].split(firstSeparator))
     }
-    console.log(splitByFirst)
+    return splitByFirst;
   }
 
   const handleTextAreaInput = (e: HTMLInputElement) => {
@@ -62,7 +66,11 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             </ImportTermsInstruction>
             <ImportTermsForm>
               <TextArea
-                  placeholder={""}
+                  placeholder={placeHolderHandler([
+                    ["Word1", "Definition1"],
+                    ["Word2", "Definition2"],
+                    ["Word3", "Definition3"],
+                  ])}
                   ref={textareaRef}
                   onChange={(e) => setTextInput(e.target.value)}
                   onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
