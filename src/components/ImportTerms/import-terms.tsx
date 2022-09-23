@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import "./styles.css";
 import {
   ContainerWrap,
@@ -14,10 +14,9 @@ import {
   FormGroup,
   FormGroupWrap,
   GroupLabel,
-  UIRadio,
-  UIRadioInput
 } from "./import-terms.styles";
 import setDataInterface from "../../interfaces/set-data.interface";
+import textareaTabHandler from "./textarea-tab-handler";
 
 interface Props {
   data: setDataInterface,
@@ -27,6 +26,20 @@ interface Props {
 }
 
 const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImportModalActive}) => {
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [textInput, setTextInput] = useState("");
+  const [firstSeparator, setFirstSeparator] = useState("\t");
+  const [secondSeparator, setSecondSeparator] = useState('\n');
+
+  const parseInput = (text: string) => {
+    const splitBySecond = text.split(secondSeparator);
+    let splitByFirst = [];
+    for (let i = 0; i < splitBySecond.length; i++) {
+      splitByFirst.push(splitBySecond[i].split(firstSeparator))
+    }
+    console.log(splitByFirst)
+  }
 
   const handleTextAreaInput = (e: HTMLInputElement) => {
 
@@ -44,14 +57,15 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             <ImportTermsHeading>
               Import your data&nbsp;
             </ImportTermsHeading>
-            <ImportTermsInstruction>
+            <ImportTermsInstruction onClick={() => parseInput(textInput)}>
               Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
             </ImportTermsInstruction>
             <ImportTermsForm>
               <TextArea
-                  placeholder="Word 1	Definition 1
-Word 2	Definition 2
-Word 3	Definition 3"
+                  placeholder={""}
+                  ref={textareaRef}
+                  onChange={(e) => setTextInput(e.target.value)}
+                  onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
               />
               <ImportButtonWrap>
                 <ImportButton disabled>
@@ -62,17 +76,7 @@ Word 3	Definition 3"
                 <FormGroup>
                   <GroupLabel>Between Term and Definition</GroupLabel>
                   <div>
-                    <label className={"UIRadio"}>
-                      <input
-                        className={"UIRadio-input"}
-                        type={"radio"}
-                        value={"Delimeter.TAB"}
-                      />
-                      <span className={"UIRadio-fauxInput"}/>
-                      <span className={"UIRadio-input"}>
-                        <span>Tab</span>
-                      </span>
-                    </label>
+
                   </div>
                 </FormGroup>
                 <FormGroup>
