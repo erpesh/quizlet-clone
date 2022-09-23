@@ -1,12 +1,8 @@
+import termInterface from "./term-interface";
+
 interface authorInterface {
   id: string | null | undefined,
   name: string | null | undefined
-}
-
-interface termInterface {
-  id: number,
-  term: string,
-  definition: string
 }
 
 export default interface setDataInterface {
