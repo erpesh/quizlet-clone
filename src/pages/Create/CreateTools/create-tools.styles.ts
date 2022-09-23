@@ -9,7 +9,7 @@ export const UIContainer = styled.div`
   width: 100%;
 `
 export const Container = styled.div`
-  margin-top: 1.25rem;
+  //margin-top: 1.25rem;
   display: flex;
   justify-content: space-between;
   
@@ -71,5 +71,8 @@ export const SwitchButton = styled.button`
   color: ${colors.whiteColor};
   font-weight: 600;
   min-height: 2.5rem;
+  :hover {
+    background: ${colors.onHoverBlue};
+  }
 `
 

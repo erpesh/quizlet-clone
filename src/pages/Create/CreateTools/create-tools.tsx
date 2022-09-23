@@ -12,10 +12,10 @@ import {ReactComponent as SwitchIcon} from "../../../assets/images/switch-icon.s
 interface Props {
   data: setDataInterface,
   setData: (data: setDataInterface) => void,
-  setIsModalActive: (isModalActive: boolean) => void
+  setIsModalImportActive: (isModalImportActive: boolean) => void
 }
 
-const CreateTools: FC<Props> = ({data, setData, setIsModalActive}) => {
+const CreateTools: FC<Props> = ({data, setData, setIsModalImportActive}) => {
 
   const swapTermsAndDefinitions = () => {
     let terms = data.terms;
@@ -30,11 +30,14 @@ const CreateTools: FC<Props> = ({data, setData, setIsModalActive}) => {
   return (
       <UIContainer>
         <Container>
-          <LinkButton onClick={() => setIsModalActive(true)}>
+          <LinkButton onClick={() => setIsModalImportActive(true)}>
             <span>+ Import from Word, Excel, Google Docs, etc.</span>
           </LinkButton>
           <RightSide>
-            <SwitchButton onClick={swapTermsAndDefinitions}>
+            <SwitchButton
+                onClick={swapTermsAndDefinitions}
+                title={"Flip terms and definitions"}
+            >
               <SwitchIcon fill={"white"}/>
             </SwitchButton>
           </RightSide>
