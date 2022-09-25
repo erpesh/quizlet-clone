@@ -159,23 +159,3 @@ export const ButtonTextWrap = styled.span`
   white-space: pre-wrap;
   width: 100%;
 `
-export const FormGroupWrap = styled.div`
-  margin-right: 7.5rem;
-  margin-top: 1.25rem;
-`
-export const FormGroup = styled.div`
-  display: inline-block;
-  margin-right: 2rem;
-`
-export const GroupLabel = styled.label`
-  display: block;
-  font-size: .875rem;
-  font-weight: 600;
-  line-height: 1.285714285714286;
-  margin-bottom: 1.25rem;
-  @media screen and (max-width: 38.75em) {
-    font-size: .75rem;
-    font-weight: 600;
-    line-height: 1.333333333333333;
-  }
-`

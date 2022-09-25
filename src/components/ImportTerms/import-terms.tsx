@@ -11,12 +11,10 @@ import {
   ImportButton,
   ImportButtonWrap,
   ButtonTextWrap,
-  FormGroup,
-  FormGroupWrap,
-  GroupLabel,
 } from "./import-terms.styles";
 import setDataInterface from "../../interfaces/set-data.interface";
 import textareaTabHandler from "./textarea-tab-handler";
+import RadioSeparators from "./RadioSeparators/radio-separators";
 
 interface Props {
   data: setDataInterface,
@@ -30,9 +28,16 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
+  // const [isFirstCustom, setIsFirstCustom] = useState(false);
   const [secondSeparator, setSecondSeparator] = useState('\n');
+  // const [isSecondCustom, setIsSecondCustom] = useState(false);
 
-  const placeHolderHandler = (examples: string[][]) => {
+  const placeHolderHandler = () => {
+    const examples = [
+      ["Word 1", "Definition 1"],
+      ["Word 2", "Definition 2"],
+      ["Word 3", "Definition 3"],
+    ]
     return examples.map(item => item.join(firstSeparator)).join(secondSeparator);
   }
 
@@ -43,10 +48,6 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
       splitByFirst.push(splitBySecond[i].split(firstSeparator))
     }
     return splitByFirst;
-  }
-
-  const handleTextAreaInput = (e: HTMLInputElement) => {
-
   }
 
   return (
@@ -66,11 +67,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             </ImportTermsInstruction>
             <ImportTermsForm>
               <TextArea
-                  placeholder={placeHolderHandler([
-                    ["Word1", "Definition1"],
-                    ["Word2", "Definition2"],
-                    ["Word3", "Definition3"],
-                  ])}
+                  placeholder={placeHolderHandler()}
                   ref={textareaRef}
                   onChange={(e) => setTextInput(e.target.value)}
                   onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
@@ -80,20 +77,12 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
                   <ButtonTextWrap>Import</ButtonTextWrap>
                 </ImportButton>
               </ImportButtonWrap>
-              <FormGroupWrap>
-                <FormGroup>
-                  <GroupLabel>Between Term and Definition</GroupLabel>
-                  <div>
-
-                  </div>
-                </FormGroup>
-                <FormGroup>
-                  <GroupLabel>Between cards</GroupLabel>
-                  <div>
-
-                  </div>
-                </FormGroup>
-              </FormGroupWrap>
+              <RadioSeparators
+                firstSeparator={firstSeparator}
+                setFirstSeparator={setFirstSeparator}
+                secondSeparator={secondSeparator}
+                setSecondSeparator={setSecondSeparator}
+              />
             </ImportTermsForm>
           </UIContainer>
         </ContainerWrap>
