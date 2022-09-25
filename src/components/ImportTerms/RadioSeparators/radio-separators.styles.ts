@@ -147,7 +147,7 @@ export const UIInput = styled.input`
   letter-spacing: inherit;
   line-height: inherit;
   outline: none;
-  padding-bottom: 0.375rem;
+  //padding-bottom: 0.375rem;
   text-align: inherit;
   white-space: pre-wrap;
   width: 100%;

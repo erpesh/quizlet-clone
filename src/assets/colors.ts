@@ -14,6 +14,7 @@ const colors = {
   UIColorGray60: "#939bb4",
   UIColorGray20: "#1a1d28",
   primaryButton: "#3ccfcf",
-  colorDisabled: "#d9dde8"
+  onHoverPrimaryButton: "#28a7a7",
+  colorDisabled: "#d9dde8",
 }
 export default colors;

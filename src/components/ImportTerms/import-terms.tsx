@@ -28,9 +28,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
-  // const [isFirstCustom, setIsFirstCustom] = useState(false);
   const [secondSeparator, setSecondSeparator] = useState('\n');
-  // const [isSecondCustom, setIsSecondCustom] = useState(false);
 
   const placeHolderHandler = () => {
     const examples = [
@@ -38,7 +36,9 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
       ["Word 2", "Definition 2"],
       ["Word 3", "Definition 3"],
     ]
-    return examples.map(item => item.join(firstSeparator)).join(secondSeparator);
+    const _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
+    const _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
+    return examples.map(item => item.join(_firstSeparator)).join(_secondSeparator);
   }
 
   const parseInput = (text: string) => {
@@ -62,7 +62,9 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             <ImportTermsHeading>
               Import your data&nbsp;
             </ImportTermsHeading>
-            <ImportTermsInstruction onClick={() => parseInput(textInput)}>
+            <ImportTermsInstruction onClick={() => {
+              console.log(firstSeparator, secondSeparator)
+            }}>
               Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
             </ImportTermsInstruction>
             <ImportTermsForm>
@@ -73,7 +75,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
                   onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
               />
               <ImportButtonWrap>
-                <ImportButton disabled>
+                <ImportButton disabled={!textInput}>
                   <ButtonTextWrap>Import</ButtonTextWrap>
                 </ImportButton>
               </ImportButtonWrap>

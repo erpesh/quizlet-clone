@@ -128,15 +128,16 @@ export const ImportButton = styled.button`
   max-width: 100%;
   padding: 0.75rem 1.5rem;
   transition: all .12s cubic-bezier(.47,0,.745,.715);
+  background-color: ${colors.primaryButton};
   width: auto;
   font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: .0625rem;
   line-height: 1.222222222222222;
   padding: 1.5rem 5rem;
+  color: ${colors.whiteColor};
   :visited, :hover {
-    background-color: ${colors.primaryButton};
-    color: ${colors.whiteColor};
+    background-color: ${colors.onHoverPrimaryButton};
   }
   @media screen and (max-width: 38.75em){
     font-size: 1rem;
