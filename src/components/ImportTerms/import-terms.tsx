@@ -11,6 +11,10 @@ import {
   ImportButton,
   ImportButtonWrap,
   ButtonTextWrap,
+  PreviewContainer,
+  PreviewHeading,
+  PreviewNumTerms,
+  PreviewRows
 } from "./import-terms.styles";
 import setDataInterface from "../../interfaces/set-data.interface";
 import textareaTabHandler from "./textarea-tab-handler";
@@ -80,14 +84,29 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
                 </ImportButton>
               </ImportButtonWrap>
               <RadioSeparators
-                firstSeparator={firstSeparator}
-                setFirstSeparator={setFirstSeparator}
-                secondSeparator={secondSeparator}
-                setSecondSeparator={setSecondSeparator}
+                  firstSeparator={firstSeparator}
+                  setFirstSeparator={setFirstSeparator}
+                  secondSeparator={secondSeparator}
+                  setSecondSeparator={setSecondSeparator}
               />
             </ImportTermsForm>
           </UIContainer>
         </ContainerWrap>
+        <PreviewContainer>
+          <UIContainer>
+            <PreviewHeading>
+              <span>Preview</span>
+              <PreviewNumTerms>
+                <span>2 cards</span>
+              </PreviewNumTerms>
+            </PreviewHeading>
+            <PreviewRows>
+              <div style={{pointerEvents: "none"}}>
+
+              </div>
+            </PreviewRows>
+          </UIContainer>
+        </PreviewContainer>
       </div>
   );
 };

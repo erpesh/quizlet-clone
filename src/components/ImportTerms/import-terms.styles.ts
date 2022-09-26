@@ -160,3 +160,38 @@ export const ButtonTextWrap = styled.span`
   white-space: pre-wrap;
   width: 100%;
 `
+export const PreviewContainer = styled.div`
+  background-color: ${colors.pageBackgroundColor};
+  overflow-y: scroll;
+  padding-top: 1.25rem;
+  height: 48%;
+`
+export const PreviewHeading = styled.h4`
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  @media screen and (max-width: 38.75em) {
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 1.111111111111111;
+  }
+`
+export const PreviewNumTerms = styled.span`
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.625;
+  padding-left: 0.625rem;
+  @media screen and (max-width: 38.75em) {
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.571428571428571;
+  }
+`
+export const PreviewRows = styled.div`
+  clear: both;
+  margin-bottom: 6.25rem;
+  margin-top: 0.625rem;
+`
