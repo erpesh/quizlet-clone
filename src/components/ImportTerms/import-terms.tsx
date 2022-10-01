@@ -21,7 +21,7 @@ import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
 import termInterface from "../../interfaces/term-interface";
-import parseTextInput from "./parse-text-input";
+import {parseTextInput, placeHolderHandler} from "./text-parsers";
 
 interface Props {
   data: setDataInterface,
@@ -37,17 +37,6 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
   const [termsArray, setTermsArray] = useState<termInterface[]>([]);
-
-  const placeHolderHandler = () => {
-    const examples = [
-      ["Word 1", "Definition 1"],
-      ["Word 2", "Definition 2"],
-      ["Word 3", "Definition 3"],
-    ]
-    const _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
-    const _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
-    return examples.map(item => item.join(_firstSeparator)).join(_secondSeparator);
-  }
 
   const handleImportButton = () => {
     let items = data.terms;
@@ -78,7 +67,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             </ImportTermsInstruction>
             <ImportTermsForm>
               <TextArea
-                  placeholder={placeHolderHandler()}
+                  placeholder={placeHolderHandler(firstSeparator, secondSeparator)}
                   ref={textareaRef}
                   onChange={(e) => setTextInput(e.target.value)}
                   onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
