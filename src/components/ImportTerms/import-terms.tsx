@@ -1,4 +1,4 @@
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import "./styles.css";
 import {
   ContainerWrap,
@@ -19,6 +19,7 @@ import {
 import setDataInterface from "../../interfaces/set-data.interface";
 import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
+import ImportTermCard from "./ImportTermCard/import-term-card";
 
 interface Props {
   data: setDataInterface,
@@ -27,12 +28,19 @@ interface Props {
   setIsImportModalActive: (isImportModalActive: boolean) => void
 }
 
+interface Item {
+  term: string,
+  definition: string,
+  id: number
+}
+
 const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImportModalActive}) => {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
+  const [termsArray, setTermsArray] = useState<Item[]>([]);
 
   const placeHolderHandler = () => {
     const examples = [
@@ -46,13 +54,25 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   }
 
   const parseInput = (text: string) => {
-    const splitBySecond = text.split(secondSeparator);
+    const _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
+    const _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
+    const splitBySecond = text.split(_secondSeparator);
     let splitByFirst = [];
     for (let i = 0; i < splitBySecond.length; i++) {
-      splitByFirst.push(splitBySecond[i].split(firstSeparator))
+      let splitItem = splitBySecond[i].split(_firstSeparator);
+      let item = {
+        term: splitItem[0],
+        definition: splitItem[1],
+        id: Math.random()
+      }
+      splitByFirst.push(item);
     }
-    return splitByFirst;
+    return text.length > 0? splitByFirst : [];
   }
+
+  useEffect(() => {
+    setTermsArray(parseInput(textInput));
+  }, [textInput, firstSeparator, secondSeparator])
 
   return (
       <div className={isImportModalActive ? "import__terms is__showing" : "import__terms"}>
@@ -97,12 +117,18 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             <PreviewHeading>
               <span>Preview</span>
               <PreviewNumTerms>
-                <span>2 cards</span>
+                <span>{termsArray.length > 0 ? termsArray.length : ""}</span>
               </PreviewNumTerms>
             </PreviewHeading>
             <PreviewRows>
               <div style={{pointerEvents: "none"}}>
-
+                {termsArray.length > 0 ? termsArray.map(item => {
+                  return <ImportTermCard
+                      term={item.term}
+                      definition={item.definition}
+                      key={item.id}
+                  />
+                }): "Nothing to preview yet"}
               </div>
             </PreviewRows>
           </UIContainer>
