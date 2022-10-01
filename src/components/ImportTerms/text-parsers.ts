@@ -1,6 +1,12 @@
 export const parseTextInput = (text: string, firstSeparator: string, secondSeparator: string) => {
-  const _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
-  const _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
+  let _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
+  let _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
+  if (_firstSeparator.length === 0) {
+    _firstSeparator = "\t";
+  }
+  if (_secondSeparator.length === 0) {
+    _secondSeparator = "\n";
+  }
   const splitBySecond = text.split(_secondSeparator);
   let splitByFirst = [];
   for (let i = 0; i < splitBySecond.length; i++) {
@@ -20,7 +26,13 @@ export const placeHolderHandler = (firstSeparator: string, secondSeparator: stri
     ["Word 2", "Definition 2"],
     ["Word 3", "Definition 3"],
   ]
-  const _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
-  const _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
+  let _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
+  let _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
+  if (_firstSeparator.length === 0) {
+    _firstSeparator = "\t";
+  }
+  if (_secondSeparator.length === 0) {
+    _secondSeparator = "\n";
+  }
   return examples.map(item => item.join(_firstSeparator)).join(_secondSeparator);
 }

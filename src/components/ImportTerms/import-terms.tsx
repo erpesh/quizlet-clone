@@ -22,6 +22,7 @@ import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
 import termInterface from "../../interfaces/term-interface";
 import {parseTextInput, placeHolderHandler} from "./text-parsers";
+import {importButtonHandler} from "./import-button-handler";
 
 interface Props {
   data: setDataInterface,
@@ -38,10 +39,14 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const [secondSeparator, setSecondSeparator] = useState('\n');
   const [termsArray, setTermsArray] = useState<termInterface[]>([]);
 
-  const handleImportButton = () => {
-    let items = data.terms;
-    items = items.concat(termsArray);
+  const handleImportButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    let items = importButtonHandler(data, termsArray);
+    setTextInput("");
+    setTermsArray([]);
     setData({...data, terms: items})
+    setIsImportModalActive(false);
+    // textareaRef.current.value = "";
   }
 
   useEffect(() => {
@@ -60,9 +65,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
             <ImportTermsHeading>
               Import your data&nbsp;
             </ImportTermsHeading>
-            <ImportTermsInstruction onClick={() => {
-              console.log(data)
-            }}>
+            <ImportTermsInstruction>
               Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
             </ImportTermsInstruction>
             <ImportTermsForm>
