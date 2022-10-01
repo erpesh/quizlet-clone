@@ -20,6 +20,8 @@ import setDataInterface from "../../interfaces/set-data.interface";
 import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
+import termInterface from "../../interfaces/term-interface";
+import parseTextInput from "./parse-text-input";
 
 interface Props {
   data: setDataInterface,
@@ -28,19 +30,13 @@ interface Props {
   setIsImportModalActive: (isImportModalActive: boolean) => void
 }
 
-interface Item {
-  term: string,
-  definition: string,
-  id: number
-}
-
 const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImportModalActive}) => {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
-  const [termsArray, setTermsArray] = useState<Item[]>([]);
+  const [termsArray, setTermsArray] = useState<termInterface[]>([]);
 
   const placeHolderHandler = () => {
     const examples = [
@@ -53,25 +49,14 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
     return examples.map(item => item.join(_firstSeparator)).join(_secondSeparator);
   }
 
-  const parseInput = (text: string) => {
-    const _firstSeparator = firstSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n");
-    const _secondSeparator = secondSeparator.replace(/\\t/g, "\t").replace(/\\n/g, "\n")
-    const splitBySecond = text.split(_secondSeparator);
-    let splitByFirst = [];
-    for (let i = 0; i < splitBySecond.length; i++) {
-      let splitItem = splitBySecond[i].split(_firstSeparator);
-      let item = {
-        term: splitItem[0],
-        definition: splitItem[1],
-        id: Math.random()
-      }
-      splitByFirst.push(item);
-    }
-    return text.length > 0? splitByFirst : [];
+  const handleImportButton = () => {
+    let items = data.terms;
+    items = items.concat(termsArray);
+    setData({...data, terms: items})
   }
 
   useEffect(() => {
-    setTermsArray(parseInput(textInput));
+    setTermsArray(parseTextInput(textInput, firstSeparator, secondSeparator));
   }, [textInput, firstSeparator, secondSeparator])
 
   return (
@@ -87,7 +72,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
               Import your data&nbsp;
             </ImportTermsHeading>
             <ImportTermsInstruction onClick={() => {
-              console.log(firstSeparator, secondSeparator)
+              console.log(data)
             }}>
               Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
             </ImportTermsInstruction>
@@ -99,7 +84,10 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
                   onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
               />
               <ImportButtonWrap>
-                <ImportButton disabled={!textInput}>
+                <ImportButton
+                    disabled={!textInput}
+                    onClick={handleImportButton}
+                >
                   <ButtonTextWrap>Import</ButtonTextWrap>
                 </ImportButton>
               </ImportButtonWrap>
