@@ -4,6 +4,7 @@ import colors from "../../../assets/colors";
 export const UIContainer = styled.div`
   clear: both;
   margin-left: auto;
+  margin-bottom: 1rem;
   margin-right: auto;
   max-width: 81.25em;
   width: 100%;
@@ -46,7 +47,8 @@ export const LinkButton = styled.button`
   }
 `
 export const RightSide = styled.div`
-  //float: right;
+  display: flex;
+  gap: 1rem;
 `
 export const SwitchButton = styled.button`
   -ms-flex-align: center;

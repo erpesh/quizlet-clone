@@ -10,7 +10,6 @@ import {
 import {INITIAL_CREATE_STATE} from "./initial-state";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
-import ModalWindow from "../../components/ModalWindow/modal-window";
 import ImportTerms from "../../components/ImportTerms/import-terms";
 
 

@@ -8,6 +8,7 @@ import {
 } from "./create-tools.styles";
 import setDataInterface from "../../../interfaces/set-data.interface";
 import {ReactComponent as SwitchIcon} from "../../../assets/images/switch-icon.svg";
+import ToggleSwitch from "../../../components/ToggleSwitch/toggle-switch";
 
 interface Props {
   data: setDataInterface,
@@ -34,6 +35,12 @@ const CreateTools: FC<Props> = ({data, setData, setIsModalImportActive}) => {
             <span>+ Import from Word, Excel, Google Docs, etc.</span>
           </LinkButton>
           <RightSide>
+            <ToggleSwitch
+                onWord={"Private"}
+                offWord={"Public"}
+                data={data}
+                setData={setData}
+            />
             <SwitchButton
                 onClick={swapTermsAndDefinitions}
                 title={"Flip terms and definitions"}
