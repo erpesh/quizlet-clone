@@ -23,12 +23,16 @@ export const BottomPart = styled.div`
   padding-left: 0.75rem;
 `
 export const TermContentWrap = styled.div`
-  display: table;
+  //display: table;
   min-height: 3.375rem;
   table-layout: fixed;
   transition: none .3s ease-out;
   transition-property: background;
   width: 100%;
+  display: flex;
+  @media screen and (max-width: 38.75em) {
+    flex-direction: column;
+  }
 `
 export const TermContentPart = styled.div`
   cursor: text;
@@ -41,6 +45,9 @@ export const TermContentPart = styled.div`
   padding-left: 0.75rem;
   padding-right: 1.25rem;
   width: 50%;
+  @media screen and (max-width: 38.75em) {
+    width: 90%;
+  }
 `
 export const ProseMirrorInput = styled.input`
   font-size: 1.125rem;

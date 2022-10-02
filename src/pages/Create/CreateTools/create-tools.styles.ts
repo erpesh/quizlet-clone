@@ -13,6 +13,10 @@ export const Container = styled.div`
   //margin-top: 1.25rem;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 48em) {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
   
 `
 export const LinkButton = styled.button`
@@ -49,6 +53,9 @@ export const LinkButton = styled.button`
 export const RightSide = styled.div`
   display: flex;
   gap: 1rem;
+  @media screen and (max-width: 48em) {
+    justify-content: space-between;
+  }
 `
 export const SwitchButton = styled.button`
   -ms-flex-align: center;
@@ -69,6 +76,7 @@ export const SwitchButton = styled.button`
   border-radius: 50%;
   padding: 0.625rem;
   width: 2.5rem;
+  height: 2.5rem;
   background: ${colors.mainBlueColor};
   color: ${colors.whiteColor};
   font-weight: 600;

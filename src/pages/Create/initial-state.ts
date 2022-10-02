@@ -10,8 +10,6 @@ export const INITIAL_CREATE_STATE = {
     {term: "", definition: "", id: Math.random()},
     {term: "", definition: "", id: Math.random()},
     {term: "", definition: "", id: Math.random()},
-    {term: "", definition: "", id: Math.random()},
-    {term: "", definition: "", id: Math.random()},
   ],
   isPrivate: true
 }
