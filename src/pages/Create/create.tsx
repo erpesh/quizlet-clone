@@ -11,6 +11,7 @@ import {INITIAL_CREATE_STATE} from "./initial-state";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
 import ImportTerms from "../../components/ImportTerms/import-terms";
+import AddCardButton from "./AddCardButton/add-card-button";
 
 
 const Create = () => {
@@ -54,6 +55,7 @@ const Create = () => {
               />
           ))}
         </div>
+        <AddCardButton/>
         <ImportTerms
             data={data}
             setData={setData}
