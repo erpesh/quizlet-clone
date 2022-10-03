@@ -15,7 +15,20 @@ export const Container = styled.a`
   z-index: 100;
   background: ${colors.whiteColor};
   padding: 3rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
+  cursor: pointer;
+  &:hover {
+    > span{
+      > button {
+        border-color: ${colors.yellowMain};
+        color: ${colors.yellowMain};
+      }
+    }
+  }
+  @media screen and (max-width: 38.75em) {
+    padding: 1.5rem 0;
+  }
 `
 export const ButtonWrap = styled.span`
   white-space: nowrap;

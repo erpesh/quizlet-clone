@@ -55,7 +55,10 @@ const Create = () => {
               />
           ))}
         </div>
-        <AddCardButton/>
+        <AddCardButton
+            data={data}
+            setData={setData}
+        />
         <ImportTerms
             data={data}
             setData={setData}
