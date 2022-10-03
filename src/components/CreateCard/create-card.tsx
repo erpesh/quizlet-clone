@@ -115,7 +115,7 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
             </div>
           </BottomPart>
         </CardContainer>
-        <TermRowSeparator>
+        {id < data.terms.length - 1 && <TermRowSeparator>
           <RowBetweenButton>
             <span style={{display: "inline-block"}}>
               <SeparateAddButton
@@ -130,7 +130,7 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
               </SeparateAddButton>
             </span>
           </RowBetweenButton>
-        </TermRowSeparator>
+        </TermRowSeparator>}
       </>
   );
 };
