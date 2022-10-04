@@ -46,7 +46,9 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
     setTermsArray([]);
     setData({...data, terms: items})
     setIsImportModalActive(false);
-    // textareaRef.current.value = "";
+    if (textareaRef.current) {
+      textareaRef.current.value = "";
+    }
   }
 
   useEffect(() => {

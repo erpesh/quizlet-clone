@@ -59,7 +59,7 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
       <>
         <CardContainer>
           <TopPart>
-            <IDSpan onClick={() => console.log(data)}>{id + 1}</IDSpan>
+            <IDSpan>{id + 1}</IDSpan>
             <DeleteButtonContainer>
             <span style={{display: "inline-block", verticalAlign: "bottom"}}>
               <span style={{display: "inline-block"}}>
@@ -80,9 +80,9 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                     <div style={{paddingTop: "1rem"}}>
                       <div className="PMEditor">
                         <ProseMirrorInput
-                            placeholder={!data.terms[id].term ? "Enter the Term" : ""}
+                            placeholder={!data.terms[id]?.term ? "Enter the Term" : ""}
                             onChange={handleTermInput}
-                            value={data.terms[id].term}
+                            value={data.terms[id]?.term}
                         />
                       </div>
                       <div className={"PMEditorBorder"}/>
@@ -98,9 +98,9 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                     <div style={{paddingTop: "1rem"}}>
                       <div className="PMEditor">
                         <ProseMirrorInput
-                            placeholder={!data.terms[id].definition ? "Enter the Definition" : ""}
+                            placeholder={!data.terms[id]?.definition ? "Enter the Definition" : ""}
                             onChange={handleDefinitionInput}
-                            value={data.terms[id].definition}
+                            value={data.terms[id]?.definition}
                         />
                       </div>
                       <div className={"PMEditorBorder"}/>
