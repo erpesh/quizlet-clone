@@ -12,7 +12,7 @@ export const TopPart = styled.div`
   margin-top: 0;
   padding: 0.75rem 1rem;
   align-items: center;
-  border-bottom: 2px solid var(--ui_color_gray_90_foreground);
+  border-bottom: 2px solid ${colors.neutralInk200};
   display: flex;
   justify-content: space-between;
   transition: all .12s ease;
@@ -23,7 +23,6 @@ export const BottomPart = styled.div`
   padding-left: 0.75rem;
 `
 export const TermContentWrap = styled.div`
-  //display: table;
   min-height: 3.375rem;
   table-layout: fixed;
   transition: none .3s ease-out;
@@ -135,6 +134,14 @@ export const DeleteButton = styled.button`
   max-width: 100%;
   transition: all .12s cubic-bezier(.47, 0, .745, .715);
   width: auto;
+  :disabled {
+    cursor: default;
+    >span {
+      >svg {
+        fill: gray;
+      }
+    }
+  }
 `
 export const DeleteButtonWrapper = styled.span`
   align-items: center;

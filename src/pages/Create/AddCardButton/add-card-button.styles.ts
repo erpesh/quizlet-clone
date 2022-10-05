@@ -15,7 +15,6 @@ export const Container = styled.a`
   z-index: 100;
   background: ${colors.whiteColor};
   padding: 3rem;
-  margin-top: 1rem;
   margin-bottom: 2rem;
   cursor: pointer;
   &:hover {

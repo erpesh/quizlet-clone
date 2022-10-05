@@ -56,14 +56,14 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
   }
 
   return (
-      <>
+      <div className={"card-container"}>
         <CardContainer>
           <TopPart>
             <IDSpan>{id + 1}</IDSpan>
             <DeleteButtonContainer>
             <span style={{display: "inline-block", verticalAlign: "bottom"}}>
               <span style={{display: "inline-block"}}>
-                <DeleteButton onClick={removeCard}>
+                <DeleteButton disabled={data.terms.length < 3} onClick={removeCard}>
                   <DeleteButtonWrapper>
                     <DeleteIcon width={"18px"} height={"18px"}/>
                   </DeleteButtonWrapper>
@@ -115,10 +115,10 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
             </div>
           </BottomPart>
         </CardContainer>
-        {id < data.terms.length - 1 && <TermRowSeparator>
+        <TermRowSeparator>
           <RowBetweenButton>
             <span style={{display: "inline-block"}}>
-              <SeparateAddButton
+              {id < data.terms.length - 1 && <SeparateAddButton
                   tabIndex={-1}
                   type={"button"}
                   title={"+ Add card"}
@@ -127,11 +127,11 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                 <SeparateButtonWrap>
                   <PlusIcon/>
                 </SeparateButtonWrap>
-              </SeparateAddButton>
+              </SeparateAddButton>}
             </span>
           </RowBetweenButton>
-        </TermRowSeparator>}
-      </>
+        </TermRowSeparator>
+      </div>
   );
 };
 
