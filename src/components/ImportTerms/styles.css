@@ -7,15 +7,16 @@
     right: 0;
     top: 0;
     transform: translateY(-100%);
-    transition: transform .3s;
-    z-index: 1100;
-    display: none;
+    transition: transform .5s;
+    visibility: hidden;
+    z-index: -1;
 }
 .is__showing {
     -webkit-overflow-scrolling: touch;
-    animation: slideDown .3s;
+    animation: slideDown .5s;
     overflow-y: scroll;
     position: fixed;
     transform: translateY(0);
-    display: block;
+    visibility: visible;
+    z-index: 110;
 }

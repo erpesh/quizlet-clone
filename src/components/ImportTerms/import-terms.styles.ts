@@ -112,6 +112,12 @@ export const TextArea = styled.textarea`
 export const ImportButtonWrap = styled.div`
   float: right;
   margin-top: 1.25rem;
+  @media screen and (max-width: 20em) {
+    float: none;
+  }
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
 `
 export const ImportButton = styled.button`
   -webkit-appearance: none;
@@ -122,11 +128,7 @@ export const ImportButton = styled.button`
   cursor: pointer;
   display: inline-block;
   font: inherit;
-  font-size: .875rem;
-  font-weight: 600;
-  line-height: 1.285714285714286;
   max-width: 100%;
-  padding: 0.75rem 1.5rem;
   transition: all .12s cubic-bezier(.47,0,.745,.715);
   background-color: ${colors.primaryButton};
   width: auto;
@@ -145,6 +147,9 @@ export const ImportButton = styled.button`
     letter-spacing: .0625rem;
     line-height: 1.1875;
     padding: 1.25rem 2.5rem;
+  }
+  @media screen and (max-width: 20em) {
+    width: 100%;
   }
   :disabled {
     background-color: ${colors.colorDisabled};

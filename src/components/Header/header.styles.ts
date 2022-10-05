@@ -32,6 +32,9 @@ export const NavItem = styled.div`
   height: 100%;
   font-size: .875rem;
   color: ${colors.textGray800};
+  @media screen and (max-width: 50em) {
+    display: none;
+  }
   :hover {
     border-bottom: 0.25rem solid ${colors.navHover};
     border-radius: 0.25rem;
@@ -50,6 +53,9 @@ export const DefaultContainer = styled.div`
   height: 100%; 
   display: flex;
   align-items: center;
+  @media screen and (max-width: 50em) {
+    display: none;
+  }
 `
 export const AuthButton = styled.button`
   display: flex;
@@ -62,5 +68,13 @@ export const AuthButton = styled.button`
   cursor: pointer;
   :hover {
     background: rgb(255, 205, 31, .75);
+  }
+`
+export const SideBarIconWrap = styled.div`
+  display: none;
+  align-items: center;
+  color: ${colors.mainBlueColor};
+  @media screen and (max-width: 50em) {
+    display: flex;
   }
 `

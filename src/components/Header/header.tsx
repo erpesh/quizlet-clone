@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {auth} from "../../firebase-config";
 import {signOut} from "firebase/auth";
@@ -8,10 +8,12 @@ import {
   NavPart,
   NavItem,
   DefaultContainer,
-  AuthButton
+  AuthButton,
+  SideBarIconWrap
 } from "./header.styles";
 import {ReactComponent as Logo} from "../../assets/images/logo.svg";
 import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.svg";
+import {ReactComponent as SideBarIcon} from "../../assets/images/side-bar-icon.svg";
 import colors from "../../assets/colors";
 import {BlueButton} from "../BlueButton/blue-button.styles";
 import Search from "../Search/search";
@@ -65,6 +67,9 @@ const Header = () => {
                 <AuthButton onClick={signInWithGoogle}>Sign in</AuthButton> :
                 <AuthButton onClick={signUserOut}>Log out</AuthButton>}
           </DefaultContainer>
+          <SideBarIconWrap>
+            <SideBarIcon/>
+          </SideBarIconWrap>
         </NavPart>
       </Container>
   );

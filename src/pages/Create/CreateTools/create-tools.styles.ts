@@ -49,6 +49,9 @@ export const LinkButton = styled.button`
     letter-spacing: normal;
     line-height: 1.5;
   }
+  &:hover {
+    color: ${colors.onHoverBlue}
+  }
 `
 export const RightSide = styled.div`
   display: flex;
