@@ -6,4 +6,7 @@ export const PageContainer = styled.div`
   padding: 2.5rem 10% 0;
   flex-direction: column;
   background: ${colors.pageBackgroundColor};
+  @media screen and (max-width: 38.75em) {
+    padding: 2.5rem 5% 0;
+  }
 `

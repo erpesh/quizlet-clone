@@ -26,9 +26,7 @@ const ImportTermCard: FC<Props> = ({term, definition}) => {
   return (
       <CardContainer>
         <CardContent>
-          <CardNumber>
-
-          </CardNumber>
+          <CardNumber/>
           <CardInner>
             <div>
               <ContentSideWrap>
