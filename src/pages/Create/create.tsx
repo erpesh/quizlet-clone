@@ -37,21 +37,25 @@ const Create = () => {
   }
 
   const handleDrop = (droppedItem: any) => {
-    // Ignore drop outside droppable container
     if (!droppedItem.destination) return;
     let updatedList = [...data.terms];
-    // Remove dragged item
     const [reorderedItem] = updatedList.splice(droppedItem.source.index, 1);
-    // Add dropped item
     updatedList.splice(droppedItem.destination.index, 0, reorderedItem);
-    // Update State
     setData({...data, terms: updatedList});
   };
 
   return (
       <PageContainer>
-        <Heading data={data} setData={setData}/>
-        <CreateTools data={data} setData={setData} setIsModalImportActive={setIsModalImportActive}/>
+        <Heading
+            data={data}
+            setData={setData}
+            addStudySet={addStudySet}
+        />
+        <CreateTools
+            data={data}
+            setData={setData}
+            setIsModalImportActive={setIsModalImportActive}
+        />
         <DragDropContext onDragEnd={handleDrop}>
           <Droppable droppableId={"cards-list"}>
             {provided => (
@@ -101,6 +105,7 @@ const Create = () => {
                 padding={"1.25rem 2rem"}
                 radius={"0.5rem"}
                 fontSize={"1rem"}
+                onClick={addStudySet}
             >
               Create
             </BlueButton>

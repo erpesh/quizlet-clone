@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {FC, useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {auth} from "../../firebase-config";
 import {signOut} from "firebase/auth";
@@ -19,19 +19,14 @@ import {BlueButton} from "../BlueButton/blue-button.styles";
 import Search from "../Search/search";
 import AuthContext from "../../context/auth-context";
 
+interface Props {
+  toggle: () => void
+}
 
-const Header = () => {
+const Header: FC<Props> = ({toggle}) => {
 
-  const {signInWithGoogle, isAuth, setIsAuth} = useContext(AuthContext);
+  const {signInWithGoogle, isAuth, signUserOut} = useContext(AuthContext);
   const navigate = useNavigate();
-
-  const signUserOut = () => {
-    signOut(auth)
-        .then(() => {
-          localStorage.clear();
-          setIsAuth(false);
-        })
-  };
 
   return (
       <Container>
@@ -49,7 +44,12 @@ const Header = () => {
           </NavItem>
           <DefaultContainer>
             <BlueButton
-                onClick={() => navigate("/create")}
+                onClick={
+                  // isAuth ?
+                    () => navigate("/create")
+                    //   :
+                    // signInWithGoogle
+                }
                 padding="0.45rem 0.85rem"
                 radius="0.25rem"
                 fontSize=".875rem"
@@ -67,7 +67,7 @@ const Header = () => {
                 <AuthButton onClick={signInWithGoogle}>Sign in</AuthButton> :
                 <AuthButton onClick={signUserOut}>Log out</AuthButton>}
           </DefaultContainer>
-          <SideBarIconWrap>
+          <SideBarIconWrap onClick={toggle}>
             <SideBarIcon/>
           </SideBarIconWrap>
         </NavPart>

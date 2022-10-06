@@ -1,12 +1,12 @@
 import {createContext, Dispatch, FC, useState} from "react";
-import {signInWithPopup} from "firebase/auth";
-import {auth, db, provider} from "../firebase-config";
-import {collection, getDocs} from "firebase/firestore";
+import {signInWithPopup, signOut} from "firebase/auth";
+import {auth, provider} from "../firebase-config";
 
 const INITIAL_STATE = {
   isAuth: false,
   setIsAuth: (() => undefined) as Dispatch<any>,
-  signInWithGoogle: (() => undefined) as Dispatch<any>
+  signInWithGoogle: (() => undefined) as Dispatch<any>,
+  signUserOut: (() => undefined) as Dispatch<any>
 }
 
 const AuthContext = createContext(INITIAL_STATE);
@@ -25,11 +25,20 @@ export const AuthProvider: FC<{children: any}> = ({children}) => {
         })
   }
 
+  const signUserOut = () => {
+    signOut(auth)
+        .then(() => {
+          localStorage.clear();
+          setIsAuth(false);
+        })
+  };
+
   const contextData = {
     isAuth: isAuth,
 
     setIsAuth: setIsAuth,
-    signInWithGoogle: signInWithGoogle
+    signInWithGoogle: signInWithGoogle,
+    signUserOut: signUserOut
   }
 
   return (

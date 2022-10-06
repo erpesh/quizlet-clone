@@ -6,13 +6,19 @@ import Header from "./components/Header/header";
 import Create from "./pages/Create/create";
 import MainSet from "./pages/MainSet/main-set";
 import {AuthProvider} from "./context/auth-context";
+import SideBar from "./components/SideBar/side-bar";
 
 function App() {
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
       <div className="App">
         <AuthProvider>
-          <Header/>
+          <Header toggle={toggle}/>
+          <SideBar isOpen={isOpen} toggle={toggle}/>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/create" element={<Create/>}/>

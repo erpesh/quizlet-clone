@@ -74,6 +74,7 @@ export const SideBarIconWrap = styled.div`
   display: none;
   align-items: center;
   color: ${colors.mainBlueColor};
+  cursor: pointer;
   @media screen and (max-width: 50em) {
     display: flex;
   }

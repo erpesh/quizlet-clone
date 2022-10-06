@@ -16,10 +16,11 @@ import setDataInterface from "../../../interfaces/set-data.interface";
 
 interface Props {
   data: setDataInterface,
-  setData: (data: setDataInterface) => void;
+  setData: (data: setDataInterface) => void,
+  addStudySet: () => void
 }
 
-const Heading: FC<Props> = ({data, setData}) => {
+const Heading: FC<Props> = ({data, setData, addStudySet}) => {
   return (
       <SetHeader>
         <SetHeaderHeading>
@@ -28,6 +29,7 @@ const Heading: FC<Props> = ({data, setData}) => {
               padding="0.625rem 1rem"
               radius="0.5rem"
               fontSize=".875rem"
+              onClick={addStudySet}
           >
             Create
           </BlueButton>
