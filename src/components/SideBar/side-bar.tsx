@@ -12,6 +12,7 @@ import {
 } from "./side-bar.styles";
 import {ReactComponent as SideBarIcon} from "../../assets/images/side-bar-icon.svg";
 import AuthContext from "../../context/auth-context";
+import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.svg";
 
 interface Props {
   isOpen: boolean,
@@ -32,8 +33,14 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
         </Icon>
         <SidebarWrapper>
           <SidebarMenu>
-            <SidebarLink to="/search/anime?q=&order_by=members" onClick={toggle}>
-              Anime
+            <SidebarLink to="/" onClick={toggle}>
+              Home
+            </SidebarLink>
+            <SidebarLink to="/" onClick={toggle}>
+              Your library&nbsp;<ChevronIcon/>
+            </SidebarLink>
+            <SidebarLink to="/" onClick={toggle}>
+              Create
             </SidebarLink>
             {!isAuth ?
                 <>

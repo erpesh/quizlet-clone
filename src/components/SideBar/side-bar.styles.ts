@@ -88,7 +88,6 @@ export const SidebarLink = styled(Link)`
   text-decoration: none;
   list-style: none;
   transition: 0.2s ease-in-out;
-  text-decoration: none;
   color: ${colors.UIColorGray20};
   cursor: pointer;
   margin: 30px 0 0;
