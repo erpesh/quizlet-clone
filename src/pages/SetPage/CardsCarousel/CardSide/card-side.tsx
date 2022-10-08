@@ -2,16 +2,18 @@ import React, {FC} from 'react';
 import {
   CardContainer,
   CarouselButtonsContainer,
-  CarouselButtonsWrap, NavButtonContainer, NavButtonSpan,
+  CarouselButtonsWrap,
+  NavButtonContainer,
+  NavButtonSpan,
   ProgressNumber,
   TermOrDefData,
   TermOrDefDataContent,
   TermOrDefinition,
   TextFormater
-} from "./cards-carousel.styles";
+} from "./card-side.styles";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
-import setDataInterface from "../../../interfaces/set-data.interface";
-import termInterface from "../../../interfaces/term-interface";
+import setDataInterface from "../../../../interfaces/set-data.interface";
+import termInterface from "../../../../interfaces/term-interface";
 
 interface Props {
   progressNumber: number,

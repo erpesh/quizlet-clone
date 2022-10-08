@@ -4,7 +4,7 @@ import {
   CardsCarouselContainer,
   GridContainer
 } from "./cards-carousel.styles";
-import CardSide from "./card-side";
+import CardSide from "./CardSide/card-side";
 import termInterface from "../../../interfaces/term-interface";
 import setDataInterface from "../../../interfaces/set-data.interface";
 
