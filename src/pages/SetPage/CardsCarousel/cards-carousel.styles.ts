@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import colors from "../../../assets/colors";
 
 export const CardsCarouselWrap = styled.div`
@@ -19,7 +19,18 @@ export const CardsCarouselContainer = styled.div`
   perspective: 62.5rem;
   position: relative;
 `
-export const GridContainer = styled.div`
+const flipAnim = keyframes`
+  50% {
+    transform: rotateX(180deg);
+  }
+  75% {
+    transform: rotateX(270deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+`
+export const GridContainer = styled.div<{animate: boolean}>`
   display: grid;
   grid-auto-rows: minmax(0,1fr);
   -webkit-backface-visibility: hidden;
@@ -31,6 +42,11 @@ export const GridContainer = styled.div`
   position: absolute;
   right: 0;
   top: 0;
+  -webkit-animation: ${flipAnim} .35s ease-in-out 1;
+  animation: ${flipAnim} .35s ease-in-out 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  animation-play-state: ${props => props.animate ? "active" : "paused"};
 `
 export const CardContainer = styled.div`
   background-color: ${colors.whiteColor};

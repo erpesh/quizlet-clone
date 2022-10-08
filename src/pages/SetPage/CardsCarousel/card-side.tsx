@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {
   CardContainer,
   CarouselButtonsContainer,
@@ -10,29 +10,64 @@ import {
   TextFormater
 } from "./cards-carousel.styles";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
+import setDataInterface from "../../../interfaces/set-data.interface";
+import termInterface from "../../../interfaces/term-interface";
 
-const CardSide = () => {
+interface Props {
+  progressNumber: number,
+  setProgressNumber: (num: number) => void,
+  isTerm: boolean,
+  value: string,
+  length: number,
+  studySet: setDataInterface,
+  setActiveCard: (card: termInterface) => void,
+  toggleTermSide: () => void;
+}
+
+const CardSide: FC<Props> = (props) => {
+  const {
+    progressNumber,
+    setProgressNumber,
+    isTerm,
+    value,
+    length,
+    studySet,
+    setActiveCard,
+    toggleTermSide
+  } = props
+
+  const handleLeftButton = () => {
+    const nextNum = progressNumber === 1 ? length : progressNumber - 1
+    setProgressNumber(nextNum)
+    setActiveCard(studySet.terms[nextNum - 1])
+  }
+  const handleRightButton = () => {
+    const nextNum = progressNumber === length ? 1 : progressNumber + 1
+    setProgressNumber(nextNum)
+    setActiveCard(studySet.terms[nextNum - 1])
+  }
+
   return (
       <CardContainer>
-        <TermOrDefinition>Term</TermOrDefinition>
-        <ProgressNumber>21/25</ProgressNumber>
-        <TermOrDefData>
+        <TermOrDefinition>{isTerm ? "Term" : "Definition"}</TermOrDefinition>
+        <ProgressNumber>{`${progressNumber} / ${length}`}</ProgressNumber>
+        <TermOrDefData onClick={toggleTermSide}>
           <TermOrDefDataContent>
             <div>
               <TextFormater>
-                <div style={{display: "block"}}>Item</div>
+                <div style={{display: "block"}}>{value}</div>
               </TextFormater>
             </div>
           </TermOrDefDataContent>
         </TermOrDefData>
         <CarouselButtonsWrap>
           <CarouselButtonsContainer>
-            <NavButtonContainer onClick={() => {}}>
+            <NavButtonContainer onClick={handleLeftButton}>
               <NavButtonSpan>
                 <FaChevronLeft/>
               </NavButtonSpan>
             </NavButtonContainer>
-            <NavButtonContainer onClick={() => {}}>
+            <NavButtonContainer onClick={handleRightButton}>
               <NavButtonSpan>
                 <FaChevronRight/>
               </NavButtonSpan>

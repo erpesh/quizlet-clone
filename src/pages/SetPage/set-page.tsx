@@ -28,6 +28,7 @@ const SetPage = () => {
   const studySetsCollectionRef = collection(db, "studySets");
   const [studySet, setStudySet] = useState<any>(null);
   const [activeCard, setActiveCard] = useState<termInterface | null>(null);
+  const [progressNumber, setProgressNumber] = useState(1);
 
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
@@ -37,10 +38,7 @@ const SetPage = () => {
     setActiveCard(filteredSet.terms[0]);
   }
 
-  const calculateProgressWidth = () => {
-    const index = studySet.terms.findIndex((item: termInterface) => item.id === activeCard?.id);
-    return (index + 1) * 100 / studySet.terms.length;
-  }
+  // const calculateProgressWidth = () => 1 + studySet.terms.findIndex((item: termInterface) => item.id === activeCard?.id);
 
   useEffect(() => {
     getStudySets()
@@ -61,12 +59,18 @@ const SetPage = () => {
                       <HeightRegulator>
                         <MarginBottom>
                           <ProgressBarContainer>
-                            <ProgressBar style={{width: `${calculateProgressWidth()}%`}}/>
+                            <ProgressBar style={{width: `${progressNumber * 100 / studySet.terms.length}%`}}/>
                           </ProgressBarContainer>
                         </MarginBottom>
                         <div style={{height: "100%"}}>
                           <PreviewSection>
-                            <CardsCarousel/>
+                            <CardsCarousel
+                              activeCard={activeCard}
+                              setActiveCard={setActiveCard}
+                              studySet={studySet}
+                              progressNumber={progressNumber}
+                              setProgressNumber={setProgressNumber}
+                            />
                           </PreviewSection>
                         </div>
                       </HeightRegulator>
