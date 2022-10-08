@@ -39,30 +39,61 @@ export const HideBelow = styled.div`
     display: none;
   }
 `
-export const HideBelowNavWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
-export const HideBelowNav = styled.nav`
-  -ms-flex-negative: 0;
-  display: grid;
-  -webkit-flex-shrink: 0;
-  flex-shrink: 0;
-  gap: 1rem;
-  -ms-flex-item-align: center;
-  -webkit-align-self: center;
-  align-self: center;
-  margin: -0.5rem 0 1.5rem;
-  width: 100%;
-  max-width: 52.5rem;
-  @media screen and (max-width: 69.6875rem) {
-    margin: 1rem 0 0;
-    max-width: 46rem;
-    width: 100%;
+export const HideAbove = styled.div`
+  @media (min-width: 64rem){
+    display: none;
   }
-  @media (max-width: 64rem) {
-    margin-bottom: 0;
-    margin-top: 1.5rem;
+`
+export const MainSectionWrapper = styled.div`
+  background-color: ${colors.pageBackgroundColor};
+  max-height: 100%;
+  -webkit-transition: max-height .2s ease-in;
+  transition: max-height .2s ease-in;
+`
+export const MainSectionContainer = styled.div`
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
+`
+export const MainSectionContainer2 = styled.div`
+  display: block;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin-left: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+`
+export const HeightRegulator = styled.div`
+  height: 100%;
+  min-height: 31.25rem;
+  @media (max-width: 38.75rem) {
+    min-height: 25rem;
+  }
+`
+export const MarginBottom = styled.div`
+  margin-bottom: 1rem;
+`
+export const ProgressBarContainer = styled.div`
+  background-color: ${colors.colorDisabled};
+  border-radius: .25rem;
+  height: 0.125rem;
+`
+export const ProgressBar = styled.div`
+  background-color: ${colors.gray600};
+  border-radius: .25rem;
+  height: 100%;
+`
+export const PreviewSection = styled.div`
+  display: grid;
+  grid-template-rows: minmax(0,1fr) auto;
+  height: calc(100% - 1rem);
+  @media (max-width: 38.75rem) {
+    height: calc(100% - .5rem);
   }
 `

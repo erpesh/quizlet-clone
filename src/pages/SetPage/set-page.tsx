@@ -9,9 +9,18 @@ import {
   SetTitle,
     SetModelSection,
     HideBelow,
-    HideBelowNav,
-    HideBelowNavWrap
+    HideAbove,
+    MainSectionContainer,
+    MainSectionContainer2,
+    MainSectionWrapper,
+    MarginBottom,
+    HeightRegulator,
+    ProgressBarContainer,
+    ProgressBar,
+    PreviewSection
 } from "./set-page.styles";
+import ModulesList from "./ModulesList/modules-list";
+import CardsCarousel from "./CardsCarousel/cards-carousel";
 
 const SetPage = () => {
 
@@ -37,12 +46,29 @@ const SetPage = () => {
               <SetTitle>{studySet.title}</SetTitle>
               <SetModelSection>
                 <HideBelow>
-                  <HideBelowNavWrap>
-                    <HideBelowNav>
-                      
-                    </HideBelowNav>
-                  </HideBelowNavWrap>
+                  <ModulesList/>
                 </HideBelow>
+                <MainSectionWrapper>
+                  <MainSectionContainer>
+                    <MainSectionContainer2>
+                      <HeightRegulator>
+                        <MarginBottom>
+                          <ProgressBarContainer>
+                            <ProgressBar style={{width: "12%"}}/>
+                          </ProgressBarContainer>
+                        </MarginBottom>
+                        <div style={{height: "100%"}}>
+                          <PreviewSection>
+                            <CardsCarousel/>
+                          </PreviewSection>
+                        </div>
+                      </HeightRegulator>
+                    </MainSectionContainer2>
+                  </MainSectionContainer>
+                </MainSectionWrapper>
+                <HideAbove>
+                  <ModulesList/>
+                </HideAbove>
               </SetModelSection>
             </SetPageContainer>) : <div/>}
       </SetPageWrapper>
