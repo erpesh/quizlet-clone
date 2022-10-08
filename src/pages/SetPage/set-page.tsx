@@ -27,12 +27,19 @@ const SetPage = () => {
   const {id} = useParams();
   const studySetsCollectionRef = collection(db, "studySets");
   const [studySet, setStudySet] = useState<any>(null);
+  const [activeCard, setActiveCard] = useState<termInterface | null>(null);
 
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map(doc => doc.data());
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
     setStudySet(filteredSet)
+    setActiveCard(filteredSet.terms[0]);
+  }
+
+  const calculateProgressWidth = () => {
+    const index = studySet.terms.findIndex((item: termInterface) => item.id === activeCard?.id);
+    return (index + 1) * 100 / studySet.terms.length;
   }
 
   useEffect(() => {
@@ -43,7 +50,7 @@ const SetPage = () => {
       <SetPageWrapper>
         {studySet ? (
             <SetPageContainer>
-              <SetTitle>{studySet.title}</SetTitle>
+              <SetTitle onClick={() => console.log(activeCard)}>{studySet.title}</SetTitle>
               <SetModelSection>
                 <HideBelow>
                   <ModulesList/>
@@ -54,7 +61,7 @@ const SetPage = () => {
                       <HeightRegulator>
                         <MarginBottom>
                           <ProgressBarContainer>
-                            <ProgressBar style={{width: "12%"}}/>
+                            <ProgressBar style={{width: `${calculateProgressWidth()}%`}}/>
                           </ProgressBarContainer>
                         </MarginBottom>
                         <div style={{height: "100%"}}>

@@ -17,7 +17,7 @@ const ModulesList = () => {
       <StudyModulesWrapper>
         <StudyModulesContainer>
           <UnorderedList>
-            {modules.map(item => <ListItem>
+            {modules.map(item => <ListItem key={item}>
               <div>
                 <ItemHeader>
                   <ItemH2>
