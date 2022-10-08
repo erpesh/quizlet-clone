@@ -76,6 +76,10 @@ export const ListItem = styled.li`
   @media (min-width: 64.0625rem) {
       margin-right: 1rem;
   }
+  &:hover{
+    border-bottom-color: ${colors.twilight200};
+    box-shadow: 0 0.25rem 1rem 0 rgba(48, 53, 69, 0.08);
+  }
 `
 export const ItemHeader = styled.header`
   -webkit-box-align: center;

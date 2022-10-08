@@ -9,12 +9,12 @@ export const SetPageContainer = styled.div`
   max-width: 54.5625rem;
   padding: 2.5rem;
   position: relative;
-  //@media screen and (max-width: 64em) {
-  //  max-width: none;
-  //}
-  //@media screen and (max-width: 38.75em){
-  //  padding: 1rem;
-  //}
+  @media screen and (max-width: 64em) {
+    max-width: none;
+  }
+  @media screen and (max-width: 38.75em){
+    padding: 1rem;
+  }
 `
 export const SetTitle = styled.h1`
   flex-basis: 100%;
