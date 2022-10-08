@@ -23,7 +23,9 @@ interface Props {
   length: number,
   studySet: setDataInterface,
   setActiveCard: (card: termInterface) => void,
-  toggleTermSide: () => void;
+  toggleTermSide: () => void,
+  setAnimation: (anim: "prev" | "next" | "flip") => void,
+  toggleKey: () => void
 }
 
 const CardSide: FC<Props> = (props) => {
@@ -35,15 +37,21 @@ const CardSide: FC<Props> = (props) => {
     length,
     studySet,
     setActiveCard,
-    toggleTermSide
+    toggleTermSide,
+    setAnimation,
+    toggleKey
   } = props
 
   const handleLeftButton = () => {
+    setAnimation("prev")
+    toggleKey()
     const nextNum = progressNumber === 1 ? length : progressNumber - 1
     setProgressNumber(nextNum)
     setActiveCard(studySet.terms[nextNum - 1])
   }
   const handleRightButton = () => {
+    setAnimation("next")
+    toggleKey()
     const nextNum = progressNumber === length ? 1 : progressNumber + 1
     setProgressNumber(nextNum)
     setActiveCard(studySet.terms[nextNum - 1])

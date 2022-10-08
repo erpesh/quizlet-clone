@@ -27,10 +27,16 @@ const CardsCarousel: FC<Props> = (props) => {
 
   const [isTermSide, setIsTermSide] = useState(true);
   const [animate, setAnimate] = useState(false);
+  const [animation, setAnimation] = useState<"prev" | "next" | "flip">("flip");
+  const [keyChange, setKeyChange] = useState(false);
+
+  const toggleKey = () => setKeyChange(!keyChange);
 
   const toggleTermSide = () => {
+    setAnimation("flip");
     setAnimate(true);
     setIsTermSide(!isTermSide)
+    toggleKey();
   };
 
   return (
@@ -38,8 +44,9 @@ const CardsCarousel: FC<Props> = (props) => {
         <CardsCarouselContainer>
           <GridContainer
               animate={animate}
+              animation={animation}
               style={{zIndex: isTermSide ? 101 : 1}}
-              key={isTermSide ? 1 : 2}
+              key={keyChange ? 1 : 2}
           >
             <CardSide
                 progressNumber={progressNumber}
@@ -50,12 +57,15 @@ const CardsCarousel: FC<Props> = (props) => {
                 studySet={studySet}
                 setActiveCard={setActiveCard}
                 toggleTermSide={toggleTermSide}
+                setAnimation={setAnimation}
+                toggleKey={toggleKey}
             />
           </GridContainer>
           <GridContainer
               animate={animate}
+              animation={animation}
               style={{zIndex: isTermSide ? 1 : 101}}
-              key={isTermSide? 3 : 4}
+              key={keyChange? 3 : 4}
           >
             <CardSide
                 progressNumber={progressNumber}
@@ -66,6 +76,8 @@ const CardsCarousel: FC<Props> = (props) => {
                 studySet={studySet}
                 setActiveCard={setActiveCard}
                 toggleTermSide={toggleTermSide}
+                setAnimation={setAnimation}
+                toggleKey={toggleKey}
             />
           </GridContainer>
         </CardsCarouselContainer>
