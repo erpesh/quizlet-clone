@@ -17,10 +17,11 @@ import setDataInterface from "../../../interfaces/set-data.interface";
 interface Props {
   data: setDataInterface,
   setData: (data: setDataInterface) => void,
-  addStudySet: () => void
+  addStudySet: () => void,
+  isCreate: boolean
 }
 
-const Heading: FC<Props> = ({data, setData, addStudySet}) => {
+const Heading: FC<Props> = ({data, setData, addStudySet, isCreate}) => {
   return (
       <SetHeader>
         <SetHeaderHeading>
@@ -31,7 +32,7 @@ const Heading: FC<Props> = ({data, setData, addStudySet}) => {
               fontSize=".875rem"
               onClick={addStudySet}
           >
-            Create
+            {isCreate ? "Create" : "Save"}
           </BlueButton>
         </SetHeaderHeading>
         <InputContainer>
@@ -40,6 +41,7 @@ const Heading: FC<Props> = ({data, setData, addStudySet}) => {
               {!!data.title && <TitleEffect>Title</TitleEffect>}
               <TitleInput
                   placeholder="Enter a title, like “Biology - Chapter 22: Evolution”"
+                  value={data.title}
                   onChange={e => setData({...data, title: e.target.value})}
               />
             </InputLabel>
@@ -55,6 +57,7 @@ const Heading: FC<Props> = ({data, setData, addStudySet}) => {
                     {!!data.description && <TitleEffect>Description</TitleEffect>}
                     <TextAreaInput
                         placeholder="Add a description..."
+                        value={data.description}
                         onChange={e => setData({...data, description: e.target.value})}
                     />
                   </TextAreaWrapper>

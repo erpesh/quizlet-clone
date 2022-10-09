@@ -1,12 +1,11 @@
 import {FC, useState} from "react";
 import setDataInterface from "../../interfaces/set-data.interface";
 import CreateCard from "../../components/CreateCard/create-card";
-import {addDoc, collection} from "firebase/firestore";
+import {addDoc, collection, updateDoc, doc} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate} from "react-router-dom";
 import {PageContainer} from "./create.styles";
 import {BlueButton} from "../../components/BlueButton/blue-button.styles";
-import {INITIAL_CREATE_STATE} from "./initial-state";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
 import ImportTerms from "../../components/ImportTerms/import-terms";
@@ -14,14 +13,27 @@ import AddCardButton from "./AddCardButton/add-card-button";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./styles.css";
+import termInterface from "../../interfaces/term-interface";
 
-const Create = () => {
+interface Props {
+  data: any,
+  setData: (data: setDataInterface) => void,
+  isCreate: boolean
+}
+
+const Create: FC<Props> = ({data, setData, isCreate}) => {
 
   const navigate = useNavigate();
-  const [data, setData] = useState<setDataInterface>(INITIAL_CREATE_STATE);
   const [isModalImportActive, setIsModalImportActive] = useState(false);
 
   const studySetsCollectionRef = collection(db, "studySets");
+
+  const updateStudySet = async () => {
+    const ref = data.ref;
+    delete data.ref;
+    await updateDoc(ref, data);
+    navigate(`/${data.id}`)
+  }
 
   const addStudySet = async () => {
     await addDoc(studySetsCollectionRef,
@@ -49,7 +61,8 @@ const Create = () => {
         <Heading
             data={data}
             setData={setData}
-            addStudySet={addStudySet}
+            addStudySet={isCreate ? addStudySet : updateStudySet}
+            isCreate={isCreate}
         />
         <CreateTools
             data={data}
@@ -65,7 +78,7 @@ const Create = () => {
                     {...provided.droppableProps}
                 >
                   <TransitionGroup component={null}>
-                    {data.terms.map((item, id) => (
+                    {data.terms.map((item: termInterface, id : number) => (
                         <CSSTransition
                             key={item.id}
                             timeout={500}
@@ -105,9 +118,9 @@ const Create = () => {
                 padding={"1.25rem 2rem"}
                 radius={"0.5rem"}
                 fontSize={"1rem"}
-                onClick={addStudySet}
+                onClick={isCreate ? addStudySet : updateStudySet}
             >
-              Create
+              {isCreate ? "Create" : "Save"}
             </BlueButton>
           </div>
         </div>
