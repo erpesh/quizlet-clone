@@ -1,34 +1,33 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import termInterface from "../../interfaces/term-interface";
 import {
   SetPageWrapper,
   SetPageContainer,
   SetTitle,
-    SetModelSection,
-    HideBelow,
-    HideAbove,
-    MainSectionContainer,
-    MainSectionContainer2,
-    MainSectionWrapper,
-    MarginBottom,
-    HeightRegulator,
-    ProgressBarContainer,
-    ProgressBar,
-    PreviewSection
+  SetModelSection,
+  HideBelow,
+  HideAbove,
+  MainSectionContainer,
+  MainSectionContainer2,
+  MainSectionWrapper,
+  MarginBottom,
+  HeightRegulator,
+  ProgressBarContainer,
+  ProgressBar,
+  PreviewSection,
 } from "./set-page.styles";
 import ModulesList from "./ModulesList/modules-list";
 import CardsCarousel from "./CardsCarousel/cards-carousel";
-import AuthContext from "../../context/auth-context";
+import CardsFooter from "./CardsFooter/cards-footer";
 
 const SetPage = () => {
 
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
-  const {isAuth} = useContext(AuthContext);
   const [studySet, setStudySet] = useState<any>(null);
   const [activeCard, setActiveCard] = useState<termInterface | null>(null);
   const [progressNumber, setProgressNumber] = useState(1);
@@ -40,8 +39,7 @@ const SetPage = () => {
     if (auth.currentUser?.uid === filteredSet.author.id) {
       setStudySet(filteredSet)
       setActiveCard(filteredSet.terms[0]);
-    }
-    else navigate(-1);
+    } else navigate(-1);
   }
 
   useEffect(() => {
@@ -69,11 +67,15 @@ const SetPage = () => {
                         <div style={{height: "100%"}}>
                           <PreviewSection>
                             <CardsCarousel
-                              activeCard={activeCard}
-                              setActiveCard={setActiveCard}
-                              studySet={studySet}
-                              progressNumber={progressNumber}
-                              setProgressNumber={setProgressNumber}
+                                activeCard={activeCard}
+                                setActiveCard={setActiveCard}
+                                studySet={studySet}
+                                progressNumber={progressNumber}
+                                setProgressNumber={setProgressNumber}
+                            />
+                            <CardsFooter
+                                studySet={studySet}
+                                setStudySet={setStudySet}
                             />
                           </PreviewSection>
                         </div>
