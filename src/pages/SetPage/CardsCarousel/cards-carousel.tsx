@@ -59,6 +59,7 @@ const CardsCarousel: FC<Props> = (props) => {
                 toggleTermSide={toggleTermSide}
                 setAnimation={setAnimation}
                 toggleKey={toggleKey}
+                setAnimate={setAnimate}
             />
           </GridContainer>
           <GridContainer
@@ -78,6 +79,7 @@ const CardsCarousel: FC<Props> = (props) => {
                 toggleTermSide={toggleTermSide}
                 setAnimation={setAnimation}
                 toggleKey={toggleKey}
+                setAnimate={setAnimate}
             />
           </GridContainer>
         </CardsCarouselContainer>

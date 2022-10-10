@@ -25,7 +25,8 @@ interface Props {
   setActiveCard: (card: termInterface) => void,
   toggleTermSide: () => void,
   setAnimation: (anim: "prev" | "next" | "flip") => void,
-  toggleKey: () => void
+  toggleKey: () => void,
+  setAnimate: (animate: boolean) => void
 }
 
 const CardSide: FC<Props> = (props) => {
@@ -39,11 +40,13 @@ const CardSide: FC<Props> = (props) => {
     setActiveCard,
     toggleTermSide,
     setAnimation,
-    toggleKey
+    toggleKey,
+    setAnimate
   } = props
 
   const handleLeftButton = () => {
     setAnimation("prev")
+    setAnimate(true);
     toggleKey()
     const nextNum = progressNumber === 1 ? length : progressNumber - 1
     setProgressNumber(nextNum)
@@ -51,6 +54,7 @@ const CardSide: FC<Props> = (props) => {
   }
   const handleRightButton = () => {
     setAnimation("next")
+    setAnimate(true);
     toggleKey()
     const nextNum = progressNumber === length ? 1 : progressNumber + 1
     setProgressNumber(nextNum)

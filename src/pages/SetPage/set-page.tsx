@@ -1,7 +1,7 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
-import {db} from "../../firebase-config";
-import {useEffect, useState} from "react";
+import {auth, db} from "../../firebase-config";
+import {useContext, useEffect, useState} from "react";
 import termInterface from "../../interfaces/term-interface";
 import {
   SetPageWrapper,
@@ -21,11 +21,14 @@ import {
 } from "./set-page.styles";
 import ModulesList from "./ModulesList/modules-list";
 import CardsCarousel from "./CardsCarousel/cards-carousel";
+import AuthContext from "../../context/auth-context";
 
 const SetPage = () => {
 
   const {id} = useParams();
+  const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
+  const {isAuth} = useContext(AuthContext);
   const [studySet, setStudySet] = useState<any>(null);
   const [activeCard, setActiveCard] = useState<termInterface | null>(null);
   const [progressNumber, setProgressNumber] = useState(1);
@@ -34,11 +37,12 @@ const SetPage = () => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map(doc => doc.data());
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
-    setStudySet(filteredSet)
-    setActiveCard(filteredSet.terms[0]);
+    if (auth.currentUser?.uid === filteredSet.author.id) {
+      setStudySet(filteredSet)
+      setActiveCard(filteredSet.terms[0]);
+    }
+    else navigate(-1);
   }
-
-  // const calculateProgressWidth = () => 1 + studySet.terms.findIndex((item: termInterface) => item.id === activeCard?.id);
 
   useEffect(() => {
     getStudySets()

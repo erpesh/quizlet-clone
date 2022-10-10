@@ -1,7 +1,7 @@
 import {FC, useState} from "react";
 import setDataInterface from "../../interfaces/set-data.interface";
 import CreateCard from "../../components/CreateCard/create-card";
-import {addDoc, collection, updateDoc, doc} from "firebase/firestore";
+import {addDoc, collection, updateDoc} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate} from "react-router-dom";
 import {PageContainer} from "./create.styles";

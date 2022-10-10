@@ -3,7 +3,6 @@ import './App.css';
 import Home from "./pages/Home/home";
 import {Routes, Route} from "react-router-dom";
 import Header from "./components/Header/header";
-import Create from "./pages/Create/create";
 import SetPage from "./pages/SetPage/set-page";
 import {AuthProvider} from "./context/auth-context";
 import SideBar from "./components/SideBar/side-bar";

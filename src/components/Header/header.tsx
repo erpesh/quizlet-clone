@@ -1,7 +1,5 @@
 import React, {FC, useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
-import {auth} from "../../firebase-config";
-import {signOut} from "firebase/auth";
 import {
   Container,
   LogoContainer,

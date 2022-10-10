@@ -1,10 +1,9 @@
 import React, {FC, useEffect, useState} from 'react';
 import Create from "../../pages/Create/create";
 import {INITIAL_CREATE_STATE} from "./initial-state";
-import setDataInterface from "../../interfaces/set-data.interface";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
-import {db} from "../../firebase-config";
+import {auth, db} from "../../firebase-config";
 
 interface Props {
   isCreate: boolean
@@ -13,6 +12,7 @@ interface Props {
 const CreateOrEdit: FC<Props> = ({isCreate}) => {
 
   const {id} = useParams();
+  const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
   const [data, setData] = useState<any>(isCreate ? INITIAL_CREATE_STATE : null);
 
@@ -20,7 +20,11 @@ const CreateOrEdit: FC<Props> = ({isCreate}) => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map((doc): any => ({...doc.data(), ref: doc.ref}));
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
-    setData(filteredSet)
+    console.log(auth.currentUser?.uid);
+    if (filteredSet.author.id === auth.currentUser?.uid)
+      setData(filteredSet)
+    else
+      navigate(`/${id}`);
   }
 
   useEffect(() => {

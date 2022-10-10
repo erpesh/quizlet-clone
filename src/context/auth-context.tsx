@@ -1,6 +1,7 @@
-import {createContext, Dispatch, FC, useState} from "react";
+import {createContext, Dispatch, FC, useEffect, useState} from "react";
 import {signInWithPopup, signOut} from "firebase/auth";
 import {auth, provider} from "../firebase-config";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 const INITIAL_STATE = {
   isAuth: false,
@@ -16,6 +17,11 @@ export default AuthContext;
 export const AuthProvider: FC<{children: any}> = ({children}) => {
 
   const [isAuth, setIsAuth] = useState(false);
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    setIsAuth(!!auth.currentUser?.uid)
+  }, [user, loading])
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
