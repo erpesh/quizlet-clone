@@ -12,54 +12,27 @@ import {
   TextFormater
 } from "./card-side.styles";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
-import setDataInterface from "../../../../interfaces/set-data.interface";
-import termInterface from "../../../../interfaces/term-interface";
 
 interface Props {
   progressNumber: number,
-  setProgressNumber: (num: number) => void,
   isTerm: boolean,
   value: string,
   length: number,
-  studySet: setDataInterface,
-  setActiveCard: (card: termInterface) => void,
   toggleTermSide: () => void,
-  setAnimation: (anim: "prev" | "next" | "flip") => void,
-  toggleKey: () => void,
-  setAnimate: (animate: boolean) => void
+  handleLeftButton: () => void,
+  handleRightButton: () => void,
 }
 
 const CardSide: FC<Props> = (props) => {
   const {
     progressNumber,
-    setProgressNumber,
     isTerm,
     value,
     length,
-    studySet,
-    setActiveCard,
     toggleTermSide,
-    setAnimation,
-    toggleKey,
-    setAnimate
+    handleLeftButton,
+    handleRightButton
   } = props
-
-  const handleLeftButton = () => {
-    setAnimation("prev")
-    setAnimate(true);
-    toggleKey()
-    const nextNum = progressNumber === 1 ? length : progressNumber - 1
-    setProgressNumber(nextNum)
-    setActiveCard(studySet.terms[nextNum - 1])
-  }
-  const handleRightButton = () => {
-    setAnimation("next")
-    setAnimate(true);
-    toggleKey()
-    const nextNum = progressNumber === length ? 1 : progressNumber + 1
-    setProgressNumber(nextNum)
-    setActiveCard(studySet.terms[nextNum - 1])
-  }
 
   return (
       <CardContainer>

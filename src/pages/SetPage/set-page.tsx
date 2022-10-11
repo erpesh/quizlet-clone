@@ -31,16 +31,50 @@ const SetPage = () => {
   const [studySet, setStudySet] = useState<any>(null);
   const [activeCard, setActiveCard] = useState<termInterface | null>(null);
   const [progressNumber, setProgressNumber] = useState(1);
+  const [isTermSide, setIsTermSide] = useState(true);
+  const [animate, setAnimate] = useState(false);
+  const [animation, setAnimation] = useState<"prev" | "next" | "flip">("flip");
+  const [keyChange, setKeyChange] = useState(false);
+
+  const toggleKey = () => setKeyChange(!keyChange);
+
+  const toggleTermSide = () => {
+    console.log(animation, animate, isTermSide, keyChange);
+    setAnimation("flip");
+    setAnimate(true);
+    setIsTermSide(!isTermSide)
+    toggleKey();
+    console.log('toggletermside');
+  };
+
+  const handleLeftButton = () => {
+    setAnimation("prev");
+    setAnimate(true);
+    toggleKey();
+    const nextNum = progressNumber === 1 ? studySet.terms.length : progressNumber - 1
+    setProgressNumber(nextNum);
+    setActiveCard(studySet.terms[nextNum - 1]);
+  }
+  const handleRightButton = () => {
+    setAnimation("next");
+    setAnimate(true);
+    toggleKey();
+    const nextNum = progressNumber === studySet.terms.length ? 1 : progressNumber + 1
+    setProgressNumber(nextNum);
+    setActiveCard(studySet.terms[nextNum - 1]);
+  }
 
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map(doc => doc.data());
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
-    if (auth.currentUser?.uid === filteredSet.author.id) {
+    if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
       setStudySet(filteredSet)
       setActiveCard(filteredSet.terms[0]);
-    } else navigate(-1);
+    } else navigate('/');
   }
+
+
 
   useEffect(() => {
     getStudySets()
@@ -50,7 +84,7 @@ const SetPage = () => {
       <SetPageWrapper>
         {studySet ? (
             <SetPageContainer>
-              <SetTitle onClick={() => console.log(activeCard)}>{studySet.title}</SetTitle>
+              <SetTitle>{studySet.title}</SetTitle>
               <SetModelSection>
                 <HideBelow>
                   <ModulesList/>
@@ -68,14 +102,23 @@ const SetPage = () => {
                           <PreviewSection>
                             <CardsCarousel
                                 activeCard={activeCard}
-                                setActiveCard={setActiveCard}
                                 studySet={studySet}
                                 progressNumber={progressNumber}
-                                setProgressNumber={setProgressNumber}
+                                isTermSide={isTermSide}
+                                animation={animation}
+                                animate={animate}
+                                toggleTermSide={toggleTermSide}
+                                keyChange={keyChange}
+                                handleLeftButton={handleLeftButton}
+                                handleRightButton={handleRightButton}
                             />
                             <CardsFooter
                                 studySet={studySet}
                                 setStudySet={setStudySet}
+                                setActiveCard={setActiveCard}
+                                setProgressNumber={setProgressNumber}
+                                toggleTermSide={toggleTermSide}
+                                handleRightButton={handleRightButton}
                             />
                           </PreviewSection>
                         </div>

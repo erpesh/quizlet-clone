@@ -20,7 +20,6 @@ const CreateOrEdit: FC<Props> = ({isCreate}) => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map((doc): any => ({...doc.data(), ref: doc.ref}));
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
-    console.log(auth.currentUser?.uid);
     if (filteredSet.author.id === auth.currentUser?.uid)
       setData(filteredSet)
     else

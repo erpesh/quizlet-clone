@@ -12,6 +12,8 @@ export const CardsFooterBase = styled.div`
   flex-direction: row;
   -webkit-justify-content: space-between;
   justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-top: 1rem;
   @media (max-width: 28.75rem) {
     padding-top: 0.75rem;
@@ -38,13 +40,4 @@ export const CardsFooterSide = styled.div`
       margin-right: 1rem;
     }
   }
-`
-export const CardsFooterItem = styled.div`
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
 `
