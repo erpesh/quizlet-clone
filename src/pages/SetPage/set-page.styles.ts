@@ -23,6 +23,7 @@ export const SetTitle = styled.h1`
   letter-spacing: normal;
   line-height: 1.25;
   word-break: break-word;
+  margin-bottom: 1rem;
   @media screen and (max-width: 38.75em) {
     font-size: 1.5rem;
     letter-spacing: normal;

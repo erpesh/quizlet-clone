@@ -19,11 +19,11 @@ export const StudyModulesContainer = styled.nav`
   margin: -0.5rem 0 1.5rem;
   max-width: 52.5rem;
   width: 100%;
-  @media screen and (max-width: 69.6875rem) {
-    margin: 1rem 0 0;
-    max-width: 46rem;
-    width: 100%;
-  }
+  //@media screen and (max-width: 69.6875rem) {
+  //  margin: 1rem 0 0;
+  //  max-width: 46rem;
+  //  width: 100%;
+  //}
   @media (max-width: 48rem) {
     -ms-flex-item-align: center;
     -webkit-align-self: center;

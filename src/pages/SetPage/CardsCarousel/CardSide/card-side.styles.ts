@@ -143,6 +143,10 @@ export const NavButtonContainer = styled.div`
   position: relative;
   width: 100%;
   word-break: break-word;
+  :hover {
+    border-color: #939bb4;
+    outline: none;
+  }
   @media (max-width: 38.75rem){
     margin-bottom: 1rem;
     max-height: 3rem;
