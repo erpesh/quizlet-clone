@@ -39,12 +39,10 @@ const SetPage = () => {
   const toggleKey = () => setKeyChange(!keyChange);
 
   const toggleTermSide = () => {
-    console.log(animation, animate, isTermSide, keyChange);
     setAnimation("flip");
     setAnimate(true);
     setIsTermSide(!isTermSide)
     toggleKey();
-    console.log('toggletermside');
   };
 
   const handleLeftButton = () => {
@@ -64,6 +62,12 @@ const SetPage = () => {
     setActiveCard(studySet.terms[nextNum - 1]);
   }
 
+  const handleArrowKeys = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowRight") handleRightButton()
+    else if (e.key === "ArrowLeft") handleLeftButton()
+    else if (e.key === " ") toggleTermSide()
+  }
+
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map(doc => doc.data());
@@ -74,14 +78,12 @@ const SetPage = () => {
     } else navigate('/');
   }
 
-
-
   useEffect(() => {
     getStudySets()
   }, [])
 
   return (
-      <SetPageWrapper>
+      <SetPageWrapper tabIndex={0} onKeyDown={handleArrowKeys}>
         {studySet ? (
             <SetPageContainer>
               <SetTitle>{studySet.title}</SetTitle>

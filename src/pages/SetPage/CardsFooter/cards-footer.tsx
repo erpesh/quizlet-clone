@@ -1,8 +1,10 @@
 import React, {FC} from 'react';
 import {
   CardsFooterBase,
-  CardsFooterSide
+  CardsFooterSide,
+  CardsFooterButton
 } from "./cards-footer.styles";
+import {FiShuffle} from 'react-icons/fi';
 import setDataInterface from "../../../interfaces/set-data.interface";
 import termInterface from "../../../interfaces/term-interface";
 
@@ -35,7 +37,10 @@ const CardsFooter: FC<Props> = (props) => {
 
   return (
       <CardsFooterBase>
-        <CardsFooterSide onClick={shuffleCards}>staff1
+        <CardsFooterSide onClick={shuffleCards}>
+          <CardsFooterButton>
+            <FiShuffle/>
+          </CardsFooterButton>
         </CardsFooterSide>
         <CardsFooterSide>
           staff2

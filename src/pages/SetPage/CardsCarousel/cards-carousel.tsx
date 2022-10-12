@@ -36,7 +36,7 @@ const CardsCarousel: FC<Props> = (props) => {
   } = props;
 
   return (
-      <CardsCarouselWrap>
+      <CardsCarouselWrap onKeyPress={(e) => console.log(e.key)}>
         <CardsCarouselContainer>
           <GridContainer
               animate={animate}
