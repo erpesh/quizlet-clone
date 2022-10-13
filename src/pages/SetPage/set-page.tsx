@@ -1,7 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
-import {useEffect, useState} from "react";
+import {useEffect, useState, KeyboardEvent} from "react";
 import termInterface from "../../interfaces/term-interface";
 import {
   SetPageWrapper,
@@ -62,7 +62,7 @@ const SetPage = () => {
     setActiveCard(studySet.terms[nextNum - 1]);
   }
 
-  const handleArrowKeys = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleArrowKeys = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === "ArrowRight") handleRightButton()
     else if (e.key === "ArrowLeft") handleLeftButton()
     else if (e.key === " ") toggleTermSide()
