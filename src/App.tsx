@@ -7,6 +7,7 @@ import SetPage from "./pages/SetPage/set-page";
 import {AuthProvider} from "./context/auth-context";
 import SideBar from "./components/SideBar/side-bar";
 import CreateOrEdit from "./utils/CreateOrEdit/create-or-edit";
+import TestPage from "./pages/TestPage/test-page";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/create" element={<CreateOrEdit isCreate={true}/>}/>
             <Route path="/:id" element={<SetPage/>}/>
             <Route path="/:id/edit" element={<CreateOrEdit isCreate={false}/>}/>
+            <Route path="/:id/test" element={<TestPage/>}/>
           </Routes>
         </AuthProvider>
       </div>
