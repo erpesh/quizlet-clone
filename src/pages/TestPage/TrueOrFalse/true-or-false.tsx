@@ -1,12 +1,10 @@
-import React from 'react';
-
+import React from 'react'
+import { Container } from './true-or-false.styles'
 
 const TrueOrFalse = () => {
   return (
-      <div>
+    <Container>TrueOrFalse</Container>
+  )
+}
 
-      </div>
-  );
-};
-
-export default TrueOrFalse;
+export default TrueOrFalse
