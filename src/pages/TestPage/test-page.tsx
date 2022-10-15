@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate, useParams} from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
 
 
 const TestPage = () => {
@@ -26,9 +27,9 @@ const TestPage = () => {
   }, [])
 
   return (
-      <div>
-        {studySet ? <div>{studySet.title}</div> : <div>nema</div>}
-      </div>
+      <>
+        {studySet ? <div>{studySet.title}</div> : <LoadingSpinner/>}
+      </>
   );
 };
 
