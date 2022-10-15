@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {collection, getDocs} from "firebase/firestore";
-import {auth, db} from "../../firebase-config";
-import {useNavigate, useParams} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { collection, getDocs } from "firebase/firestore";
+import { auth, db } from "../../firebase-config";
+import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
+import TrueOrFalse from './TrueOrFalse/true-or-false';
 
 
 const TestPage = () => {
 
-  const {id} = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
 
@@ -27,9 +28,14 @@ const TestPage = () => {
   }, [])
 
   return (
-      <>
-        {studySet ? <div>{studySet.title}</div> : <LoadingSpinner/>}
-      </>
+    <>
+      {studySet ?
+        <div>
+          <div>{studySet.title}</div>
+          <TrueOrFalse />
+        </div>
+        : <LoadingSpinner />}
+    </>
   );
 };
 

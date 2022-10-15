@@ -17,6 +17,7 @@ const colors = {
   onHoverPrimaryButton: "#28a7a7",
   colorDisabled: "#d9dde8",
   neurtal300: "#edeff4",
-  twilight200: "#dbdfff"
+  twilight200: "#dbdfff",
+  shadowWithOpacity: "rgba(48, 59, 63, .08)"
 }
 export default colors;
