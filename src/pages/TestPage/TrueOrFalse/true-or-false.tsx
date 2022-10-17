@@ -29,26 +29,9 @@ interface Props {
 
 const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
 
-  const [isTrueFocused, setIsTrueFocused] = useState(false);
-  const [isFalseFocused, setIsFalseFocused] = useState(false);
+  const [focusValue, setFocusValue] = useState<"true" | "false" | "null">("null");
 
-  const toggleFocus = (value: "true" | "false") => {
-    if (value === "true"){
-      if (isFalseFocused){
-        setIsFalseFocused(false);
-        setIsTrueFocused(true);
-        return;
-      }
-      setIsTrueFocused(!isTrueFocused);
-      return;
-    }
-    if (isTrueFocused){
-      setIsTrueFocused(false);
-      setIsFalseFocused(true);
-      return;
-    }
-    setIsFalseFocused(!isFalseFocused);
-  };
+  const toggleFocus = (value: "true" | "false") => setFocusValue(focusValue === value ? "null" : value)
 
   return (
     // <div role="listitem">
@@ -98,7 +81,7 @@ const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
       <SecondTitle>Choose the answer</SecondTitle>
       <AnswerContainer>
         <AnswerItem
-          isFocus={isTrueFocused}
+          isFocus={focusValue === "true"}
           onClick={() => toggleFocus("true")}
           tabIndex={0}
         >
@@ -106,7 +89,7 @@ const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
           True
         </AnswerItem>
         <AnswerItem
-          isFocus={isFalseFocused}
+          isFocus={focusValue === "false"}
           onClick={() => toggleFocus("false")}
           tabIndex={0}
         >
