@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC, useRef, useState } from 'react'
 import termInterface from '../../../interfaces/term-interface'
 import {
   AnswerContainer,
@@ -27,67 +27,97 @@ interface Props {
   isTrue?: boolean
 }
 
-const TrueOrFalse: FC<Props> = ({termData, isTrue}) => {
+const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
+
+  const [isTrueFocused, setIsTrueFocused] = useState(false);
+  const [isFalseFocused, setIsFalseFocused] = useState(false);
+
+  const toggleFocus = (value: "true" | "false") => {
+    if (value === "true"){
+      if (isFalseFocused){
+        setIsFalseFocused(false);
+        setIsTrueFocused(true);
+        return;
+      }
+      setIsTrueFocused(!isTrueFocused);
+      return;
+    }
+    if (isTrueFocused){
+      setIsTrueFocused(false);
+      setIsFalseFocused(true);
+      return;
+    }
+    setIsFalseFocused(!isFalseFocused);
+  };
+
   return (
     // <div role="listitem">
-      <Container>
-        <MainSection>
-          <TermPart>
-            <PartContainer>
-              <WordTitleWrap>
-                <WordTitleContainer>
-                  <TitleWrap>
-                    <WordTitle>Term</WordTitle>
-                  </TitleWrap>
-                  <TitleCenter />
-                  <TitleEnd />
-                </WordTitleContainer>
-              </WordTitleWrap>
-              <WordContainer>
-                <WordHandler>
-                  <Word>
-                    <div>Term itself</div>
-                  </Word>
-                </WordHandler>
-              </WordContainer>
-            </PartContainer>
-          </TermPart>
-          <DefinitionPart>
-            <PartContainer>
-              <WordTitleWrap>
-                <WordTitleContainer>
-                  <TitleWrap>
-                    <WordTitle>Definition</WordTitle>
-                  </TitleWrap>
-                  <TitleCenter />
-                  <TitleEnd />
-                </WordTitleContainer>
-              </WordTitleWrap>
-              <WordContainer>
-                <WordHandler>
-                  <Word>
-                    <div>Definition itself</div>
-                  </Word>
-                </WordHandler>
-              </WordContainer>
-            </PartContainer>
-          </DefinitionPart>
-        </MainSection>
-        <SecondTitle>Choose the answer</SecondTitle>
-        <AnswerContainer>
-          <AnswerItem tabIndex={0}>
-            <div/>
-            True
-          </AnswerItem>
-          <AnswerItem tabIndex={0}>
-            <div/>
-            False
-          </AnswerItem>
-        </AnswerContainer>
-        <NumberContainer>
-          <NumberContent>1 of 20</NumberContent>
-        </NumberContainer>
-      </Container>
+    <Container>
+      <MainSection>
+        <TermPart>
+          <PartContainer>
+            <WordTitleWrap>
+              <WordTitleContainer>
+                <TitleWrap>
+                  <WordTitle>Term</WordTitle>
+                </TitleWrap>
+                <TitleCenter />
+                <TitleEnd />
+              </WordTitleContainer>
+            </WordTitleWrap>
+            <WordContainer>
+              <WordHandler>
+                <Word>
+                  <div>Term itself</div>
+                </Word>
+              </WordHandler>
+            </WordContainer>
+          </PartContainer>
+        </TermPart>
+        <DefinitionPart>
+          <PartContainer>
+            <WordTitleWrap>
+              <WordTitleContainer>
+                <TitleWrap>
+                  <WordTitle>Definition</WordTitle>
+                </TitleWrap>
+                <TitleCenter />
+                <TitleEnd />
+              </WordTitleContainer>
+            </WordTitleWrap>
+            <WordContainer>
+              <WordHandler>
+                <Word>
+                  <div>Definition itself</div>
+                </Word>
+              </WordHandler>
+            </WordContainer>
+          </PartContainer>
+        </DefinitionPart>
+      </MainSection>
+      <SecondTitle>Choose the answer</SecondTitle>
+      <AnswerContainer>
+        <AnswerItem
+          isFocus={isTrueFocused}
+          onClick={() => toggleFocus("true")}
+          tabIndex={0}
+        >
+          <div />
+          True
+        </AnswerItem>
+        <AnswerItem
+          isFocus={isFalseFocused}
+          onClick={() => toggleFocus("false")}
+          tabIndex={0}
+        >
+          <div />
+          False
+        </AnswerItem>
+      </AnswerContainer>
+      <NumberContainer>
+        <NumberContent>1 of 20</NumberContent>
+      </NumberContainer>
+    </Container>
     // </div>
   )
 }

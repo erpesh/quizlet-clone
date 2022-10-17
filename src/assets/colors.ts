@@ -18,6 +18,8 @@ const colors = {
   colorDisabled: "#d9dde8",
   neurtal300: "#edeff4",
   twilight200: "#dbdfff",
-  shadowWithOpacity: "rgba(48, 59, 63, .08)"
+  shadowWithOpacity: "rgba(48, 59, 63, .08)",
+  indigo100: "#eff3fb",
+  blueBorder: "#4257b2"
 }
 export default colors;

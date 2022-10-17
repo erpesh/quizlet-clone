@@ -158,7 +158,7 @@ export const AnswerContainer = styled.div`
         grid-template-rows: 1fr 1fr;
     }
 `
-export const AnswerItem = styled.section`
+export const AnswerItem = styled.section<{isFocus: boolean}>`
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
@@ -168,10 +168,6 @@ export const AnswerItem = styled.section`
     border-radius: 0.5rem;
     color: ${colors.UIColorGray};
     cursor: pointer;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
     display: grid;
     font-size: 1rem;
     font-weight: 400;
@@ -197,9 +193,16 @@ export const AnswerItem = styled.section`
         line-height: 1.5;
     }
     &:hover{
-        border-color: #939bb4;
+        ${props => props.isFocus ? `border-color: ${colors.indigo100}` : "border-color: #939bb4;"}
         outline: none;
     }
+    ${props => {
+        if (props.isFocus){
+            return `
+            border-color: ${colors.blueBorder};
+            background-color: ${colors.indigo100};`
+        }
+    }}
 `
 export const WordContainer = styled.div`
     -webkit-box-align: stretch;

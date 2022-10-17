@@ -31,7 +31,6 @@ const TestPage = () => {
     <>
       {studySet ?
         <div>
-          <div>{studySet.title}</div>
           <TrueOrFalse />
         </div>
         : <LoadingSpinner />}
