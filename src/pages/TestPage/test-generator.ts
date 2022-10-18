@@ -13,19 +13,25 @@ export const generateTest = (terms: termInterface[]) => {
     const lengthOfTerms = selectedTerms.length;
 
     // separating terms to types
-    const trueFalseTerms = selectedTerms.splice(0, lengthOfTerms / 4);
     const multipleChoiceTerms = selectedTerms.splice(0, lengthOfTerms / 4);
-    const matchingTerms = selectedTerms.splice(0, lengthOfTerms / 4);
-    const writtenTerms = selectedTerms.splice(0, lengthOfTerms / 4);
+    const trueFalseTerms = selectedTerms.slice(0, lengthOfTerms / 4);
+    const matchingTerms = selectedTerms.slice(0, lengthOfTerms / 4);
+    const writtenTerms = selectedTerms.slice(0, lengthOfTerms / 4);
 
 
     const trueFalseItems = trueFalseTerms.map(item => {
         return {...item, isTrue: Math.random() < 0.5};
     })
 
+    let leftTerms = [...selectedTerms].sort(() => 0.5 - Math.random())
     const multipleChoiseItems = multipleChoiceTerms.map(item => {
-        let incorrestAnswers = [];
-
+        let possibleAnswers = [];
+        for (let i = 0; i < 3; i++){
+            let [item] = leftTerms.splice(0, 1);
+            possibleAnswers.push(item);
+        }
+        possibleAnswers.push(item)
+        return {...item, possibleAnswers: possibleAnswers};
     })
-    return trueFalseItems;
+    return multipleChoiseItems;
 }

@@ -1,4 +1,6 @@
 import React, {FC, useState} from 'react';
+import termInterface from '../../../interfaces/term-interface';
+import { multipleChoiseTest } from '../interfaces';
 import { 
   AnswerItem,
   NumberContainer, 
@@ -22,10 +24,10 @@ import {
 } from './multiple-choice.styles';
 
 interface Props {
-  data: string[]
+  testItem: multipleChoiseTest
 }
 
-const MultipleChoice: FC<Props> = ({data}) => {
+const MultipleChoice: FC<Props> = ({testItem}) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -48,7 +50,7 @@ const MultipleChoice: FC<Props> = ({data}) => {
             <DefinitionWrap>
               <DefinitionContainer>
                 <TextFormater>
-                  <div>definition hallo</div>
+                  <div>{testItem.definition}</div>
                 </TextFormater>
               </DefinitionContainer>
             </DefinitionWrap>
@@ -58,14 +60,14 @@ const MultipleChoice: FC<Props> = ({data}) => {
               <div>Select the correct term</div>
             </AsnwerTitleContainer>
             <AnswerContainer>
-              {data.map(item => (
+              {testItem.possibleAnswers.map(item => (
                 <AnswerItem
-                  key={item}
+                  key={item.term}
                   tabIndex={0}
-                  isFocus={focusValue === item}
-                  onClick={() => toggleFocus(item)}
+                  isFocus={focusValue === item.term}
+                  onClick={() => toggleFocus(item.term)}
                 >
-                  {item}
+                  {item.term}
                 </AnswerItem>
               ))}
             </AnswerContainer>

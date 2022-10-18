@@ -7,7 +7,7 @@ import TrueOrFalse from './TrueOrFalse/true-or-false';
 import MultipleChoice from './MultipleChoice/multiple-choice';
 import { generateTest } from './test-generator';
 import termInterface from '../../interfaces/term-interface';
-import { trueFalseTest } from './interfaces';
+import { multipleChoiseTest, trueFalseTest } from './interfaces';
 
 
 const TestPage = () => {
@@ -19,6 +19,7 @@ const TestPage = () => {
   const [studySet, setStudySet] = useState<any>(null);
   const [selectedTerms, setSelectedTerms] = useState<termInterface[]>([]);
   const [trueFalseTest, setTrueFalseTest] = useState<trueFalseTest[]>([]);
+  const [multipleChoise, setMultipleChoise] = useState<multipleChoiseTest[]>([]);
 
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
@@ -27,7 +28,8 @@ const TestPage = () => {
     if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
       setStudySet(filteredSet)
       const terms = [...filteredSet.terms];
-      setTrueFalseTest(generateTest(terms));
+      // setTrueFalseTest(generateTest(terms));
+      setMultipleChoise(generateTest(terms));
     } else navigate('/');
   }
 
@@ -52,15 +54,20 @@ const TestPage = () => {
               ))}
             </div>
           </div>
-          {trueFalseTest.map((item, index) => (
+          {/* {trueFalseTest.map((item, index) => (
             <TrueOrFalse 
               testItem={item}
               orderNumber={index + 1}
               totalNumber={selectedTerms.length}
               key={item.id}
             />
+          ))} */}
+          {multipleChoise.map((item, index) => (
+            <MultipleChoice
+              testItem={item}
+              key={item.id}
+            />
           ))}
-          <MultipleChoice data={["daaaaaa", "124124124124", "13ophjfsajfkasf,", "12491274124"]} />
         </div>
         : <LoadingSpinner />}
     </>
