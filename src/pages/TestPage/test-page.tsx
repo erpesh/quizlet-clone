@@ -4,6 +4,7 @@ import { auth, db } from "../../firebase-config";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
 import TrueOrFalse from './TrueOrFalse/true-or-false';
+import MultipleChoice from './MultipleChoice/multiple-choice';
 
 
 const TestPage = () => {
@@ -32,6 +33,7 @@ const TestPage = () => {
       {studySet ?
         <div>
           <TrueOrFalse />
+          <MultipleChoice data={["daaaaaa", "124124124124", "13ophjfsajfkasf,", "12491274124"]}/>
         </div>
         : <LoadingSpinner />}
     </>
