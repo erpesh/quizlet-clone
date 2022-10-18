@@ -1,5 +1,6 @@
 import React, { FC, useRef, useState } from 'react'
 import termInterface from '../../../interfaces/term-interface'
+import { trueFalseTest } from '../interfaces'
 import { 
   NumberContainer, 
   NumberContent,
@@ -25,19 +26,18 @@ import {
 } from './true-or-false.styles'
 
 interface Props {
-  termData?: termInterface,
-  isTrue?: boolean,
-  setAnswer?: () => void
+  testItem: trueFalseTest,
+  orderNumber: number,
+  totalNumber: number
 }
 
-const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
+const TrueOrFalse: FC<Props> = ({ testItem, orderNumber, totalNumber }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
   const toggleFocus = (value: string) => setFocusValue(focusValue === value ? null : value)
 
   return (
-    // <div role="listitem">
     <Container tabIndex={-1}>
       <MainSection>
         <TermPart>
@@ -54,7 +54,7 @@ const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
             <WordContainer>
               <WordHandler>
                 <Word>
-                  <div>Term itself</div>
+                  <div>{testItem.term}</div>
                 </Word>
               </WordHandler>
             </WordContainer>
@@ -74,7 +74,7 @@ const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
             <WordContainer>
               <WordHandler>
                 <Word>
-                  <div>Definition itself</div>
+                  <div>{testItem.definition}</div>
                 </Word>
               </WordHandler>
             </WordContainer>
@@ -99,10 +99,9 @@ const TrueOrFalse: FC<Props> = ({ termData, isTrue }) => {
         </AnswerItem>
       </AnswerContainer>
       <NumberContainer>
-        <NumberContent>1 of 20</NumberContent>
+        <NumberContent>{orderNumber + " of " + totalNumber}</NumberContent>
       </NumberContainer>
     </Container>
-    // </div>
   )
 }
 

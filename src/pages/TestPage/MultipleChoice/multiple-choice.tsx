@@ -60,6 +60,7 @@ const MultipleChoice: FC<Props> = ({data}) => {
             <AnswerContainer>
               {data.map(item => (
                 <AnswerItem
+                  key={item}
                   tabIndex={0}
                   isFocus={focusValue === item}
                   onClick={() => toggleFocus(item)}
