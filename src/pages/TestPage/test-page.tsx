@@ -7,7 +7,7 @@ import TrueOrFalse from './TrueOrFalse/true-or-false';
 import MultipleChoice from './MultipleChoice/multiple-choice';
 import { generateTest } from './test-generator';
 import termInterface from '../../interfaces/term-interface';
-import { multipleChoiseTest, trueFalseTest } from './interfaces';
+import { multipleChoiseTest, testType, trueFalseTest } from './interfaces';
 
 
 const TestPage = () => {
@@ -17,9 +17,7 @@ const TestPage = () => {
   const studySetsCollectionRef = collection(db, "studySets");
 
   const [studySet, setStudySet] = useState<any>(null);
-  const [selectedTerms, setSelectedTerms] = useState<termInterface[]>([]);
-  const [trueFalseTest, setTrueFalseTest] = useState<trueFalseTest[]>([]);
-  const [multipleChoise, setMultipleChoise] = useState<multipleChoiseTest[]>([]);
+  const [testSet, setTestSet] = useState<testType | null>(null);
 
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);
@@ -29,7 +27,7 @@ const TestPage = () => {
       setStudySet(filteredSet)
       const terms = [...filteredSet.terms];
       // setTrueFalseTest(generateTest(terms));
-      setMultipleChoise(generateTest(terms));
+      setTestSet(generateTest(terms));
     } else navigate('/');
   }
 
@@ -41,33 +39,15 @@ const TestPage = () => {
     <>
       {studySet ?
         <div>
-          <div style={{ display: "flex" }}>
-            <div>
-              <div onClick={() => generateTest(studySet.terms)}>1414</div>
-              {studySet.terms.map((item: termInterface) => (
-                <div key={item.id} style={{ padding: "1rem" }}>{item.term} - {item.definition}</div>
-              ))}
-            </div>
-            <div>
-            {selectedTerms.map((item: termInterface) => (
-                <div key={item.id} style={{ padding: "1rem" }}>{item.term} - {item.definition}</div>
-              ))}
-            </div>
-          </div>
-          {/* {trueFalseTest.map((item, index) => (
-            <TrueOrFalse 
-              testItem={item}
-              orderNumber={index + 1}
-              totalNumber={selectedTerms.length}
+          {testSet?.trueFalse.map((item, index) => {
+            return <TrueOrFalse
               key={item.id}
-            />
-          ))} */}
-          {multipleChoise.map((item, index) => (
-            <MultipleChoice
               testItem={item}
-              key={item.id}
+              orderNumber={index}
+              totalNumber={testSet.totalLength}
             />
-          ))}
+
+          })}
         </div>
         : <LoadingSpinner />}
     </>

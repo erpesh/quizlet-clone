@@ -24,10 +24,12 @@ import {
 } from './multiple-choice.styles';
 
 interface Props {
-  testItem: multipleChoiseTest
+  testItem: multipleChoiseTest,
+  orderNumber: number,
+  totalNumber: number
 }
 
-const MultipleChoice: FC<Props> = ({testItem}) => {
+const MultipleChoice: FC<Props> = ({testItem, orderNumber, totalNumber}) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -73,7 +75,7 @@ const MultipleChoice: FC<Props> = ({testItem}) => {
             </AnswerContainer>
           </AnswersPart>
           <NumberContainer>
-            <NumberContent>1 of 20</NumberContent>
+            <NumberContent>{orderNumber + " of " + totalNumber}</NumberContent>
           </NumberContainer>
         </Container>
       </div>

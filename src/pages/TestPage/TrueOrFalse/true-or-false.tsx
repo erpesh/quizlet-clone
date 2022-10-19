@@ -74,7 +74,7 @@ const TrueOrFalse: FC<Props> = ({ testItem, orderNumber, totalNumber }) => {
             <WordContainer>
               <WordHandler>
                 <Word>
-                  <div>{testItem.definition}</div>
+                  <div>{!testItem.incorrectAnswer ? testItem.definition : testItem.incorrectAnswer.definition}</div>
                 </Word>
               </WordHandler>
             </WordContainer>

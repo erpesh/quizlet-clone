@@ -2,6 +2,7 @@ import termInterface from "../../interfaces/term-interface";
 
 const MAX_NUMBER_OF_TERMS = 20;
 
+
 // returns array of up to 20 terms for test
 export const selectRandomTerms = (terms: termInterface[]) => {
     const shuffledTerms = terms.sort(() => 0.5 - Math.random());
@@ -10,28 +11,71 @@ export const selectRandomTerms = (terms: termInterface[]) => {
 export const generateTest = (terms: termInterface[]) => {
     const termsClone = [...terms];
     let selectedTerms = selectRandomTerms(terms);
-    const lengthOfTerms = selectedTerms.length;
 
     // separating terms to types
-    const multipleChoiceTerms = selectedTerms.splice(0, lengthOfTerms / 4);
-    const trueFalseTerms = selectedTerms.slice(0, lengthOfTerms / 4);
-    const matchingTerms = selectedTerms.slice(0, lengthOfTerms / 4);
-    const writtenTerms = selectedTerms.slice(0, lengthOfTerms / 4);
+    const multipleChoiceTerms = selectedTerms.splice(0, selectedTerms.length / 4);
 
-
-    const trueFalseItems = trueFalseTerms.map(item => {
-        return {...item, isTrue: Math.random() < 0.5};
+    const trueFalseTerms = selectedTerms.splice(0, selectedTerms.length / 3);
+    let incorrectAnswers = termsClone.filter(item => {
+        return trueFalseTerms.filter(trueFalseItem => trueFalseItem.id === item.id).length === 0;
+    })
+    let incorrectMultipleAnswers = termsClone.filter(item => {
+        return multipleChoiceTerms.filter(mChouseItem => mChouseItem.id === item.id).length === 0;
     })
 
-    let leftTerms = [...selectedTerms].sort(() => 0.5 - Math.random())
+    const writtenTerms = selectedTerms.splice(0, selectedTerms.length / 2);
+    const matchingTerms = selectedTerms;
+
+    // generate true or false tests
+    const trueFalseItems = trueFalseTerms.map(item => {
+        let number = Math.random() < 0.5
+        console.log(!number)
+        if (number) {
+            const randomNumber = Math.floor(Math.random()*incorrectAnswers.length)
+            const [incorrectAnswer] = incorrectAnswers.splice(randomNumber, 1);
+            return {
+                ...item,
+                isTrue: false,
+                isCorrect: false,
+                incorrectAnswer: incorrectAnswer
+            }
+        }
+        return { ...item, isTrue: true, isCorrect: false, incorrectAnswer: null };
+    })
+
+    // generate multiple choise tests
     const multipleChoiseItems = multipleChoiceTerms.map(item => {
         let possibleAnswers = [];
-        for (let i = 0; i < 3; i++){
-            let [item] = leftTerms.splice(0, 1);
+        for (let i = 0; i < 3; i++) {
+            const randomNumber = Math.floor(Math.random()*incorrectMultipleAnswers.length)
+            let [item] = incorrectMultipleAnswers.splice(randomNumber, 1);
             possibleAnswers.push(item);
         }
         possibleAnswers.push(item)
-        return {...item, possibleAnswers: possibleAnswers};
+        return { ...item, possibleAnswers: possibleAnswers, isCorrect: false };
     })
-    return multipleChoiseItems;
+
+    const matchingItems = matchingTerms.map(item => {
+        return { ...item, isCorrect: false }
+    })
+
+    const writtenItems = writtenTerms.map(item => {
+        return { ...item, isCorrect: false }
+    })
+
+    const lengths = [
+        trueFalseItems.length,
+        multipleChoiseItems.length,
+        matchingItems.length,
+        writtenItems.length
+    ]
+    const generatedTest = {
+        trueFalse: trueFalseItems,
+        multipleChoice: multipleChoiseItems,
+        matching: matchingItems,
+        written: writtenItems,
+        lengths: lengths,
+        totalLength: lengths.reduce((partialSum, a) => partialSum + a, 0)
+    }
+    return generatedTest;
 }
