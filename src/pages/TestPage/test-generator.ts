@@ -28,8 +28,7 @@ export const generateTest = (terms: termInterface[]) => {
 
     // generate true or false tests
     const trueFalseItems = trueFalseTerms.map(item => {
-        let number = Math.random() < 0.5
-        console.log(!number)
+        let number = Math.random() < 0.5;
         if (number) {
             const randomNumber = Math.floor(Math.random()*incorrectAnswers.length)
             const [incorrectAnswer] = incorrectAnswers.splice(randomNumber, 1);
