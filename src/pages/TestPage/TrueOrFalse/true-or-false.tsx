@@ -1,6 +1,6 @@
 import React, { FC, useRef, useState } from 'react'
 import termInterface from '../../../interfaces/term-interface'
-import { trueFalseTest } from '../interfaces'
+import { testType, trueFalseTest } from '../interfaces'
 import { 
   NumberContainer, 
   NumberContent,
@@ -26,16 +26,31 @@ import {
 } from './true-or-false.styles'
 
 interface Props {
-  testItem: trueFalseTest,
   orderNumber: number,
-  totalNumber: number
+  totalNumber: number,
+  index: number,
+  testSet: testType,
+  setTestSet: (testSet: testType) => void
 }
 
-const TrueOrFalse: FC<Props> = ({ testItem, orderNumber, totalNumber }) => {
+const TrueOrFalse: FC<Props> = ({ testSet, orderNumber, totalNumber, index, setTestSet }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
-  const toggleFocus = (value: string) => setFocusValue(focusValue === value ? null : value)
+  const handleOnClick = (value: string) => {
+    let localFocusValue = focusValue === value ? null : value;
+    setFocusValue(localFocusValue);
+
+    let trueFalseItems = [...testSet.trueFalse];
+    let testItem = {...testSet.trueFalse[index]};;
+    if (localFocusValue){
+      testItem.isCorrect = testItem.isTrue.toString() === localFocusValue;
+    }else {
+      testItem.isCorrect = false;
+    }
+    trueFalseItems[index] = testItem;
+    setTestSet({...testSet, trueFalse: trueFalseItems});
+  }
 
   return (
     <Container tabIndex={-1}>
@@ -54,7 +69,7 @@ const TrueOrFalse: FC<Props> = ({ testItem, orderNumber, totalNumber }) => {
             <WordContainer>
               <WordHandler>
                 <Word>
-                  <div>{testItem.term}</div>
+                  <div>{testSet.trueFalse[index].term}</div>
                 </Word>
               </WordHandler>
             </WordContainer>
@@ -74,7 +89,9 @@ const TrueOrFalse: FC<Props> = ({ testItem, orderNumber, totalNumber }) => {
             <WordContainer>
               <WordHandler>
                 <Word>
-                  <div>{!testItem.incorrectAnswer ? testItem.definition : testItem.incorrectAnswer.definition}</div>
+                  <div>{testSet.trueFalse[index].incorrectAnswer ? 
+                  testSet.trueFalse[index].incorrectAnswer?.definition :
+                  testSet.trueFalse[index].definition}</div>
                 </Word>
               </WordHandler>
             </WordContainer>
@@ -85,14 +102,14 @@ const TrueOrFalse: FC<Props> = ({ testItem, orderNumber, totalNumber }) => {
       <AnswerContainer>
         <AnswerItem
           isFocus={focusValue === "true"}
-          onClick={() => toggleFocus("true")}
+          onClick={() => handleOnClick("true")}
           tabIndex={0}
         >
           True
         </AnswerItem>
         <AnswerItem
           isFocus={focusValue === "false"}
-          onClick={() => toggleFocus("false")}
+          onClick={() => handleOnClick("false")}
           tabIndex={0}
         >
           False

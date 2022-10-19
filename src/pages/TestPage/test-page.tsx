@@ -6,8 +6,14 @@ import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
 import TrueOrFalse from './TrueOrFalse/true-or-false';
 import MultipleChoice from './MultipleChoice/multiple-choice';
 import { generateTest } from './test-generator';
-import termInterface from '../../interfaces/term-interface';
-import { multipleChoiseTest, testType, trueFalseTest } from './interfaces';
+import { testType } from './interfaces';
+import {
+  OtherSection,
+  PageContainer,
+  PageContentWrap,
+  PageWrapper,
+  TrueFalseSection
+} from './test-page.styles';
 
 
 const TestPage = () => {
@@ -16,7 +22,7 @@ const TestPage = () => {
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
 
-  const [studySet, setStudySet] = useState<any>(null);
+  // const [studySet, setStudySet] = useState<any>(null);
   const [testSet, setTestSet] = useState<testType | null>(null);
 
   const getStudySets = async () => {
@@ -24,7 +30,7 @@ const TestPage = () => {
     const sets = data.docs.map(doc => doc.data());
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
     if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
-      setStudySet(filteredSet)
+      // setStudySet(filteredSet)
       const terms = [...filteredSet.terms];
       // setTrueFalseTest(generateTest(terms));
       setTestSet(generateTest(terms));
@@ -37,18 +43,34 @@ const TestPage = () => {
 
   return (
     <>
-      {studySet ?
-        <div>
-          {testSet?.trueFalse.map((item, index) => {
-            return <TrueOrFalse
-              key={item.id}
-              testItem={item}
-              orderNumber={index}
-              totalNumber={testSet.totalLength}
-            />
+      {testSet ?
+        <PageContainer>
+          <PageWrapper>
+            <PageContentWrap>
+              <TrueFalseSection>
+                {testSet.trueFalse.map((item, index) => {
+                  return <TrueOrFalse
+                    key={item.id}
+                    testSet={testSet}
+                    index={index}
+                    orderNumber={index}
+                    totalNumber={testSet.totalLength}
+                    setTestSet={setTestSet}
+                  />
+                })}
+              </TrueFalseSection>
+              <OtherSection>
 
-          })}
-        </div>
+              </OtherSection>
+              <OtherSection>
+
+              </OtherSection>
+              <OtherSection>
+
+              </OtherSection>
+            </PageContentWrap>
+          </PageWrapper>
+        </PageContainer>
         : <LoadingSpinner />}
     </>
   );

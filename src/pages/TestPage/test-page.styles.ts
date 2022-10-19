@@ -1,6 +1,66 @@
 import styled from "styled-components";
 import colors from "../../assets/colors";
 
+export const PageContainer = styled.div`
+    width:100%;
+    background-color: ${colors.pageBackgroundColor};
+    max-height: 100%;
+    -webkit-transition: max-height .2s ease-in;
+    transition: max-height .2s ease-in;
+`
+export const PageWrapper = styled.div`
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: 100%;
+    margin: 0 auto;
+    width: 100%;
+    @media (max-width: 48rem) {
+        padding: 0;
+    }
+    @media (max-width: 64rem){
+        padding-top: 1.5rem;
+    }
+`
+export const PageContentWrap = styled.div`
+    display: block;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    margin-left: 0;
+    padding: 2rem 1.5rem 1.5rem;
+    position: relative;
+    width: 100%;
+    @media (max-width: 38.75em){
+        padding: 2rem 0 1.5rem;
+    }
+`
+export const TrueFalseSection = styled.section`
+    margin: 0 auto;
+    max-width: 52.5rem;
+    padding: 0 2rem;
+    @media (max-width: 38.75rem){
+        margin-top: 0;
+        padding: 2rem 1rem;
+    }
+    @media (max-width: 48rem) {
+        margin-top: 2rem;
+    }
+`
+export const OtherSection = styled.section`
+    margin: 1rem auto 0;
+    max-width: 52.5rem;
+    padding: 0 2rem;
+    @media (max-width: 38.75rem){
+        padding: 2rem 1rem;
+        margin-top: 0;
+        padding-top: 0;
+    }
+    @media (max-width: 48rem) {
+        margin-top: 1rem;
+    }
+`
 export const NumberContainer = styled.div`
     position: absolute;
     right: 1.5rem;
@@ -72,7 +132,7 @@ export const WordTitle = styled.section`
     letter-spacing: normal;
     line-height: 1.4285714285714286;
 `
-export const AnswerItem = styled.section<{isFocus: boolean}>`
+export const AnswerItem = styled.section<{ isFocus: boolean }>`
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
@@ -111,7 +171,7 @@ export const AnswerItem = styled.section<{isFocus: boolean}>`
         outline: none;
     }
     ${props => {
-        if (props.isFocus){
+        if (props.isFocus) {
             return `
             border-color: ${colors.blueBorder};
             background-color: ${colors.indigo100};`
