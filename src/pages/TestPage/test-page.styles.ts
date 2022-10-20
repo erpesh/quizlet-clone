@@ -98,11 +98,11 @@ export const TopPart = styled.div`
     justify-content: flex-start;
     margin-bottom: 4rem;
     position: relative;
-    @media (max-width: 38.75rem){
-        padding-top: 0;
-    }
     @media (max-width: 48rem) {
         padding-top: 2rem;
+    }
+    @media (max-width: 38.75rem){
+        padding-top: 0;
     }
 `
 export const WordTitleWrap = styled.div`

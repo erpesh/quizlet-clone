@@ -14,6 +14,7 @@ import {
   PageWrapper,
   TrueFalseSection
 } from './test-page.styles';
+import Written from './Written/written';
 
 
 const TestPage = () => {
@@ -22,7 +23,6 @@ const TestPage = () => {
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
 
-  // const [studySet, setStudySet] = useState<any>(null);
   const [testSet, setTestSet] = useState<testType | null>(null);
 
   const getStudySets = async () => {
@@ -30,9 +30,7 @@ const TestPage = () => {
     const sets = data.docs.map(doc => doc.data());
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
     if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
-      // setStudySet(filteredSet)
       const terms = [...filteredSet.terms];
-      // setTrueFalseTest(generateTest(terms));
       setTestSet(generateTest(terms));
     } else navigate('/');
   }
@@ -75,7 +73,16 @@ const TestPage = () => {
 
               </OtherSection>
               <OtherSection>
-
+                {testSet.written.map((item, index) => {
+                  return <Written
+                  key={item.id}
+                  testSet={testSet}
+                  index={index}
+                  orderNumber={index}
+                  totalNumber={testSet.totalLength}
+                  setTestSet={setTestSet}
+                />
+                })}
               </OtherSection>
             </PageContentWrap>
           </PageWrapper>

@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {
   InputContainer,
-  InputLabel,
   SetHeader,
   SetHeaderHeading,
   TextAreaInput,
@@ -9,10 +8,11 @@ import {
   TextAreaSpacer,
   TextAreaWrapper,
   TitleEffect,
-  TitleInput
+  InputLabel
 } from "./heading.styles";
 import {BlueButton} from "../../../components/BlueButton/blue-button.styles";
 import setDataInterface from "../../../interfaces/set-data.interface";
+import { AssemblyInput } from '../../../components/AssemblyInput/assembly-input';
 
 interface Props {
   data: setDataInterface,
@@ -39,7 +39,7 @@ const Heading: FC<Props> = ({data, setData, addStudySet, isCreate}) => {
           <div>
             <InputLabel>
               {!!data.title && <TitleEffect>Title</TitleEffect>}
-              <TitleInput
+              <AssemblyInput
                   placeholder="Enter a title, like “Biology - Chapter 22: Evolution”"
                   value={data.title}
                   onChange={e => setData({...data, title: e.target.value})}

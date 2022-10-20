@@ -106,36 +106,15 @@ export const InputLabel = styled.label`
   overflow: hidden;
   padding: 0.25rem 1rem;
   position: relative;
-`
-export const TitleInput = styled.input`
-  @media (min-width: 38.8125rem) {
-    font-size: 1rem;
-    -webkit-letter-spacing: normal;
-    -moz-letter-spacing: normal;
-    -ms-letter-spacing: normal;
-    letter-spacing: normal;
-    line-height: 1.5; 
+  :after{
+    bottom: 0;
+    content: " ";
+    height: 0.125rem;
+    left: 0;
+    position: absolute;
+    width: 100%;
   }
-  outline: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: initial;
-  border: none;
-  box-shadow: none;
-  color: ${colors.textGray800};
-  cursor: text;
-  -webkit-filter: none;
-  filter: none;
-  -webkit-flex: 1 1 auto;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  font-size: 1rem;
-  font-weight: 600;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
-  letter-spacing: normal;
-  line-height: 1.5;
-  padding-right: 1rem;
+  :focus-within:after{
+    background-color: ${colors.textGray800};
+  }
 `
