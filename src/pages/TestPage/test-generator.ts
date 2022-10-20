@@ -51,6 +51,8 @@ export const generateTest = (terms: termInterface[]) => {
             possibleAnswers.push(item);
         }
         possibleAnswers.push(item)
+        //shuffle answers
+        possibleAnswers = possibleAnswers.sort(() => 0.5 - Math.random());
         return { ...item, possibleAnswers: possibleAnswers, isCorrect: false };
     })
 

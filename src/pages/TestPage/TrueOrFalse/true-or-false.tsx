@@ -1,6 +1,5 @@
-import React, { FC, useRef, useState } from 'react'
-import termInterface from '../../../interfaces/term-interface'
-import { testType, trueFalseTest } from '../interfaces'
+import React, { FC, useState } from 'react'
+import { testType } from '../interfaces'
 import { 
   NumberContainer, 
   NumberContent,

@@ -60,7 +60,16 @@ const TestPage = () => {
                 })}
               </TrueFalseSection>
               <OtherSection>
-
+                {testSet.multipleChoice.map((item, index) => {
+                  return <MultipleChoice
+                    key={item.id}
+                    testSet={testSet}
+                    index={index}
+                    orderNumber={index}
+                    totalNumber={testSet.totalLength}
+                    setTestSet={setTestSet}
+                  />
+                })}
               </OtherSection>
               <OtherSection>
 

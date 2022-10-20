@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import termInterface from '../../../interfaces/term-interface';
-import { multipleChoiseTest } from '../interfaces';
+import { testType } from '../interfaces';
 import { 
   AnswerItem,
   NumberContainer, 
@@ -24,17 +24,32 @@ import {
 } from './multiple-choice.styles';
 
 interface Props {
-  testItem: multipleChoiseTest,
   orderNumber: number,
-  totalNumber: number
+  totalNumber: number,
+  index: number,
+  testSet: testType,
+  setTestSet: (testSet: testType) => void
 }
 
-const MultipleChoice: FC<Props> = ({testItem, orderNumber, totalNumber}) => {
+const MultipleChoice: FC<Props> = ({testSet, orderNumber, totalNumber, index, setTestSet}) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
-  const toggleFocus = (value: string) => setFocusValue(focusValue === value ? null : value)
+  const toggleFocus = (value: string) => {
+    let localFocusValue = focusValue === value ? null : value;
+    setFocusValue(localFocusValue);
 
+    let multipleChoiceItems = [...testSet.multipleChoice];
+    let testItem = {...testSet.multipleChoice[index]};;
+    if (localFocusValue){
+      testItem.isCorrect = testItem.term === localFocusValue;
+    }else {
+      testItem.isCorrect = false;
+    }
+    multipleChoiceItems[index] = testItem;
+    setTestSet({...testSet, multipleChoice: multipleChoiceItems});
+  }
+  
   return (
     <div style={{ marginTop: "2rem" }}>
       <div tabIndex={-1}>
@@ -52,7 +67,7 @@ const MultipleChoice: FC<Props> = ({testItem, orderNumber, totalNumber}) => {
             <DefinitionWrap>
               <DefinitionContainer>
                 <TextFormater>
-                  <div>{testItem.definition}</div>
+                  <div>{testSet.multipleChoice[index].definition}</div>
                 </TextFormater>
               </DefinitionContainer>
             </DefinitionWrap>
@@ -62,7 +77,7 @@ const MultipleChoice: FC<Props> = ({testItem, orderNumber, totalNumber}) => {
               <div>Select the correct term</div>
             </AsnwerTitleContainer>
             <AnswerContainer>
-              {testItem.possibleAnswers.map(item => (
+              {testSet.multipleChoice[index].possibleAnswers.map((item: termInterface) => (
                 <AnswerItem
                   key={item.term}
                   tabIndex={0}
