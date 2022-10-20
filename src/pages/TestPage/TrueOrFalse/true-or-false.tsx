@@ -10,6 +10,10 @@ import {
   WordTitleContainer,
   WordTitleWrap,
   AnswerItem,
+  TopPart,
+  Word,
+  WordContainer,
+  WordHandler
 } from '../test-page.styles'
 import {
   AnswerContainer,
@@ -18,10 +22,6 @@ import {
   MainSection,
   SecondTitle,
   TermPart,
-  PartContainer,
-  Word,
-  WordContainer,
-  WordHandler
 } from './true-or-false.styles'
 
 interface Props {
@@ -55,7 +55,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, orderNumber, totalNumber, index, setT
     <Container tabIndex={-1}>
       <MainSection>
         <TermPart>
-          <PartContainer>
+          <TopPart>
             <WordTitleWrap>
               <WordTitleContainer>
                 <TitleWrap>
@@ -72,10 +72,10 @@ const TrueOrFalse: FC<Props> = ({ testSet, orderNumber, totalNumber, index, setT
                 </Word>
               </WordHandler>
             </WordContainer>
-          </PartContainer>
+          </TopPart>
         </TermPart>
         <DefinitionPart>
-          <PartContainer>
+          <TopPart>
             <WordTitleWrap>
               <WordTitleContainer>
                 <TitleWrap>
@@ -94,7 +94,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, orderNumber, totalNumber, index, setT
                 </Word>
               </WordHandler>
             </WordContainer>
-          </PartContainer>
+          </TopPart>
         </DefinitionPart>
       </MainSection>
       <SecondTitle>Choose the answer</SecondTitle>

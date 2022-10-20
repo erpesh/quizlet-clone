@@ -11,14 +11,14 @@ import {
   WordTitle,
   WordTitleContainer,
   WordTitleWrap,
+  Word,
+  WordContainer,
+  WordHandler,
+  TopPart
 } from '../test-page.styles';
 import {
   AnswersPart,
   Container,
-  DefinitionContainer,
-  DefinitionPart,
-  DefinitionWrap,
-  TextFormater,
   AsnwerTitleContainer,
   AnswerContainer
 } from './multiple-choice.styles';
@@ -54,7 +54,7 @@ const MultipleChoice: FC<Props> = ({testSet, orderNumber, totalNumber, index, se
     <div style={{ marginTop: "2rem" }}>
       <div tabIndex={-1}>
         <Container>
-          <DefinitionPart>
+          <TopPart>
             <WordTitleWrap>
               <WordTitleContainer>
                 <TitleWrap>
@@ -64,14 +64,14 @@ const MultipleChoice: FC<Props> = ({testSet, orderNumber, totalNumber, index, se
                 <TitleEnd />
               </WordTitleContainer>
             </WordTitleWrap>
-            <DefinitionWrap>
-              <DefinitionContainer>
-                <TextFormater>
+            <WordContainer>
+              <WordHandler>
+                <Word>
                   <div>{testSet.multipleChoice[index].definition}</div>
-                </TextFormater>
-              </DefinitionContainer>
-            </DefinitionWrap>
-          </DefinitionPart>
+                </Word>
+              </WordHandler>
+            </WordContainer>
+          </TopPart>
           <AnswersPart>
             <AsnwerTitleContainer>
               <div>Select the correct term</div>

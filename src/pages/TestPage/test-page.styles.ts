@@ -80,6 +80,31 @@ export const NumberContent = styled.div`
     letter-spacing: normal;
     line-height: 1.4285714285714286;
 `
+export const TopPart = styled.div`
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 4rem;
+    position: relative;
+    @media (max-width: 38.75rem){
+        padding-top: 0;
+    }
+    @media (max-width: 48rem) {
+        padding-top: 2rem;
+    }
+`
 export const WordTitleWrap = styled.div`
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -96,6 +121,46 @@ export const WordTitleWrap = styled.div`
 export const WordTitleContainer = styled(WordTitleWrap)`
     margin-bottom: 1.5rem;
     width: 100%;
+`
+export const WordContainer = styled.div`
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    cursor: auto;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    word-break: break-word;
+`
+export const WordHandler = styled.div`
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    position: relative;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+`
+export const Word = styled.div`
+    word-wrap: break-word;
+    position: relative;
+    word-break: break-word;
+    font-size: 20px;
+    -webkit-font-smoothing: antialiased;
 `
 export const TitleWrap = styled(WordTitleWrap)`
     -webkit-box-pack: start;
