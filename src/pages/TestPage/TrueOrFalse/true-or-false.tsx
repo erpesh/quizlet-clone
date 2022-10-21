@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react'
 import { testType } from '../interfaces'
 import { 
+  Container,
   NumberContainer, 
   NumberContent,
   TitleCenter,
@@ -17,7 +18,6 @@ import {
 } from '../test-page.styles'
 import {
   AnswerContainer,
-  Container,
   DefinitionPart,
   MainSection,
   SecondTitle,

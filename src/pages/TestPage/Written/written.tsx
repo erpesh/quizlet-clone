@@ -18,7 +18,7 @@ import {
 } from '../test-page.styles';
 import { 
   BottomPart, 
-  Container, 
+  WrittenContainer, 
   AnswerTitle,
   AnswerTitleSection,
   AnswerForm,
@@ -49,7 +49,7 @@ const Written: React.FC<Props> = ({ orderNumber, totalNumber, index, testSet, se
   }
 
   return (
-    <Container tabIndex={-1}>
+    <WrittenContainer tabIndex={-1}>
       <div>
         <TopPart>
           <WordTitleWrap>
@@ -98,7 +98,7 @@ const Written: React.FC<Props> = ({ orderNumber, totalNumber, index, testSet, se
       <NumberContainer>
         <NumberContent>{orderNumber + " of " + totalNumber}</NumberContent>
       </NumberContainer>
-    </Container>
+    </WrittenContainer>
   );
 };
 

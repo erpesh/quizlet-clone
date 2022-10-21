@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react';
 import termInterface from '../../../interfaces/term-interface';
 import { testType } from '../interfaces';
 import { 
+  Container,
   AnswerItem,
   NumberContainer, 
   NumberContent,
@@ -18,7 +19,6 @@ import {
 } from '../test-page.styles';
 import {
   AnswersPart,
-  Container,
   AsnwerTitleContainer,
   AnswerContainer
 } from './multiple-choice.styles';

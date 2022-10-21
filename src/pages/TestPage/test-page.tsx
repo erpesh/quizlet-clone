@@ -15,6 +15,7 @@ import {
   TrueFalseSection
 } from './test-page.styles';
 import Written from './Written/written';
+import Matching from './Matching/matching';
 
 
 const TestPage = () => {
@@ -70,7 +71,10 @@ const TestPage = () => {
                 })}
               </OtherSection>
               <OtherSection>
-
+                <Matching
+                  testSet={testSet}
+                  setTestSet={setTestSet}
+                />
               </OtherSection>
               <OtherSection>
                 {testSet.written.map((item, index) => {
