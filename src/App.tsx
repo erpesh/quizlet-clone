@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Home from "./pages/Home/home";
-import {Routes, Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/header";
 import SetPage from "./pages/SetPage/set-page";
-import {AuthProvider} from "./context/auth-context";
+import { AuthProvider } from "./context/auth-context";
 import SideBar from "./components/SideBar/side-bar";
 import CreateOrEdit from "./utils/CreateOrEdit/create-or-edit";
 import TestPage from "./pages/TestPage/test-page";
+
 
 function App() {
 

@@ -27,14 +27,12 @@ import {
 } from './written.styles';
 
 interface Props {
-  orderNumber: number,
-  totalNumber: number,
   index: number,
   testSet: testType,
   setTestSet: (testSet: testType) => void
 }
 
-const Written: React.FC<Props> = ({ orderNumber, totalNumber, index, testSet, setTestSet }) => {
+const Written: React.FC<Props> = ({ index, testSet, setTestSet }) => {
 
   const [inputValue, setInputValue] = useState("");
 
@@ -46,6 +44,10 @@ const Written: React.FC<Props> = ({ orderNumber, totalNumber, index, testSet, se
     writtenItems[index] = writtenItem;
     console.log({...testSet, written: writtenItems})
     setTestSet({...testSet, written: writtenItems});
+  }
+
+  const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
   }
 
   return (
@@ -89,6 +91,8 @@ const Written: React.FC<Props> = ({ orderNumber, totalNumber, index, testSet, se
               padding={"0.625rem 1rem"}
               radius={".5rem"}
               fontSize={".875rem"}
+              onClick={onClickHandler}
+              type={"submit"}
             >
               Next
             </BlueButton>
@@ -96,7 +100,7 @@ const Written: React.FC<Props> = ({ orderNumber, totalNumber, index, testSet, se
         </AnswerForm>
       </BottomPart>
       <NumberContainer>
-        <NumberContent>{orderNumber + " of " + totalNumber}</NumberContent>
+        <NumberContent>{(testSet.totalLength - testSet.lengths[3] + index + 1) + " of " + testSet.totalLength}</NumberContent>
       </NumberContainer>
     </WrittenContainer>
   );

@@ -25,14 +25,12 @@ import {
 } from './true-or-false.styles'
 
 interface Props {
-  orderNumber: number,
-  totalNumber: number,
   index: number,
   testSet: testType,
   setTestSet: (testSet: testType) => void
 }
 
-const TrueOrFalse: FC<Props> = ({ testSet, orderNumber, totalNumber, index, setTestSet }) => {
+const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -115,7 +113,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, orderNumber, totalNumber, index, setT
         </AnswerItem>
       </AnswerContainer>
       <NumberContainer>
-        <NumberContent>{orderNumber + " of " + totalNumber}</NumberContent>
+        <NumberContent>{(index + 1) + " of " + testSet.totalLength}</NumberContent>
       </NumberContainer>
     </Container>
   )

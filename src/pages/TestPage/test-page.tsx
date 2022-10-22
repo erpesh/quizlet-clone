@@ -52,8 +52,6 @@ const TestPage = () => {
                     key={item.id}
                     testSet={testSet}
                     index={index}
-                    orderNumber={index}
-                    totalNumber={testSet.totalLength}
                     setTestSet={setTestSet}
                   />
                 })}
@@ -64,8 +62,6 @@ const TestPage = () => {
                     key={item.id}
                     testSet={testSet}
                     index={index}
-                    orderNumber={index}
-                    totalNumber={testSet.totalLength}
                     setTestSet={setTestSet}
                   />
                 })}
@@ -82,8 +78,6 @@ const TestPage = () => {
                   key={item.id}
                   testSet={testSet}
                   index={index}
-                  orderNumber={index}
-                  totalNumber={testSet.totalLength}
                   setTestSet={setTestSet}
                 />
                 })}

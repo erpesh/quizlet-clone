@@ -14,7 +14,7 @@ export const BottomPart = styled.div`
     flex-grow: 0;
     min-height: 10rem;
     width: 100%;
-    z-index: 201;
+    z-index: 1;
 `
 export const AnswerTitle = styled.div`
     -webkit-box-align: center;

@@ -7,7 +7,7 @@ export const AnswersPart = styled.div`
     -webkit-flex-grow: 0;
     flex-grow: 0;
     width: 100%;
-    z-index: 201;
+    z-index: 1;
 `
 export const AsnwerTitleContainer = styled.section`
     color: ${colors.gray600};

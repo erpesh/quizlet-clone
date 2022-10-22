@@ -20,7 +20,7 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet }) => {
   const calculateOrderNumber = (testData: testType) => {
     const firstMatchingNumber = testSet.lengths.slice(0, 2).reduce((partialSum, a) => partialSum + a, 0);
     const lastMatchingNumber = firstMatchingNumber + testSet.lengths[2];
-    const totalNumber = testSet.lengths.reduce((partialSum, a) => partialSum + a, 0);
+    const totalNumber = testSet.totalLength;
     return firstMatchingNumber + 1 + "-" + lastMatchingNumber + " of " + totalNumber;
   }
 
