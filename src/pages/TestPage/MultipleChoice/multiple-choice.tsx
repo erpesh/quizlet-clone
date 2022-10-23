@@ -41,8 +41,10 @@ const MultipleChoice: FC<Props> = ({testSet, index, setTestSet}) => {
     let testItem = {...testSet.multipleChoice[index]};;
     if (localFocusValue){
       testItem.isCorrect = testItem.term === localFocusValue;
+      testItem.answer = localFocusValue;
     }else {
       testItem.isCorrect = false;
+      testItem.answer = null;
     }
     multipleChoiceItems[index] = testItem;
     setTestSet({...testSet, multipleChoice: multipleChoiceItems});

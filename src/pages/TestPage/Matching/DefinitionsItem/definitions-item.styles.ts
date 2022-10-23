@@ -70,7 +70,7 @@ export const DefaultAnswerBox = styled.div`
     letter-spacing: normal;
     line-height: 1.4285714285714286;
     box-sizing: border-box;
-    min-height: 3.5rem;
+    min-height: 3.75rem;
     padding: 1rem;
     color: ${colors.ink100};
 `

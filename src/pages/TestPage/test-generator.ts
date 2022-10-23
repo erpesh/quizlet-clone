@@ -53,12 +53,16 @@ export const generateTest = (terms: termInterface[]) => {
         possibleAnswers.push(item)
         //shuffle answers
         possibleAnswers = possibleAnswers.sort(() => 0.5 - Math.random());
-        return { ...item, possibleAnswers: possibleAnswers, isCorrect: false };
+        return { ...item, possibleAnswers: possibleAnswers, isCorrect: false, answer: null };
     })
 
     const matchingItems = matchingTerms.map(item => {
         return { ...item, isCorrect: false, answer: null }
     })
+    const matchingTest = {
+        items: matchingItems,
+        answers: matchingItems.map((item, index) =>  ({answer: item.term, index: index})).sort(() => 0.5 - Math.random())
+    }
 
     const writtenItems = writtenTerms.map(item => {
         return { ...item, isCorrect: false }
@@ -73,7 +77,7 @@ export const generateTest = (terms: termInterface[]) => {
     const generatedTest = {
         trueFalse: trueFalseItems,
         multipleChoice: multipleChoiseItems,
-        matching: matchingItems,
+        matching: matchingTest,
         written: writtenItems,
         lengths: lengths,
         totalLength: lengths.reduce((partialSum, a) => partialSum + a, 0)

@@ -34,52 +34,53 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet }) => {
   }
 
   const checkIfAnswerTaken = (index: number) => {
-    const item = { ...testSet.matching[index] };
-    const answers = testSet.matching.map(item => item.answer);
+    const item = { ...testSet.matching.items[index] };
+    const answers = testSet.matching.items.map(item => item.answer);
     return answers.includes(item.term);
   }
 
-  const answerItemOnClickHandler = (item: matchingTest) => {
-    let matchingItems = [...testSet.matching];
-    matchingItems[focusedItem].answer = item.term;
-    matchingItems[focusedItem].isCorrect = item.term === matchingItems[focusedItem].term;
-    setTestSet({...testSet, matching: matchingItems});
+  const answerItemOnClickHandler = (item: string) => {
+    let matchingItems = {...testSet.matching};
+    matchingItems.items[focusedItem].answer = item;
+    matchingItems.items[focusedItem].isCorrect = item === matchingItems.items[focusedItem].term;
+    setTestSet({ ...testSet, matching: matchingItems });
     setFocusedItem(focusedItem + 1);
   }
 
   return (
     <Container>
-      <ComponentTitle onClick={() => console.log(testSet)}>Match term to definition</ComponentTitle>
+      <ComponentTitle>Match term to definition</ComponentTitle>
       <ComponentHeader>Select a term to match it with its definition</ComponentHeader>
       <div>
         <DefinitionsPart>
-          {testSet.matching.map((item, index) => {
+          {testSet.matching.items.map((item, index) => {
             return <DefinitionsItem
               key={item.id}
               testItem={item}
               index={index}
               focusedItem={focusedItem}
               setFocusedItem={setFocusedItem}
-              isNoAnswers={testSet.matching.filter(item => item.answer !== null).length === 0}
+              isNoAnswers={testSet.matching.items.filter(item => item.answer !== null).length === 0}
               testSet={testSet}
               setTestSet={setTestSet}
             />
           })}
         </DefinitionsPart>
         <AnswersPart>
-          {testSet.matching.map((item, index) => {
-            return <AnswerItemContainer
-              key={item.id}
-              isTaken={checkIfAnswerTaken(index)}
-              onClick={() => answerItemOnClickHandler(item)}
-            >
-              <AnswerItemWrap>
-                <AnswerItemContent>
-                  <TextFormater>{item.term}</TextFormater>
-                </AnswerItemContent>
-              </AnswerItemWrap>
-            </AnswerItemContainer>
-          })}
+          {testSet.matching.answers
+            .map(item => {
+              return <AnswerItemContainer
+                key={item.answer}
+                isTaken={checkIfAnswerTaken(item.index)}
+                onClick={() => answerItemOnClickHandler(item.answer)}
+              >
+                <AnswerItemWrap>
+                  <AnswerItemContent>
+                    <TextFormater>{item.answer}</TextFormater>
+                  </AnswerItemContent>
+                </AnswerItemWrap>
+              </AnswerItemContainer>
+            })}
         </AnswersPart>
       </div>
       <NumberContainer>

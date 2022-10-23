@@ -1,5 +1,5 @@
 import React from 'react'
-import { matchingTest, testType } from '../../interfaces'
+import { matchingTestItem, testType } from '../../interfaces'
 import {
     InactiveAnswerBox,
     ActiveAnswerBox,
@@ -15,7 +15,7 @@ import {
 import { FiX } from 'react-icons/fi';
 
 interface Props {
-    testItem: matchingTest,
+    testItem: matchingTestItem,
     index: number,
     focusedItem: number,
     setFocusedItem: (item: number) => void,
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const answerBox = (
-    testItem: matchingTest,
+    testItem: matchingTestItem,
     focusedItem: number,
     isNoAnswers: boolean,
     setFocusedItem: (item: number) => void,
@@ -40,10 +40,10 @@ const answerBox = (
         }
     }
     const removeClickHandler = () => {
-        let matchingItems = [...testSet.matching];
+        let matchingItems = [...testSet.matching.items];
         matchingItems[index].answer = null;
         matchingItems[index].isCorrect = false;
-        setTestSet({...testSet, matching: matchingItems});
+        setTestSet({...testSet, matching: {...testSet.matching, items: matchingItems}});
     }
 
     if (testItem.answer) {

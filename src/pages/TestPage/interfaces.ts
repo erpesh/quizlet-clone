@@ -8,15 +8,24 @@ interface trueFalseTest extends simpleTest {
     incorrectAnswer: termInterface | null
 }
 interface multipleChoiseTest extends simpleTest {
-    possibleAnswers: termInterface[]
-}
-export interface matchingTest extends simpleTest {
+    possibleAnswers: termInterface[],
     answer: string | null
+}
+export interface matchingTestItem extends simpleTest {
+    answer: string | null
+}
+interface answersItem {
+    answer: string,
+    index: number
+}
+export interface matchingTest {
+    items: matchingTestItem[],
+    answers: answersItem[]
 }
 export interface testType {
     trueFalse: trueFalseTest[],
     multipleChoice: multipleChoiseTest[],
-    matching: matchingTest[],
+    matching: matchingTest,
     written: simpleTest[],
     lengths: number[],
     totalLength: number
