@@ -1,6 +1,6 @@
 import termInterface from "../../interfaces/term-interface";
 
-export interface simpleTest extends termInterface {
+interface simpleTest extends termInterface {
     isCorrect: boolean
 }
 interface trueFalseTest extends simpleTest {
@@ -10,10 +10,13 @@ interface trueFalseTest extends simpleTest {
 interface multipleChoiseTest extends simpleTest {
     possibleAnswers: termInterface[]
 }
+export interface matchingTest extends simpleTest {
+    answer: string | null
+}
 export interface testType {
     trueFalse: trueFalseTest[],
     multipleChoice: multipleChoiseTest[],
-    matching: simpleTest[],
+    matching: matchingTest[],
     written: simpleTest[],
     lengths: number[],
     totalLength: number

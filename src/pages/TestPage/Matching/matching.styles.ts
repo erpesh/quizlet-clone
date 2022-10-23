@@ -77,3 +77,75 @@ export const AnswersPart = styled.div`
     margin-top: -1 * 1rem;
     padding-top: 2rem;
 `
+export const AnswerItemContainer = styled.div<{isTaken: boolean}>`
+    border: 0.0625rem solid ${colors.colorDisabled};
+    border-radius: 0.5rem;
+    color: ${colors.ink100};
+    cursor: pointer;
+    display: grid;
+    font-size: .875rem;
+    font-weight: 600;
+    grid-template-columns: auto 1fr;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.4285714285714286;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    &:hover{
+        border-color: #939bb4;
+        outline: none;
+    }
+    ${props => (props.isTaken ?
+        `opacity: .5;
+        pointer-events: none;
+        border-color: transparent;
+        cursor: auto;
+        &:hover {
+            border-color: transparent;
+        }` : ``
+    )}
+`
+export const AnswerItemWrap = styled.div`
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    word-break: break-word;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+`
+export const AnswerItemContent = styled.div`
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    position: relative;
+`
+export const TextFormater = styled.div`
+    word-wrap: break-word;
+    position: relative;
+    word-break: break-word;
+    -webkit-font-smoothing: antialiased;
+    font-family: Lucida Grande,Arial!important;
+    font-size: 1.1em;
+`

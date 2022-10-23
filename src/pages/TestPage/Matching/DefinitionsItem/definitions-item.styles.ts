@@ -69,14 +69,16 @@ export const DefaultAnswerBox = styled.div`
     -ms-letter-spacing: normal;
     letter-spacing: normal;
     line-height: 1.4285714285714286;
+    box-sizing: border-box;
     min-height: 3.5rem;
     padding: 1rem;
+    color: ${colors.ink100};
 `
 export const InactiveAnswerBox = styled(DefaultAnswerBox)`
     border: 0.125rem dashed ${colors.colorDisabled};
     border-radius: .25rem;
     &:hover{
-        
+        border-color: #939bb4;
     }
 `
 export const ActiveAnswerBox = styled(DefaultAnswerBox)`
