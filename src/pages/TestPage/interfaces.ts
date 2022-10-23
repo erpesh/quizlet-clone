@@ -1,6 +1,6 @@
 import termInterface from "../../interfaces/term-interface";
 
-interface simpleTest extends termInterface {
+export interface simpleTest extends termInterface {
     isCorrect: boolean
 }
 interface trueFalseTest extends simpleTest {

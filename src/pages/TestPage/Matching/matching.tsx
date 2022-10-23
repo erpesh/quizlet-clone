@@ -8,6 +8,8 @@ import {
   Container,
   ComponentHeader,
   ComponentTitle,
+  DefinitionsPart,
+  AnswersPart,
 } from './matching.styles';
 
 interface Props {
@@ -28,6 +30,14 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet }) => {
     <Container>
       <ComponentTitle>Match term to definition</ComponentTitle>
       <ComponentHeader>Select a term to match it with its definition</ComponentHeader>
+      <div>
+        <DefinitionsPart>
+
+        </DefinitionsPart>
+        <AnswersPart>
+          
+        </AnswersPart>
+      </div>
       <NumberContainer>
         <NumberContent>{calculateOrderNumber(testSet)}</NumberContent>
       </NumberContainer>

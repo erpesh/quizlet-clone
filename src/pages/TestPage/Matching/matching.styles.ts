@@ -47,3 +47,33 @@ export const ComponentHeader = styled.div`
     line-height: 1.5;
     margin-bottom: 1.5rem;
 `
+export const DefinitionsPart = styled.div`
+    border-bottom: 0.0625rem solid ${colors.neurtal300};
+    border-top: 0.0625rem solid ${colors.neurtal300};
+    display: grid;
+    font-size: 1rem;
+    font-weight: 400;
+    gap: 1.5rem;
+    grid-template-columns: 1.25fr 3fr;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.5;
+    padding: 2rem 0;
+    @media (max-width: 38.75rem) {
+        grid-template-columns: 1fr;
+    }
+`
+export const AnswersPart = styled.div`
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-left: -1 * .5rem;
+    margin-top: -1 * 1rem;
+    padding-top: 2rem;
+`
