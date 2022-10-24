@@ -13,6 +13,7 @@ import {
     AnsweredBoxContent
 } from './definitions-item.styles'
 import { FiX } from 'react-icons/fi';
+import useWindowDimensions from '../../../../hooks/useWindowDimensions';
 
 interface Props {
     testItem: matchingTestItem,
@@ -43,7 +44,7 @@ const answerBox = (
         let matchingItems = [...testSet.matching.items];
         matchingItems[index].answer = null;
         matchingItems[index].isCorrect = false;
-        setTestSet({...testSet, matching: {...testSet.matching, items: matchingItems}});
+        setTestSet({ ...testSet, matching: { ...testSet.matching, items: matchingItems } });
     }
 
     if (testItem.answer) {
@@ -103,23 +104,47 @@ const DefinitionsItem: React.FC<Props> = (props) => {
         setTestSet
     } = props;
 
+    const { height, width } = useWindowDimensions();
+
     return (
         <>
-            {answerBox(
-                testItem,
-                focusedItem,
-                isNoAnswers,
-                setFocusedItem,
-                index,
-                testSet,
-                setTestSet)}
-            <TextContainer>
-                <TextWrap>
-                    <TextFormater>
-                        {testItem.definition}
-                    </TextFormater>
-                </TextWrap>
-            </TextContainer>
+            {
+                width > 620 ? <>
+                    {answerBox(
+                        testItem,
+                        focusedItem,
+                        isNoAnswers,
+                        setFocusedItem,
+                        index,
+                        testSet,
+                        setTestSet)}
+                    <TextContainer>
+                        <TextWrap>
+                            <TextFormater>
+                                {testItem.definition}
+                            </TextFormater>
+                        </TextWrap>
+                    </TextContainer>
+                </>
+                    :
+                    <>
+                        <TextContainer>
+                            <TextWrap>
+                                <TextFormater>
+                                    {testItem.definition}
+                                </TextFormater>
+                            </TextWrap>
+                        </TextContainer>
+                        {answerBox(
+                            testItem,
+                            focusedItem,
+                            isNoAnswers,
+                            setFocusedItem,
+                            index,
+                            testSet,
+                            setTestSet)}
+                    </>
+            }
         </>
     )
 }

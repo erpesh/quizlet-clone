@@ -16,6 +16,7 @@ import {
 } from './test-page.styles';
 import Written from './Written/written';
 import Matching from './Matching/matching';
+import SubmitSection from './SubmitSection/sumbit-section';
 
 
 const TestPage = () => {
@@ -82,6 +83,7 @@ const TestPage = () => {
                 />
                 })}
               </OtherSection>
+              <SubmitSection/>
             </PageContentWrap>
           </PageWrapper>
         </PageContainer>
