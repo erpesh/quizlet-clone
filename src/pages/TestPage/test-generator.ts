@@ -80,7 +80,7 @@ export const generateTest = (terms: termInterface[]) => {
         matching: matchingTest,
         written: writtenItems,
         lengths: lengths,
-        totalLength: lengths.reduce((partialSum, a) => partialSum + a, 0)
+        totalLength: lengths.reduce((partialSum, a) => partialSum + a, 0),
     }
     return generatedTest;
 }

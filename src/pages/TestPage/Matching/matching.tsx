@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { matchingTest, testType } from '../interfaces';
 import {
   NumberContainer,
@@ -19,10 +19,12 @@ import {
 
 interface Props {
   testSet: testType,
-  setTestSet: (testSet: testType) => void
+  setTestSet: (testSet: testType) => void,
+  reference: React.RefObject<HTMLDivElement>,
+  handleRefScroll: (id: number) => void
 }
 
-const Matching: React.FC<Props> = ({ testSet, setTestSet }) => {
+const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefScroll }) => {
 
   const [focusedItem, setFocusedItem] = useState(0);
 
@@ -45,10 +47,17 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet }) => {
     matchingItems.items[focusedItem].isCorrect = item === matchingItems.items[focusedItem].term;
     setTestSet({ ...testSet, matching: matchingItems });
     setFocusedItem(focusedItem + 1);
+    const areAllAnswered = matchingItems.items.map(item => item.answer !== null);
+    if (areAllAnswered.every(item => item))
+      handleRefScroll(testSet.lengths[0] + testSet.lengths[1]);
   }
 
+  useEffect(() => {
+
+  }, [])
+
   return (
-    <Container>
+    <Container ref={reference}>
       <ComponentTitle>Match term to definition</ComponentTitle>
       <ComponentHeader>Select a term to match it with its definition</ComponentHeader>
       <div>

@@ -1,10 +1,10 @@
-import React, {FC, useState} from 'react';
+import React, { FC, useState } from 'react';
 import termInterface from '../../../interfaces/term-interface';
 import { testType } from '../interfaces';
-import { 
+import {
   Container,
   AnswerItem,
-  NumberContainer, 
+  NumberContainer,
   NumberContent,
   TitleCenter,
   TitleEnd,
@@ -26,10 +26,12 @@ import {
 interface Props {
   index: number,
   testSet: testType,
-  setTestSet: (testSet: testType) => void
+  setTestSet: (testSet: testType) => void,
+  reference: React.RefObject<HTMLDivElement>,
+  handleRefScroll: (id: number) => void
 }
 
-const MultipleChoice: FC<Props> = ({testSet, index, setTestSet}) => {
+const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -38,63 +40,60 @@ const MultipleChoice: FC<Props> = ({testSet, index, setTestSet}) => {
     setFocusValue(localFocusValue);
 
     let multipleChoiceItems = [...testSet.multipleChoice];
-    let testItem = {...testSet.multipleChoice[index]};;
-    if (localFocusValue){
+    let testItem = { ...testSet.multipleChoice[index] };;
+    if (localFocusValue) {
       testItem.isCorrect = testItem.term === localFocusValue;
       testItem.answer = localFocusValue;
-    }else {
+      handleRefScroll(testSet.lengths[0] + index);
+    } else {
       testItem.isCorrect = false;
       testItem.answer = null;
     }
     multipleChoiceItems[index] = testItem;
-    setTestSet({...testSet, multipleChoice: multipleChoiceItems});
+    setTestSet({ ...testSet, multipleChoice: multipleChoiceItems });
   }
-  
+
   return (
-    <div style={{ marginTop: "2rem" }}>
-      <div tabIndex={-1}>
-        <Container>
-          <TopPart>
-            <WordTitleWrap>
-              <WordTitleContainer>
-                <TitleWrap>
-                  <WordTitle>Definition</WordTitle>
-                </TitleWrap>
-                <TitleCenter />
-                <TitleEnd />
-              </WordTitleContainer>
-            </WordTitleWrap>
-            <WordContainer>
-              <WordHandler>
-                <Word>
-                  <div>{testSet.multipleChoice[index].definition}</div>
-                </Word>
-              </WordHandler>
-            </WordContainer>
-          </TopPart>
-          <AnswersPart>
-            <AsnwerTitleContainer>
-              <div>Select the correct term</div>
-            </AsnwerTitleContainer>
-            <AnswerContainer>
-              {testSet.multipleChoice[index].possibleAnswers.map((item: termInterface) => (
-                <AnswerItem
-                  key={item.term}
-                  tabIndex={0}
-                  isFocus={focusValue === item.term}
-                  onClick={() => toggleFocus(item.term)}
-                >
-                  {item.term}
-                </AnswerItem>
-              ))}
-            </AnswerContainer>
-          </AnswersPart>
-          <NumberContainer>
-            <NumberContent>{(testSet.lengths[0] + index + 1) + " of " + testSet.totalLength}</NumberContent>
-          </NumberContainer>
-        </Container>
-      </div>
-    </div>
+    <Container ref={reference} style={{ marginTop: "2rem" }} tabIndex={-1}>
+      <TopPart>
+        <WordTitleWrap>
+          <WordTitleContainer>
+            <TitleWrap>
+              <WordTitle>Definition</WordTitle>
+            </TitleWrap>
+            <TitleCenter />
+            <TitleEnd />
+          </WordTitleContainer>
+        </WordTitleWrap>
+        <WordContainer>
+          <WordHandler>
+            <Word>
+              <div>{testSet.multipleChoice[index].definition}</div>
+            </Word>
+          </WordHandler>
+        </WordContainer>
+      </TopPart>
+      <AnswersPart>
+        <AsnwerTitleContainer>
+          <div>Select the correct term</div>
+        </AsnwerTitleContainer>
+        <AnswerContainer>
+          {testSet.multipleChoice[index].possibleAnswers.map((item: termInterface) => (
+            <AnswerItem
+              key={item.term}
+              tabIndex={0}
+              isFocus={focusValue === item.term}
+              onClick={() => toggleFocus(item.term)}
+            >
+              {item.term}
+            </AnswerItem>
+          ))}
+        </AnswerContainer>
+      </AnswersPart>
+      <NumberContainer>
+        <NumberContent>{(testSet.lengths[0] + index + 1) + " of " + testSet.totalLength}</NumberContent>
+      </NumberContainer>
+    </Container>
   );
 };
 

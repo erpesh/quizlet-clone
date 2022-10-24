@@ -27,10 +27,12 @@ import {
 interface Props {
   index: number,
   testSet: testType,
-  setTestSet: (testSet: testType) => void
+  setTestSet: (testSet: testType) => void,
+  reference: React.RefObject<HTMLDivElement>,
+  handleRefScroll: (id: number) => void
 }
 
-const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet }) => {
+const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -42,6 +44,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet }) => {
     let testItem = {...testSet.trueFalse[index]};;
     if (localFocusValue){
       testItem.isCorrect = testItem.isTrue.toString() === localFocusValue;
+      handleRefScroll(index);  
     }else {
       testItem.isCorrect = false;
     }
@@ -50,7 +53,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet }) => {
   }
 
   return (
-    <Container tabIndex={-1}>
+    <Container ref={reference} tabIndex={-1}>
       <MainSection>
         <TermPart>
           <TopPart>

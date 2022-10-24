@@ -3,12 +3,12 @@ import { BlueButton } from '../../../components/BlueButton/blue-button.styles'
 import { BackgroundImage, Container, H3 } from './submit-section.styles'
 
 interface Props {
-
+    reference: React.RefObject<HTMLDivElement>
 }
 
-const SubmitSection: React.FC<Props> = ({ }) => {
+const SubmitSection: React.FC<Props> = ({ reference }) => {
     return (
-        <Container>
+        <Container ref={reference}>
             <BackgroundImage />
             <H3>All done! Ready to submit your test?</H3>
             <BlueButton

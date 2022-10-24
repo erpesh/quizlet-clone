@@ -17,6 +17,7 @@ import {
 import Written from './Written/written';
 import Matching from './Matching/matching';
 import SubmitSection from './SubmitSection/sumbit-section';
+import PageContent from './page-content';
 
 
 const TestPage = () => {
@@ -47,43 +48,11 @@ const TestPage = () => {
         <PageContainer>
           <PageWrapper>
             <PageContentWrap>
-              <TrueFalseSection>
-                {testSet.trueFalse.map((item, index) => {
-                  return <TrueOrFalse
-                    key={item.id}
-                    testSet={testSet}
-                    index={index}
-                    setTestSet={setTestSet}
-                  />
-                })}
-              </TrueFalseSection>
-              <OtherSection>
-                {testSet.multipleChoice.map((item, index) => {
-                  return <MultipleChoice
-                    key={item.id}
-                    testSet={testSet}
-                    index={index}
-                    setTestSet={setTestSet}
-                  />
-                })}
-              </OtherSection>
-              <OtherSection>
-                <Matching
-                  testSet={testSet}
-                  setTestSet={setTestSet}
-                />
-              </OtherSection>
-              <OtherSection>
-                {testSet.written.map((item, index) => {
-                  return <Written
-                  key={item.id}
-                  testSet={testSet}
-                  index={index}
-                  setTestSet={setTestSet}
-                />
-                })}
-              </OtherSection>
-              <SubmitSection/>
+              <PageContent
+                testSet={testSet}
+                setTestSet={setTestSet}
+                refsLength={testSet.lengths[0] + testSet.lengths[1] + testSet.lengths[3] + 2}
+              />
             </PageContentWrap>
           </PageWrapper>
         </PageContainer>

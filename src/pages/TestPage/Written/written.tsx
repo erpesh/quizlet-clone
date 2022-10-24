@@ -29,10 +29,12 @@ import {
 interface Props {
   index: number,
   testSet: testType,
-  setTestSet: (testSet: testType) => void
+  setTestSet: (testSet: testType) => void,
+  reference: React.RefObject<HTMLDivElement>,
+  handleRefScroll: (id: number) => void
 }
 
-const Written: React.FC<Props> = ({ index, testSet, setTestSet }) => {
+const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handleRefScroll }) => {
 
   const [inputValue, setInputValue] = useState("");
 
@@ -48,10 +50,11 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet }) => {
 
   const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    handleRefScroll(testSet.lengths[0] + testSet.lengths[1] + 1 + index);
   }
 
   return (
-    <WrittenContainer tabIndex={-1}>
+    <WrittenContainer ref={reference} tabIndex={-1}>
       <div>
         <TopPart>
           <WordTitleWrap>
