@@ -65,7 +65,7 @@ export const generateTest = (terms: termInterface[]) => {
     }
 
     const writtenItems = writtenTerms.map(item => {
-        return { ...item, isCorrect: false }
+        return { ...item, isCorrect: false, answer: null }
     })
 
     const lengths = [

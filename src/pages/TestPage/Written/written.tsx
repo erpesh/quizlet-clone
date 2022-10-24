@@ -41,6 +41,7 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet }) => {
     let writtenItems = [...testSet.written];
     let writtenItem = {...testSet.written[index]};
     writtenItem.isCorrect = event.target.value === writtenItem.term;
+    writtenItem.answer = event.target.value;
     writtenItems[index] = writtenItem;
     setTestSet({...testSet, written: writtenItems});
   }

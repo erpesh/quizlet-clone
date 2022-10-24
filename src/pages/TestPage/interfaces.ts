@@ -18,6 +18,9 @@ interface answersItem {
     answer: string,
     index: number
 }
+interface writtenTest extends simpleTest {
+    answer: string | null;
+}
 export interface matchingTest {
     items: matchingTestItem[],
     answers: answersItem[]
@@ -26,7 +29,7 @@ export interface testType {
     trueFalse: trueFalseTest[],
     multipleChoice: multipleChoiseTest[],
     matching: matchingTest,
-    written: simpleTest[],
+    written: writtenTest[],
     lengths: number[],
     totalLength: number
 }
