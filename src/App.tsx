@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import Home from "./pages/Home/home";
 import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header/header";
 import SetPage from "./pages/SetPage/set-page";
 import { AuthProvider } from "./context/auth-context";
-import SideBar from "./components/SideBar/side-bar";
 import CreateOrEdit from "./utils/CreateOrEdit/create-or-edit";
 import TestPage from "./pages/TestPage/test-page";
+import NavBar from './components/NavBar/nav-bar';
 
 
 function App() {
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
   return (
       <div className="App">
         <AuthProvider>
-          <Header toggle={toggle}/>
-          <SideBar isOpen={isOpen} toggle={toggle}/>
+          <NavBar/>
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/create" element={<CreateOrEdit isCreate={true}/>}/>

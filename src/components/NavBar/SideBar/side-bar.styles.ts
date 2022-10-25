@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import colors from "../../assets/colors";
+import colors from "../../../assets/colors";
 import {Link} from "react-router-dom";
 import {FaTimes} from "react-icons/fa";
 

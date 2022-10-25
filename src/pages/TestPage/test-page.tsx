@@ -51,7 +51,7 @@ const TestPage = () => {
               <PageContent
                 testSet={testSet}
                 setTestSet={setTestSet}
-                refsLength={testSet.lengths[0] + testSet.lengths[1] + testSet.lengths[3] + 2}
+                refsLength={testSet.lengths[0] + testSet.lengths[1] + testSet.lengths[3] + 1}
               />
             </PageContentWrap>
           </PageWrapper>

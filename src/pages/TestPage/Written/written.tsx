@@ -89,7 +89,7 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handl
               />
             </InputContainer>
           </div>
-          <ButtonContainer>
+          {index + 1 !== testSet.lengths[3] && <ButtonContainer>
             <BlueButton
               padding={"0.625rem 1rem"}
               radius={".5rem"}
@@ -99,7 +99,7 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handl
             >
               Next
             </BlueButton>
-          </ButtonContainer>
+          </ButtonContainer>}
         </AnswerForm>
       </BottomPart>
       <NumberContainer>

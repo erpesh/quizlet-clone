@@ -47,14 +47,11 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefSc
     matchingItems.items[focusedItem].isCorrect = item === matchingItems.items[focusedItem].term;
     setTestSet({ ...testSet, matching: matchingItems });
     setFocusedItem(focusedItem + 1);
+    
     const areAllAnswered = matchingItems.items.map(item => item.answer !== null);
     if (areAllAnswered.every(item => item))
       handleRefScroll(testSet.lengths[0] + testSet.lengths[1]);
   }
-
-  useEffect(() => {
-
-  }, [])
 
   return (
     <Container ref={reference}>

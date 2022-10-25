@@ -72,7 +72,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
                     />
                 })}
             </OtherSection>
-            <SubmitSection reference={refs[refsLength - 1]} />
+            <SubmitSection/>
         </>
     )
 }

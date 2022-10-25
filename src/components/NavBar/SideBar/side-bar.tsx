@@ -10,9 +10,9 @@ import {
     CloseIcon,
     Icon
 } from "./side-bar.styles";
-import {ReactComponent as SideBarIcon} from "../../assets/images/side-bar-icon.svg";
-import AuthContext from "../../context/auth-context";
-import {ReactComponent as ChevronIcon} from "../../assets/images/chevron-down.svg";
+import {ReactComponent as SideBarIcon} from "../../../assets/images/side-bar-icon.svg";
+import AuthContext from "../../../context/auth-context";
+import {ReactComponent as ChevronIcon} from "../../../assets/images/chevron-down.svg";
 
 interface Props {
   isOpen: boolean,
