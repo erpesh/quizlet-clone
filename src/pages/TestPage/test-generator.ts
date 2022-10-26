@@ -36,10 +36,11 @@ export const generateTest = (terms: termInterface[]) => {
                 ...item,
                 isTrue: false,
                 isCorrect: false,
-                incorrectAnswer: incorrectAnswer
+                incorrectAnswer: incorrectAnswer,
+                isAnswered: false
             }
         }
-        return { ...item, isTrue: true, isCorrect: false, incorrectAnswer: null };
+        return { ...item, isAnswered: false, isTrue: true, isCorrect: false, incorrectAnswer: null };
     })
 
     // generate multiple choise tests

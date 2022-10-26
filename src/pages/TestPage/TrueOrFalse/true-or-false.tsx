@@ -32,10 +32,10 @@ interface Props {
   setTestSet: (testSet: testType) => void,
   reference: React.RefObject<HTMLDivElement>,
   handleRefScroll: (id: number) => void,
-  isChecked: boolean
+  isTestChecked: boolean
 }
 
-const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll, isChecked }) => {
+const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll, isTestChecked }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -47,9 +47,11 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
     let testItem = { ...testSet.trueFalse[index] };;
     if (localFocusValue) {
       testItem.isCorrect = testItem.isTrue.toString() === localFocusValue;
+      testItem.isAnswered = true;
       handleRefScroll(index);
     } else {
       testItem.isCorrect = false;
+      testItem.isAnswered = false;
     }
     trueFalseItems[index] = testItem;
     setTestSet({ ...testSet, trueFalse: trueFalseItems });
@@ -101,7 +103,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
           </TopPart>
         </DefinitionPart>
       </MainSection>
-      {!isChecked ? <>
+      {!isTestChecked ? <>
         <SecondTitle>Choose the answer</SecondTitle>
         <AnswerContainer>
           <AnswerItem

@@ -5,7 +5,8 @@ interface simpleTest extends termInterface {
 }
 export interface trueFalseTest extends simpleTest {
     isTrue: boolean,
-    incorrectAnswer: termInterface | null
+    incorrectAnswer: termInterface | null,
+    isAnswered: boolean
 }
 export interface multipleChoiseTest extends simpleTest {
     possibleAnswers: termInterface[],

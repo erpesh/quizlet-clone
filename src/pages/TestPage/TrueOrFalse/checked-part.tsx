@@ -13,10 +13,64 @@ interface Props {
 const CheckedPart: React.FC<Props> = ({ testItem }) => {
 
   const {
+    isAnswered,
     isTrue,
     isCorrect,
     definition
   } = testItem;
+
+  // When question is skipped and answer is true
+  if (!isAnswered && isTrue) return <>
+    <SecondTitle>Give this one a go later!</SecondTitle>
+    <AnswerContainer>
+      <AnswerItem
+        tabIndex={0}
+        color={colors.UIColorGray60}
+        removeHover
+      >
+        <AiOutlineCheck style={{ color: colors.UIColorGray60, marginRight: ".625rem" }} />
+        True
+      </AnswerItem>
+      <AnswerItem
+        tabIndex={0}
+        color={colors.colorDisabled}
+        removeHover
+      >
+        False
+      </AnswerItem>
+    </AnswerContainer>
+  </> 
+
+  // When question is skipped and answer is false
+  if (!isAnswered && !isTrue) return <>
+    <SecondTitle>Give this one a go later!</SecondTitle>
+    <AnswerContainer>
+      <AnswerItem
+        tabIndex={0}
+        color={colors.colorDisabled}
+        removeHover
+      >
+        True
+      </AnswerItem>
+      <AnswerItem
+        tabIndex={0}
+        color={colors.UIColorGray60}
+        removeHover
+      >
+        <AiOutlineCheck style={{ color: colors.UIColorGray60, marginRight: ".625rem" }} />
+        False
+      </AnswerItem>
+    </AnswerContainer>
+    <SecondTitle>Correct definition</SecondTitle>
+    <AnswerItem
+      tabIndex={0}
+      color={colors.green400}
+      bgColor={colors.green100}
+    >
+      <AiOutlineCheck style={{ color: colors.green400, marginRight: ".625rem" }} />
+      {definition}
+    </AnswerItem>
+  </>
 
   // When asnwer is true ans user answered correctly
   if (isTrue && isCorrect) return <>
