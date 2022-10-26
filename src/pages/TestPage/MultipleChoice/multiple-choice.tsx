@@ -17,6 +17,7 @@ import {
   WordHandler,
   TopPart
 } from '../test-page.styles';
+import CheckedPart from './checked-part';
 import {
   AnswersPart,
   AsnwerTitleContainer,
@@ -28,10 +29,11 @@ interface Props {
   testSet: testType,
   setTestSet: (testSet: testType) => void,
   reference: React.RefObject<HTMLDivElement>,
-  handleRefScroll: (id: number) => void
+  handleRefScroll: (id: number) => void,
+  isTestChecked: boolean
 }
 
-const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll }) => {
+const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll, isTestChecked }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -74,21 +76,23 @@ const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, hand
         </WordContainer>
       </TopPart>
       <AnswersPart>
-        <AsnwerTitleContainer>
-          <div>Select the correct term</div>
-        </AsnwerTitleContainer>
-        <AnswerContainer>
-          {testSet.multipleChoice[index].possibleAnswers.map((item: termInterface) => (
-            <AnswerItem
-              key={item.term}
-              tabIndex={0}
-              isFocus={focusValue === item.term}
-              onClick={() => toggleFocus(item.term)}
-            >
-              {item.term}
-            </AnswerItem>
-          ))}
-        </AnswerContainer>
+        {isTestChecked ? <CheckedPart testItem={testSet.multipleChoice[index]} /> : <>
+          <AsnwerTitleContainer>
+            <div>Select the correct term</div>
+          </AsnwerTitleContainer>
+          <AnswerContainer>
+            {testSet.multipleChoice[index].possibleAnswers.map((item: termInterface) => (
+              <AnswerItem
+                key={item.term}
+                tabIndex={0}
+                isFocus={focusValue === item.term}
+                onClick={() => toggleFocus(item.term)}
+              >
+                {item.term}
+              </AnswerItem>
+            ))}
+          </AnswerContainer>
+        </>}
       </AnswersPart>
       <NumberContainer>
         <NumberContent>{(testSet.lengths[0] + index + 1) + " of " + testSet.totalLength}</NumberContent>

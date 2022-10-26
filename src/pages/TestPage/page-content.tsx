@@ -30,6 +30,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
 
     return (
         <>
+            <div onClick={() => setIsTestChecked(!isTestChecked)}>aasfl;kjkasfasf</div>
             <TrueFalseSection>
                 {testSet.trueFalse.map((item, index) => {
                     return <TrueOrFalse
@@ -39,7 +40,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
                         setTestSet={setTestSet}
                         reference={refs[index]}
                         handleRefScroll={handleRefScroll}
-                        isChecked={isTestChecked}
+                        isTestChecked={isTestChecked}
                     />
                 })}
             </TrueFalseSection>
@@ -52,6 +53,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
                         setTestSet={setTestSet}
                         reference={refs[testSet.lengths[0] + index]}
                         handleRefScroll={handleRefScroll}
+                        isTestChecked={isTestChecked}
                     />
                 })}
             </OtherSection>
