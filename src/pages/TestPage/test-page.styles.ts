@@ -232,13 +232,21 @@ export const WordTitle = styled.section`
     letter-spacing: normal;
     line-height: 1.4285714285714286;
 `
-export const AnswerItem = styled.section<{ isFocus: boolean }>`
+interface answerItem { 
+    isFocus?: boolean, 
+    color?: string,
+    bgColor?: string,
+    removeHover?: boolean,
+}
+export const AnswerItem = styled.section<answerItem>`
     -webkit-box-align: center;
     -ms-flex-align: center;
     -webkit-align-items: center;
     box-sizing: border-box;
     align-items: center;
     border: 0.125rem solid ${colors.neurtal300};
+    ${props => props.color ? `border-color: ${props.color};` : ""}
+    ${props => props.bgColor ? `background-color: ${props.bgColor};` : ""}
     border-radius: 0.5rem;
     color: ${colors.UIColorGray};
     cursor: pointer;
@@ -266,10 +274,10 @@ export const AnswerItem = styled.section<{ isFocus: boolean }>`
         letter-spacing: normal;
         line-height: 1.5;
     }
-    &:hover{
-        ${props => props.isFocus ? `border-color: ${colors.indigo100}` : "border-color: #939bb4;"}
+    ${props => props.removeHover ? "cursor: auto;" : `&:hover{
+        ${props.isFocus ? `border-color: ${colors.indigo100}` : "border-color: #939bb4;"}
         outline: none;
-    }
+    }`}
     ${props => {
         if (props.isFocus) {
             return `

@@ -6,6 +6,11 @@ interface Props {
 }
 
 const SubmitSection: React.FC<Props> = ( {}) => {
+
+    const handleSubmitClick = () => {
+        
+    }
+
     return (
         <Container>
             <BackgroundImage />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { testType } from './interfaces'
 import Matching from './Matching/matching'
 import MultipleChoice from './MultipleChoice/multiple-choice'
@@ -14,6 +14,8 @@ interface Props {
 }
 
 const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
+
+    const [isTestChecked, setIsTestChecked] = useState(false);
 
     const refs = Array(refsLength).fill(0)
         .map(item => React.createRef<HTMLDivElement>())
@@ -37,6 +39,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
                         setTestSet={setTestSet}
                         reference={refs[index]}
                         handleRefScroll={handleRefScroll}
+                        isChecked={isTestChecked}
                     />
                 })}
             </TrueFalseSection>

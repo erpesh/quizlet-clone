@@ -1,8 +1,9 @@
 import React, { FC, useState } from 'react'
+import colors from '../../../assets/colors'
 import { testType } from '../interfaces'
-import { 
+import {
   Container,
-  NumberContainer, 
+  NumberContainer,
   NumberContent,
   TitleCenter,
   TitleEnd,
@@ -16,6 +17,7 @@ import {
   WordContainer,
   WordHandler
 } from '../test-page.styles'
+import CheckedPart from './checked-part'
 import {
   AnswerContainer,
   DefinitionPart,
@@ -29,10 +31,11 @@ interface Props {
   testSet: testType,
   setTestSet: (testSet: testType) => void,
   reference: React.RefObject<HTMLDivElement>,
-  handleRefScroll: (id: number) => void
+  handleRefScroll: (id: number) => void,
+  isChecked: boolean
 }
 
-const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll }) => {
+const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll, isChecked }) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -41,15 +44,15 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
     setFocusValue(localFocusValue);
 
     let trueFalseItems = [...testSet.trueFalse];
-    let testItem = {...testSet.trueFalse[index]};;
-    if (localFocusValue){
+    let testItem = { ...testSet.trueFalse[index] };;
+    if (localFocusValue) {
       testItem.isCorrect = testItem.isTrue.toString() === localFocusValue;
-      handleRefScroll(index);  
-    }else {
+      handleRefScroll(index);
+    } else {
       testItem.isCorrect = false;
     }
     trueFalseItems[index] = testItem;
-    setTestSet({...testSet, trueFalse: trueFalseItems});
+    setTestSet({ ...testSet, trueFalse: trueFalseItems });
   }
 
   return (
@@ -89,32 +92,34 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
             <WordContainer>
               <WordHandler>
                 <Word>
-                  <div>{testSet.trueFalse[index].incorrectAnswer ? 
-                  testSet.trueFalse[index].incorrectAnswer?.definition :
-                  testSet.trueFalse[index].definition}</div>
+                  <div>{testSet.trueFalse[index].incorrectAnswer ?
+                    testSet.trueFalse[index].incorrectAnswer?.definition :
+                    testSet.trueFalse[index].definition}</div>
                 </Word>
               </WordHandler>
             </WordContainer>
           </TopPart>
         </DefinitionPart>
       </MainSection>
-      <SecondTitle>Choose the answer</SecondTitle>
-      <AnswerContainer>
-        <AnswerItem
-          isFocus={focusValue === "true"}
-          onClick={() => handleOnClick("true")}
-          tabIndex={0}
-        >
-          True
-        </AnswerItem>
-        <AnswerItem
-          isFocus={focusValue === "false"}
-          onClick={() => handleOnClick("false")}
-          tabIndex={0}
-        >
-          False
-        </AnswerItem>
-      </AnswerContainer>
+      {!isChecked ? <>
+        <SecondTitle>Choose the answer</SecondTitle>
+        <AnswerContainer>
+          <AnswerItem
+            isFocus={focusValue === "true"}
+            onClick={() => handleOnClick("true")}
+            tabIndex={0}
+          >
+            True
+          </AnswerItem>
+          <AnswerItem
+            isFocus={focusValue === "false"}
+            onClick={() => handleOnClick("false")}
+            tabIndex={0}
+          >
+            False
+          </AnswerItem>
+        </AnswerContainer>
+      </> : <CheckedPart testItem={testSet.trueFalse[index]} />}
       <NumberContainer>
         <NumberContent>{(index + 1) + " of " + testSet.totalLength}</NumberContent>
       </NumberContainer>
