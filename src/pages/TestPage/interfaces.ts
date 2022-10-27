@@ -19,7 +19,7 @@ interface answersItem {
     answer: string,
     index: number
 }
-interface writtenTest extends simpleTest {
+export interface writtenTest extends simpleTest {
     answer: string | null;
 }
 export interface matchingTest {

@@ -21,7 +21,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
 
   // When question is skipped and answer is true
   if (!isAnswered && isTrue) return <>
-    <SecondTitle>Give this one a go later!</SecondTitle>
+    <SecondTitle color={colors.UIColorGray}>Give this one a go later!</SecondTitle>
     <AnswerContainer>
       <AnswerItem
         tabIndex={0}
@@ -35,6 +35,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
         tabIndex={0}
         color={colors.colorDisabled}
         removeHover
+        style={{color: colors.UIColorGray60}}
       >
         False
       </AnswerItem>
@@ -49,6 +50,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
         tabIndex={0}
         color={colors.colorDisabled}
         removeHover
+        style={{color: colors.UIColorGray60}}
       >
         True
       </AnswerItem>

@@ -74,6 +74,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
                         setTestSet={setTestSet}
                         reference={refs[testSet.lengths[0] + testSet.lengths[1] + 1 + index]}
                         handleRefScroll={handleRefScroll}
+                        isTestChecked={isTestChecked}
                     />
                 })}
             </OtherSection>

@@ -1,24 +1,25 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { AssemblyInput } from '../../../components/AssemblyInput/assembly-input';
 import { BlueButton } from '../../../components/BlueButton/blue-button.styles';
 import { testType } from '../interfaces';
-import { 
-  NumberContainer, 
-  NumberContent, 
+import {
+  NumberContainer,
+  NumberContent,
   TopPart,
   TitleCenter,
   TitleEnd,
   TitleWrap,
   WordTitle,
   WordTitleContainer,
-  WordTitleWrap, 
+  WordTitleWrap,
   Word,
   WordContainer,
   WordHandler
 } from '../test-page.styles';
-import { 
-  BottomPart, 
-  WrittenContainer, 
+import CheckedPart from './checked-part';
+import {
+  BottomPart,
+  WrittenContainer,
   AnswerTitle,
   AnswerTitleSection,
   AnswerForm,
@@ -31,21 +32,22 @@ interface Props {
   testSet: testType,
   setTestSet: (testSet: testType) => void,
   reference: React.RefObject<HTMLDivElement>,
-  handleRefScroll: (id: number) => void
+  handleRefScroll: (id: number) => void,
+  isTestChecked: boolean
 }
 
-const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handleRefScroll }) => {
+const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handleRefScroll, isTestChecked }) => {
 
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     let writtenItems = [...testSet.written];
-    let writtenItem = {...testSet.written[index]};
+    let writtenItem = { ...testSet.written[index] };
     writtenItem.isCorrect = event.target.value === writtenItem.term;
     writtenItem.answer = event.target.value;
     writtenItems[index] = writtenItem;
-    setTestSet({...testSet, written: writtenItems});
+    setTestSet({ ...testSet, written: writtenItems });
   }
 
   const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
@@ -76,31 +78,33 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handl
         </TopPart>
       </div>
       <BottomPart>
-        <AnswerTitle>
-          <AnswerTitleSection>Your answer</AnswerTitleSection>
-        </AnswerTitle>
-        <AnswerForm>
-          <div>
-            <InputContainer>
-              <AssemblyInput
-                placeholder="Type the answer"
-                value={inputValue}
-                onChange={handleChange}
-              />
-            </InputContainer>
-          </div>
-          {index + 1 !== testSet.lengths[3] && <ButtonContainer>
-            <BlueButton
-              padding={"0.625rem 1rem"}
-              radius={".5rem"}
-              fontSize={".875rem"}
-              onClick={onClickHandler}
-              type={"submit"}
-            >
-              Next
-            </BlueButton>
-          </ButtonContainer>}
-        </AnswerForm>
+        {isTestChecked ? <CheckedPart testItem={testSet.written[index]} /> : <>
+          <AnswerTitle>
+            <AnswerTitleSection>Your answer</AnswerTitleSection>
+          </AnswerTitle>
+          <AnswerForm>
+            <div>
+              <InputContainer>
+                <AssemblyInput
+                  placeholder="Type the answer"
+                  value={inputValue}
+                  onChange={handleChange}
+                />
+              </InputContainer>
+            </div>
+            {index + 1 !== testSet.lengths[3] && <ButtonContainer>
+              <BlueButton
+                padding={"0.625rem 1rem"}
+                radius={".5rem"}
+                fontSize={".875rem"}
+                onClick={onClickHandler}
+                type={"submit"}
+              >
+                Next
+              </BlueButton>
+            </ButtonContainer>}
+          </AnswerForm>
+        </>}
       </BottomPart>
       <NumberContainer>
         <NumberContent>{(testSet.totalLength - testSet.lengths[3] + index + 1) + " of " + testSet.totalLength}</NumberContent>

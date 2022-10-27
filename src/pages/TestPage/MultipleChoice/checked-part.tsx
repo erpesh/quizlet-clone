@@ -68,8 +68,8 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
 
     return (
         <>
-            <AsnwerTitleContainer>
-                <div>Select the correct term</div>
+            <AsnwerTitleContainer style={{color: colors.UIColorGray60}}>
+                <div>Give this one a go later!</div>
             </AsnwerTitleContainer>
             <AnswerContainer>
                 {testItem.possibleAnswers.map((item: termInterface) => (
@@ -77,6 +77,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
                         key={item.term}
                         tabIndex={0}
                         color={item.term === term ? colors.UIColorGray60 : undefined}
+                        style={{color: item.term !== term ? colors.UIColorGray60 : undefined}}
                         removeHover
                     >
                         {item.term === term && <AiOutlineCheck style={{ color: colors.UIColorGray60, marginRight: ".625rem" }} />}
