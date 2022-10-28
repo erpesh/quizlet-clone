@@ -4,6 +4,7 @@ import {
   NumberContainer,
   NumberContent
 } from '../test-page.styles';
+import CheckedPart from './CheckedPart/checked-part';
 import DefinitionsItem from './DefinitionsItem/definitions-item';
 import {
   Container,
@@ -21,10 +22,11 @@ interface Props {
   testSet: testType,
   setTestSet: (testSet: testType) => void,
   reference: React.RefObject<HTMLDivElement>,
-  handleRefScroll: (id: number) => void
+  handleRefScroll: (id: number) => void,
+  isTestChecked: boolean
 }
 
-const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefScroll }) => {
+const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefScroll, isTestChecked }) => {
 
   const [focusedItem, setFocusedItem] = useState(0);
 
@@ -42,12 +44,12 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefSc
   }
 
   const answerItemOnClickHandler = (item: string) => {
-    let matchingItems = {...testSet.matching};
+    let matchingItems = { ...testSet.matching };
     matchingItems.items[focusedItem].answer = item;
     matchingItems.items[focusedItem].isCorrect = item === matchingItems.items[focusedItem].term;
     setTestSet({ ...testSet, matching: matchingItems });
     setFocusedItem(focusedItem + 1);
-    
+
     const areAllAnswered = matchingItems.items.map(item => item.answer !== null);
     if (areAllAnswered.every(item => item))
       handleRefScroll(testSet.lengths[0] + testSet.lengths[1]);
@@ -57,7 +59,7 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefSc
     <Container ref={reference}>
       <ComponentTitle>Match term to definition</ComponentTitle>
       <ComponentHeader>Select a term to match it with its definition</ComponentHeader>
-      <div>
+      <div>{isTestChecked ? <CheckedPart matchingTest={testSet.matching} /> : <>
         <DefinitionsPart>
           {testSet.matching.items.map((item, index) => {
             return <DefinitionsItem
@@ -88,6 +90,7 @@ const Matching: React.FC<Props> = ({ testSet, setTestSet, reference, handleRefSc
               </AnswerItemContainer>
             })}
         </AnswersPart>
+      </>}
       </div>
       <NumberContainer>
         <NumberContent>{calculateOrderNumber()}</NumberContent>

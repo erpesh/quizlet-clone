@@ -45,7 +45,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
             {term}
         </AnswerItem>
     </>
-    // When the asnwer is incorrec
+    // When the asnwer is incorrect
     if (!isCorrect) return <>
         <AnswerTitle>
             <AnswerTitleSection style={{ color: colors.coral300 }}>Not quite. You're still learning!</AnswerTitleSection>
@@ -72,6 +72,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
         </AnswerItem>
     </>
 
+    // When the question is correct
     return (
         <>
             <AnswerTitle>
