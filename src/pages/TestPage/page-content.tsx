@@ -79,7 +79,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
                     />
                 })}
             </OtherSection>
-            <SubmitSection/>
+            <SubmitSection setIsTestChecked={setIsTestChecked} />
         </>
     )
 }

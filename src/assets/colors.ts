@@ -25,5 +25,7 @@ const colors = {
   coral300: "#ff9c8c",
   green400: "#23b26d",
   green100: "#f2fbf6",
+  mint500: "#18ae79",
+  sherbert500: "#d05700",
 }
 export default colors;

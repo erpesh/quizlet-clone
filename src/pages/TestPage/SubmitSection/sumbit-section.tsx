@@ -3,12 +3,13 @@ import { BlueButton } from '../../../components/BlueButton/blue-button.styles'
 import { BackgroundImage, Container, H3 } from './submit-section.styles'
 
 interface Props {
+    setIsTestChecked: (isChecked: boolean) => void
 }
 
-const SubmitSection: React.FC<Props> = ( {}) => {
+const SubmitSection: React.FC<Props> = ({ setIsTestChecked }) => {
 
     const handleSubmitClick = () => {
-        
+        setIsTestChecked(true);
     }
 
     return (
@@ -19,6 +20,7 @@ const SubmitSection: React.FC<Props> = ( {}) => {
                 padding={"1.25rem 2rem"}
                 radius={".5rem"}
                 fontSize={"1rem"}
+                onClick={handleSubmitClick}
             >
                 Submit test
             </BlueButton>
