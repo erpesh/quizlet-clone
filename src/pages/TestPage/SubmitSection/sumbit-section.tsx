@@ -10,6 +10,7 @@ const SubmitSection: React.FC<Props> = ({ setIsTestChecked }) => {
 
     const handleSubmitClick = () => {
         setIsTestChecked(true);
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }
 
     return (

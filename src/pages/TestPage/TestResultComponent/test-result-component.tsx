@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {
   Container,
   ContentContainer,
@@ -31,6 +31,23 @@ interface Props {
 }
 
 const TestResultComponent: React.FC<Props> = ({ testSet }) => {
+
+  const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
+
+  const countCorrectAnswers = () => {
+    let numberOfCorrectAnswers = 0;
+    testSet.trueFalse.forEach(item => item.isCorrect ? numberOfCorrectAnswers++ : numberOfCorrectAnswers += 0)
+    testSet.multipleChoice.forEach(item => item.isCorrect ? numberOfCorrectAnswers++ : numberOfCorrectAnswers += 0)
+    testSet.matching.items.forEach(item => item.isCorrect ? numberOfCorrectAnswers++ : numberOfCorrectAnswers += 0)
+    testSet.written.forEach(item => item.isCorrect ? numberOfCorrectAnswers++ : numberOfCorrectAnswers += 0)
+    return numberOfCorrectAnswers;
+  }
+
+  useEffect(() => {
+    setNumberOfCorrectAnswers(countCorrectAnswers());
+  }, [])
+  
+
   return (
     <Container>
       <ContentWrap>
@@ -41,8 +58,9 @@ const TestResultComponent: React.FC<Props> = ({ testSet }) => {
               <TopItemContentWrap>
                 <div style={{ width: "6.25rem" }}>
                   <CircularProgressbar
-                    value={12}
-                    text={`12%`}
+                    value={numberOfCorrectAnswers}
+                    maxValue={testSet.totalLength}
+                    text={`${Math.round(numberOfCorrectAnswers * 100 / testSet.totalLength)}%`}
                     strokeWidth={12}
                     styles={buildStyles({
                       pathColor: "#59e8b5",
@@ -58,8 +76,8 @@ const TestResultComponent: React.FC<Props> = ({ testSet }) => {
                     <div style={{ color: colors.sherbert500 }}>Incorrect</div>
                   </ResultLefItem>
                   <ResultRightItem>
-                    <NumberOfAnswers isCorrect>12</NumberOfAnswers>
-                    <NumberOfAnswers>100</NumberOfAnswers>
+                    <NumberOfAnswers isCorrect>{numberOfCorrectAnswers}</NumberOfAnswers>
+                    <NumberOfAnswers>{testSet.totalLength - numberOfCorrectAnswers}</NumberOfAnswers>
                   </ResultRightItem>
                 </ResultContainer>
               </TopItemContentWrap>

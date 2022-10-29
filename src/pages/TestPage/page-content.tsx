@@ -3,7 +3,7 @@ import { testType } from './interfaces'
 import Matching from './Matching/matching'
 import MultipleChoice from './MultipleChoice/multiple-choice'
 import SubmitSection from './SubmitSection/sumbit-section'
-import { OtherSection, TrueFalseSection } from './test-page.styles'
+import { AnswersTitle, OtherSection, TrueFalseSection } from './test-page.styles'
 import TestResultComponent from './TestResultComponent/test-result-component'
 import TrueOrFalse from './TrueOrFalse/true-or-false'
 import Written from './Written/written'
@@ -33,6 +33,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
         <>
             {isTestChecked && <TestResultComponent testSet={testSet}/>}
             <TrueFalseSection>
+                {isTestChecked && <AnswersTitle>Your answers</AnswersTitle>}
                 {testSet.trueFalse.map((item, index) => {
                     return <TrueOrFalse
                         key={item.id}

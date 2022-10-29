@@ -4,7 +4,7 @@ const MAX_NUMBER_OF_TERMS = 20;
 
 
 // returns array of up to 20 terms for test
-export const selectRandomTerms = (terms: termInterface[]) => {
+const selectRandomTerms = (terms: termInterface[]) => {
     const shuffledTerms = terms.sort(() => 0.5 - Math.random());
     return shuffledTerms.slice(0, MAX_NUMBER_OF_TERMS);
 }

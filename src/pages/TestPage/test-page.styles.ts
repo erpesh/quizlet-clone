@@ -286,3 +286,13 @@ export const AnswerItem = styled.section<answerItem>`
         }
     }}
 `
+export const AnswersTitle = styled.h4`
+    color: ${colors.ink100};
+    font-size: 1.25rem;
+    font-weight: 700;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.4;
+`
