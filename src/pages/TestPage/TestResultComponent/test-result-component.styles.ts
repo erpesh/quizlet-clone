@@ -182,9 +182,9 @@ export const NumberOfAnswers = styled.div<{ isCorrect?: boolean }>`
     -ms-flex-pack: center;
     -webkit-align-items: center;
     align-items: center;
-    border: 0.0625rem solid var(--gray-400-gray-200);
+    border: 0.0625rem solid ${colors.UIColorGray};
     border-radius: 1.125rem;
-    color: var(--gray-600-gray-400);
+    color: ${colors.gray600};
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -198,11 +198,121 @@ export const NumberOfAnswers = styled.div<{ isCorrect?: boolean }>`
     width: 3rem;
     ${props => props.isCorrect ? `
         background: #e6fcf4;
-        border-color: #98f1d1,
+        border-color: #98f1d1;
         color: ${colors.mint500}
     `: `
     background: #fff6ef;
-    border-color: #ffc38c,
+    border-color: #ffc38c;
     color: ${colors.sherbert500}
     `}
+`
+export const SecondPartContent = styled.div`
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    @media (max-width: 48rem){
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+    @media (max-width: 38.75rem){
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+`
+export const ReferenceItemContainer = styled.article`
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    -webkit-align-items: center;
+    align-items: center;
+    background-color: ${colors.whiteColor};
+    border: 0.125rem solid ${colors.pageBackgroundColor};
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 1rem rgb(48 53 69 / 8%);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    min-height: 6.25rem;
+    overflow: hidden;
+    padding: 1rem;
+    margin-top: 1rem;
+    @media (max-width: 48rem){
+        max-width: 19.75rem;
+    }
+    @media (max-width: 38.75rem) {
+        min-height: 4.75rem;
+        width: 100%;
+        max-width: unset;
+    }
+`
+export const IconContainer = styled.div`
+    -ms-flex-negative: 0;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    position: relative;
+`
+export const IconContent = styled.div<{img: string}>`
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 4rem;
+    width: 4rem;
+    background-image: url(${props => props.img});
+`
+export const RefMainContent = styled.div`
+    -webkit-box-flex: 4;
+    -ms-flex-positive: 4;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-grow: 4;
+    flex-grow: 4;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin-left: 1rem;
+`
+export const RefMainHeader = styled.div`
+    color: ${colors.mainBlueColor};
+    font-size: 1rem;
+    font-weight: 600;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.5;
+`
+export const RefMainText = styled.div`
+    color: ${colors.textGray800};
+    font-size: .875rem;
+    font-weight: 400;
+    -webkit-letter-spacing: normal;
+    -moz-letter-spacing: normal;
+    -ms-letter-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1.4285714285714286;
+    margin-top: 0.5rem;
 `

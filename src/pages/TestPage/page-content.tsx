@@ -4,6 +4,7 @@ import Matching from './Matching/matching'
 import MultipleChoice from './MultipleChoice/multiple-choice'
 import SubmitSection from './SubmitSection/sumbit-section'
 import { OtherSection, TrueFalseSection } from './test-page.styles'
+import TestResultComponent from './TestResultComponent/test-result-component'
 import TrueOrFalse from './TrueOrFalse/true-or-false'
 import Written from './Written/written'
 
@@ -30,7 +31,7 @@ const PageContent: React.FC<Props> = ({ testSet, setTestSet, refsLength }) => {
 
     return (
         <>
-            <div onClick={() => setIsTestChecked(!isTestChecked)}>aasfl;kjkasfasf</div>
+            {isTestChecked && <TestResultComponent testSet={testSet}/>}
             <TrueFalseSection>
                 {testSet.trueFalse.map((item, index) => {
                     return <TrueOrFalse
