@@ -1,7 +1,7 @@
 import React from 'react'
-import { multipleChoiseTest } from '../interfaces'
-import termInterface from '../../../interfaces/term-interface';
-import { AnswerItem } from '../test-page.styles';
+import { multipleChoiseTest } from '../../../types/test-page.types'
+import termTypes from '../../../types/term.types';
+import AnswerItem from "../../../layouts/answer-item.styles";
 import { AsnwerTitleContainer, AnswerContainer } from './multiple-choice.styles';
 import { AiOutlineCheck } from "react-icons/ai";
 import colors from "../../../assets/colors";
@@ -17,7 +17,6 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
         term,
         isCorrect,
         answer,
-        possibleAnswers,
     } = testItem;
 
     if (isCorrect) return <>
@@ -25,7 +24,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
             <div>Awesome!</div>
         </AsnwerTitleContainer>
         <AnswerContainer>
-            {testItem.possibleAnswers.map((item: termInterface) => (
+            {testItem.possibleAnswers.map((item: termTypes) => (
                 <AnswerItem
                     key={item.term}
                     tabIndex={0}
@@ -45,7 +44,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
             <div>Not quite. You're still learning!</div>
         </AsnwerTitleContainer>
         <AnswerContainer>
-            {testItem.possibleAnswers.map((item: termInterface) => (
+            {testItem.possibleAnswers.map((item: termTypes) => (
                 <AnswerItem
                     key={item.term}
                     tabIndex={0}
@@ -72,7 +71,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
                 <div>Give this one a go later!</div>
             </AsnwerTitleContainer>
             <AnswerContainer>
-                {testItem.possibleAnswers.map((item: termInterface) => (
+                {testItem.possibleAnswers.map((item: termTypes) => (
                     <AnswerItem
                         key={item.term}
                         tabIndex={0}

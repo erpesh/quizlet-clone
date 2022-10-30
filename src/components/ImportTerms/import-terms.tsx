@@ -16,11 +16,11 @@ import {
   PreviewNumTerms,
   PreviewRows
 } from "./import-terms.styles";
-import setDataInterface from "../../interfaces/set-data.interface";
+import setDataInterface from "../../types/set-data.types";
 import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
-import termInterface from "../../interfaces/term-interface";
+import termTypes from "../../types/term.types";
 import {parseTextInput, placeHolderHandler} from "./text-parsers";
 import {importButtonHandler} from "./import-button-handler";
 
@@ -37,7 +37,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
-  const [termsArray, setTermsArray] = useState<termInterface[]>([]);
+  const [termsArray, setTermsArray] = useState<termTypes[]>([]);
 
   const handleImportButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

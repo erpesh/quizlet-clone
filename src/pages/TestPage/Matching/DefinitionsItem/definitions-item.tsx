@@ -1,5 +1,5 @@
 import React from 'react'
-import { matchingTestItem, testType } from '../../interfaces'
+import { matchingTestItem, testType } from '../../../../types/test-page.types'
 import {
     InactiveAnswerBox,
     ActiveAnswerBox,

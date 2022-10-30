@@ -4,7 +4,7 @@ import {
   Switch
 } from "./toggle-switch.styles";
 import {ChangeEvent, FC, useState} from "react";
-import setDataInterface from "../../interfaces/set-data.interface";
+import setDataInterface from "../../types/set-data.types";
 
 interface Props {
   onWord: string,

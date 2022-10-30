@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { testType } from './interfaces'
+import { testType } from '../../types/test-page.types'
 import Matching from './Matching/matching'
 import MultipleChoice from './MultipleChoice/multiple-choice'
 import SubmitSection from './SubmitSection/sumbit-section'

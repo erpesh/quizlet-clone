@@ -8,24 +8,31 @@ import {
   ItemH2,
   ItemLink
 } from "./modules-list.styles";
+import {useNavigate} from "react-router-dom";
 
-const ModulesList = () => {
+interface Props {
+  id: string | undefined
+}
+
+const ModulesList: React.FC<Props> = ({id}) => {
+
+  const navigate = useNavigate();
 
   const modules = [
     {name: "Flashcards", link: "/"},
-    {name: "Learn", link: "/"},
-    {name: "Test", link: "/"},
+    {name: "Learn", link: `/${id}/learn`},
+    {name: "Test", link: `/${id}/test`},
     {name: "Match", link: "/"}]
 
   return (
       <StudyModulesWrapper>
         <StudyModulesContainer>
           <UnorderedList>
-            {modules.map(item => <ListItem key={item.name}>
+            {modules.map(item => <ListItem onClick={() => navigate(item.link)} key={item.name}>
               <div>
                 <ItemHeader>
                   <ItemH2>
-                    <ItemLink to={item.link}>{item.name}</ItemLink>
+                    {item.name}
                   </ItemH2>
                 </ItemHeader>
               </div>

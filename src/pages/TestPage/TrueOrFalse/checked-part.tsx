@@ -1,10 +1,10 @@
 import React from 'react'
 import { FiX } from 'react-icons/fi';
 import colors from '../../../assets/colors';
-import { AnswerItem } from '../test-page.styles';
+import AnswerItem from "../../../layouts/answer-item.styles";
 import { AnswerContainer, SecondTitle } from './true-or-false.styles';
 import { AiOutlineCheck } from "react-icons/ai";
-import { trueFalseTest } from '../interfaces';
+import { trueFalseTest } from '../../../types/test-page.types';
 
 interface Props {
   testItem: trueFalseTest

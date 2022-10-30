@@ -4,7 +4,7 @@ import {
   ButtonWrap,
   Button
 } from "./add-card-button.styles";
-import setDataInterface from "../../../interfaces/set-data.interface";
+import setDataInterface from "../../../types/set-data.types";
 
 interface Props {
   data: setDataInterface,
@@ -18,7 +18,8 @@ const AddCardButton: FC<Props> = ({data, setData}) => {
     items.push({
       term: "",
       definition: "",
-      id: Math.random()
+      id: Math.random(),
+      isMarked: false
     })
     setData({...data, terms: items})
   }

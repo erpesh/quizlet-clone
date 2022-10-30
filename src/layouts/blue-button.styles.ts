@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import colors from "../../assets/colors";
+import colors from "../assets/colors";
 
 interface Props {
   padding: string,
@@ -7,7 +7,7 @@ interface Props {
   fontSize: string
 }
 
-export const BlueButton = styled.button<Props>`
+const BlueButton = styled.button<Props>`
   display: flex;
   align-items: center;
   background: ${colors.mainBlueColor};
@@ -23,3 +23,4 @@ export const BlueButton = styled.button<Props>`
     background: ${colors.onHoverBlue};
   }
 `
+export default BlueButton;

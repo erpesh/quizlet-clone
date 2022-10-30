@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { matchingTest, testType } from '../interfaces';
+import { matchingTest, testType } from '../../../types/test-page.types';
 import {
   NumberContainer,
   NumberContent

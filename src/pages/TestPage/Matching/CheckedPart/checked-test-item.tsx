@@ -1,6 +1,6 @@
 import React from 'react'
 import colors from '../../../../assets/colors';
-import { AnswerItem } from '../../test-page.styles';
+import AnswerItem from "../../../../layouts/answer-item.styles";
 import {
     AnswerContainer,
     TestItemContainer,
@@ -10,7 +10,7 @@ import {
     TextFormater
 } from './checked-part.styles';
 import { AiOutlineCheck } from 'react-icons/ai';
-import { matchingTestItem } from '../../interfaces';
+import { matchingTestItem } from '../../../../types/test-page.types';
 import { FiX } from 'react-icons/fi';
 
 interface Props {
@@ -25,6 +25,7 @@ const CheckedTestItem: React.FC<Props> = ({ testItem }) => {
         definition
     } = testItem;
 
+    // when answer is skipped
     if (!answer) return <>
         <TestItemContainer>
             <TestItemHeaderContainer>
@@ -54,7 +55,7 @@ const CheckedTestItem: React.FC<Props> = ({ testItem }) => {
                     <TextFormater>{definition}</TextFormater>
                 </TestItemHeaderWrap>
             </TestItemHeaderContainer>
-            <TestItemMessage textColor={colors.green400}>Give this one a go later!</TestItemMessage>
+            <TestItemMessage textColor={colors.green400}>Awesome!</TestItemMessage>
             <AnswerContainer>
                 <AnswerItem
                     tabIndex={0}
@@ -76,7 +77,7 @@ const CheckedTestItem: React.FC<Props> = ({ testItem }) => {
                     <TextFormater>{definition}</TextFormater>
                 </TestItemHeaderWrap>
             </TestItemHeaderContainer>
-            <TestItemMessage textColor={colors.UIColorGray60}>Give this one a go later!</TestItemMessage>
+            <TestItemMessage textColor={colors.coral300}>Not quite. You're still learning!</TestItemMessage>
             <AnswerContainer>
                 <AnswerItem
                     tabIndex={0}

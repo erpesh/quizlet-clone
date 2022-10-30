@@ -1,5 +1,5 @@
 import React, {FC, useRef} from "react";
-import setDataInterface from "../../interfaces/set-data.interface";
+import setDataInterface from "../../types/set-data.types";
 import {
   CardContainer,
   TopPart,
@@ -40,7 +40,8 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
     items.splice(id + 1, 0, {
       id: Math.random(),
       term: '',
-      definition: ''
+      definition: '',
+      isMarked: false
     })
     setData({...data, terms: items})
   }

@@ -13,7 +13,7 @@ import {ReactComponent as Logo} from "../../../assets/images/logo.svg";
 import {ReactComponent as ChevronIcon} from "../../../assets/images/chevron-down.svg";
 import {ReactComponent as SideBarIcon} from "../../../assets/images/side-bar-icon.svg";
 import colors from "../../../assets/colors";
-import {BlueButton} from "../../BlueButton/blue-button.styles";
+import BlueButton from "../../../layouts/blue-button.styles";
 import Search from "../../Search/search";
 import AuthContext from "../../../context/auth-context";
 

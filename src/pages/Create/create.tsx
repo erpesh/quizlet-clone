@@ -1,11 +1,11 @@
 import {FC, useState} from "react";
-import setDataInterface from "../../interfaces/set-data.interface";
+import setDataInterface from "../../types/set-data.types";
 import CreateCard from "../../components/CreateCard/create-card";
 import {addDoc, collection, updateDoc} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate} from "react-router-dom";
 import {PageContainer} from "./create.styles";
-import {BlueButton} from "../../components/BlueButton/blue-button.styles";
+import BlueButton from "../../layouts/blue-button.styles";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
 import ImportTerms from "../../components/ImportTerms/import-terms";
@@ -13,7 +13,7 @@ import AddCardButton from "./AddCardButton/add-card-button";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./styles.css";
-import termInterface from "../../interfaces/term-interface";
+import termTypes from "../../types/term.types";
 
 interface Props {
   data: any,
@@ -78,7 +78,7 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
                     {...provided.droppableProps}
                 >
                   <TransitionGroup component={null}>
-                    {data.terms.map((item: termInterface, id : number) => (
+                    {data.terms.map((item: termTypes, id : number) => (
                         <CSSTransition
                             key={item.id}
                             timeout={500}

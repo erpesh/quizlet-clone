@@ -1,5 +1,5 @@
 import React from 'react'
-import { matchingTest } from '../../interfaces'
+import { matchingTest } from '../../../../types/test-page.types'
 import CheckedTestItem from './checked-test-item'
 
 interface Props {

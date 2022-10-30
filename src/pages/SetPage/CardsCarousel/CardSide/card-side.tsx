@@ -4,14 +4,14 @@ import {
   CarouselButtonsContainer,
   CarouselButtonsWrap,
   NavButtonContainer,
+  SavedIconButton,
   NavButtonSpan,
-  ProgressNumber,
   TermOrDefData,
   TermOrDefDataContent,
-  TermOrDefinition,
   TextFormater
 } from "./card-side.styles";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
+import {AiFillStar} from "react-icons/ai";
 
 interface Props {
   progressNumber: number,
@@ -21,6 +21,8 @@ interface Props {
   toggleTermSide: () => void,
   handleLeftButton: () => void,
   handleRightButton: () => void,
+  toggleCardMark: (index: number) => void,
+  isMarked: boolean | undefined
 }
 
 const CardSide: FC<Props> = (props) => {
@@ -29,20 +31,37 @@ const CardSide: FC<Props> = (props) => {
     isTerm,
     value,
     length,
+    isMarked,
     toggleTermSide,
     handleLeftButton,
-    handleRightButton
+    handleRightButton,
+    toggleCardMark
   } = props
 
   return (
       <CardContainer>
-        <TermOrDefinition>{isTerm ? "Term" : "Definition"}</TermOrDefinition>
-        <ProgressNumber>{`${progressNumber} / ${length}`}</ProgressNumber>
+        <div style={{
+          gridColumn: 1,
+          gridRow: 1,
+          display: "flex",
+          alignItems: "center"
+        }}>{isTerm ? "Term" : "Definition"}</div>
+        <div style={{gridColumn: 2, gridRow: 1, display: "flex", justifyContent: "center", alignItems: "center"}}>
+          {`${progressNumber} / ${length}`}
+        </div>
+        <div style={{gridColumn: 3, gridRow: 1, display: "flex", justifyContent: "flex-end"}}>
+          <SavedIconButton
+              isActive={!!isMarked}
+              onClick={() => toggleCardMark(progressNumber - 1)}
+          >
+            <AiFillStar style={{width: "100%", height: "100%"}}/>
+          </SavedIconButton>
+        </div>
         <TermOrDefData onClick={toggleTermSide}>
           <TermOrDefDataContent>
             <div>
               <TextFormater>
-                <div style={{display: "block"}}>{value}</div>
+                <div style={{color: "black"}}>{value}</div>
               </TextFormater>
             </div>
           </TermOrDefDataContent>

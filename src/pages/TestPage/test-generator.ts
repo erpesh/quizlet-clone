@@ -1,14 +1,14 @@
-import termInterface from "../../interfaces/term-interface";
+import termTypes from "../../types/term.types";
 
 const MAX_NUMBER_OF_TERMS = 20;
 
 
 // returns array of up to 20 terms for test
-const selectRandomTerms = (terms: termInterface[]) => {
+const selectRandomTerms = (terms: termTypes[]) => {
     const shuffledTerms = terms.sort(() => 0.5 - Math.random());
     return shuffledTerms.slice(0, MAX_NUMBER_OF_TERMS);
 }
-export const generateTest = (terms: termInterface[]) => {
+export const generateTest = (terms: termTypes[]) => {
     const termsClone = [...terms];
     let selectedTerms = selectRandomTerms(terms);
 

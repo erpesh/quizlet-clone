@@ -21,7 +21,7 @@ import {
 } from './test-result-component.styles'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { testType } from '../interfaces';
+import { testType } from '../../../types/test-page.types';
 import colors from '../../../assets/colors';
 import testModeIcon from "../../../assets/images/test-mode-icon.svg";
 import learnModeIcon from "../../../assets/images/learn-mode-icon.svg";

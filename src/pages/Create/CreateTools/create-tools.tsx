@@ -6,7 +6,7 @@ import {
   Container,
   SwitchButton
 } from "./create-tools.styles";
-import setDataInterface from "../../../interfaces/set-data.interface";
+import setDataInterface from "../../../types/set-data.types";
 import {ReactComponent as SwitchIcon} from "../../../assets/images/switch-icon.svg";
 import ToggleSwitch from "../../../components/ToggleSwitch/toggle-switch";
 

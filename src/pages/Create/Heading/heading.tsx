@@ -10,8 +10,8 @@ import {
   TitleEffect,
   InputLabel
 } from "./heading.styles";
-import {BlueButton} from "../../../components/BlueButton/blue-button.styles";
-import setDataInterface from "../../../interfaces/set-data.interface";
+import BlueButton from "../../../layouts/blue-button.styles";
+import setDataInterface from "../../../types/set-data.types";
 import { AssemblyInput } from '../../../components/AssemblyInput/assembly-input';
 
 interface Props {

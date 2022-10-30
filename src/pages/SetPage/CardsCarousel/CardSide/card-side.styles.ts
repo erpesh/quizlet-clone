@@ -3,6 +3,7 @@ import colors from "../../../../assets/colors";
 
 export const CardContainer = styled.div`
   background-color: ${colors.whiteColor};
+  color: ${colors.gray600};
   border-radius: 0.5rem;
   box-shadow: 0 0.25rem 1rem 0 rgba(48, 53, 69, .08);
   padding: 1.5rem 2rem;
@@ -17,13 +18,39 @@ export const CardContainer = styled.div`
     padding: 1rem;
   }
 `
-export const TermOrDefinition = styled.div`
-  grid-column: 1;
-  grid-row: 1;
-`
-export const ProgressNumber = styled.div`
-  grid-column: 2;
-  grid-row: 1;
+export const SavedIconButton = styled.button<{isActive: boolean}>`
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-align-items: center;
+  align-items: center;
+  border: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font: inherit;
+  -webkit-justify-content: center;
+  justify-content: center;
+  font-size: .875rem;
+  font-weight: 600;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1.4285714285714286;
+  min-height: 2rem;
+  border-radius: 50%;
+  padding: 0.375rem;
+  width: 2rem;
+  background: none;
+  &:hover {
+    background: ${colors.neurtal300};
+  }
+  color: ${props => props.isActive ? colors.yellowMain : colors.gray600};
 `
 export const TermOrDefData = styled.div`
   grid-column: 1/span 3;

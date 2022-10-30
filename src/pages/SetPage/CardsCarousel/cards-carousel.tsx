@@ -5,12 +5,13 @@ import {
   GridContainer
 } from "./cards-carousel.styles";
 import CardSide from "./CardSide/card-side";
-import termInterface from "../../../interfaces/term-interface";
-import setDataInterface from "../../../interfaces/set-data.interface";
+import termTypes from "../../../types/term.types";
+import setDataInterface from "../../../types/set-data.types";
 
 interface Props {
-  activeCard: termInterface | null,
+  activeCard: termTypes | null,
   studySet: setDataInterface,
+  setStudySet: (studySet: setDataInterface) => void,
   progressNumber: number,
   isTermSide: boolean,
   animate: boolean,
@@ -25,6 +26,7 @@ const CardsCarousel: FC<Props> = (props) => {
   const {
     activeCard,
     studySet,
+    setStudySet,
     progressNumber,
     isTermSide,
     animate,
@@ -35,8 +37,14 @@ const CardsCarousel: FC<Props> = (props) => {
     handleRightButton
   } = props;
 
+  const toggleCardMark = (cardIndex: number) => {
+    let terms = [...studySet.terms];
+    terms[cardIndex].isMarked = !terms[cardIndex].isMarked;
+    setStudySet({...studySet, terms: terms});
+  }
+
   return (
-      <CardsCarouselWrap onKeyPress={(e) => console.log(e.key)}>
+      <CardsCarouselWrap>
         <CardsCarouselContainer>
           <GridContainer
               animate={animate}
@@ -52,6 +60,8 @@ const CardsCarousel: FC<Props> = (props) => {
                 toggleTermSide={toggleTermSide}
                 handleLeftButton={handleLeftButton}
                 handleRightButton={handleRightButton}
+                toggleCardMark={toggleCardMark}
+                isMarked={activeCard?.isMarked}
             />
           </GridContainer>
           <GridContainer
@@ -68,6 +78,8 @@ const CardsCarousel: FC<Props> = (props) => {
                 toggleTermSide={toggleTermSide}
                 handleLeftButton={handleLeftButton}
                 handleRightButton={handleRightButton}
+                toggleCardMark={toggleCardMark}
+                isMarked={activeCard?.isMarked}
             />
           </GridContainer>
         </CardsCarouselContainer>

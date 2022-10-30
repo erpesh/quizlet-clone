@@ -1,10 +1,8 @@
 import React from 'react'
-import { writtenTest } from '../interfaces'
-import { AssemblyInput } from '../../../components/AssemblyInput/assembly-input';
-import { BlueButton } from '../../../components/BlueButton/blue-button.styles';
-import { AnswerTitle, AnswerTitleSection, AnswerForm, ButtonContainer, InputContainer } from './written.styles';
+import { writtenTest } from '../../../types/test-page.types'
+import { AnswerTitle, AnswerTitleSection } from './written.styles';
 import colors from '../../../assets/colors';
-import { AnswerItem } from '../test-page.styles';
+import AnswerItem from "../../../layouts/answer-item.styles";
 import { AiOutlineCheck } from 'react-icons/ai';
 import { FiX } from 'react-icons/fi';
 

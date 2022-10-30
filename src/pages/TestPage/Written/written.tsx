@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AssemblyInput } from '../../../components/AssemblyInput/assembly-input';
-import { BlueButton } from '../../../components/BlueButton/blue-button.styles';
-import { testType } from '../interfaces';
+import BlueButton from "../../../layouts/blue-button.styles";
+import { testType } from '../../../types/test-page.types';
 import {
   NumberContainer,
   NumberContent,

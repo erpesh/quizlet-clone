@@ -1,9 +1,8 @@
 import React, { FC, useState } from 'react';
-import termInterface from '../../../interfaces/term-interface';
-import { testType } from '../interfaces';
+import termTypes from '../../../types/term.types';
+import { testType } from '../../../types/test-page.types';
 import {
   Container,
-  AnswerItem,
   NumberContainer,
   NumberContent,
   TitleCenter,
@@ -23,6 +22,7 @@ import {
   AsnwerTitleContainer,
   AnswerContainer
 } from './multiple-choice.styles';
+import AnswerItem from '../../../layouts/answer-item.styles';
 
 interface Props {
   index: number,
@@ -81,7 +81,7 @@ const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, hand
             <div>Select the correct term</div>
           </AsnwerTitleContainer>
           <AnswerContainer>
-            {testSet.multipleChoice[index].possibleAnswers.map((item: termInterface) => (
+            {testSet.multipleChoice[index].possibleAnswers.map((item: termTypes) => (
               <AnswerItem
                 key={item.term}
                 tabIndex={0}

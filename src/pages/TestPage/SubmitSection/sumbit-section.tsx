@@ -1,5 +1,5 @@
 import React from 'react'
-import { BlueButton } from '../../../components/BlueButton/blue-button.styles'
+import BlueButton from "../../../layouts/blue-button.styles";
 import { BackgroundImage, Container, H3 } from './submit-section.styles'
 
 interface Props {

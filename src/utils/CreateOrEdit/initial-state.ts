@@ -7,9 +7,9 @@ export const INITIAL_CREATE_STATE = {
   title: "",
   description: "",
   terms: [
-    {id: Math.random(), term: "", definition: ""},
-    {id: Math.random(), term: "", definition: ""},
-    {id: Math.random(), term: "", definition: ""},
+    {id: Math.random(), term: "", definition: "", isMarked: false},
+    {id: Math.random(), term: "", definition: "", isMarked: false},
+    {id: Math.random(), term: "", definition: "", isMarked: false},
   ],
   isPrivate: true
 }

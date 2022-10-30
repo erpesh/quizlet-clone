@@ -14,12 +14,14 @@ export const parseTextInput = (text: string, firstSeparator: string, secondSepar
     let item = {
       term: splitItem[0],
       definition: splitItem[1],
-      id: Math.random()
+      id: Math.random(),
+      isMarked: false
     }
     splitByFirst.push(item);
   }
-  return text.length > 0? splitByFirst : [];
+  return text.length > 0 ? splitByFirst : [];
 }
+
 export const placeHolderHandler = (firstSeparator: string, secondSeparator: string) => {
   const examples = [
     ["Word 1", "Definition 1"],

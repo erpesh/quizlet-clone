@@ -9,7 +9,7 @@ import {
   UIContainer
 } from "./hero-component.styles";
 import home1 from "../../../assets/images/hero-picture.avif";
-import {BlueButton} from "../../../components/BlueButton/blue-button.styles";
+import BlueButton from "../../../layouts/blue-button.styles";
 import AuthContext from "../../../context/auth-context";
 import {useNavigate} from "react-router-dom";
 

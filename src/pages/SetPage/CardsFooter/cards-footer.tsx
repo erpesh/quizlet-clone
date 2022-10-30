@@ -5,13 +5,13 @@ import {
   CardsFooterButton
 } from "./cards-footer.styles";
 import {FiShuffle} from 'react-icons/fi';
-import setDataInterface from "../../../interfaces/set-data.interface";
-import termInterface from "../../../interfaces/term-interface";
+import setDataInterface from "../../../types/set-data.types";
+import termTypes from "../../../types/term.types";
 
 interface Props {
   studySet: setDataInterface,
   setStudySet: (data: setDataInterface) => void,
-  setActiveCard: (card: termInterface | null) => void,
+  setActiveCard: (card: termTypes | null) => void,
   setProgressNumber: (num: number) => void,
   toggleTermSide: () => void,
   handleRightButton: () => void,

@@ -1,4 +1,4 @@
-import termInterface from "./term-interface";
+import termTypes from "./term.types";
 
 interface authorInterface {
   id: string | null | undefined,
@@ -10,6 +10,6 @@ export default interface setDataInterface {
   id: number,
   title: string,
   description: string,
-  terms: termInterface[],
+  terms: termTypes[],
   isPrivate: boolean
 }

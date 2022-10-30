@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
-import colors from '../../../assets/colors'
-import { testType } from '../interfaces'
+import { testType } from '../../../types/test-page.types'
+import AnswerItem from "../../../layouts/answer-item.styles";
 import {
   Container,
   NumberContainer,
@@ -11,7 +11,6 @@ import {
   WordTitle,
   WordTitleContainer,
   WordTitleWrap,
-  AnswerItem,
   TopPart,
   Word,
   WordContainer,

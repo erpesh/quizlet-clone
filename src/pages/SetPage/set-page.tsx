@@ -2,7 +2,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useEffect, useState, KeyboardEvent} from "react";
-import termInterface from "../../interfaces/term-interface";
+import termTypes from "../../types/term.types";
 import {
   SetPageWrapper,
   SetPageContainer,
@@ -29,7 +29,7 @@ const SetPage = () => {
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
   const [studySet, setStudySet] = useState<any>(null);
-  const [activeCard, setActiveCard] = useState<termInterface | null>(null);
+  const [activeCard, setActiveCard] = useState<termTypes | null>(null);
   const [progressNumber, setProgressNumber] = useState(1);
   const [isTermSide, setIsTermSide] = useState(true);
   const [animate, setAnimate] = useState(false);
@@ -89,7 +89,7 @@ const SetPage = () => {
               <SetTitle>{studySet.title}</SetTitle>
               <SetModelSection>
                 <HideBelow>
-                  <ModulesList/>
+                  <ModulesList id={id}/>
                 </HideBelow>
                 <MainSectionWrapper>
                   <MainSectionContainer>
@@ -105,6 +105,7 @@ const SetPage = () => {
                             <CardsCarousel
                                 activeCard={activeCard}
                                 studySet={studySet}
+                                setStudySet={setStudySet}
                                 progressNumber={progressNumber}
                                 isTermSide={isTermSide}
                                 animation={animation}
@@ -129,7 +130,7 @@ const SetPage = () => {
                   </MainSectionContainer>
                 </MainSectionWrapper>
                 <HideAbove>
-                  <ModulesList/>
+                  <ModulesList id={id}/>
                 </HideAbove>
               </SetModelSection>
             </SetPageContainer>) : <div/>}

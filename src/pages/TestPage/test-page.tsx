@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from "firebase/firestore";
-import { auth, db } from "../../firebase-config";
-import { useNavigate, useParams } from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {collection, getDocs} from "firebase/firestore";
+import {auth, db} from "../../firebase-config";
+import {useNavigate, useParams} from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
-import TrueOrFalse from './TrueOrFalse/true-or-false';
-import MultipleChoice from './MultipleChoice/multiple-choice';
-import { generateTest } from './test-generator';
-import { testType } from './interfaces';
+import {generateTest} from './test-generator';
+import {testType} from '../../types/test-page.types';
 import {
-  OtherSection,
   PageContainer,
   PageContentWrap,
   PageWrapper,
-  TrueFalseSection
 } from './test-page.styles';
-import Written from './Written/written';
-import Matching from './Matching/matching';
-import SubmitSection from './SubmitSection/sumbit-section';
 import PageContent from './page-content';
 
 
 const TestPage = () => {
 
-  const { id } = useParams();
+  const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
 
@@ -43,22 +36,21 @@ const TestPage = () => {
   }, [])
 
   return (
-    <>
-      {testSet ?
-        <PageContainer>
-          <PageWrapper>
-            {/* faf */}
-            <PageContentWrap>
-              <PageContent
-                testSet={testSet}
-                setTestSet={setTestSet}
-                refsLength={testSet.lengths[0] + testSet.lengths[1] + testSet.lengths[3] + 1}
-              />
-            </PageContentWrap>
-          </PageWrapper>
-        </PageContainer>
-        : <LoadingSpinner />}
-    </>
+      <>
+        {testSet ?
+            <PageContainer>
+              <PageWrapper>
+                <PageContentWrap>
+                  <PageContent
+                      testSet={testSet}
+                      setTestSet={setTestSet}
+                      refsLength={testSet.lengths[0] + testSet.lengths[1] + testSet.lengths[3] + 1}
+                  />
+                </PageContentWrap>
+              </PageWrapper>
+            </PageContainer>
+            : <LoadingSpinner/>}
+      </>
   );
 };
 
