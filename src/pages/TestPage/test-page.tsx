@@ -3,7 +3,7 @@ import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate, useParams} from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
-import {generateTest} from './test-generator';
+import generateTest from './test-generator';
 import {testType} from '../../types/test-page.types';
 import {
   PageContainer,

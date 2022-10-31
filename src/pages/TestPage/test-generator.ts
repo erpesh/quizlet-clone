@@ -8,9 +8,11 @@ const selectRandomTerms = (terms: termTypes[]) => {
     const shuffledTerms = terms.sort(() => 0.5 - Math.random());
     return shuffledTerms.slice(0, MAX_NUMBER_OF_TERMS);
 }
-export const generateTest = (terms: termTypes[]) => {
+const generateTest = (terms: termTypes[]) => {
+
     const termsClone = [...terms];
     let selectedTerms = selectRandomTerms(terms);
+    const selectedTermsLength = selectedTerms.length;
 
     // separating terms to types
     const multipleChoiceTerms = selectedTerms.splice(0, selectedTerms.length / 4);
@@ -23,7 +25,12 @@ export const generateTest = (terms: termTypes[]) => {
         return multipleChoiceTerms.filter(mChouseItem => mChouseItem.id === item.id).length === 0;
     })
 
-    const writtenTerms = selectedTerms.splice(0, selectedTerms.length / 2);
+    let writtenTerms: termTypes[];
+    if (selectedTermsLength < 5)
+        writtenTerms = selectedTerms.splice(0, selectedTerms.length);
+    else
+        writtenTerms = selectedTerms.splice(0, selectedTerms.length / 2);
+
     const matchingTerms = selectedTerms;
 
     // generate true or false tests
@@ -85,3 +92,4 @@ export const generateTest = (terms: termTypes[]) => {
     }
     return generatedTest;
 }
+export default generateTest;
