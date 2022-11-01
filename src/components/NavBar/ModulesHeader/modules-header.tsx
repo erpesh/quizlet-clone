@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   Wrapper,
   BorderBottom,
@@ -18,6 +18,7 @@ import flashCardsIcon from "../../../assets/images/flash-cards-icon.png";
 import testIcon from "../../../assets/images/test-icon.png";
 import matchingIcon from "../../../assets/images/matching-icon.png";
 import {FaChevronDown} from "react-icons/fa";
+import AuthContext from "../../../context/auth-context";
 
 interface Props {
   activePage: string,
@@ -26,6 +27,8 @@ interface Props {
 }
 
 const ModulesHeader: React.FC<Props> = ({activePage, toggleModulesDropDown, buttonRef}) => {
+
+  const {progressBarWidth} = useContext(AuthContext);
 
   const chooseIcon = () => {
     if (activePage === "flashcards")
@@ -58,7 +61,7 @@ const ModulesHeader: React.FC<Props> = ({activePage, toggleModulesDropDown, butt
               </CloseButtonContainer>
             </MainContentContainer>
             <ProgressBarContainer>
-              <ProgressBar width={15}/>
+              <ProgressBar width={progressBarWidth}/>
             </ProgressBarContainer>
           </Container>
         </BorderBottom>

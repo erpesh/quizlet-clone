@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 
-function useOutsideClick(ref: any, ignoredRef: any, callBack: () => void) {
+function useOutsideClickAndScroll(ref: any, ignoredRef: any, callBack: () => void) {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (ignoredRef && ignoredRef.current && ignoredRef.current.contains(event.target))
@@ -24,4 +24,4 @@ function useOutsideClick(ref: any, ignoredRef: any, callBack: () => void) {
   }, [ref]);
 }
 
-export default useOutsideClick;
+export default useOutsideClickAndScroll;

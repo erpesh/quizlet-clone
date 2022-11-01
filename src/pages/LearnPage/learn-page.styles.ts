@@ -24,7 +24,8 @@ export const NestedContainer = styled.div`
     padding-top: 1.5rem;
   }
   @media (max-width: 48rem) {
-    padding-top: 0;
+    padding: 0;
+    margin-bottom: 4rem;
   }
 `
 export const MediaStyling = styled.div`

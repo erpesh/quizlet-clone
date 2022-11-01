@@ -37,7 +37,6 @@ const LearnPage = () => {
   }, [])
 
   return (
-      <>
         <Container>
           {questions.length > 0 && <NestedContainer>
               <MediaStyling>
@@ -45,7 +44,6 @@ const LearnPage = () => {
               </MediaStyling>
           </NestedContainer>}
         </Container>
-      </>
   );
 };
 

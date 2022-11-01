@@ -1,4 +1,4 @@
-import React, {KeyboardEvent, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   ShadowTransitions,
   TopPartContainer,
@@ -22,6 +22,7 @@ import colors from "../../../assets/colors";
 import {FiX} from "react-icons/fi";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import BlueButton from '../../../layouts/blue-button.styles';
+import AuthContext from "../../../context/auth-context";
 
 interface Props {
   questions: learnTerm[]
@@ -29,6 +30,7 @@ interface Props {
 
 const QuestionBox: React.FC<Props> = ({questions}) => {
 
+  const {setProgressBarWidth} = useContext(AuthContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState<string>("");
   const {width, height} = useWindowDimensions();
@@ -37,6 +39,7 @@ const QuestionBox: React.FC<Props> = ({questions}) => {
     setTimeout(() => {
       setUserAnswer("");
       setActiveIndex(prevState => prevState + 1);
+      setProgressBarWidth((activeIndex + 1) * 100 / questions.length);
     }, delay);
   }
 

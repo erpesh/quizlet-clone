@@ -183,9 +183,10 @@ export const IncorrectAnswerSlideUp = styled.div`
     padding-right: 0;
   }
   @media (max-width: 38.75rem) {
-    height: 5.25rem;
+    height: 3rem;
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 2rem;
   }
 `
 export const SlideUpContainer = styled.div`
@@ -211,7 +212,7 @@ export const SlideUpContainer = styled.div`
     -webkit-justify-content: center;
     justify-content: center;
     max-width: 45rem;
-    padding: 1.5rem;
+    padding: 0 1.5rem;
     width: 100%;
   }
   @media (max-width: 38.75rem) {

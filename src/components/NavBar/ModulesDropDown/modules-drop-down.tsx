@@ -5,7 +5,7 @@ import {
   Item,
   Link
 } from './modules-drop-down.styles';
-import useOutsideClick from "../../../hooks/useOutsideClick";
+import useOutsideClickAndScroll from "../../../hooks/useOutsideClickAndScroll";
 
 interface Props {
   activePage: string,
@@ -25,7 +25,7 @@ const ModulesDropDown: React.FC<Props> = ({activePage, id, toggleModulesDropDown
 
   const ref = useRef<HTMLDivElement>(null);
 
-  useOutsideClick(ref, buttonRef, toggleModulesDropDown);
+  useOutsideClickAndScroll(ref, buttonRef, toggleModulesDropDown);
 
   return (
       <Container ref={ref}>

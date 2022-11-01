@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useContext, useState} from 'react'
 import { testType } from '../../types/test-page.types'
 import Matching from './Matching/matching'
 import MultipleChoice from './MultipleChoice/multiple-choice'
@@ -7,6 +7,7 @@ import { AnswersTitle, OtherSection, TrueFalseSection } from './test-page.styles
 import TestResultComponent from './TestResultComponent/test-result-component'
 import TrueOrFalse from './TrueOrFalse/true-or-false'
 import Written from './Written/written'
+import AuthContext from "../../context/auth-context";
 
 interface Props {
     testSet: testType,

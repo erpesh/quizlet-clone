@@ -5,9 +5,11 @@ import {useAuthState} from "react-firebase-hooks/auth";
 
 const INITIAL_STATE = {
   isAuth: false,
+  progressBarWidth: 0,
   setIsAuth: (() => undefined) as Dispatch<any>,
   signInWithGoogle: (() => undefined) as Dispatch<any>,
-  signUserOut: (() => undefined) as Dispatch<any>
+  signUserOut: (() => undefined) as Dispatch<any>,
+  setProgressBarWidth: (() => undefined) as Dispatch<any>,
 }
 
 const AuthContext = createContext(INITIAL_STATE);
@@ -18,6 +20,7 @@ export const AuthProvider: FC<{children: any}> = ({children}) => {
 
   const [isAuth, setIsAuth] = useState(false);
   const [user, loading, error] = useAuthState(auth);
+  const [progressBarWidth, setProgressBarWidth] = useState(0);
 
   useEffect(() => {
     setIsAuth(!!auth.currentUser?.uid)
@@ -41,10 +44,12 @@ export const AuthProvider: FC<{children: any}> = ({children}) => {
 
   const contextData = {
     isAuth: isAuth,
+    progressBarWidth: progressBarWidth,
 
     setIsAuth: setIsAuth,
     signInWithGoogle: signInWithGoogle,
-    signUserOut: signUserOut
+    signUserOut: signUserOut,
+    setProgressBarWidth: setProgressBarWidth,
   }
 
   return (
