@@ -1,4 +1,4 @@
-import React, {FC, useRef} from "react";
+import React, {FC} from "react";
 import setDataInterface from "../../types/set-data.types";
 import {
   CardContainer,

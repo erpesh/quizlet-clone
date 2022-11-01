@@ -10,6 +10,8 @@ import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {learnTerm} from "../../types/term.types";
 import generateQuestions from "./generate-questions";
+import ModulesHeader from "../../components/NavBar/ModulesHeader/modules-header";
+import ModulesDropDown from "../../components/NavBar/ModulesDropDown/modules-drop-down";
 
 
 const LearnPage = () => {
@@ -35,13 +37,15 @@ const LearnPage = () => {
   }, [])
 
   return (
-      <Container>
-        {questions.length > 0 && <NestedContainer>
-          <MediaStyling>
-            <QuestionBox questions={questions}/>
-          </MediaStyling>
-        </NestedContainer>}
-      </Container>
+      <>
+        <Container>
+          {questions.length > 0 && <NestedContainer>
+              <MediaStyling>
+                  <QuestionBox questions={questions}/>
+              </MediaStyling>
+          </NestedContainer>}
+        </Container>
+      </>
   );
 };
 

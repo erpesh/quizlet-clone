@@ -1,19 +1,47 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import Header from './Header/header'
 import SideBar from './SideBar/side-bar'
+import ModulesHeader from "./ModulesHeader/modules-header";
+import ModulesDropDown from "./ModulesDropDown/modules-drop-down";
+import {useLocation} from "react-router-dom";
 
 const NavBar = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const [splitPath, setSplitPath] = useState<string[]>(location.pathname.split("/"));
+  const [isModulesDropDownOpen, setIsModulesDropDownOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
-    const toggle = () => setIsOpen(!isOpen);
-    
-    return (
-        <>
-            <Header toggle={toggle} />
-            <SideBar isOpen={isOpen} toggle={toggle} />
-        </>
-    )
+  useEffect(() => {
+    setSplitPath(location.pathname.split('/'));
+  }, [location.pathname]);
+
+  const toggleSideBar = () => setIsOpen(!isOpen);
+  const toggleModulesDropDown = () => setIsModulesDropDownOpen(!isModulesDropDownOpen);
+
+  // Header for learning modules
+  if (splitPath.length === 3 && splitPath[2].length > 3)
+    return <>
+      <ModulesHeader
+          activePage={splitPath[2]}
+          toggleModulesDropDown={toggleModulesDropDown}
+          buttonRef={buttonRef}
+      />
+      {isModulesDropDownOpen && <ModulesDropDown
+          activePage={splitPath[2]}
+          id={splitPath[1]}
+          toggleModulesDropDown={toggleModulesDropDown}
+          buttonRef={buttonRef}
+      />}
+    </>
+  // Default header and sidebar
+  return (
+      <>
+        <Header toggle={toggleSideBar}/>
+        <SideBar isOpen={isOpen} toggle={toggleSideBar}/>
+      </>
+  )
 }
 
 export default NavBar
