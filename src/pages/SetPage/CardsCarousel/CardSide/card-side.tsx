@@ -47,12 +47,12 @@ const CardSide: FC<Props> = (props) => {
           alignItems: "center"
         }}>{isTerm ? "Term" : "Definition"}</div>
         <div style={{gridColumn: 2, gridRow: 1, display: "flex", justifyContent: "center", alignItems: "center"}}>
-          {`${progressNumber} / ${length}`}
+          {`${progressNumber + 1} / ${length}`}
         </div>
         <div style={{gridColumn: 3, gridRow: 1, display: "flex", justifyContent: "flex-end"}}>
           <SavedIconButton
               isActive={!!isMarked}
-              onClick={() => toggleCardMark(progressNumber - 1)}
+              onClick={() => toggleCardMark(progressNumber)}
           >
             <AiFillStar style={{width: "100%", height: "100%"}}/>
           </SavedIconButton>

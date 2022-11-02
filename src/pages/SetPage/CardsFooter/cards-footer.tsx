@@ -1,18 +1,16 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {
   CardsFooterBase,
   CardsFooterSide,
   CardsFooterButton
 } from "./cards-footer.styles";
 import {FiShuffle} from 'react-icons/fi';
-import {BsPlayFill} from "react-icons/bs";
+import {BsPlayFill, BsFillPauseFill} from "react-icons/bs";
 import setDataInterface from "../../../types/set-data.types";
-import termTypes from "../../../types/term.types";
 
 interface Props {
   studySet: setDataInterface,
   setStudySet: (data: setDataInterface) => void,
-  setActiveCard: (card: termTypes | null) => void,
   setProgressNumber: (num: number) => void,
   toggleTermSide: () => void,
   handleRightButton: () => void,
@@ -23,18 +21,31 @@ const CardsFooter: FC<Props> = (props) => {
   const {
     studySet,
     setStudySet,
-    setActiveCard,
     setProgressNumber,
-    toggleTermSide,
     handleRightButton,
+    toggleTermSide
   } = props;
 
   const shuffleCards = () => {
     let terms = studySet.terms.sort(() => Math.random() - 0.5);
     setStudySet({...studySet, terms: terms});
-    setActiveCard(terms[0]);
-    setProgressNumber(1);
+    setProgressNumber(0);
   }
+
+  const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
+
+  const handleClick = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+      return;
+    }
+
+    const newIntervalId = setInterval(() => {
+      handleRightButton();
+    }, 1000);
+    setIntervalId(newIntervalId);
+  };
 
   return (
       <CardsFooterBase>
@@ -43,9 +54,9 @@ const CardsFooter: FC<Props> = (props) => {
             <FiShuffle size={28}/>
           </CardsFooterButton>
         </CardsFooterSide>
-        <CardsFooterSide>
+        <CardsFooterSide onClick={handleClick}>
           <CardsFooterButton name={"Play cards"}>
-            <BsPlayFill size={28}/>
+            {intervalId ? <BsFillPauseFill size={28}/> : <BsPlayFill size={28}/>}
           </CardsFooterButton>
         </CardsFooterSide>
       </CardsFooterBase>

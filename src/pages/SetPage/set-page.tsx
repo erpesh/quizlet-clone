@@ -1,8 +1,7 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
-import {useEffect, useState, KeyboardEvent} from "react";
-import termTypes from "../../types/term.types";
+import {useEffect, useState, KeyboardEvent, useReducer} from "react";
 import {
   SetPageWrapper,
   SetPageContainer,
@@ -22,6 +21,8 @@ import {
 import ModulesList from "./ModulesList/modules-list";
 import CardsCarousel from "./CardsCarousel/cards-carousel";
 import CardsFooter from "./CardsFooter/cards-footer";
+import {cardsLogicReducer, initialState} from "../../reducers/cards-logic";
+
 
 const SetPage = () => {
 
@@ -29,37 +30,20 @@ const SetPage = () => {
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
   const [studySet, setStudySet] = useState<any>(null);
-  const [activeCard, setActiveCard] = useState<termTypes | null>(null);
-  const [progressNumber, setProgressNumber] = useState(1);
-  const [isTermSide, setIsTermSide] = useState(true);
-  const [animate, setAnimate] = useState(false);
-  const [animation, setAnimation] = useState<"prev" | "next" | "flip">("flip");
-  const [keyChange, setKeyChange] = useState(false);
-
-  const toggleKey = () => setKeyChange(!keyChange);
+  const [progressNumber, setProgressNumber] = useState(0);
+  const [state, dispatch] = useReducer(cardsLogicReducer, initialState);
 
   const toggleTermSide = () => {
-    setAnimation("flip");
-    setAnimate(true);
-    setIsTermSide(!isTermSide)
-    toggleKey();
+    dispatch({type: "TOGGLE_SIDE"});
   };
 
   const handleLeftButton = () => {
-    setAnimation("prev");
-    setAnimate(true);
-    toggleKey();
-    const nextNum = progressNumber === 1 ? studySet.terms.length : progressNumber - 1
-    setProgressNumber(nextNum);
-    setActiveCard(studySet.terms[nextNum - 1]);
+    dispatch({type: "PREV_CARD"});
+    setProgressNumber(prevState => prevState === 0 ? studySet.terms.length - 1 : prevState - 1);
   }
   const handleRightButton = () => {
-    setAnimation("next");
-    setAnimate(true);
-    toggleKey();
-    const nextNum = progressNumber === studySet.terms.length ? 1 : progressNumber + 1
-    setProgressNumber(nextNum);
-    setActiveCard(studySet.terms[nextNum - 1]);
+    dispatch({type: "NEXT_CARD"});
+    setProgressNumber(prevState => prevState === studySet.terms.length - 1 ? 0 : prevState + 1);
   }
 
   const handleArrowKeys = (e: KeyboardEvent<HTMLDivElement>) => {
@@ -74,7 +58,6 @@ const SetPage = () => {
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
     if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
       setStudySet(filteredSet)
-      setActiveCard(filteredSet.terms[0]);
     } else navigate('/');
   }
 
@@ -103,22 +86,21 @@ const SetPage = () => {
                         <div style={{height: "100%"}}>
                           <PreviewSection>
                             <CardsCarousel
-                                activeCard={activeCard}
+                                activeCard={studySet.terms[progressNumber]}
                                 studySet={studySet}
                                 setStudySet={setStudySet}
                                 progressNumber={progressNumber}
-                                isTermSide={isTermSide}
-                                animation={animation}
-                                animate={animate}
+                                isTermSide={state.isTermSide}
+                                animation={state.animation}
+                                animate={state.animate}
                                 toggleTermSide={toggleTermSide}
-                                keyChange={keyChange}
+                                keyChange={state.keyChange}
                                 handleLeftButton={handleLeftButton}
                                 handleRightButton={handleRightButton}
                             />
                             <CardsFooter
                                 studySet={studySet}
                                 setStudySet={setStudySet}
-                                setActiveCard={setActiveCard}
                                 setProgressNumber={setProgressNumber}
                                 toggleTermSide={toggleTermSide}
                                 handleRightButton={handleRightButton}

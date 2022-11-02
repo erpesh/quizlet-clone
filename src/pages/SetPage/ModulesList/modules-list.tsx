@@ -37,7 +37,7 @@ const ModulesList: React.FC<Props> = ({id}) => {
                 <ItemHeader>
                   <img
                       src={item.image}
-                      alt={""}
+                      alt={item.name}
                       width={28}
                       height={28}
                       style={{marginRight: ".675rem"}}
