@@ -19,16 +19,19 @@ import testIcon from "../../../assets/images/test-icon.png";
 import matchingIcon from "../../../assets/images/matching-icon.png";
 import {FaChevronDown} from "react-icons/fa";
 import AuthContext from "../../../context/auth-context";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
   activePage: string,
+  id: string,
   toggleModulesDropDown: () => void,
   buttonRef: React.Ref<HTMLButtonElement>
 }
 
-const ModulesHeader: React.FC<Props> = ({activePage, toggleModulesDropDown, buttonRef}) => {
+const ModulesHeader: React.FC<Props> = ({activePage, id, toggleModulesDropDown, buttonRef}) => {
 
   const {progressBarWidth} = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const chooseIcon = () => {
     if (activePage === "flashcards")
@@ -57,7 +60,7 @@ const ModulesHeader: React.FC<Props> = ({activePage, toggleModulesDropDown, butt
               </ChooseModuleContainer>
               <MainContentSeparator/>
               <CloseButtonContainer>
-                <CloseButton><FiX/></CloseButton>
+                <CloseButton onClick={() => navigate("/" + id)}><FiX/></CloseButton>
               </CloseButtonContainer>
             </MainContentContainer>
             <ProgressBarContainer>

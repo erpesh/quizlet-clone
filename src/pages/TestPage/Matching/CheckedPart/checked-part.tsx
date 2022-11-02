@@ -9,7 +9,7 @@ interface Props {
 const CheckedPart: React.FC<Props> = ({matchingTest}) => {
     return (
         <>
-            {matchingTest.items.map(item => <CheckedTestItem testItem={item}/>)}
+            {matchingTest.items.map(item => <CheckedTestItem key={item.id} testItem={item}/>)}
         </>
     )
 }

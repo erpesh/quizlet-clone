@@ -5,6 +5,7 @@ import {
   CardsFooterButton
 } from "./cards-footer.styles";
 import {FiShuffle} from 'react-icons/fi';
+import {BsPlayFill} from "react-icons/bs";
 import setDataInterface from "../../../types/set-data.types";
 import termTypes from "../../../types/term.types";
 
@@ -38,12 +39,14 @@ const CardsFooter: FC<Props> = (props) => {
   return (
       <CardsFooterBase>
         <CardsFooterSide onClick={shuffleCards}>
-          <CardsFooterButton>
-            <FiShuffle/>
+          <CardsFooterButton name={"Shuffle"}>
+            <FiShuffle size={28}/>
           </CardsFooterButton>
         </CardsFooterSide>
         <CardsFooterSide>
-          staff2
+          <CardsFooterButton name={"Play cards"}>
+            <BsPlayFill size={28}/>
+          </CardsFooterButton>
         </CardsFooterSide>
       </CardsFooterBase>
   );

@@ -237,6 +237,7 @@ export const ReferenceItemContainer = styled.article`
     -ms-flex-pack: start;
     -webkit-align-items: center;
     align-items: center;
+    cursor: pointer;
     background-color: ${colors.whiteColor};
     border: 0.125rem solid ${colors.pageBackgroundColor};
     border-radius: 0.5rem;

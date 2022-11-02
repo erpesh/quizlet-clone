@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   Container,
   NestedContainer,
@@ -10,12 +10,12 @@ import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {learnTerm} from "../../types/term.types";
 import generateQuestions from "./generate-questions";
-import ModulesHeader from "../../components/NavBar/ModulesHeader/modules-header";
-import ModulesDropDown from "../../components/NavBar/ModulesDropDown/modules-drop-down";
+import AuthContext from "../../context/auth-context";
 
 
 const LearnPage = () => {
 
+  const {setProgressBarWidth} = useContext(AuthContext);
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
@@ -33,6 +33,7 @@ const LearnPage = () => {
   }
 
   useEffect(() => {
+    setProgressBarWidth(0);
     getStudySets();
   }, [])
 

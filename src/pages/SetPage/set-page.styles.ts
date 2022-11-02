@@ -9,6 +9,7 @@ export const SetPageContainer = styled.div`
   max-width: 54.5625rem;
   padding: 2.5rem;
   position: relative;
+  color: ${colors.UIColorGray};
   @media screen and (max-width: 64em) {
     max-width: none;
   }

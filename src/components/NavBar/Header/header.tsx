@@ -43,10 +43,9 @@ const Header: FC<Props> = ({toggle}) => {
           <DefaultContainer>
             <BlueButton
                 onClick={
-                  // isAuth ?
+                  isAuth ?
                     () => navigate("/create")
-                    //   :
-                    // signInWithGoogle
+                      : signInWithGoogle
                 }
                 padding="0.45rem 0.85rem"
                 radius="0.25rem"

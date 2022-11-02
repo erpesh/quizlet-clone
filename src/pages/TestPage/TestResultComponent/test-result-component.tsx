@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
+import {Link, useParams} from "react-router-dom";
 import {
   Container,
   ContentContainer,
@@ -32,6 +33,7 @@ interface Props {
 
 const TestResultComponent: React.FC<Props> = ({ testSet }) => {
 
+  const {id} = useParams();
   const [numberOfCorrectAnswers, setNumberOfCorrectAnswers] = useState(0);
 
   const countCorrectAnswers = () => {
@@ -85,15 +87,17 @@ const TestResultComponent: React.FC<Props> = ({ testSet }) => {
             <ContentItemContainer>
               <ContentItemHeader>Next steps</ContentItemHeader>
               <SecondPartContent>
-                <ReferenceItemContainer>
-                  <IconContainer>
-                    <IconContent img={learnModeIcon} />
-                  </IconContainer>
-                  <RefMainContent>
-                    <RefMainHeader>Practise terms in Learn</RefMainHeader>
-                    <RefMainText>Learn these terms in a different way to build knowledge.</RefMainText>
-                  </RefMainContent>
-                </ReferenceItemContainer>
+                <Link to={`/${id}/learn`} style={{textDecoration: "none"}}>
+                  <ReferenceItemContainer>
+                    <IconContainer>
+                      <IconContent img={learnModeIcon} />
+                    </IconContainer>
+                    <RefMainContent>
+                      <RefMainHeader>Practise terms in Learn</RefMainHeader>
+                      <RefMainText>Learn these terms in a different way to build knowledge.</RefMainText>
+                    </RefMainContent>
+                  </ReferenceItemContainer>
+                </Link>
                 <ReferenceItemContainer>
                   <IconContainer>
                     <IconContent img={testModeIcon} />

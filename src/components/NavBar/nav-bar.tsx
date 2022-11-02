@@ -25,6 +25,7 @@ const NavBar = () => {
     return <>
       <ModulesHeader
           activePage={splitPath[2]}
+          id={splitPath[1]}
           toggleModulesDropDown={toggleModulesDropDown}
           buttonRef={buttonRef}
       />

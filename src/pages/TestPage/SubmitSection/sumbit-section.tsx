@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import BlueButton from "../../../layouts/blue-button.styles";
 import { BackgroundImage, Container, H3 } from './submit-section.styles'
+import AuthContext from "../../../context/auth-context";
 
 interface Props {
     setIsTestChecked: (isChecked: boolean) => void
@@ -8,9 +9,12 @@ interface Props {
 
 const SubmitSection: React.FC<Props> = ({ setIsTestChecked }) => {
 
+    const {setProgressBarWidth} = useContext(AuthContext);
+
     const handleSubmitClick = () => {
         setIsTestChecked(true);
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+        setProgressBarWidth(100);
     }
 
     return (
