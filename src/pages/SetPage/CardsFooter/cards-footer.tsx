@@ -14,6 +14,7 @@ interface Props {
   setProgressNumber: (num: number) => void,
   toggleTermSide: () => void,
   handleRightButton: () => void,
+  flipWithNoAnimation: () => void,
 }
 
 const CardsFooter: FC<Props> = (props) => {
@@ -23,16 +24,17 @@ const CardsFooter: FC<Props> = (props) => {
     setStudySet,
     setProgressNumber,
     handleRightButton,
-    toggleTermSide
+    toggleTermSide,
+    flipWithNoAnimation
   } = props;
+
+  const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
 
   const shuffleCards = () => {
     let terms = studySet.terms.sort(() => Math.random() - 0.5);
     setStudySet({...studySet, terms: terms});
     setProgressNumber(0);
   }
-
-  const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
 
   const handleClick = () => {
     if (intervalId) {
@@ -42,8 +44,12 @@ const CardsFooter: FC<Props> = (props) => {
     }
 
     const newIntervalId = setInterval(() => {
-      handleRightButton();
-    }, 1000);
+      toggleTermSide();
+      setTimeout(() => {
+        handleRightButton();
+        flipWithNoAnimation();
+      }, 3000)
+    }, 6000);
     setIntervalId(newIntervalId);
   };
 

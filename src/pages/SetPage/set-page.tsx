@@ -29,13 +29,15 @@ const SetPage = () => {
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
+
   const [studySet, setStudySet] = useState<any>(null);
   const [progressNumber, setProgressNumber] = useState(0);
+
   const [state, dispatch] = useReducer(cardsLogicReducer, initialState);
 
-  const toggleTermSide = () => {
-    dispatch({type: "TOGGLE_SIDE"});
-  };
+  const toggleTermSide = () => dispatch({type: "TOGGLE_SIDE"});
+
+  const flipWithNoAnimation = () => dispatch({type: "FLIP_SIDE"});
 
   const handleLeftButton = () => {
     dispatch({type: "PREV_CARD"});
@@ -104,6 +106,7 @@ const SetPage = () => {
                                 setProgressNumber={setProgressNumber}
                                 toggleTermSide={toggleTermSide}
                                 handleRightButton={handleRightButton}
+                                flipWithNoAnimation={flipWithNoAnimation}
                             />
                           </PreviewSection>
                         </div>

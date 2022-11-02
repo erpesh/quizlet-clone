@@ -1,5 +1,3 @@
-import termTypes from "../types/term.types";
-
 enum Animation {
   prev = "prev",
   next = "next",
@@ -10,7 +8,7 @@ export type CardsLogicAction =
     | { type: "TOGGLE_SIDE" }
     | { type: "NEXT_CARD" }
     | { type: "PREV_CARD" }
-
+| {type: "FLIP_SIDE"}
 
 interface CardsLogicState {
   animation: Animation,
@@ -52,6 +50,11 @@ export function cardsLogicReducer(
         animation: Animation.prev,
         animate: true,
         keyChange: !state.keyChange,
+      }
+    case "FLIP_SIDE":
+      return {
+        ...state,
+        isTermSide: !state.isTermSide
       }
     default:
       return state;
