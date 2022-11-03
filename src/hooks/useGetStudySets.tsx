@@ -3,7 +3,8 @@ import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../firebase-config";
 import {useEffect, useState} from "react";
 
-function useGetStudySet(){
+// returns all sets if isMultiple true and a certain set by page id when it's false
+function useGetStudySets(isMultiple?: boolean){
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
@@ -13,6 +14,10 @@ function useGetStudySet(){
   const getStudySet = async () => {
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map(doc => doc.data());
+    if (isMultiple) {
+      setStudySet(sets);
+      return;
+    }
     const [filteredSet] = sets.filter(item => item.id.toString() === id)
     if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
       setStudySet(filteredSet)
@@ -25,4 +30,4 @@ function useGetStudySet(){
 
   return [studySet, setStudySet];
 }
-export default useGetStudySet;
+export default useGetStudySets;
