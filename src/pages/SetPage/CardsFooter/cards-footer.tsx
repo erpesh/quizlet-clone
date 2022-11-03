@@ -7,6 +7,7 @@ import {
 import {FiShuffle} from 'react-icons/fi';
 import {BsPlayFill, BsFillPauseFill} from "react-icons/bs";
 import setDataInterface from "../../../types/set-data.types";
+import colors from "../../../assets/colors";
 
 interface Props {
   studySet: setDataInterface,
@@ -18,6 +19,9 @@ interface Props {
 }
 
 const CardsFooter: FC<Props> = (props) => {
+
+  const FLIP_TIME = 3000;
+  const TOTAL_TIME = 6000;
 
   const {
     studySet,
@@ -48,8 +52,8 @@ const CardsFooter: FC<Props> = (props) => {
       setTimeout(() => {
         handleRightButton();
         flipWithNoAnimation();
-      }, 3000)
-    }, 6000);
+      }, FLIP_TIME)
+    }, TOTAL_TIME);
     setIntervalId(newIntervalId);
   };
 
@@ -57,12 +61,15 @@ const CardsFooter: FC<Props> = (props) => {
       <CardsFooterBase>
         <CardsFooterSide onClick={shuffleCards}>
           <CardsFooterButton name={"Shuffle"}>
-            <FiShuffle size={28}/>
+            <FiShuffle size={20}/>
           </CardsFooterButton>
         </CardsFooterSide>
         <CardsFooterSide onClick={handleClick}>
-          <CardsFooterButton name={"Play cards"}>
-            {intervalId ? <BsFillPauseFill size={28}/> : <BsPlayFill size={28}/>}
+          <CardsFooterButton
+              style={intervalId ? {backgroundColor: "white", border: "1px solid " + colors.colorDisabled} : undefined}
+              name={"Play cards"}
+          >
+            {intervalId ? <BsFillPauseFill size={20}/> : <BsPlayFill size={20}/>}
           </CardsFooterButton>
         </CardsFooterSide>
       </CardsFooterBase>

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
 import {useNavigate, useParams} from "react-router-dom";
@@ -11,12 +11,11 @@ import {
   PageWrapper,
 } from './test-page.styles';
 import PageContent from './page-content';
-import AuthContext from "../../context/auth-context";
+import useProgressBarLength from "../../hooks/useProgressBarLength";
 
 
 const TestPage = () => {
 
-  const {setProgressBarWidth} = useContext(AuthContext);
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
@@ -32,21 +31,8 @@ const TestPage = () => {
       setTestSet(generateTest(terms));
     } else navigate('/');
   }
-
   // progress bar
-  useEffect(() => {
-    if (testSet) {
-      const answers = [
-        ...testSet.trueFalse.map(item => item.isAnswered),
-        ...testSet.multipleChoice.map(item => !!item.answer),
-        ...testSet.matching.items.map(item => !!item.answer),
-        ...testSet.written.map(item => !!item.answer)
-      ]
-      const total = answers.length;
-      const progress = answers.filter(item => item).length;
-      setProgressBarWidth(progress * 100 / total);
-    }
-  }, [testSet])
+  useProgressBarLength(testSet);
 
   useEffect(() => {
     getStudySets()

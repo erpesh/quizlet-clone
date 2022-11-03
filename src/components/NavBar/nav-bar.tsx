@@ -7,6 +7,8 @@ import {useLocation} from "react-router-dom";
 
 const NavBar = () => {
 
+  const MODULES_PATHS = ['flashcards', 'learn', 'test', 'match'];
+
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const [splitPath, setSplitPath] = useState<string[]>(location.pathname.split("/"));
@@ -21,7 +23,7 @@ const NavBar = () => {
   const toggleModulesDropDown = () => setIsModulesDropDownOpen(!isModulesDropDownOpen);
 
   // Header for learning modules
-  if (splitPath.length === 3 && splitPath[2].length > 3)
+  if (splitPath.length === 3 && MODULES_PATHS.includes(splitPath[2]))
     return <>
       <ModulesHeader
           activePage={splitPath[2]}

@@ -26,6 +26,7 @@ function App() {
               <Route path="/:id/test" element={<TestPage/>}/>
               <Route path="/:id/flashcards" element={<FlashCardsPage/>}/>
               <Route path="/:id/learn" element={<LearnPage/>}/>
+              <Route path="/:id/match" element={<div/>}/>
             </Routes>
           </Suspense>
         </AuthProvider>

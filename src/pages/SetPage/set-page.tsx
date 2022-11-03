@@ -82,7 +82,7 @@ const SetPage = () => {
                       <HeightRegulator>
                         <MarginBottom>
                           <ProgressBarContainer>
-                            <ProgressBar style={{width: `${progressNumber * 100 / studySet.terms.length}%`}}/>
+                            <ProgressBar style={{width: `${(progressNumber + 1) * 100 / studySet.terms.length}%`}}/>
                           </ProgressBarContainer>
                         </MarginBottom>
                         <div style={{height: "100%"}}>
