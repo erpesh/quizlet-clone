@@ -54,7 +54,6 @@ const TestResultComponent: React.FC<Props> = ({testSet, setTestSet, setIsTestChe
     testSet.written.forEach(item => item.isCorrect ? numberOfCorrectAnswers++ : numberOfCorrectAnswers += 0)
     return numberOfCorrectAnswers;
   }
-
   const narrowToTermObject = (item: trueFalseTest | multipleChoiseTest | matchingTestItem | writtenTest) => {
     return {
       id: item.id,
@@ -63,7 +62,6 @@ const TestResultComponent: React.FC<Props> = ({testSet, setTestSet, setIsTestChe
       isMarked: item.isMarked
     }
   }
-
   const handleNewTestClick = () => {
     const testSetIncorrectAnswers = {
       trueFalse: [...testSet.trueFalse.filter(item => !item.isCorrect)],
@@ -72,10 +70,10 @@ const TestResultComponent: React.FC<Props> = ({testSet, setTestSet, setIsTestChe
       written: [...testSet.written.filter(item => !item.isCorrect)]
     }
     let terms = [
-        ...testSetIncorrectAnswers.trueFalse.map(item => narrowToTermObject(item)),
-        ...testSetIncorrectAnswers.multipleChoice.map(item => narrowToTermObject(item)),
-        ...testSetIncorrectAnswers.matching.map(item => narrowToTermObject(item)),
-        ...testSetIncorrectAnswers.written.map(item => narrowToTermObject(item))
+      ...testSetIncorrectAnswers.trueFalse.map(item => narrowToTermObject(item)),
+      ...testSetIncorrectAnswers.multipleChoice.map(item => narrowToTermObject(item)),
+      ...testSetIncorrectAnswers.matching.map(item => narrowToTermObject(item)),
+      ...testSetIncorrectAnswers.written.map(item => narrowToTermObject(item))
     ]
     setTestSet(generateTest(terms));
     setIsTestChecked(false);

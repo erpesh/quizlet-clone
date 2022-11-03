@@ -1,4 +1,5 @@
 {
+  "homepage": "http://erpesh.github.io/quizlet-clone",
   "name": "quizlet-clone",
   "version": "0.1.0",
   "private": true,
@@ -28,6 +29,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -52,6 +55,7 @@
   },
   "devDependencies": {
     "@types/styled-components": "^5.1.26",
+    "gh-pages": "^4.0.0",
     "sass": "^1.54.9"
   }
 }
