@@ -18,10 +18,12 @@ import Search from "../../Search/search";
 import AuthContext from "../../../context/auth-context";
 
 interface Props {
-  toggle: () => void
+  toggle: () => void,
+  toggleLibrary: () => void,
+  buttonRef: React.Ref<HTMLDivElement>
 }
 
-const Header: FC<Props> = ({toggle}) => {
+const Header: FC<Props> = ({toggle, toggleLibrary, buttonRef}) => {
 
   const {signInWithGoogle, isAuth, signUserOut} = useContext(AuthContext);
   const navigate = useNavigate();
@@ -35,10 +37,14 @@ const Header: FC<Props> = ({toggle}) => {
           <NavItem>
             <Link to="/">Home</Link>
           </NavItem>
-          <NavItem>
-            <Link to="/">
+          <NavItem
+              ref={buttonRef}
+              onClick={toggleLibrary}
+              style={{cursor: "pointer"}}
+          >
+            <div>
               Your library&nbsp;<ChevronIcon/>
-            </Link>
+            </div>
           </NavItem>
           <DefaultContainer>
             <BlueButton

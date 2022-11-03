@@ -8,7 +8,7 @@ export type CardsLogicAction =
     | { type: "TOGGLE_SIDE" }
     | { type: "NEXT_CARD" }
     | { type: "PREV_CARD" }
-| {type: "FLIP_SIDE"}
+    | { type: "FLIP_SIDE" }
 
 export interface CardsLogicState {
   animation: Animation,

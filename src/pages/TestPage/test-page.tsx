@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {collection, getDocs} from "firebase/firestore";
-import {auth, db} from "../../firebase-config";
-import {useNavigate, useParams} from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/loading-spinner";
 import generateTest from './test-generator';
 import {testType} from '../../types/test-page.types';
@@ -12,19 +9,17 @@ import {
 } from './test-page.styles';
 import PageContent from './page-content';
 import useProgressBarLength from "../../hooks/useProgressBarLength";
-import useGetStudySet from "../../hooks/useGetStudySet";
+import useGetStudySets from "../../hooks/useGetStudySets";
 
 
 const TestPage = () => {
 
   const [testSet, setTestSet] = useState<testType | null>(null);
-  const [studySet, setStudySet] = useGetStudySet();
+  const [studySet, setStudySet] = useGetStudySets();
   useProgressBarLength(testSet);
 
   useEffect(() => {
-    if (studySet){
-      setTestSet(generateTest([...studySet.terms]));
-    }
+    if (studySet) setTestSet(generateTest([...studySet.terms]));
   }, [studySet])
 
   return (

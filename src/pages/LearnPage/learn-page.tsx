@@ -5,31 +5,23 @@ import {
   MediaStyling,
 } from './learn-page.styles';
 import QuestionBox from "./QuestionBox/question-box";
-import {useNavigate, useParams} from "react-router-dom";
-import {collection, getDocs} from "firebase/firestore";
-import {auth, db} from "../../firebase-config";
 import {learnTerm} from "../../types/term.types";
 import generateQuestions from "./generate-questions";
 import AuthContext from "../../context/auth-context";
-import useGetStudySet from "../../hooks/useGetStudySet";
+import useGetStudySets from "../../hooks/useGetStudySets";
 
 
 const LearnPage = () => {
 
   const {setProgressBarWidth} = useContext(AuthContext);
-  const [studySet, setStudySet] = useGetStudySet();
+  const [studySet, setStudySet] = useGetStudySets();
 
   const [questions, setQuestions] = useState<learnTerm[]>([]);
 
   useEffect(() => {
-    if (studySet){
-      setQuestions(generateQuestions([...studySet.terms]));
-    }
-  }, [studySet])
-
-  useEffect(() => {
+    if (studySet) setQuestions(generateQuestions([...studySet.terms]));
     setProgressBarWidth(0);
-  }, [])
+  }, [studySet])
 
   return (
         <Container>

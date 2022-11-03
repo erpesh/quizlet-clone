@@ -15,13 +15,13 @@ import {
 } from "./set-page.styles";
 import ModulesList from "./ModulesList/modules-list";
 import FlashCards from "../../components/FlashCards/flash-cards";
-import useGetStudySet from "../../hooks/useGetStudySet";
+import useGetStudySets from "../../hooks/useGetStudySets";
 
 
 const SetPage = () => {
 
   const {id} = useParams();
-  const [studySet, setStudySet] = useGetStudySet();
+  const [studySet, setStudySet] = useGetStudySets();
   const [progressNumber, setProgressNumber] = useState(0);
 
   return (
