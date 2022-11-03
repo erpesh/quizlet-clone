@@ -91,11 +91,3 @@ export const ProgressBar = styled.div`
   border-radius: .25rem;
   height: 100%;
 `
-export const PreviewSection = styled.div`
-  display: grid;
-  grid-template-rows: minmax(0,1fr) auto;
-  height: calc(100% - 1rem);
-  @media (max-width: 38.75rem) {
-    height: calc(100% - .5rem);
-  }
-`

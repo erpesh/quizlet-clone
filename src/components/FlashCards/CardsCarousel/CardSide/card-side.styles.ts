@@ -14,8 +14,11 @@ export const CardContainer = styled.div`
   @media (max-width: 64rem){
     padding: 1.5rem 2rem;
   }
-  @media (max-width: 48rem){
+  @media (max-width: 48rem) {
     padding: 1rem;
+  }
+  &:focus-visible{
+    outline: none;
   }
 `
 export const SavedIconButton = styled.button<{isActive: boolean}>`

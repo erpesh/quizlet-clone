@@ -9,6 +9,9 @@ export const CardsCarouselWrap = styled.div`
   -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
   z-index: 0;
+  &:focus-visible{
+    outline: none;
+  }
 `
 export const CardsCarouselContainer = styled.div`
   height: 100%;
@@ -17,6 +20,9 @@ export const CardsCarouselContainer = styled.div`
   -ms-perspective: 62.5rem;
   perspective: 62.5rem;
   position: relative;
+  &:focus-visible{
+    outline: none;
+  }
 `
 const flipAnim = keyframes`
   50% {
@@ -76,4 +82,7 @@ export const GridContainer = styled.div<{animate: boolean, animation: string}>`
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   animation-play-state: ${props => props.animate ? "active" : "paused"};
+  &:focus-visible{
+    outline: none;
+  }
 `

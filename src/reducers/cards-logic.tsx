@@ -10,7 +10,7 @@ export type CardsLogicAction =
     | { type: "PREV_CARD" }
 | {type: "FLIP_SIDE"}
 
-interface CardsLogicState {
+export interface CardsLogicState {
   animation: Animation,
   animate: boolean,
   isTermSide: boolean,
