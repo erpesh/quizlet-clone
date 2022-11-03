@@ -12,31 +12,20 @@ import {
 } from './test-page.styles';
 import PageContent from './page-content';
 import useProgressBarLength from "../../hooks/useProgressBarLength";
+import useGetStudySet from "../../hooks/useGetStudySet";
 
 
 const TestPage = () => {
 
-  const {id} = useParams();
-  const navigate = useNavigate();
-  const studySetsCollectionRef = collection(db, "studySets");
-
   const [testSet, setTestSet] = useState<testType | null>(null);
-
-  const getStudySets = async () => {
-    const data = await getDocs(studySetsCollectionRef);
-    const sets = data.docs.map(doc => doc.data());
-    const [filteredSet] = sets.filter(item => item.id.toString() === id)
-    if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
-      const terms = [...filteredSet.terms];
-      setTestSet(generateTest(terms));
-    } else navigate('/');
-  }
-  // progress bar
+  const [studySet, setStudySet] = useGetStudySet();
   useProgressBarLength(testSet);
 
   useEffect(() => {
-    getStudySets()
-  }, [])
+    if (studySet){
+      setTestSet(generateTest([...studySet.terms]));
+    }
+  }, [studySet])
 
   return (
       <>

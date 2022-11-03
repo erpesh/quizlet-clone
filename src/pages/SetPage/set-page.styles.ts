@@ -46,38 +46,6 @@ export const HideAbove = styled.div`
     display: none;
   }
 `
-export const MainSectionWrapper = styled.div`
-  background-color: ${colors.pageBackgroundColor};
-  max-height: 100%;
-  -webkit-transition: max-height .2s ease-in;
-  transition: max-height .2s ease-in;
-`
-export const MainSectionContainer = styled.div`
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  margin: 0 auto;
-  width: 100%;
-`
-export const MainSectionContainer2 = styled.div`
-  display: block;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  margin-left: 0;
-  padding: 0;
-  position: relative;
-  width: 100%;
-`
-export const HeightRegulator = styled.div`
-  height: 100%;
-  min-height: 31.25rem;
-  @media (max-width: 38.75rem) {
-    min-height: 25rem;
-  }
-`
 export const MarginBottom = styled.div`
   margin-bottom: 1rem;
 `

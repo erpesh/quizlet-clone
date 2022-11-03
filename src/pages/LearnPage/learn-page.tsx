@@ -11,30 +11,24 @@ import {auth, db} from "../../firebase-config";
 import {learnTerm} from "../../types/term.types";
 import generateQuestions from "./generate-questions";
 import AuthContext from "../../context/auth-context";
+import useGetStudySet from "../../hooks/useGetStudySet";
 
 
 const LearnPage = () => {
 
   const {setProgressBarWidth} = useContext(AuthContext);
-  const {id} = useParams();
-  const navigate = useNavigate();
-  const studySetsCollectionRef = collection(db, "studySets");
+  const [studySet, setStudySet] = useGetStudySet();
 
   const [questions, setQuestions] = useState<learnTerm[]>([]);
 
-  const getStudySets = async () => {
-    const data = await getDocs(studySetsCollectionRef);
-    const sets = data.docs.map(doc => doc.data());
-    const [filteredSet] = sets.filter(item => item.id.toString() === id)
-    if (!!filteredSet &&
-        (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id)) {
-      setQuestions(generateQuestions(filteredSet.terms));
-    } else navigate('/');
-  }
+  useEffect(() => {
+    if (studySet){
+      setQuestions(generateQuestions([...studySet.terms]));
+    }
+  }, [studySet])
 
   useEffect(() => {
     setProgressBarWidth(0);
-    getStudySets();
   }, [])
 
   return (
