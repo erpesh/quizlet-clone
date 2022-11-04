@@ -6,7 +6,7 @@ import {DisplayFlex} from "../search-page.styles";
 export const Container = styled(DisplayFlex)`
   margin-bottom: .5rem;
 `
-export const AssemblyCard = styled.div`
+export const AssemblyCard = styled.div<{ isFocused: boolean }>`
   background-color: ${colors.whiteColor};
   box-sizing: border-box;
   display: inline-block;
@@ -18,12 +18,6 @@ export const AssemblyCard = styled.div`
   box-shadow: 0 0.125rem 0.5rem 0 ${colors.shadowWithOpacity};
   cursor: pointer;
 
-  &:hover {
-    &:after {
-      background-color: ${colors.navHover};
-    }
-  }
-
   &:after {
     bottom: 0;
     content: " ";
@@ -31,6 +25,13 @@ export const AssemblyCard = styled.div`
     left: 0;
     position: absolute;
     width: 100%;
+    ${props => props.isFocused ? "background-color: #4255ff;" : ""}
+  }
+
+  &:hover {
+    &:after {
+      background-color: ${colors.navHover};
+    }
   }
 `
 export const PaddingContainer = styled(DisplayFlex)`

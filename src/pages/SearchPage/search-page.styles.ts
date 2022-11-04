@@ -14,6 +14,7 @@ export const PageContainer = styled.main`
   @media screen and (min-width: 64.0625em) and (max-height: 100em) {
     min-height: 60vh;
   }
+  background-color: ${colors.pageBackgroundColor};
 `
 export const PageMainSection = styled.section`
   margin: auto;

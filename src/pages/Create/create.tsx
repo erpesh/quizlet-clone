@@ -36,7 +36,6 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
   }
 
   const addStudySet = async () => {
-    console.log(auth.currentUser);
     await addDoc(studySetsCollectionRef,
         {
           ...data,

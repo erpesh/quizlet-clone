@@ -14,7 +14,7 @@ interface Props {
 }
 
 const ToggleSwitch: FC<Props> = ({onWord, offWord, data, setData}) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(data.isPrivate);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setChecked(e.target.checked);

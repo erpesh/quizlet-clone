@@ -1,21 +1,16 @@
 import React, {useState} from 'react';
 import {ReactComponent as SearchIcon} from "../../assets/images/search-icon.svg";
 import {SearchContainer, LogoContainer, SearchInput} from "./search.styles";
-import {collection, getDocs} from "firebase/firestore";
-import {db} from "../../firebase-config";
+import {useNavigate} from "react-router-dom";
 
 const Search = () => {
 
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
-  const studySetsCollectionRef = collection(db, "studySets");
 
-  const searchSubmit = (e: any) => {
+  const searchSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const getStudySets = async () => {
-      const data = await getDocs(studySetsCollectionRef);
-      console.log(data.docs.map(doc => doc.data()))
-    }
-    getStudySets()
+    navigate(`/search/search?value=${searchValue}`)
   }
 
   return (

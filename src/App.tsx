@@ -22,7 +22,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/create" element={<CreateOrEdit isCreate={true}/>}/>
-              <Route path="/search" element={<SearchPage/>}/>
+              <Route path="/search/:request" element={<SearchPage/>}/>
               <Route path="/:id" element={<SetPage/>}/>
               <Route path="/:id/edit" element={<CreateOrEdit isCreate={false}/>}/>
               <Route path="/:id/test" element={<TestPage/>}/>

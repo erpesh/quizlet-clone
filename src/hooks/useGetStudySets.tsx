@@ -15,7 +15,7 @@ function useGetStudySets(isMultiple?: boolean){
     const data = await getDocs(studySetsCollectionRef);
     const sets = data.docs.map(doc => doc.data());
     if (isMultiple) {
-      setStudySet(sets);
+      setStudySet(sets.filter(item => auth.currentUser?.uid === item.author.id || !item.isPrivate));
       return;
     }
     const [filteredSet] = sets.filter(item => item.id.toString() === id)

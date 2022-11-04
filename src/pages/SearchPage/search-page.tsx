@@ -19,21 +19,40 @@ import useGetStudySets from "../../hooks/useGetStudySets";
 import ResultItem from "./ResultItem/result-item";
 import setDataInterface from "../../types/set-data.types";
 import Preview from "./Preview/preview";
+import {useSearchParams} from "react-router-dom";
 
 const SearchPage = () => {
 
+  const [query, setQuery] = useSearchParams();
   const [studySets, setStudySets] = useGetStudySets(true);
+  const [searchedStudySets, setSearchedStudySets] = useState<setDataInterface[]>([]);
   const [activeSet, setActiveSet] = useState<setDataInterface | null>(null);
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInputValue, setSearchInputValue] = useState("");
 
   useEffect(() => {
-    if (studySets) setActiveSet(studySets[0]);
+    if (studySets) {
+      setActiveSet(studySets[0])
+      setSearchedStudySets(studySets);
+      const value = query.get('value');
+      setSearchInputValue(value ? value : "");
+    }
   }, [studySets])
+
+  useEffect(() => {
+    if (!studySets)
+      return;
+    let studySetsClone = [...studySets].filter(item => {
+      return item.title.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchInputValue?.toLowerCase());
+    });
+    setSearchedStudySets(studySetsClone);
+    setQuery({value: searchInputValue});
+  }, [searchInputValue, studySets])
 
   return (
       <PageContainer>
-        {studySets && activeSet && <div style={{width: "100%"}}>
-            <section style={{backgroundColor: colors.whiteColor}}>
+        {searchedStudySets && activeSet && <div style={{width: "100%"}}>
+            <section style={{backgroundColor: colors.whiteColor, paddingBottom: "2rem"}}>
                 <SearchContainer>
                     <SearchForm>
                         <SearchIconContainer>
@@ -42,14 +61,14 @@ const SearchPage = () => {
                         <SearchInput
                             type={"text"}
                             placeholder={"Search study sets"}
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
+                            value={searchInputValue}
+                            onChange={(e) => setSearchInputValue(e.target.value)}
                         />
-                      {searchInput &&
+                      {searchInputValue &&
                           <Button
                               radius={"50%"}
                               padding={"0.375rem"}
-                              onClick={() => setSearchInput("")}
+                              onClick={() => setSearchInputValue("")}
                           >
                               <FiX/>
                           </Button>}
@@ -61,10 +80,12 @@ const SearchPage = () => {
                     <ResultCardsContainer>
                         <H3>Study sets</H3>
                         <ResultListContainer>
-                          {studySets.map((item: setDataInterface) =>
+                          {searchedStudySets.map((item: setDataInterface) =>
                               <ResultItem
                                   key={item.id}
                                   studySet={item}
+                                  activeSet={activeSet}
+                                  setActiveSet={setActiveSet}
                               />)}
                         </ResultListContainer>
                     </ResultCardsContainer>

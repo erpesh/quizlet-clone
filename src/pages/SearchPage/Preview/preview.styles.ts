@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import colors from "../../../assets/colors";
 import {DisplayFlex} from "../search-page.styles";
+import {Link} from "react-router-dom";
 
 export const PreviewWrapper = styled.div`
   -webkit-flex: 2;
@@ -41,7 +42,7 @@ export const PreviewHeader = styled(DisplayFlex)`
   justify-content: space-between;
   padding: 0 2rem 1rem;
 `
-export const PreviewSetLink = styled.a`
+export const PreviewSetLink = styled(Link)`
   -webkit-transition: all .12s cubic-bezier(.47,0,.745,.715);
   transition: all .12s cubic-bezier(.47,0,.745,.715);
   font-size: 1.5rem;
