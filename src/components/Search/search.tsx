@@ -26,6 +26,7 @@ const Search = () => {
         <SearchInput
             placeholder="Search study sets"
             onChange={e => setSearchValue(e.target.value)}
+            value={searchValue}
         />
       </SearchContainer>
   );

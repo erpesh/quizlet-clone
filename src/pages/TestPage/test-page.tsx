@@ -24,7 +24,7 @@ const TestPage = () => {
 
   return (
       <>
-        {testSet ?
+        {testSet &&
             <PageContainer>
               <PageWrapper>
                 <PageContentWrap>
@@ -35,8 +35,7 @@ const TestPage = () => {
                   />
                 </PageContentWrap>
               </PageWrapper>
-            </PageContainer>
-            : <LoadingSpinner/>}
+            </PageContainer>}
       </>
   );
 };

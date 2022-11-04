@@ -6,6 +6,7 @@ import NavBar from './components/NavBar/nav-bar';
 import LoadingSpinner from './components/LoadingSpinner/loading-spinner';
 
 const Home = lazy(() => import("./pages/Home/home"));
+const SearchPage = lazy(() => import("./pages/SearchPage/search-page"));
 const SetPage = lazy(() => import("./pages/SetPage/set-page"));
 const TestPage = lazy(() => import("./pages/TestPage/test-page"));
 const CreateOrEdit = lazy(() => import("./utils/CreateOrEdit/create-or-edit"));
@@ -21,6 +22,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/create" element={<CreateOrEdit isCreate={true}/>}/>
+              <Route path="/search" element={<SearchPage/>}/>
               <Route path="/:id" element={<SetPage/>}/>
               <Route path="/:id/edit" element={<CreateOrEdit isCreate={false}/>}/>
               <Route path="/:id/test" element={<TestPage/>}/>

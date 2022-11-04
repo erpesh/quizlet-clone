@@ -1,7 +1,8 @@
 import React, {useContext} from 'react'
 import BlueButton from "../../../layouts/blue-button.styles";
-import { BackgroundImage, Container, H3 } from './submit-section.styles'
+import { BackgroundImage, Container } from './submit-section.styles'
 import AuthContext from "../../../context/auth-context";
+import H3 from '../../../layouts/headers.styles';
 
 interface Props {
     setIsTestChecked: (isChecked: boolean) => void
