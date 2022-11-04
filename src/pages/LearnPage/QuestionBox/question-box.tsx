@@ -15,7 +15,7 @@ import {
   SlideUpContainer,
   SlideUpMessage
 } from "./question-box.styles";
-import {learnTerm} from "../../../types/term.types";
+import {learnTerm} from "../../../types/termType";
 import AnswerItem from "../../../layouts/answer-item.styles";
 import {AiOutlineCheck} from "react-icons/ai";
 import colors from "../../../assets/colors";

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   PageContainer,
   PageMainSection,
@@ -9,7 +9,7 @@ import {
   Button,
   ResultCardsContainer,
   MainContainer,
-  ResultListContainer
+  ResultListContainer,
 } from "./search-page.styles";
 import colors from "../../assets/colors";
 import {ReactComponent as SearchIcon} from "../../assets/images/search-icon.svg";
@@ -18,15 +18,21 @@ import H3 from '../../layouts/headers.styles';
 import useGetStudySets from "../../hooks/useGetStudySets";
 import ResultItem from "./ResultItem/result-item";
 import setDataInterface from "../../types/set-data.types";
+import Preview from "./Preview/preview";
 
 const SearchPage = () => {
 
   const [studySets, setStudySets] = useGetStudySets(true);
+  const [activeSet, setActiveSet] = useState<setDataInterface | null>(null);
   const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    if (studySets) setActiveSet(studySets[0]);
+  }, [studySets])
 
   return (
       <PageContainer>
-        {studySets && <div style={{width: "100%"}}>
+        {studySets && activeSet && <div style={{width: "100%"}}>
             <section style={{backgroundColor: colors.whiteColor}}>
                 <SearchContainer>
                     <SearchForm>
@@ -62,6 +68,7 @@ const SearchPage = () => {
                               />)}
                         </ResultListContainer>
                     </ResultCardsContainer>
+                    <Preview studySet={activeSet}/>
                 </MainContainer>
             </PageMainSection>
         </div>}

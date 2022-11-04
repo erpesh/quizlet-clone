@@ -1,6 +1,6 @@
-import termTypes, {learnTerm} from "../../types/term.types";
+import termType, {learnTerm} from "../../types/termType";
 
-function generateQuestions(terms: termTypes[]) {
+function generateQuestions(terms: termType[]) {
   let result: learnTerm[] = [];
   for (let i = 0; i < terms.length; i++){
     let questions: string[] = [terms[i].term];

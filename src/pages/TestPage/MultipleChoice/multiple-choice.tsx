@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import termTypes from '../../../types/term.types';
+import termType from '../../../types/termType';
 import { testType } from '../../../types/test-page.types';
 import {
   Container,
@@ -81,7 +81,7 @@ const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, hand
             <div>Select the correct term</div>
           </AsnwerTitleContainer>
           <AnswerContainer>
-            {testSet.multipleChoice[index].possibleAnswers.map((item: termTypes) => (
+            {testSet.multipleChoice[index].possibleAnswers.map((item: termType) => (
               <AnswerItem
                 key={item.term}
                 tabIndex={0}

@@ -20,7 +20,7 @@ import setDataInterface from "../../types/set-data.types";
 import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
-import termTypes from "../../types/term.types";
+import termType from "../../types/termType";
 import {parseTextInput, placeHolderHandler} from "./text-parsers";
 import {importButtonHandler} from "./import-button-handler";
 
@@ -37,7 +37,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
-  const [termsArray, setTermsArray] = useState<termTypes[]>([]);
+  const [termsArray, setTermsArray] = useState<termType[]>([]);
 
   const handleImportButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

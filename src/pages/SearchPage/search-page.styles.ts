@@ -1,6 +1,12 @@
 import styled from "styled-components";
 import colors from "../../assets/colors";
 
+export const DisplayFlex = styled.div`
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+`
 export const PageContainer = styled.main`
   float: left;
   width: 100%;

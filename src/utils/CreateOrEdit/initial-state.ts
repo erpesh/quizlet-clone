@@ -1,7 +1,8 @@
 export const INITIAL_CREATE_STATE = {
   author: {
     name: null,
-    id: null
+    id: null,
+    photoURL: null,
   },
   id: Date.now(),
   title: "",

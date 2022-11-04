@@ -5,7 +5,7 @@ import {
   MediaStyling,
 } from './learn-page.styles';
 import QuestionBox from "./QuestionBox/question-box";
-import {learnTerm} from "../../types/term.types";
+import {learnTerm} from "../../types/termType";
 import generateQuestions from "./generate-questions";
 import AuthContext from "../../context/auth-context";
 import useGetStudySets from "../../hooks/useGetStudySets";

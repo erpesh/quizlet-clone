@@ -1,14 +1,14 @@
-import termTypes from "../../types/term.types";
+import termType from "../../types/termType";
 
 const MAX_NUMBER_OF_TERMS = 20;
 
 
 // returns array of up to 20 terms for test
-const selectRandomTerms = (terms: termTypes[]) => {
+const selectRandomTerms = (terms: termType[]) => {
     const shuffledTerms = terms.sort(() => 0.5 - Math.random());
     return shuffledTerms.slice(0, MAX_NUMBER_OF_TERMS);
 }
-const generateTest = (terms: termTypes[]) => {
+const generateTest = (terms: termType[]) => {
 
     const termsClone = [...terms];
     let selectedTerms = selectRandomTerms(terms);
@@ -25,7 +25,7 @@ const generateTest = (terms: termTypes[]) => {
         return multipleChoiceTerms.filter(mChouseItem => mChouseItem.id === item.id).length === 0;
     })
 
-    let writtenTerms: termTypes[];
+    let writtenTerms: termType[];
     if (selectedTermsLength < 5)
         writtenTerms = selectedTerms.splice(0, selectedTerms.length);
     else

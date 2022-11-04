@@ -1,6 +1,6 @@
 import React from 'react'
 import { multipleChoiseTest } from '../../../types/test-page.types'
-import termTypes from '../../../types/term.types';
+import termType from '../../../types/termType';
 import AnswerItem from "../../../layouts/answer-item.styles";
 import { AsnwerTitleContainer, AnswerContainer } from './multiple-choice.styles';
 import { AiOutlineCheck } from "react-icons/ai";
@@ -24,7 +24,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
             <div>Awesome!</div>
         </AsnwerTitleContainer>
         <AnswerContainer>
-            {testItem.possibleAnswers.map((item: termTypes) => (
+            {testItem.possibleAnswers.map((item: termType) => (
                 <AnswerItem
                     key={item.term}
                     tabIndex={0}
@@ -44,7 +44,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
             <div>Not quite. You're still learning!</div>
         </AsnwerTitleContainer>
         <AnswerContainer>
-            {testItem.possibleAnswers.map((item: termTypes) => (
+            {testItem.possibleAnswers.map((item: termType) => (
                 <AnswerItem
                     key={item.term}
                     tabIndex={0}
@@ -71,7 +71,7 @@ const CheckedPart: React.FC<Props> = ({ testItem }) => {
                 <div>Give this one a go later!</div>
             </AsnwerTitleContainer>
             <AnswerContainer>
-                {testItem.possibleAnswers.map((item: termTypes) => (
+                {testItem.possibleAnswers.map((item: termType) => (
                     <AnswerItem
                         key={item.term}
                         tabIndex={0}

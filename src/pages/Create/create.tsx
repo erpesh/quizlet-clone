@@ -13,7 +13,7 @@ import AddCardButton from "./AddCardButton/add-card-button";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./styles.css";
-import termTypes from "../../types/term.types";
+import termType from "../../types/termType";
 
 interface Props {
   data: any,
@@ -36,13 +36,15 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
   }
 
   const addStudySet = async () => {
+    console.log(auth.currentUser);
     await addDoc(studySetsCollectionRef,
         {
           ...data,
           author:
               {
                 id: auth.currentUser?.uid,
-                name: auth.currentUser?.displayName
+                name: auth.currentUser?.displayName,
+                photoURL: auth.currentUser?.photoURL,
               }
         });
     navigate(`/${data.id}`)
@@ -78,7 +80,7 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
                     {...provided.droppableProps}
                 >
                   <TransitionGroup component={null}>
-                    {data.terms.map((item: termTypes, id : number) => (
+                    {data.terms.map((item: termType, id : number) => (
                         <CSSTransition
                             key={item.id}
                             timeout={500}

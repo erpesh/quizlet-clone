@@ -1,12 +1,8 @@
 import styled from "styled-components";
 import colors from "../../../assets/colors";
+import {DisplayFlex} from "../search-page.styles";
 
-const DisplayFlex = styled.div`
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-`
+
 export const Container = styled(DisplayFlex)`
   margin-bottom: .5rem;
 `
@@ -21,11 +17,13 @@ export const AssemblyCard = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.5rem 0 ${colors.shadowWithOpacity};
   cursor: pointer;
+
   &:hover {
     &:after {
       background-color: ${colors.navHover};
     }
   }
+
   &:after {
     bottom: 0;
     content: " ";
@@ -58,7 +56,8 @@ export const SecondaryData = styled(DisplayFlex)`
   margin: 1rem 0;
   min-height: 3rem;
   row-gap: 0.5rem;
-  &:not(:last-child){
+
+  &:not(:last-child) {
     margin-right: .5rem;
   }
 `
@@ -81,10 +80,47 @@ export const SecondaryItem = styled.span`
   width: -moz-fit-content;
   width: fit-content;
   white-space: nowrap;
+  font-size: .75rem;
+  font-weight: 600;
+  -webkit-letter-spacing: normal;
+  -moz-letter-spacing: normal;
+  -ms-letter-spacing: normal;
+  letter-spacing: normal;
+  line-height: 1.3333333333333333;
+`
+export const CreatorContainer = styled.div`
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  min-height: 2rem;
+`
+export const AuthorPhoto = styled.img<{ photoURL: string }>`
+  border-radius: 100%;
+  box-shadow: inset 0 0 0.0625rem rgb(0 0 0 / 30%);
+  display: inline-block;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
+  background-image: url(${props => props.photoURL});
+  background-size: 100% 100%;
+  margin-right: .5rem;
 `
 export const AuthorName = styled.span`
-  display: flex;
-  align-items: center;
+  display: inline-block;
   font-size: .75rem;
   font-weight: 600;
   -webkit-letter-spacing: normal;

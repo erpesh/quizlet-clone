@@ -1,15 +1,15 @@
-import termTypes from "./term.types";
+import termType from "./termType";
 
-interface simpleTest extends termTypes {
+interface simpleTest extends termType {
     isCorrect: boolean
 }
 export interface trueFalseTest extends simpleTest {
     isTrue: boolean,
-    incorrectAnswer: termTypes | null,
+    incorrectAnswer: termType | null,
     isAnswered: boolean
 }
 export interface multipleChoiseTest extends simpleTest {
-    possibleAnswers: termTypes[],
+    possibleAnswers: termType[],
     answer: string | null
 }
 export interface matchingTestItem extends simpleTest {

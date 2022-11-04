@@ -1,8 +1,8 @@
 import generateTest from "./test-generator";
-import termTypes from "../../types/term.types";
+import termType from "../../types/termType";
 
 const generateTerms = (amount: number) => {
-  const termTypes: termTypes[] = [];
+  const termTypes: termType[] = [];
   for (let i = 0; i < amount; i++){
     termTypes.push({
       id: Math.random(),

@@ -5,11 +5,11 @@ import {
   GridContainer
 } from "./cards-carousel.styles";
 import CardSide from "./CardSide/card-side";
-import termTypes from "../../../types/term.types";
+import termType from "../../../types/termType";
 import setDataInterface from "../../../types/set-data.types";
 
 interface Props {
-  activeCard: termTypes | null,
+  activeCard: termType | null,
   studySet: setDataInterface,
   setStudySet: (studySet: setDataInterface) => void,
   progressNumber: number,
