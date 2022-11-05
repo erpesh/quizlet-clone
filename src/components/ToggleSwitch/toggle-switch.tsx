@@ -1,16 +1,12 @@
-import {
-  Label,
-  Input,
-  Switch
-} from "./toggle-switch.styles";
+import {Input, Label, Switch} from "./toggle-switch.styles";
 import {ChangeEvent, FC, useState} from "react";
-import setDataInterface from "../../types/set-data.types";
+import {IStudySet} from "../../types";
 
 interface Props {
   onWord: string,
   offWord: string,
-  data: setDataInterface,
-  setData: (data: setDataInterface) => void
+  data: IStudySet,
+  setData: (data: IStudySet) => void
 }
 
 const ToggleSwitch: FC<Props> = ({onWord, offWord, data, setData}) => {
@@ -22,11 +18,11 @@ const ToggleSwitch: FC<Props> = ({onWord, offWord, data, setData}) => {
   };
 
   return (
-      <Label>
-        <span>{checked ? onWord : offWord}</span>
-        <Input checked={checked} type="checkbox" onChange={handleChange}/>
-        <Switch/>
-      </Label>
+    <Label>
+      <span>{checked ? onWord : offWord}</span>
+      <Input checked={checked} type="checkbox" onChange={handleChange}/>
+      <Switch/>
+    </Label>
   );
 };
 export default ToggleSwitch;

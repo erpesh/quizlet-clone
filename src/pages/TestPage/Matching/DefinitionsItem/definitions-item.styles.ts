@@ -39,7 +39,6 @@ export const TextFormater = styled.div`
     position: relative;
     word-break: break-word;
     -webkit-font-smoothing: antialiased;
-    font-family: Lucida Grande,Arial!important;
     font-size: 1.1em;
 `
 export const DefaultAnswerBox = styled.div`

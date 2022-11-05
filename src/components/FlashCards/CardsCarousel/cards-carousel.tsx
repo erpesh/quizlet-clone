@@ -1,17 +1,12 @@
 import React, {FC} from 'react';
-import {
-  CardsCarouselWrap,
-  CardsCarouselContainer,
-  GridContainer
-} from "./cards-carousel.styles";
+import {CardsCarouselContainer, CardsCarouselWrap, GridContainer} from "./cards-carousel.styles";
 import CardSide from "./CardSide/card-side";
-import termType from "../../../types/termType";
-import setDataInterface from "../../../types/set-data.types";
+import {IStudySet, ITerm} from "../../../types";
 
 interface Props {
-  activeCard: termType | null,
-  studySet: setDataInterface,
-  setStudySet: (studySet: setDataInterface) => void,
+  activeCard: ITerm | null,
+  studySet: IStudySet,
+  setStudySet: (studySet: IStudySet) => void,
   progressNumber: number,
   isTermSide: boolean,
   animate: boolean,
@@ -44,46 +39,46 @@ const CardsCarousel: FC<Props> = (props) => {
   }
 
   return (
-      <CardsCarouselWrap>
-        <CardsCarouselContainer>
-          <GridContainer
-              animate={animate}
-              animation={animation}
-              style={{zIndex: isTermSide ? 101 : 1}}
-              key={keyChange ? 1 : 2}
-          >
-            <CardSide
-                progressNumber={progressNumber}
-                isTerm={true}
-                value={activeCard ? activeCard.term : ""}
-                length={studySet.terms.length}
-                toggleTermSide={toggleTermSide}
-                handleLeftButton={handleLeftButton}
-                handleRightButton={handleRightButton}
-                toggleCardMark={toggleCardMark}
-                isMarked={activeCard?.isMarked}
-            />
-          </GridContainer>
-          <GridContainer
-              animate={animate}
-              animation={animation}
-              style={{zIndex: isTermSide ? 1 : 101}}
-              key={keyChange ? 3 : 4}
-          >
-            <CardSide
-                progressNumber={progressNumber}
-                isTerm={false}
-                value={activeCard ? activeCard.definition : ""}
-                length={studySet.terms.length}
-                toggleTermSide={toggleTermSide}
-                handleLeftButton={handleLeftButton}
-                handleRightButton={handleRightButton}
-                toggleCardMark={toggleCardMark}
-                isMarked={activeCard?.isMarked}
-            />
-          </GridContainer>
-        </CardsCarouselContainer>
-      </CardsCarouselWrap>
+    <CardsCarouselWrap>
+      <CardsCarouselContainer>
+        <GridContainer
+          animate={animate}
+          animation={animation}
+          style={{zIndex: isTermSide ? 101 : 1}}
+          key={keyChange ? 1 : 2}
+        >
+          <CardSide
+            progressNumber={progressNumber}
+            isTerm={true}
+            value={activeCard ? activeCard.term : ""}
+            length={studySet.terms.length}
+            toggleTermSide={toggleTermSide}
+            handleLeftButton={handleLeftButton}
+            handleRightButton={handleRightButton}
+            toggleCardMark={toggleCardMark}
+            isMarked={activeCard?.isMarked}
+          />
+        </GridContainer>
+        <GridContainer
+          animate={animate}
+          animation={animation}
+          style={{zIndex: isTermSide ? 1 : 101}}
+          key={keyChange ? 3 : 4}
+        >
+          <CardSide
+            progressNumber={progressNumber}
+            isTerm={false}
+            value={activeCard ? activeCard.definition : ""}
+            length={studySet.terms.length}
+            toggleTermSide={toggleTermSide}
+            handleLeftButton={handleLeftButton}
+            handleRightButton={handleRightButton}
+            toggleCardMark={toggleCardMark}
+            isMarked={activeCard?.isMarked}
+          />
+        </GridContainer>
+      </CardsCarouselContainer>
+    </CardsCarouselWrap>
   );
 };
 

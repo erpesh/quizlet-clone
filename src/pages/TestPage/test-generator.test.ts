@@ -1,12 +1,12 @@
 import generateTest from "./test-generator";
-import termType from "../../types/termType";
+import {ITerm} from "../../types";
 
 const generateTerms = (amount: number) => {
-  const termTypes: termType[] = [];
-  for (let i = 0; i < amount; i++){
+  const termTypes: ITerm[] = [];
+  for (let i = 0; i < amount; i++) {
     termTypes.push({
       id: Math.random(),
-      term: `${i*i*i} 124`,
+      term: `${i * i * i} 124`,
       definition: `${i + 124} 14`,
       isMarked: false
     })
@@ -14,7 +14,7 @@ const generateTerms = (amount: number) => {
   return termTypes;
 }
 
-test ("should return total length 0", () => {
+test("should return total length 0", () => {
   const generatedTest = generateTest([]);
   expect(generatedTest.totalLength).toBe(0);
 })

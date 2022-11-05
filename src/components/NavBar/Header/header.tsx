@@ -1,12 +1,12 @@
 import React, {FC, useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {
-  Container,
-  LogoContainer,
-  NavPart,
-  NavItem,
-  DefaultContainer,
   AuthButton,
+  Container,
+  DefaultContainer,
+  LogoContainer,
+  NavItem,
+  NavPart,
   SideBarIconWrap
 } from "./header.styles";
 import {ReactComponent as Logo} from "../../../assets/images/logo.svg";
@@ -29,52 +29,52 @@ const Header: FC<Props> = ({toggle, toggleLibrary, buttonRef}) => {
   const navigate = useNavigate();
 
   return (
-      <Container>
-        <NavPart>
-          <LogoContainer onClick={() => navigate("/")}>
-            <Logo color={colors.mainBlueColor}/>
-          </LogoContainer>
-          <NavItem>
-            <Link to="/">Home</Link>
-          </NavItem>
-          <NavItem
-              ref={buttonRef}
-              onClick={toggleLibrary}
-              style={{cursor: "pointer"}}
+    <Container>
+      <NavPart>
+        <LogoContainer onClick={() => navigate("/")}>
+          <Logo color={colors.mainBlueColor}/>
+        </LogoContainer>
+        <NavItem>
+          <Link to="/">Home</Link>
+        </NavItem>
+        <NavItem
+          ref={buttonRef}
+          onClick={toggleLibrary}
+          style={{cursor: "pointer"}}
+        >
+          <div>
+            Your library&nbsp;<ChevronIcon/>
+          </div>
+        </NavItem>
+        <DefaultContainer>
+          <BlueButton
+            onClick={
+              isAuth ?
+                () => navigate("/create")
+                : signInWithGoogle
+            }
+            padding="0.45rem 0.85rem"
+            radius="0.25rem"
+            fontSize=".875rem"
           >
-            <div>
-              Your library&nbsp;<ChevronIcon/>
-            </div>
-          </NavItem>
-          <DefaultContainer>
-            <BlueButton
-                onClick={
-                  isAuth ?
-                    () => navigate("/create")
-                      : signInWithGoogle
-                }
-                padding="0.45rem 0.85rem"
-                radius="0.25rem"
-                fontSize=".875rem"
-            >
-              Create
-            </BlueButton>
-          </DefaultContainer>
-        </NavPart>
-        <NavPart>
-          <DefaultContainer>
-            <Search/>
-          </DefaultContainer>
-          <DefaultContainer>
-            {!isAuth ?
-                <AuthButton onClick={signInWithGoogle}>Sign in</AuthButton> :
-                <AuthButton onClick={signUserOut}>Log out</AuthButton>}
-          </DefaultContainer>
-          <SideBarIconWrap onClick={toggle}>
-            <SideBarIcon/>
-          </SideBarIconWrap>
-        </NavPart>
-      </Container>
+            Create
+          </BlueButton>
+        </DefaultContainer>
+      </NavPart>
+      <NavPart>
+        <DefaultContainer>
+          <Search/>
+        </DefaultContainer>
+        <DefaultContainer>
+          {!isAuth ?
+            <AuthButton onClick={signInWithGoogle}>Sign in</AuthButton> :
+            <AuthButton onClick={signUserOut}>Log out</AuthButton>}
+        </DefaultContainer>
+        <SideBarIconWrap onClick={toggle}>
+          <SideBarIcon/>
+        </SideBarIconWrap>
+      </NavPart>
+    </Container>
   );
 };
 

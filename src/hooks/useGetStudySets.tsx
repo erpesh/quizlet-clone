@@ -4,7 +4,7 @@ import {auth, db} from "../firebase-config";
 import {useEffect, useState} from "react";
 
 // returns all sets if isMultiple true and a certain set by page id when it's false
-function useGetStudySets(isMultiple?: boolean){
+function useGetStudySets(isMultiple?: boolean) {
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
@@ -30,4 +30,5 @@ function useGetStudySets(isMultiple?: boolean){
 
   return [studySet, setStudySet];
 }
+
 export default useGetStudySets;

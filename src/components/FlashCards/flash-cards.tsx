@@ -1,20 +1,20 @@
 import React, {KeyboardEvent, useReducer} from 'react';
-import setDataInterface from "../../types/set-data.types";
+import {IStudySet} from "../../types";
 import CardsCarousel from "./CardsCarousel/cards-carousel";
 import CardsFooter from "./CardsFooter/cards-footer";
 import {cardsLogicReducer, initialState} from "../../reducers/cards-logic";
 import {
-  Wrap,
   Container,
   HeightRegulator,
   MainSectionContainer,
   MainSectionContainer2,
   MainSectionWrapper,
+  Wrap,
 } from "./flash-cards.styles";
 
 interface Props extends React.PropsWithChildren {
-  studySet: setDataInterface,
-  setStudySet: (studySet: setDataInterface) => void,
+  studySet: IStudySet,
+  setStudySet: (studySet: IStudySet) => void,
   progressNumber: number,
   setProgressNumber: (num: any) => void,
   height: string
@@ -53,43 +53,43 @@ const FlashCards: React.FC<Props> = (props) => {
   }
 
   return (
-      <MainSectionWrapper>
-        <MainSectionContainer>
-          <MainSectionContainer2>
-            <HeightRegulator>
-              {children}
-              <Wrap
-                  height={height}
-                  tabIndex={0}
-                  onKeyDown={handleArrowKeys}>
-                <Container>
-                  <CardsCarousel
-                      activeCard={studySet.terms[progressNumber]}
-                      studySet={studySet}
-                      setStudySet={setStudySet}
-                      progressNumber={progressNumber}
-                      isTermSide={state.isTermSide}
-                      animation={state.animation}
-                      animate={state.animate}
-                      toggleTermSide={toggleTermSide}
-                      keyChange={state.keyChange}
-                      handleLeftButton={handleLeftButton}
-                      handleRightButton={handleRightButton}
-                  />
-                  <CardsFooter
-                      studySet={studySet}
-                      setStudySet={setStudySet}
-                      setProgressNumber={setProgressNumber}
-                      toggleTermSide={toggleTermSide}
-                      handleRightButton={handleRightButton}
-                      flipWithNoAnimation={flipWithNoAnimation}
-                  />
-                </Container>
-              </Wrap>
-            </HeightRegulator>
-          </MainSectionContainer2>
-        </MainSectionContainer>
-      </MainSectionWrapper>
+    <MainSectionWrapper>
+      <MainSectionContainer>
+        <MainSectionContainer2>
+          <HeightRegulator>
+            {children}
+            <Wrap
+              height={height}
+              tabIndex={0}
+              onKeyDown={handleArrowKeys}>
+              <Container>
+                <CardsCarousel
+                  activeCard={studySet.terms[progressNumber]}
+                  studySet={studySet}
+                  setStudySet={setStudySet}
+                  progressNumber={progressNumber}
+                  isTermSide={state.isTermSide}
+                  animation={state.animation}
+                  animate={state.animate}
+                  toggleTermSide={toggleTermSide}
+                  keyChange={state.keyChange}
+                  handleLeftButton={handleLeftButton}
+                  handleRightButton={handleRightButton}
+                />
+                <CardsFooter
+                  studySet={studySet}
+                  setStudySet={setStudySet}
+                  setProgressNumber={setProgressNumber}
+                  toggleTermSide={toggleTermSide}
+                  handleRightButton={handleRightButton}
+                  flipWithNoAnimation={flipWithNoAnimation}
+                />
+              </Container>
+            </Wrap>
+          </HeightRegulator>
+        </MainSectionContainer2>
+      </MainSectionContainer>
+    </MainSectionWrapper>
   );
 };
 

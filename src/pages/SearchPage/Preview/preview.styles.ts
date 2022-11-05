@@ -85,7 +85,7 @@ export const ItemContainer = styled.div`
     border-bottom: 0.125rem solid ${colors.neutralInk200};
   }
 `
-export const ItemText = styled.div<{fontWeight: number}>`
+export const ItemText = styled.div<{ fontWeight: number }>`
   font-size: 1rem;
   font-weight: ${props => props.fontWeight};
   -webkit-letter-spacing: normal;

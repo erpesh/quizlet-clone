@@ -200,7 +200,7 @@ export const NumberOfAnswers = styled.div<{ isCorrect?: boolean }>`
         background: #e6fcf4;
         border-color: #98f1d1;
         color: ${colors.mint500}
-    `: `
+    ` : `
     background: #fff6ef;
     border-color: #ffc38c;
     color: ${colors.sherbert500}
@@ -270,7 +270,7 @@ export const IconContainer = styled.div`
     flex-shrink: 0;
     position: relative;
 `
-export const IconContent = styled.div<{img: string}>`
+export const IconContent = styled.div<{ img: string }>`
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: contain;

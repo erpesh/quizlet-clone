@@ -7,6 +7,7 @@ interface answerItem {
   bgColor?: string,
   removeHover?: boolean,
 }
+
 const AnswerItem = styled.section<answerItem>`
     -webkit-box-align: center;
     -ms-flex-align: center;

@@ -1,9 +1,9 @@
-import {testType} from "../types/test-page.types";
+import {ITestSet} from "../types";
 import {useContext, useEffect} from "react";
 import AuthContext from "../context/auth-context";
 
 // calculates progress bar width for Test Page
-function useProgressBarLength(testSet: testType | null) {
+function useProgressBarLength(testSet: ITestSet | null) {
 
   const {setProgressBarWidth} = useContext(AuthContext);
 
@@ -21,4 +21,5 @@ function useProgressBarLength(testSet: testType | null) {
     }
   }, [testSet])
 }
+
 export default useProgressBarLength;

@@ -28,6 +28,7 @@
     transform: scale(0.5);
     transition: 0.4s all;
 }
+
 .modal__container.active {
     transform: scale(1);
 }

@@ -1,4 +1,4 @@
-import React, {useRef, useReducer} from 'react'
+import React, {useReducer, useRef} from 'react'
 import Header from './Header/header'
 import SideBar from './SideBar/side-bar'
 import ModulesHeader from "./ModulesHeader/modules-header";
@@ -24,33 +24,33 @@ const NavBar = () => {
   if (splitPath.length === 3 && MODULES_PATHS.includes(splitPath[2]))
     return <>
       <ModulesHeader
-          activePage={splitPath[2]}
-          id={splitPath[1]}
-          toggleModulesDropDown={toggleModulesDropDown}
-          buttonRef={modulesButtonRef}
+        activePage={splitPath[2]}
+        id={splitPath[1]}
+        toggleModulesDropDown={toggleModulesDropDown}
+        buttonRef={modulesButtonRef}
       />
       {state.isModulesDropDownOpen && <ModulesDropDown
-          activePage={splitPath[2]}
-          id={splitPath[1]}
-          toggleModulesDropDown={toggleModulesDropDown}
-          buttonRef={modulesButtonRef}
+        activePage={splitPath[2]}
+        id={splitPath[1]}
+        toggleModulesDropDown={toggleModulesDropDown}
+        buttonRef={modulesButtonRef}
       />}
     </>
   // Default header and sidebar
   return (
-      <>
-        <Header
-            toggle={toggleSideBar}
-            toggleLibrary={toggleLibrary}
-            buttonRef={libraryButtonRef}
-        />
-        <SideBar isOpen={state.isMobileOpen} toggle={toggleSideBar}/>
-        {state.isLibraryOpen &&
-            <LibraryDropDown
-              toggleLibrary={toggleLibrary}
-              buttonRef={libraryButtonRef}
-            />}
-      </>
+    <>
+      <Header
+        toggle={toggleSideBar}
+        toggleLibrary={toggleLibrary}
+        buttonRef={libraryButtonRef}
+      />
+      <SideBar isOpen={state.isMobileOpen} toggle={toggleSideBar}/>
+      {state.isLibraryOpen &&
+        <LibraryDropDown
+          toggleLibrary={toggleLibrary}
+          buttonRef={libraryButtonRef}
+        />}
+    </>
   )
 }
 

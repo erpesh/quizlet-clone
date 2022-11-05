@@ -1,10 +1,5 @@
 import React, {useRef} from 'react';
-import {
-  Container,
-  DownContainer,
-  Item,
-  Link
-} from './modules-drop-down.styles';
+import {Container, DownContainer, Item, Link} from './modules-drop-down.styles';
 import useOutsideClickAndScroll from "../../../hooks/useOutsideClickAndScroll";
 
 interface Props {
@@ -28,23 +23,23 @@ const ModulesDropDown: React.FC<Props> = ({activePage, id, toggleModulesDropDown
   useOutsideClickAndScroll(ref, buttonRef, toggleModulesDropDown);
 
   return (
-      <Container ref={ref}>
-        <DownContainer>
-          <div tabIndex={-1} style={{
-            position: "relative",
-            zIndex: 301,
-            minWidth: "16.25rem"
-          }}>
-            <Item>
-              {links.map(item => <Link key={item.name} href={item.link}>{item.name}</Link>)}
-            </Item>
-            <Item>
-              <Link href={"/"}>Home</Link>
-              <Link href={`/${id}`}>Set page</Link>
-            </Item>
-          </div>
-        </DownContainer>
-      </Container>
+    <Container ref={ref}>
+      <DownContainer>
+        <div tabIndex={-1} style={{
+          position: "relative",
+          zIndex: 301,
+          minWidth: "16.25rem"
+        }}>
+          <Item>
+            {links.map(item => <Link key={item.name} href={item.link}>{item.name}</Link>)}
+          </Item>
+          <Item>
+            <Link href={"/"}>Home</Link>
+            <Link href={`/${id}`}>Set page</Link>
+          </Item>
+        </div>
+      </DownContainer>
+    </Container>
   );
 };
 

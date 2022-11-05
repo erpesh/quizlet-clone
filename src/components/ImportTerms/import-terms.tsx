@@ -1,32 +1,31 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import "./styles.css";
 import {
+  ButtonTextWrap,
   ContainerWrap,
-  UIContainer,
-  UILinkButton,
-  ImportTermsHeading,
-  ImportTermsInstruction,
-  ImportTermsForm,
-  TextArea,
   ImportButton,
   ImportButtonWrap,
-  ButtonTextWrap,
+  ImportTermsForm,
+  ImportTermsHeading,
+  ImportTermsInstruction,
   PreviewContainer,
   PreviewHeading,
   PreviewNumTerms,
-  PreviewRows
+  PreviewRows,
+  TextArea,
+  UIContainer,
+  UILinkButton
 } from "./import-terms.styles";
-import setDataInterface from "../../types/set-data.types";
+import {IStudySet, ITerm} from "../../types";
 import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
-import termType from "../../types/termType";
 import {parseTextInput, placeHolderHandler} from "./text-parsers";
 import {importButtonHandler} from "./import-button-handler";
 
 interface Props {
-  data: setDataInterface,
-  setData: (data: setDataInterface) => void,
+  data: IStudySet,
+  setData: (data: IStudySet) => void,
   isImportModalActive: boolean,
   setIsImportModalActive: (isImportModalActive: boolean) => void
 }
@@ -37,7 +36,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   const [textInput, setTextInput] = useState("");
   const [firstSeparator, setFirstSeparator] = useState("\t");
   const [secondSeparator, setSecondSeparator] = useState('\n');
-  const [termsArray, setTermsArray] = useState<termType[]>([]);
+  const [termsArray, setTermsArray] = useState<ITerm[]>([]);
 
   const handleImportButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -56,66 +55,66 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
   }, [textInput, firstSeparator, secondSeparator])
 
   return (
-      <div className={isImportModalActive ? "import__terms is__showing" : "import__terms"}>
-        <ContainerWrap>
-          <UIContainer>
-            <div style={{marginBottom: "2rem"}}>
-              <UILinkButton onClick={() => setIsImportModalActive(false)}>
-                <span>Cancel Import</span>
-              </UILinkButton>
+    <div className={isImportModalActive ? "import__terms is__showing" : "import__terms"}>
+      <ContainerWrap>
+        <UIContainer>
+          <div style={{marginBottom: "2rem"}}>
+            <UILinkButton onClick={() => setIsImportModalActive(false)}>
+              <span>Cancel Import</span>
+            </UILinkButton>
+          </div>
+          <ImportTermsHeading>
+            Import your data&nbsp;
+          </ImportTermsHeading>
+          <ImportTermsInstruction>
+            Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
+          </ImportTermsInstruction>
+          <ImportTermsForm>
+            <TextArea
+              placeholder={placeHolderHandler(firstSeparator, secondSeparator)}
+              ref={textareaRef}
+              onChange={(e) => setTextInput(e.target.value)}
+              onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
+            />
+            <ImportButtonWrap>
+              <ImportButton
+                disabled={!textInput}
+                onClick={handleImportButton}
+              >
+                <ButtonTextWrap>Import</ButtonTextWrap>
+              </ImportButton>
+            </ImportButtonWrap>
+            <RadioSeparators
+              firstSeparator={firstSeparator}
+              setFirstSeparator={setFirstSeparator}
+              secondSeparator={secondSeparator}
+              setSecondSeparator={setSecondSeparator}
+            />
+          </ImportTermsForm>
+        </UIContainer>
+      </ContainerWrap>
+      <PreviewContainer>
+        <UIContainer>
+          <PreviewHeading>
+            <span>Preview</span>
+            <PreviewNumTerms>
+              <span>{termsArray.length > 0 ? termsArray.length : ""}</span>
+            </PreviewNumTerms>
+          </PreviewHeading>
+          <PreviewRows>
+            <div style={{pointerEvents: "none"}}>
+              {termsArray.length > 0 ? termsArray.map(item => {
+                return <ImportTermCard
+                  term={item.term}
+                  definition={item.definition}
+                  key={item.id}
+                />
+              }) : "Nothing to preview yet"}
             </div>
-            <ImportTermsHeading>
-              Import your data&nbsp;
-            </ImportTermsHeading>
-            <ImportTermsInstruction>
-              Copy and Paste your data here (from Word, Excel, Google Docs, etc.)
-            </ImportTermsInstruction>
-            <ImportTermsForm>
-              <TextArea
-                  placeholder={placeHolderHandler(firstSeparator, secondSeparator)}
-                  ref={textareaRef}
-                  onChange={(e) => setTextInput(e.target.value)}
-                  onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
-              />
-              <ImportButtonWrap>
-                <ImportButton
-                    disabled={!textInput}
-                    onClick={handleImportButton}
-                >
-                  <ButtonTextWrap>Import</ButtonTextWrap>
-                </ImportButton>
-              </ImportButtonWrap>
-              <RadioSeparators
-                  firstSeparator={firstSeparator}
-                  setFirstSeparator={setFirstSeparator}
-                  secondSeparator={secondSeparator}
-                  setSecondSeparator={setSecondSeparator}
-              />
-            </ImportTermsForm>
-          </UIContainer>
-        </ContainerWrap>
-        <PreviewContainer>
-          <UIContainer>
-            <PreviewHeading>
-              <span>Preview</span>
-              <PreviewNumTerms>
-                <span>{termsArray.length > 0 ? termsArray.length : ""}</span>
-              </PreviewNumTerms>
-            </PreviewHeading>
-            <PreviewRows>
-              <div style={{pointerEvents: "none"}}>
-                {termsArray.length > 0 ? termsArray.map(item => {
-                  return <ImportTermCard
-                      term={item.term}
-                      definition={item.definition}
-                      key={item.id}
-                  />
-                }): "Nothing to preview yet"}
-              </div>
-            </PreviewRows>
-          </UIContainer>
-        </PreviewContainer>
-      </div>
+          </PreviewRows>
+        </UIContainer>
+      </PreviewContainer>
+    </div>
   );
 };
 

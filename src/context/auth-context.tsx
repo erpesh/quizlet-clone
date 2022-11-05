@@ -16,7 +16,7 @@ const AuthContext = createContext(INITIAL_STATE);
 
 export default AuthContext;
 
-export const AuthProvider: FC<{children: any}> = ({children}) => {
+export const AuthProvider: FC<{ children: any }> = ({children}) => {
 
   const [isAuth, setIsAuth] = useState(false);
   const [user, loading, error] = useAuthState(auth);
@@ -28,18 +28,18 @@ export const AuthProvider: FC<{children: any}> = ({children}) => {
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider)
-        .then(result => {
-          localStorage.setItem("isAuth", "true");
-          setIsAuth(true);
-        })
+      .then(result => {
+        localStorage.setItem("isAuth", "true");
+        setIsAuth(true);
+      })
   }
 
   const signUserOut = () => {
     signOut(auth)
-        .then(() => {
-          localStorage.clear();
-          setIsAuth(false);
-        })
+      .then(() => {
+        localStorage.clear();
+        setIsAuth(false);
+      })
   };
 
   const contextData = {
@@ -53,8 +53,8 @@ export const AuthProvider: FC<{children: any}> = ({children}) => {
   }
 
   return (
-      <AuthContext.Provider value={contextData}>
-        {children}
-      </AuthContext.Provider>
+    <AuthContext.Provider value={contextData}>
+      {children}
+    </AuthContext.Provider>
   )
 }

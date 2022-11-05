@@ -1,7 +1,7 @@
 export type NavBarAction =
-    | { type: "MOBILE" }
-    | { type: "LIBRARY" }
-    | { type: "MODULES" }
+  | { type: "MOBILE" }
+  | { type: "LIBRARY" }
+  | { type: "MODULES" }
 
 export interface NavBarState {
   isMobileOpen: boolean,
@@ -16,10 +16,10 @@ export const initialState: NavBarState = {
 }
 
 export function navBarReducer(
-    state: NavBarState,
-    action: NavBarAction
+  state: NavBarState,
+  action: NavBarAction
 ): NavBarState {
-  switch (action.type){
+  switch (action.type) {
     case "MOBILE":
       return {
         ...state,

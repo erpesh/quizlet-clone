@@ -44,7 +44,7 @@ export const TextFormater = styled.div`
     word-break: break-word;
     -webkit-font-smoothing: antialiased;
 `
-export const TestItemMessage = styled.div<{textColor: string}>`
+export const TestItemMessage = styled.div<{ textColor: string }>`
     font-size: 1rem;
     font-weight: 600;
     -webkit-letter-spacing: normal;

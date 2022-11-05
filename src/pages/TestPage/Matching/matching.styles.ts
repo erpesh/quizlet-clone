@@ -77,7 +77,7 @@ export const AnswersPart = styled.div`
     margin-top: -1 * 1rem;
     padding-top: 2rem;
 `
-export const AnswerItemContainer = styled.div<{isTaken: boolean}>`
+export const AnswerItemContainer = styled.div<{ isTaken: boolean }>`
     border: 0.0625rem solid ${colors.colorDisabled};
     border-radius: 0.5rem;
     color: ${colors.ink100};
@@ -100,14 +100,14 @@ export const AnswerItemContainer = styled.div<{isTaken: boolean}>`
         outline: none;
     }
     ${props => (props.isTaken ?
-        `opacity: .5;
+    `opacity: .5;
         pointer-events: none;
         border-color: transparent;
         cursor: auto;
         &:hover {
             border-color: transparent;
         }` : ``
-    )}
+)}
 `
 export const AnswerItemWrap = styled.div`
     -webkit-box-align: stretch;
@@ -146,6 +146,5 @@ export const TextFormater = styled.div`
     position: relative;
     word-break: break-word;
     -webkit-font-smoothing: antialiased;
-    font-family: Lucida Grande,Arial!important;
     font-size: 1.1em;
 `

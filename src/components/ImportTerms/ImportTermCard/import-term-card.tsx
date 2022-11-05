@@ -2,19 +2,19 @@ import React, {FC} from 'react';
 import {
   CardContainer,
   CardContent,
-  CardNumber,
   CardInner,
+  CardNumber,
   ContentSideWrap,
+  SideDefinitionContainer,
   SideWordContainer,
-  UITextArea,
-  UITextAreaContent,
+  TextArea,
   TextAreaContainer,
   TextAreaSizer,
   TextAreaWrapper,
-  TextArea,
+  UITextArea,
   UITextAreaBorder,
-  UITextAreaLabel,
-  SideDefinitionContainer
+  UITextAreaContent,
+  UITextAreaLabel
 } from "./import-term-card.styles";
 
 interface Props {
@@ -24,45 +24,45 @@ interface Props {
 
 const ImportTermCard: FC<Props> = ({term, definition}) => {
   return (
-      <CardContainer>
-        <CardContent>
-          <CardNumber/>
-          <CardInner>
-            <div>
-              <ContentSideWrap>
-                <SideWordContainer>
-                  <UITextArea>
-                    <UITextAreaContent>
-                      <TextAreaContainer>
-                        <TextAreaSizer>{term}</TextAreaSizer>
-                        <TextAreaWrapper>
-                          <TextArea readOnly value={term}/>
-                        </TextAreaWrapper>
-                      </TextAreaContainer>
-                      <UITextAreaBorder/>
-                    </UITextAreaContent>
-                    <UITextAreaLabel>Word</UITextAreaLabel>
-                  </UITextArea>
-                </SideWordContainer>
-                <SideDefinitionContainer>
-                  <UITextArea>
-                    <UITextAreaContent>
-                      <TextAreaContainer>
-                        <TextAreaSizer>{definition}</TextAreaSizer>
-                        <TextAreaWrapper>
-                          <TextArea readOnly value={definition}/>
-                        </TextAreaWrapper>
-                      </TextAreaContainer>
-                      <UITextAreaBorder/>
-                    </UITextAreaContent>
-                    <UITextAreaLabel>Definition</UITextAreaLabel>
-                  </UITextArea>
-                </SideDefinitionContainer>
-              </ContentSideWrap>
-            </div>
-          </CardInner>
-        </CardContent>
-      </CardContainer>
+    <CardContainer>
+      <CardContent>
+        <CardNumber/>
+        <CardInner>
+          <div>
+            <ContentSideWrap>
+              <SideWordContainer>
+                <UITextArea>
+                  <UITextAreaContent>
+                    <TextAreaContainer>
+                      <TextAreaSizer>{term}</TextAreaSizer>
+                      <TextAreaWrapper>
+                        <TextArea readOnly value={term}/>
+                      </TextAreaWrapper>
+                    </TextAreaContainer>
+                    <UITextAreaBorder/>
+                  </UITextAreaContent>
+                  <UITextAreaLabel>Word</UITextAreaLabel>
+                </UITextArea>
+              </SideWordContainer>
+              <SideDefinitionContainer>
+                <UITextArea>
+                  <UITextAreaContent>
+                    <TextAreaContainer>
+                      <TextAreaSizer>{definition}</TextAreaSizer>
+                      <TextAreaWrapper>
+                        <TextArea readOnly value={definition}/>
+                      </TextAreaWrapper>
+                    </TextAreaContainer>
+                    <UITextAreaBorder/>
+                  </UITextAreaContent>
+                  <UITextAreaLabel>Definition</UITextAreaLabel>
+                </UITextArea>
+              </SideDefinitionContainer>
+            </ContentSideWrap>
+          </div>
+        </CardInner>
+      </CardContent>
+    </CardContainer>
   );
 };
 

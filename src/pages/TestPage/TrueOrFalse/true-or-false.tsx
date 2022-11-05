@@ -1,5 +1,4 @@
-import React, { FC, useState } from 'react'
-import { testType } from '../../../types/test-page.types'
+import React, {FC, useState} from 'react'
 import AnswerItem from "../../../layouts/answer-item.styles";
 import {
   Container,
@@ -8,33 +7,28 @@ import {
   TitleCenter,
   TitleEnd,
   TitleWrap,
-  WordTitle,
-  WordTitleContainer,
-  WordTitleWrap,
   TopPart,
   Word,
   WordContainer,
-  WordHandler
+  WordHandler,
+  WordTitle,
+  WordTitleContainer,
+  WordTitleWrap
 } from '../test-page.styles'
 import CheckedPart from './checked-part'
-import {
-  AnswerContainer,
-  DefinitionPart,
-  MainSection,
-  SecondTitle,
-  TermPart,
-} from './true-or-false.styles'
+import {AnswerContainer, DefinitionPart, MainSection, SecondTitle, TermPart,} from './true-or-false.styles'
+import {ITestSet} from "../../../types";
 
 interface Props {
   index: number,
-  testSet: testType,
-  setTestSet: (testSet: testType) => void,
+  testSet: ITestSet,
+  setTestSet: (testSet: ITestSet) => void,
   reference: React.RefObject<HTMLDivElement>,
   handleRefScroll: (id: number) => void,
   isTestChecked: boolean
 }
 
-const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll, isTestChecked }) => {
+const TrueOrFalse: FC<Props> = ({testSet, index, setTestSet, reference, handleRefScroll, isTestChecked}) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -43,7 +37,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
     setFocusValue(localFocusValue);
 
     let trueFalseItems = [...testSet.trueFalse];
-    let testItem = { ...testSet.trueFalse[index] };;
+    let testItem = {...testSet.trueFalse[index]};
     if (localFocusValue) {
       testItem.isCorrect = testItem.isTrue.toString() === localFocusValue;
       testItem.isAnswered = true;
@@ -53,7 +47,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
       testItem.isAnswered = false;
     }
     trueFalseItems[index] = testItem;
-    setTestSet({ ...testSet, trueFalse: trueFalseItems });
+    setTestSet({...testSet, trueFalse: trueFalseItems});
   }
 
   return (
@@ -66,8 +60,8 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
                 <TitleWrap>
                   <WordTitle>Term</WordTitle>
                 </TitleWrap>
-                <TitleCenter />
-                <TitleEnd />
+                <TitleCenter/>
+                <TitleEnd/>
               </WordTitleContainer>
             </WordTitleWrap>
             <WordContainer>
@@ -86,8 +80,8 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
                 <TitleWrap>
                   <WordTitle>Definition</WordTitle>
                 </TitleWrap>
-                <TitleCenter />
-                <TitleEnd />
+                <TitleCenter/>
+                <TitleEnd/>
               </WordTitleContainer>
             </WordTitleWrap>
             <WordContainer>
@@ -120,7 +114,7 @@ const TrueOrFalse: FC<Props> = ({ testSet, index, setTestSet, reference, handleR
             False
           </AnswerItem>
         </AnswerContainer>
-      </> : <CheckedPart testItem={testSet.trueFalse[index]} />}
+      </> : <CheckedPart testItem={testSet.trueFalse[index]}/>}
       <NumberContainer>
         <NumberContent>{(index + 1) + " of " + testSet.totalLength}</NumberContent>
       </NumberContainer>

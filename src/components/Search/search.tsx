@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ReactComponent as SearchIcon} from "../../assets/images/search-icon.svg";
-import {SearchContainer, LogoContainer, SearchInput} from "./search.styles";
+import {LogoContainer, SearchContainer, SearchInput} from "./search.styles";
 import {useNavigate} from "react-router-dom";
 
 const Search = () => {
@@ -14,16 +14,16 @@ const Search = () => {
   }
 
   return (
-      <SearchContainer onSubmit={searchSubmit}>
-        <LogoContainer>
-          <SearchIcon/>
-        </LogoContainer>
-        <SearchInput
-            placeholder="Search study sets"
-            onChange={e => setSearchValue(e.target.value)}
-            value={searchValue}
-        />
-      </SearchContainer>
+    <SearchContainer onSubmit={searchSubmit}>
+      <LogoContainer>
+        <SearchIcon/>
+      </LogoContainer>
+      <SearchInput
+        placeholder="Search study sets"
+        onChange={e => setSearchValue(e.target.value)}
+        value={searchValue}
+      />
+    </SearchContainer>
   );
 };
 

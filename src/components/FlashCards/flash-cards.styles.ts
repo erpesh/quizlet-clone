@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../../assets/colors";
 
-export const Wrap = styled.div<{height: string}>`
+export const Wrap = styled.div<{ height: string }>`
   height: ${props => props.height};
   &:focus-visible{
     outline: none;

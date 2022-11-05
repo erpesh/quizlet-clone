@@ -1,11 +1,11 @@
 import React from 'react';
 import {
+  ItemH2,
+  ItemHeader,
+  ListItem,
   StudyModulesContainer,
   StudyModulesWrapper,
-  ListItem,
   UnorderedList,
-  ItemHeader,
-  ItemH2,
 } from "./modules-list.styles";
 import {useNavigate} from "react-router-dom";
 import learnIcon from "../../../assets/images/learn-icon.png";
@@ -29,28 +29,28 @@ const ModulesList: React.FC<Props> = ({id}) => {
   ]
 
   return (
-      <StudyModulesWrapper>
-        <StudyModulesContainer>
-          <UnorderedList>
-            {modules.map(item => <ListItem onClick={() => navigate(item.link)} key={item.name}>
-              <div>
-                <ItemHeader>
-                  <img
-                      src={item.image}
-                      alt={item.name}
-                      width={28}
-                      height={28}
-                      style={{marginRight: ".675rem"}}
-                  />
-                  <ItemH2>
-                    {item.name}
-                  </ItemH2>
-                </ItemHeader>
-              </div>
-            </ListItem>)}
-          </UnorderedList>
-        </StudyModulesContainer>
-      </StudyModulesWrapper>
+    <StudyModulesWrapper>
+      <StudyModulesContainer>
+        <UnorderedList>
+          {modules.map(item => <ListItem onClick={() => navigate(item.link)} key={item.name}>
+            <div>
+              <ItemHeader>
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  width={28}
+                  height={28}
+                  style={{marginRight: ".675rem"}}
+                />
+                <ItemH2>
+                  {item.name}
+                </ItemH2>
+              </ItemHeader>
+            </div>
+          </ListItem>)}
+        </UnorderedList>
+      </StudyModulesContainer>
+    </StudyModulesWrapper>
   );
 };
 

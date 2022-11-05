@@ -21,7 +21,7 @@ export const CardContainer = styled.div`
     outline: none;
   }
 `
-export const SavedIconButton = styled.button<{isActive: boolean}>`
+export const SavedIconButton = styled.button<{ isActive: boolean }>`
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-box-pack: center;

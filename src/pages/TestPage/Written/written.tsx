@@ -1,53 +1,53 @@
-import React, { useState } from 'react';
-import { AssemblyInput } from '../../../components/AssemblyInput/assembly-input';
+import React, {useState} from 'react';
+import {AssemblyInput} from '../../../layouts/assembly-input';
 import BlueButton from "../../../layouts/blue-button.styles";
-import { testType } from '../../../types/test-page.types';
 import {
   NumberContainer,
   NumberContent,
-  TopPart,
   TitleCenter,
   TitleEnd,
   TitleWrap,
-  WordTitle,
-  WordTitleContainer,
-  WordTitleWrap,
+  TopPart,
   Word,
   WordContainer,
-  WordHandler
+  WordHandler,
+  WordTitle,
+  WordTitleContainer,
+  WordTitleWrap
 } from '../test-page.styles';
 import CheckedPart from './checked-part';
 import {
-  BottomPart,
-  WrittenContainer,
+  AnswerForm,
   AnswerTitle,
   AnswerTitleSection,
-  AnswerForm,
+  BottomPart,
   ButtonContainer,
-  InputContainer
+  InputContainer,
+  WrittenContainer
 } from './written.styles';
+import {ITestSet} from "../../../types";
 
 interface Props {
   index: number,
-  testSet: testType,
-  setTestSet: (testSet: testType) => void,
+  testSet: ITestSet,
+  setTestSet: (testSet: ITestSet) => void,
   reference: React.RefObject<HTMLDivElement>,
   handleRefScroll: (id: number) => void,
   isTestChecked: boolean
 }
 
-const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handleRefScroll, isTestChecked }) => {
+const Written: React.FC<Props> = ({index, testSet, setTestSet, reference, handleRefScroll, isTestChecked}) => {
 
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     let writtenItems = [...testSet.written];
-    let writtenItem = { ...testSet.written[index] };
+    let writtenItem = {...testSet.written[index]};
     writtenItem.isCorrect = event.target.value === writtenItem.term;
     writtenItem.answer = event.target.value;
     writtenItems[index] = writtenItem;
-    setTestSet({ ...testSet, written: writtenItems });
+    setTestSet({...testSet, written: writtenItems});
   }
 
   const onClickHandler = (e: React.MouseEvent<HTMLElement>) => {
@@ -64,8 +64,8 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handl
               <TitleWrap>
                 <WordTitle>Definition</WordTitle>
               </TitleWrap>
-              <TitleCenter />
-              <TitleEnd />
+              <TitleCenter/>
+              <TitleEnd/>
             </WordTitleContainer>
           </WordTitleWrap>
           <WordContainer>
@@ -78,7 +78,7 @@ const Written: React.FC<Props> = ({ index, testSet, setTestSet, reference, handl
         </TopPart>
       </div>
       <BottomPart>
-        {isTestChecked ? <CheckedPart testItem={testSet.written[index]} /> : <>
+        {isTestChecked ? <CheckedPart testItem={testSet.written[index]}/> : <>
           <AnswerTitle>
             <AnswerTitleSection>Your answer</AnswerTitleSection>
           </AnswerTitle>

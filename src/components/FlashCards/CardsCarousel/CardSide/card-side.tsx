@@ -4,8 +4,8 @@ import {
   CarouselButtonsContainer,
   CarouselButtonsWrap,
   NavButtonContainer,
-  SavedIconButton,
   NavButtonSpan,
+  SavedIconButton,
   TermOrDefData,
   TermOrDefDataContent,
   TextFormater
@@ -39,48 +39,48 @@ const CardSide: FC<Props> = (props) => {
   } = props
 
   return (
-      <CardContainer>
-        <div style={{
-          gridColumn: 1,
-          gridRow: 1,
-          display: "flex",
-          alignItems: "center"
-        }}>{isTerm ? "Term" : "Definition"}</div>
-        <div style={{gridColumn: 2, gridRow: 1, display: "flex", justifyContent: "center", alignItems: "center"}}>
-          {`${progressNumber + 1} / ${length}`}
-        </div>
-        <div style={{gridColumn: 3, gridRow: 1, display: "flex", justifyContent: "flex-end"}}>
-          <SavedIconButton
-              isActive={!!isMarked}
-              onClick={() => toggleCardMark(progressNumber)}
-          >
-            <AiFillStar style={{width: "100%", height: "100%"}}/>
-          </SavedIconButton>
-        </div>
-        <TermOrDefData onClick={toggleTermSide}>
-          <TermOrDefDataContent>
-            <div>
-              <TextFormater>
-                <div style={{color: "black"}}>{value}</div>
-              </TextFormater>
-            </div>
-          </TermOrDefDataContent>
-        </TermOrDefData>
-        <CarouselButtonsWrap>
-          <CarouselButtonsContainer>
-            <NavButtonContainer onClick={handleLeftButton}>
-              <NavButtonSpan>
-                <FaChevronLeft/>
-              </NavButtonSpan>
-            </NavButtonContainer>
-            <NavButtonContainer onClick={handleRightButton}>
-              <NavButtonSpan>
-                <FaChevronRight/>
-              </NavButtonSpan>
-            </NavButtonContainer>
-          </CarouselButtonsContainer>
-        </CarouselButtonsWrap>
-      </CardContainer>
+    <CardContainer>
+      <div style={{
+        gridColumn: 1,
+        gridRow: 1,
+        display: "flex",
+        alignItems: "center"
+      }}>{isTerm ? "Term" : "Definition"}</div>
+      <div style={{gridColumn: 2, gridRow: 1, display: "flex", justifyContent: "center", alignItems: "center"}}>
+        {`${progressNumber + 1} / ${length}`}
+      </div>
+      <div style={{gridColumn: 3, gridRow: 1, display: "flex", justifyContent: "flex-end"}}>
+        <SavedIconButton
+          isActive={!!isMarked}
+          onClick={() => toggleCardMark(progressNumber)}
+        >
+          <AiFillStar style={{width: "100%", height: "100%"}}/>
+        </SavedIconButton>
+      </div>
+      <TermOrDefData onClick={toggleTermSide}>
+        <TermOrDefDataContent>
+          <div>
+            <TextFormater>
+              <div style={{color: "black"}}>{value}</div>
+            </TextFormater>
+          </div>
+        </TermOrDefDataContent>
+      </TermOrDefData>
+      <CarouselButtonsWrap>
+        <CarouselButtonsContainer>
+          <NavButtonContainer onClick={handleLeftButton}>
+            <NavButtonSpan>
+              <FaChevronLeft/>
+            </NavButtonSpan>
+          </NavButtonContainer>
+          <NavButtonContainer onClick={handleRightButton}>
+            <NavButtonSpan>
+              <FaChevronRight/>
+            </NavButtonSpan>
+          </NavButtonContainer>
+        </CarouselButtonsContainer>
+      </CarouselButtonsWrap>
+    </CardContainer>
   );
 };
 

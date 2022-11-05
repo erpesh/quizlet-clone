@@ -1,10 +1,10 @@
-import termType, {learnTerm} from "../../types/termType";
+import {ITerm, ILearnTerm} from "../../types";
 
-function generateQuestions(terms: termType[]) {
-  let result: learnTerm[] = [];
-  for (let i = 0; i < terms.length; i++){
+function generateQuestions(terms: ITerm[]) {
+  let result: ILearnTerm[] = [];
+  for (let i = 0; i < terms.length; i++) {
     let questions: string[] = [terms[i].term];
-    while (questions.length < 4){
+    while (questions.length < 4) {
       const randomIndex = Math.floor(Math.random() * terms.length);
       if (!questions.includes(terms[randomIndex].term))
         questions.push(terms[randomIndex].term);
@@ -14,4 +14,5 @@ function generateQuestions(terms: termType[]) {
   }
   return result.sort(() => 0.5 - Math.random());
 }
+
 export default generateQuestions;

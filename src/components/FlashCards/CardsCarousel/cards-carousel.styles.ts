@@ -57,7 +57,7 @@ const nextCardAnim = keyframes`
     transform: rotateY(0);
   }
 `
-export const GridContainer = styled.div<{animate: boolean, animation: string}>`
+export const GridContainer = styled.div<{ animate: boolean, animation: string }>`
   display: grid;
   grid-auto-rows: minmax(0,1fr);
   -webkit-backface-visibility: hidden;
@@ -70,15 +70,15 @@ export const GridContainer = styled.div<{animate: boolean, animation: string}>`
   right: 0;
   top: 0;
   -webkit-animation: ${props => {
-    if (props.animation === "prev") return prevCardAnim;
-    else if (props.animation === "next") return nextCardAnim;
-    else return flipAnim;
-  }} ${props => props.animation === "flip" ? ".35s" : ".15s"} ease-in-out 1;
+  if (props.animation === "prev") return prevCardAnim;
+  else if (props.animation === "next") return nextCardAnim;
+  else return flipAnim;
+}} ${props => props.animation === "flip" ? ".35s" : ".15s"} ease-in-out 1;
   animation: ${props => {
-    if (props.animation === "prev") return prevCardAnim;
-    else if (props.animation === "next") return nextCardAnim;
-    else return flipAnim;
-  }} ${props => props.animation === "flip" ? ".35s" : ".15s"} ease-in-out 1;
+  if (props.animation === "prev") return prevCardAnim;
+  else if (props.animation === "next") return nextCardAnim;
+  else return flipAnim;
+}} ${props => props.animation === "flip" ? ".35s" : ".15s"} ease-in-out 1;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   animation-play-state: ${props => props.animate ? "active" : "paused"};

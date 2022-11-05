@@ -1,21 +1,21 @@
 import React, {useContext, useState} from 'react';
 import {
-  ShadowTransitions,
-  TopPartContainer,
-  BottomPartContainer,
-  TopPartHeader,
-  TopPartWrap,
-  HeaderTitle,
-  QuestionWrap,
-  QuestionContainer,
-  TextFormatter,
-  BottomPartHeader,
   AnswersGrid,
+  BottomPartContainer,
+  BottomPartHeader,
+  HeaderTitle,
   IncorrectAnswerSlideUp,
+  QuestionContainer,
+  QuestionWrap,
+  ShadowTransitions,
   SlideUpContainer,
-  SlideUpMessage
+  SlideUpMessage,
+  TextFormatter,
+  TopPartContainer,
+  TopPartHeader,
+  TopPartWrap
 } from "./question-box.styles";
-import {learnTerm} from "../../../types/termType";
+import {ILearnTerm} from "../../../types";
 import AnswerItem from "../../../layouts/answer-item.styles";
 import {AiOutlineCheck} from "react-icons/ai";
 import colors from "../../../assets/colors";
@@ -25,7 +25,7 @@ import BlueButton from '../../../layouts/blue-button.styles';
 import AuthContext from "../../../context/auth-context";
 
 interface Props {
-  questions: learnTerm[]
+  questions: ILearnTerm[]
 }
 
 const QuestionBox: React.FC<Props> = ({questions}) => {
@@ -52,70 +52,70 @@ const QuestionBox: React.FC<Props> = ({questions}) => {
   }
 
   return (
-      <>
-        <ShadowTransitions onKeyDown={() => moveToNextQuestion(300)}>
-          <TopPartContainer>
-            <TopPartHeader>
-              <TopPartWrap>
-                <HeaderTitle>Definition</HeaderTitle>
-              </TopPartWrap>
-            </TopPartHeader>
-            <QuestionWrap>
-              <QuestionContainer>
-                <TextFormatter>{questions[activeIndex].definition}</TextFormatter>
-              </QuestionContainer>
-            </QuestionWrap>
-          </TopPartContainer>
-          <BottomPartContainer>
-            {!userAnswer && <BottomPartHeader>Select the correct term</BottomPartHeader>}
-            {!!userAnswer ? userAnswer === questions[activeIndex].term ?
-                    <BottomPartHeader style={{color: colors.green400}}>Awesome!</BottomPartHeader> :
-                    <BottomPartHeader style={{color: colors.coral300}}>Not quite. You're still learning!</BottomPartHeader>
-                : undefined}
-            <AnswersGrid>
-              {questions[activeIndex].questions.map((item: string) => (
-                  <AnswerItem
-                      key={item}
-                      tabIndex={0}
-                      color={!!userAnswer ?
-                          item === questions[activeIndex].term ?
-                              colors.green400 :
-                              item === userAnswer ? colors.coral300 : undefined : undefined}
-                      bgColor={!!userAnswer && item === questions[activeIndex].term ? colors.green100 : undefined}
-                      removeHover={!!userAnswer}
-                      style={!!userAnswer ? {
-                        transition: "all 0.8s ease",
-                        WebkitTransition: "all 0.8s ease",
-                        MozTransition: "all 0.8s ease"
-                      } : {}}
-                      onClick={() => handleClick(item)}
-                  >
-                    {(!!userAnswer && item === questions[activeIndex].term) &&
-                        <AiOutlineCheck style={{color: colors.green400, marginRight: ".625rem"}}/>}
-                    {(userAnswer === item && userAnswer !== questions[activeIndex].term) &&
-                        <FiX style={{color: colors.coral300, marginRight: ".625rem"}}/>}
-                    {item}
-                  </AnswerItem>
-              ))}
-            </AnswersGrid>
-          </BottomPartContainer>
-        </ShadowTransitions>
-        {(!!userAnswer && userAnswer !== questions[activeIndex].term) && <>
-            <IncorrectAnswerSlideUp>
-                <SlideUpContainer>
-                  {width > 1032 && <SlideUpMessage>Press any key</SlideUpMessage>}
-                    <BlueButton
-                        padding={".75rem 1.5rem"}
-                        radius={".5rem"}
-                        fontSize={"1rem"}
-                        onClick={() => moveToNextQuestion(300)}
-                    >
-                        Continue
-                    </BlueButton>
-                </SlideUpContainer>
-            </IncorrectAnswerSlideUp>
-        </>}
-      </>
+    <>
+      <ShadowTransitions onKeyDown={() => moveToNextQuestion(300)}>
+        <TopPartContainer>
+          <TopPartHeader>
+            <TopPartWrap>
+              <HeaderTitle>Definition</HeaderTitle>
+            </TopPartWrap>
+          </TopPartHeader>
+          <QuestionWrap>
+            <QuestionContainer>
+              <TextFormatter>{questions[activeIndex].definition}</TextFormatter>
+            </QuestionContainer>
+          </QuestionWrap>
+        </TopPartContainer>
+        <BottomPartContainer>
+          {!userAnswer && <BottomPartHeader>Select the correct term</BottomPartHeader>}
+          {!!userAnswer ? userAnswer === questions[activeIndex].term ?
+              <BottomPartHeader style={{color: colors.green400}}>Awesome!</BottomPartHeader> :
+              <BottomPartHeader style={{color: colors.coral300}}>Not quite. You're still learning!</BottomPartHeader>
+            : undefined}
+          <AnswersGrid>
+            {questions[activeIndex].questions.map((item: string) => (
+              <AnswerItem
+                key={item}
+                tabIndex={0}
+                color={!!userAnswer ?
+                  item === questions[activeIndex].term ?
+                    colors.green400 :
+                    item === userAnswer ? colors.coral300 : undefined : undefined}
+                bgColor={!!userAnswer && item === questions[activeIndex].term ? colors.green100 : undefined}
+                removeHover={!!userAnswer}
+                style={!!userAnswer ? {
+                  transition: "all 0.8s ease",
+                  WebkitTransition: "all 0.8s ease",
+                  MozTransition: "all 0.8s ease"
+                } : {}}
+                onClick={() => handleClick(item)}
+              >
+                {(!!userAnswer && item === questions[activeIndex].term) &&
+                  <AiOutlineCheck style={{color: colors.green400, marginRight: ".625rem"}}/>}
+                {(userAnswer === item && userAnswer !== questions[activeIndex].term) &&
+                  <FiX style={{color: colors.coral300, marginRight: ".625rem"}}/>}
+                {item}
+              </AnswerItem>
+            ))}
+          </AnswersGrid>
+        </BottomPartContainer>
+      </ShadowTransitions>
+      {(!!userAnswer && userAnswer !== questions[activeIndex].term) && <>
+        <IncorrectAnswerSlideUp>
+          <SlideUpContainer>
+            {width > 1032 && <SlideUpMessage>Press any key</SlideUpMessage>}
+            <BlueButton
+              padding={".75rem 1.5rem"}
+              radius={".5rem"}
+              fontSize={"1rem"}
+              onClick={() => moveToNextQuestion(300)}
+            >
+              Continue
+            </BlueButton>
+          </SlideUpContainer>
+        </IncorrectAnswerSlideUp>
+      </>}
+    </>
   );
 };
 

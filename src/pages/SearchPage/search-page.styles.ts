@@ -66,11 +66,12 @@ export const SearchInput = styled.input`
   line-height: 1.5;
   padding: 0 1rem 0.25rem;
   width: 100%;
+
   &:focus {
     outline: none;
   }
 `
-export const Button = styled.button<{radius: string, padding: string}>`
+export const Button = styled.button<{ radius: string, padding: string }>`
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-box-pack: center;
@@ -100,6 +101,7 @@ export const Button = styled.button<{radius: string, padding: string}>`
   border-radius: ${props => props.radius};
   padding: ${props => props.padding};
   width: auto;
+
   &:hover {
     background-color: ${colors.neurtal300};
   }
@@ -138,7 +140,7 @@ export const ResultListContainer = styled.div`
     grid-template-columns: 1fr 1fr;
     row-gap: 1rem;
   }
-  @media (max-width: 38.75rem){
+  @media (max-width: 38.75rem) {
     display: block;
   }
 `

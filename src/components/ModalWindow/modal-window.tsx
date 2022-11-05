@@ -8,19 +8,19 @@ interface Props {
 
 const ModalWindow: FC<Props> = ({isModalActive, setIsModalActive}) => {
   return (
+    <div
+      className={isModalActive ? "modal active" : "modal"}
+      onClick={() => setIsModalActive(false)}
+    >
       <div
-          className={isModalActive? "modal active" : "modal"}
-          onClick={() => setIsModalActive(false)}
+        className={isModalActive ? "modal__container active" : "modal__container"}
+        onClick={(event => event.stopPropagation())}
       >
-        <div
-            className={isModalActive? "modal__container active": "modal__container"}
-            onClick={(event => event.stopPropagation())}
-        >
-          {/*<div style={{overflowY: "scroll", height:"400px"}}>*/}
+        {/*<div style={{overflowY: "scroll", height:"400px"}}>*/}
 
-          {/*</div>*/}
-        </div>
+        {/*</div>*/}
       </div>
+    </div>
   );
 };
 

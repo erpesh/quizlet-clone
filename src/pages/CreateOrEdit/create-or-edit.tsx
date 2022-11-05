@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import Create from "../../pages/Create/create";
+import Create from "./Create/create";
 import {INITIAL_CREATE_STATE} from "./initial-state";
 import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
@@ -31,9 +31,9 @@ const CreateOrEdit: FC<Props> = ({isCreate}) => {
   }, [])
 
   return (
-      <>
-        {!!data && <Create data={data} setData={setData} isCreate={isCreate}/>}
-      </>
+    <>
+      {!!data && <Create data={data} setData={setData} isCreate={isCreate}/>}
+    </>
   );
 };
 

@@ -132,7 +132,6 @@ export const TextFormatter = styled.div`
   position: relative;
   word-break: break-word;
   -webkit-font-smoothing: antialiased;
-  font-family: Lucida Grande,Arial!important;
   font-size: 20px;
 `
 export const BottomPartHeader = styled.section`

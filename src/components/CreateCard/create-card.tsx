@@ -1,22 +1,22 @@
 import React, {FC} from "react";
-import setDataInterface from "../../types/set-data.types";
+import {IStudySet} from "../../types";
 import {
-  CardContainer,
-  TopPart,
   BottomPart,
-  TermContentWrap,
-  TermContentPart,
+  CardContainer,
+  DeleteButton,
+  DeleteButtonContainer,
+  DeleteButtonWrapper,
+  IDSpan,
   InputLabel,
   InputLabelText,
-  IDSpan,
-  DeleteButtonContainer,
-  DeleteButton,
-  DeleteButtonWrapper,
-  TermRowSeparator,
+  ProseMirrorInput,
   RowBetweenButton,
   SeparateAddButton,
   SeparateButtonWrap,
-  ProseMirrorInput
+  TermContentPart,
+  TermContentWrap,
+  TermRowSeparator,
+  TopPart
 } from "./create-card.styles";
 import {ReactComponent as DeleteIcon} from "../../assets/images/delete-icon.svg";
 import {ReactComponent as PlusIcon} from "../../assets/images/plus-icon.svg";
@@ -24,8 +24,8 @@ import "./styles.css"
 
 interface Props {
   id: number,
-  data: setDataInterface,
-  setData: (data: setDataInterface) => void
+  data: IStudySet,
+  setData: (data: IStudySet) => void
 }
 
 const CreateCard: FC<Props> = ({id, data, setData}) => {
@@ -57,11 +57,11 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
   }
 
   return (
-      <div className={"card-container"}>
-        <CardContainer>
-          <TopPart>
-            <IDSpan>{id + 1}</IDSpan>
-            <DeleteButtonContainer>
+    <div className={"card-container"}>
+      <CardContainer>
+        <TopPart>
+          <IDSpan>{id + 1}</IDSpan>
+          <DeleteButtonContainer>
             <span style={{display: "inline-block", verticalAlign: "bottom"}}>
               <span style={{display: "inline-block"}}>
                 <DeleteButton disabled={data.terms.length < 3} onClick={removeCard}>
@@ -71,68 +71,68 @@ const CreateCard: FC<Props> = ({id, data, setData}) => {
                 </DeleteButton>
               </span>
             </span>
-            </DeleteButtonContainer>
-          </TopPart>
-          <BottomPart>
-            <div>
-              <TermContentWrap>
-                <TermContentPart>
-                  <div style={{position: "relative"}}>
-                    <div style={{paddingTop: "1rem"}}>
-                      <div className="PMEditor">
-                        <ProseMirrorInput
-                            placeholder={!data.terms[id]?.term ? "Enter the Term" : ""}
-                            onChange={handleTermInput}
-                            value={data.terms[id]?.term}
-                        />
-                      </div>
-                      <div className={"PMEditorBorder"}/>
-                      <span/>
-                      <InputLabel>
-                        <InputLabelText>TERM</InputLabelText>
-                      </InputLabel>
+          </DeleteButtonContainer>
+        </TopPart>
+        <BottomPart>
+          <div>
+            <TermContentWrap>
+              <TermContentPart>
+                <div style={{position: "relative"}}>
+                  <div style={{paddingTop: "1rem"}}>
+                    <div className="PMEditor">
+                      <ProseMirrorInput
+                        placeholder={!data.terms[id]?.term ? "Enter the Term" : ""}
+                        onChange={handleTermInput}
+                        value={data.terms[id]?.term}
+                      />
                     </div>
+                    <div className={"PMEditorBorder"}/>
+                    <span/>
+                    <InputLabel>
+                      <InputLabelText>TERM</InputLabelText>
+                    </InputLabel>
                   </div>
-                </TermContentPart>
-                <TermContentPart>
-                  <div style={{position: "relative"}}>
-                    <div style={{paddingTop: "1rem"}}>
-                      <div className="PMEditor">
-                        <ProseMirrorInput
-                            placeholder={!data.terms[id]?.definition ? "Enter the Definition" : ""}
-                            onChange={handleDefinitionInput}
-                            value={data.terms[id]?.definition}
-                        />
-                      </div>
-                      <div className={"PMEditorBorder"}/>
-                      <span/>
-                      <InputLabel>
-                        <InputLabelText>DEFINITION</InputLabelText>
-                      </InputLabel>
+                </div>
+              </TermContentPart>
+              <TermContentPart>
+                <div style={{position: "relative"}}>
+                  <div style={{paddingTop: "1rem"}}>
+                    <div className="PMEditor">
+                      <ProseMirrorInput
+                        placeholder={!data.terms[id]?.definition ? "Enter the Definition" : ""}
+                        onChange={handleDefinitionInput}
+                        value={data.terms[id]?.definition}
+                      />
                     </div>
+                    <div className={"PMEditorBorder"}/>
+                    <span/>
+                    <InputLabel>
+                      <InputLabelText>DEFINITION</InputLabelText>
+                    </InputLabel>
                   </div>
-                </TermContentPart>
-              </TermContentWrap>
-            </div>
-          </BottomPart>
-        </CardContainer>
-        <TermRowSeparator>
-          <RowBetweenButton>
+                </div>
+              </TermContentPart>
+            </TermContentWrap>
+          </div>
+        </BottomPart>
+      </CardContainer>
+      <TermRowSeparator>
+        <RowBetweenButton>
             <span style={{display: "inline-block"}}>
               {id < data.terms.length - 1 && <SeparateAddButton
-                  tabIndex={-1}
-                  type={"button"}
-                  title={"+ Add card"}
-                  onClick={addCardBetween}
+                tabIndex={-1}
+                type={"button"}
+                title={"+ Add card"}
+                onClick={addCardBetween}
               >
                 <SeparateButtonWrap>
                   <PlusIcon/>
                 </SeparateButtonWrap>
               </SeparateAddButton>}
             </span>
-          </RowBetweenButton>
-        </TermRowSeparator>
-      </div>
+        </RowBetweenButton>
+      </TermRowSeparator>
+    </div>
   );
 };
 

@@ -9,7 +9,8 @@ function useOutsideClickAndScroll(ref: any, ignoredRef: any, callBack: () => voi
         callBack();
       }
     }
-    function handleScroll(){
+
+    function handleScroll() {
       callBack();
     }
 

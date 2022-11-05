@@ -1,26 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {testType} from '../../../types/test-page.types';
-import {
-  NumberContainer,
-  NumberContent
-} from '../test-page.styles';
+import {ITestSet} from '../../../types';
+import {NumberContainer, NumberContent} from '../test-page.styles';
 import CheckedPart from './CheckedPart/checked-part';
 import DefinitionsItem from './DefinitionsItem/definitions-item';
 import {
-  Container,
+  AnswerItemContainer,
+  AnswerItemContent,
+  AnswerItemWrap,
+  AnswersPart,
   ComponentHeader,
   ComponentTitle,
+  Container,
   DefinitionsPart,
-  AnswersPart,
-  AnswerItemContainer,
-  AnswerItemWrap,
-  AnswerItemContent,
   TextFormater,
 } from './matching.styles';
 
 interface Props {
-  testSet: testType,
-  setTestSet: (testSet: testType) => void,
+  testSet: ITestSet,
+  setTestSet: (testSet: ITestSet) => void,
   reference: React.RefObject<HTMLDivElement>,
   handleRefScroll: (id: number) => void,
   isTestChecked: boolean
@@ -60,46 +57,46 @@ const Matching: React.FC<Props> = ({testSet, setTestSet, reference, handleRefScr
   }, [isTestChecked])
 
   return (
-      <Container ref={reference}>
-        <ComponentTitle>Match term to definition</ComponentTitle>
-        <ComponentHeader>Select a term to match it with its definition</ComponentHeader>
-        <div>{isTestChecked ? <CheckedPart matchingTest={testSet.matching}/> : <>
-          <DefinitionsPart>
-            {testSet.matching.items.map((item, index) => {
-              return <DefinitionsItem
-                  key={item.id}
-                  testItem={item}
-                  index={index}
-                  focusedItem={focusedItem}
-                  setFocusedItem={setFocusedItem}
-                  isNoAnswers={testSet.matching.items.filter(item => item.answer !== null).length === 0}
-                  testSet={testSet}
-                  setTestSet={setTestSet}
-              />
+    <Container ref={reference}>
+      <ComponentTitle>Match term to definition</ComponentTitle>
+      <ComponentHeader>Select a term to match it with its definition</ComponentHeader>
+      <div>{isTestChecked ? <CheckedPart matchingTest={testSet.matching}/> : <>
+        <DefinitionsPart>
+          {testSet.matching.items.map((item, index) => {
+            return <DefinitionsItem
+              key={item.id}
+              testItem={item}
+              index={index}
+              focusedItem={focusedItem}
+              setFocusedItem={setFocusedItem}
+              isNoAnswers={testSet.matching.items.filter(item => item.answer !== null).length === 0}
+              testSet={testSet}
+              setTestSet={setTestSet}
+            />
+          })}
+        </DefinitionsPart>
+        <AnswersPart>
+          {testSet.matching.answers
+            .map(item => {
+              return <AnswerItemContainer
+                key={item.answer}
+                isTaken={checkIfAnswerTaken(item.index)}
+                onClick={() => answerItemOnClickHandler(item.answer)}
+              >
+                <AnswerItemWrap>
+                  <AnswerItemContent>
+                    <TextFormater>{item.answer}</TextFormater>
+                  </AnswerItemContent>
+                </AnswerItemWrap>
+              </AnswerItemContainer>
             })}
-          </DefinitionsPart>
-          <AnswersPart>
-            {testSet.matching.answers
-                .map(item => {
-                  return <AnswerItemContainer
-                      key={item.answer}
-                      isTaken={checkIfAnswerTaken(item.index)}
-                      onClick={() => answerItemOnClickHandler(item.answer)}
-                  >
-                    <AnswerItemWrap>
-                      <AnswerItemContent>
-                        <TextFormater>{item.answer}</TextFormater>
-                      </AnswerItemContent>
-                    </AnswerItemWrap>
-                  </AnswerItemContainer>
-                })}
-          </AnswersPart>
-        </>}
-        </div>
-        <NumberContainer>
-          <NumberContent>{calculateOrderNumber()}</NumberContent>
-        </NumberContainer>
-      </Container>
+        </AnswersPart>
+      </>}
+      </div>
+      <NumberContainer>
+        <NumberContent>{calculateOrderNumber()}</NumberContent>
+      </NumberContainer>
+    </Container>
   );
 };
 

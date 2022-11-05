@@ -13,14 +13,14 @@ export const UIContainer = styled.div`
   margin-right: auto;
   max-width: 64em;
 `
-export const HomeCardContainer = styled.div<{isLeft: boolean}>`
+export const HomeCardContainer = styled.div<{ isLeft: boolean }>`
   align-items: center;
   display: flex;
   flex-direction: row;
   padding-top: 0;
   padding-bottom: 0;
   @media (max-width: 40.625rem){
-    ${props => props.isLeft? "flex-direction: column;" : "flex-direction: column-reverse;"}
+    ${props => props.isLeft ? "flex-direction: column;" : "flex-direction: column-reverse;"}
   }
 `
 export const ImageContainer = styled.div`
@@ -34,15 +34,15 @@ export const Image = styled.img`
   width: 100%;
   border: none;
 `
-export const TextContainer = styled.div<{isLeft: boolean}>`
+export const TextContainer = styled.div<{ isLeft: boolean }>`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
-  ${props => props.isLeft? "margin-left: 5.375rem;" : "margin-right: 5.375rem;"}
+  ${props => props.isLeft ? "margin-left: 5.375rem;" : "margin-right: 5.375rem;"}
   gap: 1rem;
   text-align: center;
   @media (max-width: 69.375rem){
-    ${props => props.isLeft? "margin-left: 3.375rem;" : "margin-right: 3.375rem;"}
+    ${props => props.isLeft ? "margin-left: 3.375rem;" : "margin-right: 3.375rem;"}
   }
   @media (max-width: 40.625rem){
     margin-left: 0;

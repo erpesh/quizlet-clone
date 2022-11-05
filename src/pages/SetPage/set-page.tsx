@@ -1,17 +1,15 @@
-import {useNavigate, useParams} from "react-router-dom";
-import {collection, getDocs} from "firebase/firestore";
-import {auth, db} from "../../firebase-config";
-import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {useState} from "react";
 import {
-  SetPageWrapper,
-  SetPageContainer,
-  SetTitle,
-  SetModelSection,
-  HideBelow,
   HideAbove,
+  HideBelow,
   MarginBottom,
-  ProgressBarContainer,
   ProgressBar,
+  ProgressBarContainer,
+  SetModelSection,
+  SetPageContainer,
+  SetPageWrapper,
+  SetTitle,
 } from "./set-page.styles";
 import ModulesList from "./ModulesList/modules-list";
 import FlashCards from "../../components/FlashCards/flash-cards";
@@ -25,32 +23,32 @@ const SetPage = () => {
   const [progressNumber, setProgressNumber] = useState(0);
 
   return (
-      <SetPageWrapper tabIndex={0}>
-        {studySet ? (
-            <SetPageContainer>
-              <SetTitle>{studySet.title}</SetTitle>
-              <SetModelSection>
-                <HideBelow>
-                  <ModulesList id={id}/>
-                </HideBelow>
-                <FlashCards studySet={studySet}
-                            setStudySet={setStudySet}
-                            progressNumber={progressNumber}
-                            setProgressNumber={setProgressNumber}
-                            height={"100%"}
-                >
-                  <MarginBottom>
-                    <ProgressBarContainer>
-                      <ProgressBar style={{width: `${(progressNumber + 1) * 100 / studySet.terms.length}%`}}/>
-                    </ProgressBarContainer>
-                  </MarginBottom>
-                </FlashCards>
-                <HideAbove>
-                  <ModulesList id={id}/>
-                </HideAbove>
-              </SetModelSection>
-            </SetPageContainer>) : <div/>}
-      </SetPageWrapper>
+    <SetPageWrapper tabIndex={0}>
+      {studySet ? (
+        <SetPageContainer>
+          <SetTitle>{studySet.title}</SetTitle>
+          <SetModelSection>
+            <HideBelow>
+              <ModulesList id={id}/>
+            </HideBelow>
+            <FlashCards studySet={studySet}
+                        setStudySet={setStudySet}
+                        progressNumber={progressNumber}
+                        setProgressNumber={setProgressNumber}
+                        height={"100%"}
+            >
+              <MarginBottom>
+                <ProgressBarContainer>
+                  <ProgressBar style={{width: `${(progressNumber + 1) * 100 / studySet.terms.length}%`}}/>
+                </ProgressBarContainer>
+              </MarginBottom>
+            </FlashCards>
+            <HideAbove>
+              <ModulesList id={id}/>
+            </HideAbove>
+          </SetModelSection>
+        </SetPageContainer>) : <div/>}
+    </SetPageWrapper>
   );
 };
 

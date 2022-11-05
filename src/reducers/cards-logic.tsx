@@ -5,10 +5,10 @@ enum Animation {
 }
 
 export type CardsLogicAction =
-    | { type: "TOGGLE_SIDE" }
-    | { type: "NEXT_CARD" }
-    | { type: "PREV_CARD" }
-    | { type: "FLIP_SIDE" }
+  | { type: "TOGGLE_SIDE" }
+  | { type: "NEXT_CARD" }
+  | { type: "PREV_CARD" }
+  | { type: "FLIP_SIDE" }
 
 export interface CardsLogicState {
   animation: Animation,
@@ -25,8 +25,8 @@ export const initialState: CardsLogicState = {
 }
 
 export function cardsLogicReducer(
-    state: CardsLogicState,
-    action: CardsLogicAction
+  state: CardsLogicState,
+  action: CardsLogicAction
 ): CardsLogicState {
   switch (action.type) {
     case "TOGGLE_SIDE":

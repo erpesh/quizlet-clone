@@ -1,6 +1,5 @@
-import React, { FC, useState } from 'react';
-import termType from '../../../types/termType';
-import { testType } from '../../../types/test-page.types';
+import React, {FC, useState} from 'react';
+import {ITerm, ITestSet} from '../../../types';
 import {
   Container,
   NumberContainer,
@@ -8,32 +7,28 @@ import {
   TitleCenter,
   TitleEnd,
   TitleWrap,
-  WordTitle,
-  WordTitleContainer,
-  WordTitleWrap,
+  TopPart,
   Word,
   WordContainer,
   WordHandler,
-  TopPart
+  WordTitle,
+  WordTitleContainer,
+  WordTitleWrap
 } from '../test-page.styles';
 import CheckedPart from './checked-part';
-import {
-  AnswersPart,
-  AsnwerTitleContainer,
-  AnswerContainer
-} from './multiple-choice.styles';
+import {AnswerContainer, AnswersPart, AsnwerTitleContainer} from './multiple-choice.styles';
 import AnswerItem from '../../../layouts/answer-item.styles';
 
 interface Props {
   index: number,
-  testSet: testType,
-  setTestSet: (testSet: testType) => void,
+  testSet: ITestSet,
+  setTestSet: (testSet: ITestSet) => void,
   reference: React.RefObject<HTMLDivElement>,
   handleRefScroll: (id: number) => void,
   isTestChecked: boolean
 }
 
-const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, handleRefScroll, isTestChecked }) => {
+const MultipleChoice: FC<Props> = ({testSet, index, setTestSet, reference, handleRefScroll, isTestChecked}) => {
 
   const [focusValue, setFocusValue] = useState<string | null>(null);
 
@@ -42,7 +37,7 @@ const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, hand
     setFocusValue(localFocusValue);
 
     let multipleChoiceItems = [...testSet.multipleChoice];
-    let testItem = { ...testSet.multipleChoice[index] };;
+    let testItem = {...testSet.multipleChoice[index]};
     if (localFocusValue) {
       testItem.isCorrect = testItem.term === localFocusValue;
       testItem.answer = localFocusValue;
@@ -52,19 +47,19 @@ const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, hand
       testItem.answer = null;
     }
     multipleChoiceItems[index] = testItem;
-    setTestSet({ ...testSet, multipleChoice: multipleChoiceItems });
+    setTestSet({...testSet, multipleChoice: multipleChoiceItems});
   }
 
   return (
-    <Container ref={reference} style={{ marginTop: "2rem" }} tabIndex={-1}>
+    <Container ref={reference} style={{marginTop: "2rem"}} tabIndex={-1}>
       <TopPart>
         <WordTitleWrap>
           <WordTitleContainer>
             <TitleWrap>
               <WordTitle>Definition</WordTitle>
             </TitleWrap>
-            <TitleCenter />
-            <TitleEnd />
+            <TitleCenter/>
+            <TitleEnd/>
           </WordTitleContainer>
         </WordTitleWrap>
         <WordContainer>
@@ -76,12 +71,12 @@ const MultipleChoice: FC<Props> = ({ testSet, index, setTestSet, reference, hand
         </WordContainer>
       </TopPart>
       <AnswersPart>
-        {isTestChecked ? <CheckedPart testItem={testSet.multipleChoice[index]} /> : <>
+        {isTestChecked ? <CheckedPart testItem={testSet.multipleChoice[index]}/> : <>
           <AsnwerTitleContainer>
             <div>Select the correct term</div>
           </AsnwerTitleContainer>
           <AnswerContainer>
-            {testSet.multipleChoice[index].possibleAnswers.map((item: termType) => (
+            {testSet.multipleChoice[index].possibleAnswers.map((item: ITerm) => (
               <AnswerItem
                 key={item.term}
                 tabIndex={0}

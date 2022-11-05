@@ -4,11 +4,13 @@
     line-height: 1.444444444444444;
     cursor: text;
 }
+
 .PMEditorBorder {
-    transition: all .12s cubic-bezier(.47,0,.745,.715);
+    transition: all .12s cubic-bezier(.47, 0, .745, .715);
     box-shadow: 0 0.125rem 0 0 #303545;
     height: 0.25rem;
 }
-.PMEditor:focus-within~.PMEditorBorder {
+
+.PMEditor:focus-within ~ .PMEditorBorder {
     box-shadow: 0 0.5rem 0 0 rgb(255, 205, 31);
 }
