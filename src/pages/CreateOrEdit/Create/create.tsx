@@ -16,13 +16,13 @@ import ImportTerms from "../../../components/ImportTerms/import-terms";
 import AddCardButton from "./AddCardButton/add-card-button";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
-import "./styles.css";
 import {IStudySet, ITerm, StudySetExceptions} from "../../../types";
+import "./styles.css";
 
 interface Props {
   data: any,
   setData: (data: IStudySet) => void,
-  isCreate: boolean
+  isCreate: boolean,
 }
 
 const Create: FC<Props> = ({data, setData, isCreate}) => {

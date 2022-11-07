@@ -1,4 +1,3 @@
-import React, {useEffect, useState} from 'react';
 import {
   Button,
   MainContainer,
@@ -15,39 +14,20 @@ import colors from "../../assets/colors";
 import {ReactComponent as SearchIcon} from "../../assets/images/search-icon.svg";
 import {FiX} from "react-icons/fi";
 import H3 from '../../layouts/headers.styles';
-import useGetStudySets from "../../hooks/useGetStudySets";
 import ResultItem from "./ResultItem/result-item";
 import Preview from "./Preview/preview";
-import {useSearchParams} from "react-router-dom";
 import {IStudySet} from "../../types";
+import useSearch from "../../hooks/useSearch";
 
 const SearchPage = () => {
 
-  const [query, setQuery] = useSearchParams();
-  const [studySets, setStudySets] = useGetStudySets(true);
-  const [searchedStudySets, setSearchedStudySets] = useState<IStudySet[]>([]);
-  const [activeSet, setActiveSet] = useState<IStudySet | null>(null);
-  const [searchInputValue, setSearchInputValue] = useState("");
-
-  useEffect(() => {
-    if (studySets) {
-      setActiveSet(studySets[0])
-      setSearchedStudySets(studySets);
-      const value = query.get('value');
-      setSearchInputValue(value ? value : "");
-    }
-  }, [studySets])
-
-  useEffect(() => {
-    if (!studySets)
-      return;
-    let studySetsClone = [...studySets].filter(item => {
-      return item.title.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchInputValue?.toLowerCase());
-    });
-    setSearchedStudySets(studySetsClone);
-    setQuery({value: searchInputValue});
-  }, [searchInputValue, studySets])
+  const {
+    searchedStudySets,
+    activeSet,
+    setActiveSet,
+    searchInputValue,
+    setSearchInputValue
+  } = useSearch();
 
   return (
     <PageContainer>
