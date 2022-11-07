@@ -2,14 +2,6 @@ import styled from "styled-components"
 import colors from "../assets/colors"
 
 export const AssemblyInput = styled.input`
-  @media (min-width: 38.8125rem) {
-    font-size: 1rem;
-    -webkit-letter-spacing: normal;
-    -moz-letter-spacing: normal;
-    -ms-letter-spacing: normal;
-    letter-spacing: normal;
-    line-height: 1.5; 
-  }
   outline: none;
   -webkit-appearance: none;
   -moz-appearance: none;

@@ -3,7 +3,12 @@ import CreateCard from "../../../components/CreateCard/create-card";
 import {addDoc, collection, updateDoc} from "firebase/firestore";
 import {auth, db} from "../../../firebase-config";
 import {useNavigate} from "react-router-dom";
-import {PageContainer} from "./create.styles";
+import {
+  PageContainer,
+  UIContainer,
+  ValidationErrorsContainer,
+  ValidationErrors
+} from "./create.styles";
 import BlueButton from "../../../layouts/blue-button.styles";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
@@ -12,7 +17,7 @@ import AddCardButton from "./AddCardButton/add-card-button";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import "./styles.css";
-import {IStudySet, ITerm} from "../../../types";
+import {IStudySet, ITerm, StudySetExceptions} from "../../../types";
 
 interface Props {
   data: any,
@@ -24,10 +29,29 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
 
   const navigate = useNavigate();
   const [isModalImportActive, setIsModalImportActive] = useState(false);
+  const [exception, setException] = useState<StudySetExceptions | null>(null);
 
   const studySetsCollectionRef = collection(db, "studySets");
 
+  const checkStudySet = () => {
+    if (data.title.length < 3){
+      return StudySetExceptions.TITLE;
+    }
+    if (data.description.length < 5){
+      return StudySetExceptions.DESCRIPTION;
+    }
+    if (data.terms.lengths !== data.terms.filter((item: ITerm) => !!item.term && !!item.definition).length){
+      return StudySetExceptions.TERMS;
+    }
+    return null;
+  }
+
   const updateStudySet = async () => {
+    const studySetException = checkStudySet();
+    if (studySetException){
+      setException(studySetException);
+      return;
+    }
     const ref = data.ref;
     delete data.ref;
     await updateDoc(ref, data);
@@ -35,6 +59,11 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
   }
 
   const addStudySet = async () => {
+    const studySetException = checkStudySet();
+    if (studySetException){
+      setException(studySetException);
+      return;
+    }
     await addDoc(studySetsCollectionRef,
       {
         ...data,
@@ -69,6 +98,13 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
         setData={setData}
         setIsModalImportActive={setIsModalImportActive}
       />
+      {exception && <UIContainer>
+        <span>
+          <ValidationErrorsContainer>
+            <ValidationErrors>{exception.toUpperCase()}</ValidationErrors>
+          </ValidationErrorsContainer>
+        </span>
+      </UIContainer>}
       <DragDropContext onDragEnd={handleDrop}>
         <Droppable droppableId={"cards-list"}>
           {provided => (

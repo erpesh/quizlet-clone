@@ -24,37 +24,37 @@ export interface IStudySet {
   isPrivate: boolean
 }
 
-interface simpleTest extends ITerm {
+interface IBaseTest extends ITerm {
   isCorrect: boolean
 }
 
-export interface ITrueFalse extends simpleTest {
+export interface ITrueFalse extends IBaseTest {
   isTrue: boolean,
   incorrectAnswer: ITerm | null,
   isAnswered: boolean
 }
 
-export interface IMultipleChoice extends simpleTest {
+export interface IMultipleChoice extends IBaseTest {
   possibleAnswers: ITerm[],
   answer: string | null
 }
 
-export interface IMatchingItem extends simpleTest {
+export interface IMatchingItem extends IBaseTest {
   answer: string | null
 }
 
-interface answersItem {
+interface IAnswerItem {
   answer: string,
   index: number
 }
 
-export interface IWritten extends simpleTest {
+export interface IWritten extends IBaseTest {
   answer: string | null;
 }
 
 export interface IMatching {
   items: IMatchingItem[],
-  answers: answersItem[]
+  answers: IAnswerItem[]
 }
 
 export interface ITestSet {
@@ -64,4 +64,9 @@ export interface ITestSet {
   written: IWritten[],
   lengths: number[],
   totalLength: number
+}
+export enum StudySetExceptions {
+  TITLE = "Enter study set's title!",
+  DESCRIPTION = "Enter study set's description!",
+  TERMS = "Terms should not be empty!"
 }
