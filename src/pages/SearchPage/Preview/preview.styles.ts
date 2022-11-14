@@ -10,6 +10,9 @@ export const PreviewWrapper = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 1.5rem;
+  @media (max-width: 48rem){
+    display: none;
+  }
 `
 export const PreviewMainContainer = styled(DisplayFlex)`
   max-height: calc(100vh - 6rem);

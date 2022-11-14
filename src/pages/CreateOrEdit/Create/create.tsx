@@ -3,12 +3,7 @@ import CreateCard from "../../../components/CreateCard/create-card";
 import {addDoc, collection, updateDoc} from "firebase/firestore";
 import {auth, db} from "../../../firebase-config";
 import {useNavigate} from "react-router-dom";
-import {
-  PageContainer,
-  UIContainer,
-  ValidationErrorsContainer,
-  ValidationErrors
-} from "./create.styles";
+import {PageContainer, UIContainer, ValidationErrors, ValidationErrorsContainer} from "./create.styles";
 import BlueButton from "../../../layouts/blue-button.styles";
 import Heading from "./Heading/heading";
 import CreateTools from "./CreateTools/create-tools";
@@ -40,7 +35,7 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
     if (data.description.length < 5){
       return StudySetExceptions.DESCRIPTION;
     }
-    if (data.terms.lengths !== data.terms.filter((item: ITerm) => !!item.term && !!item.definition).length){
+    if (data.terms.length !== data.terms.filter((item: ITerm) => !!item.term && !!item.definition).length){
       return StudySetExceptions.TERMS;
     }
     return null;

@@ -19,14 +19,16 @@ interface Props {
   studySet: IStudySet,
   activeSet: IStudySet,
   setActiveSet: (dataSet: IStudySet) => void,
+  setIsMobilePreview: (value: boolean) => void
 }
 
-const ResultItem: React.FC<Props> = ({studySet, activeSet, setActiveSet}) => {
+const ResultItem: React.FC<Props> = ({studySet, activeSet, setActiveSet, setIsMobilePreview}) => {
 
   const navigate = useNavigate();
 
   const handlePreviewClick = () => {
     setActiveSet(studySet);
+    setIsMobilePreview(true);
   }
   const navigateToStudySet = () => navigate(`/${studySet.id}`);
 

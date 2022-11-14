@@ -18,9 +18,12 @@ import ResultItem from "./ResultItem/result-item";
 import Preview from "./Preview/preview";
 import {IStudySet} from "../../types";
 import useSearch from "../../hooks/useSearch";
+import PreviewMobile from "./PreviewMobile/preview-mobile";
+import {useState} from "react";
 
 const SearchPage = () => {
 
+  const [isMobilePreview, setIsMobilePreview] = useState(false);
   const {
     searchedStudySets,
     activeSet,
@@ -66,10 +69,12 @@ const SearchPage = () => {
                     studySet={item}
                     activeSet={activeSet}
                     setActiveSet={setActiveSet}
+                    setIsMobilePreview={setIsMobilePreview}
                   />)}
               </ResultListContainer>
             </ResultCardsContainer>
             <Preview studySet={activeSet}/>
+            {isMobilePreview && <PreviewMobile studySet={activeSet} setIsMobilePreview={setIsMobilePreview}/>}
           </MainContainer>
         </PageMainSection>
       </div>}
