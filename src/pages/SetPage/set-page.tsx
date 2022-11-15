@@ -14,6 +14,7 @@ import {
 import ModulesList from "./ModulesList/modules-list";
 import FlashCards from "../../components/FlashCards/flash-cards";
 import useGetStudySets from "../../hooks/useGetStudySets";
+import SetDetails from "./SetDetails/set-details";
 
 
 const SetPage = () => {
@@ -24,30 +25,33 @@ const SetPage = () => {
 
   return (
     <SetPageWrapper tabIndex={0}>
-      {studySet ? (
-        <SetPageContainer>
-          <SetTitle>{studySet.title}</SetTitle>
-          <SetModelSection>
-            <HideBelow>
-              <ModulesList id={id}/>
-            </HideBelow>
-            <FlashCards studySet={studySet}
-                        setStudySet={setStudySet}
-                        progressNumber={progressNumber}
-                        setProgressNumber={setProgressNumber}
-                        height={"100%"}
-            >
-              <MarginBottom>
-                <ProgressBarContainer>
-                  <ProgressBar style={{width: `${(progressNumber + 1) * 100 / studySet.terms.length}%`}}/>
-                </ProgressBarContainer>
-              </MarginBottom>
-            </FlashCards>
-            <HideAbove>
-              <ModulesList id={id}/>
-            </HideAbove>
-          </SetModelSection>
-        </SetPageContainer>) : <div/>}
+      {studySet ? (<>
+          <SetPageContainer>
+            <SetTitle>{studySet.title}</SetTitle>
+            <SetModelSection>
+              <HideBelow>
+                <ModulesList id={id}/>
+              </HideBelow>
+              <FlashCards studySet={studySet}
+                          setStudySet={setStudySet}
+                          progressNumber={progressNumber}
+                          setProgressNumber={setProgressNumber}
+                          height={"100%"}
+              >
+                <MarginBottom>
+                  <ProgressBarContainer>
+                    <ProgressBar style={{width: `${(progressNumber + 1) * 100 / studySet.terms.length}%`}}/>
+                  </ProgressBarContainer>
+                </MarginBottom>
+              </FlashCards>
+              <HideAbove>
+                <ModulesList id={id}/>
+              </HideAbove>
+            </SetModelSection>
+          </SetPageContainer>
+          <SetDetails studySet={studySet}/>
+        </>
+      ) : <div/>}
     </SetPageWrapper>
   );
 };

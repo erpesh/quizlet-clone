@@ -21,7 +21,7 @@ interface Props {
 
 const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
 
-  const [studySets, setStudySets] = useGetStudySets(true);
+  const [studySets, setStudySets] = useGetStudySets(true, true);
   const ref = useRef<HTMLDivElement>(null);
   useOutsideClickAndScroll(ref, buttonRef, toggleLibrary);
 

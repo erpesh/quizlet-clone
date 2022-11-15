@@ -68,5 +68,6 @@ export interface ITestSet {
 export enum StudySetExceptions {
   TITLE = "Enter study set's title!",
   DESCRIPTION = "Enter study set's description!",
-  TERMS = "Terms should not be empty!"
+  TERMS = "Terms should not be empty!",
+  TERMS_NUMBER = "Study set should have 3 or more terms!",
 }

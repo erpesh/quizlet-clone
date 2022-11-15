@@ -38,6 +38,9 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
     if (data.terms.length !== data.terms.filter((item: ITerm) => !!item.term && !!item.definition).length){
       return StudySetExceptions.TERMS;
     }
+    if (data.terms.length < 3){
+      return StudySetExceptions.TERMS_NUMBER;
+    }
     return null;
   }
 

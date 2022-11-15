@@ -9,6 +9,8 @@ const TestPage = lazy(() => import("../pages/TestPage/test-page"));
 const CreateOrEdit = lazy(() => import("../pages/CreateOrEdit/create-or-edit"));
 const FlashCardsPage = lazy(() => import("../pages/FlashCardsPage/flash-cards-page"));
 const LearnPage = lazy(() => import("../pages/LearnPage/learn-page"));
+const MatchPage = lazy(() => import("../pages/MatchPage/match-page"));
+
 
 const Navigation = () => {
   return (
@@ -22,7 +24,7 @@ const Navigation = () => {
         <Route path="/:id/test" element={<TestPage/>}/>
         <Route path="/:id/flashcards" element={<FlashCardsPage/>}/>
         <Route path="/:id/learn" element={<LearnPage/>}/>
-        <Route path="/:id/match" element={<div/>}/>
+        <Route path="/:id/match" element={<MatchPage/>}/>
       </Routes>
     </Suspense>
   );
