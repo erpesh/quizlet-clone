@@ -1,4 +1,5 @@
-import React, {FC, useContext} from 'react';
+import React, {FC, useContext, useRef, useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import {
   CloseIcon,
   Container,
@@ -7,11 +8,21 @@ import {
   SidebarMenu,
   SidebarSignButton,
   SidebarWrapper,
-  SideLogo
+  SideLogo,
+  SideBarDropDownButton,
+  LibraryContainer,
+  Item,
+  ItemAuthorName,
+  ItemContainer,
+  ItemTitle
 } from "./side-bar.styles";
 import {ReactComponent as SideBarIcon} from "../../../assets/images/side-bar-icon.svg";
 import AuthContext from "../../../context/auth-context";
 import {ReactComponent as ChevronIcon} from "../../../assets/images/chevron-down.svg";
+import useGetStudySets from "../../../hooks/useGetStudySets";
+import {IStudySet} from "../../../types";
+import {auth} from "../../../firebase-config";
+
 
 interface Props {
   isOpen: boolean,
@@ -20,11 +31,22 @@ interface Props {
 
 const SideBar: FC<Props> = ({isOpen, toggle}) => {
 
+  const navigate = useNavigate();
+  const [studySets, setStudySets] = useGetStudySets(true, true);
   const {signInWithGoogle, isAuth, signUserOut} = useContext(AuthContext);
+  const buttonRef = useRef<HTMLDivElement>(null);
+  const [isLibraryDropDown, setIsLibraryDropDown] = useState(false);
+
+  const toggleLibrary = () => setIsLibraryDropDown(!isLibraryDropDown);
+
+  const logoOnClick = () => {
+    navigate("/");
+    toggle();
+  }
 
   return (
     <Container isOpen={isOpen}>
-      <SideLogo>
+      <SideLogo onClick={logoOnClick}>
         <SideBarIcon/>
       </SideLogo>
       <Icon onClick={toggle}>
@@ -35,10 +57,29 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
           <SidebarLink to="/" onClick={toggle}>
             Home
           </SidebarLink>
-          <SidebarLink to="/" onClick={toggle}>
+          <SideBarDropDownButton
+            onClick={toggleLibrary}
+            ref={buttonRef}
+          >
             Your library&nbsp;<ChevronIcon/>
-          </SidebarLink>
-          <SidebarLink to="/" onClick={toggle}>
+          </SideBarDropDownButton>
+          {isLibraryDropDown && <LibraryContainer>
+            {studySets.map((studySet: IStudySet) => (
+              <React.Fragment key={studySet.id}>
+                {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
+                  <Item
+                    href={`/${studySet.id}`}
+                    onClick={toggle}
+                  >
+                    <ItemContainer>
+                      <ItemTitle>{studySet.title}</ItemTitle>
+                      <ItemAuthorName>{studySet.author.name}</ItemAuthorName>
+                    </ItemContainer>
+                  </Item>
+                }
+              </React.Fragment>))}
+          </LibraryContainer>}
+          <SidebarLink to="/create" onClick={toggle}>
             Create
           </SidebarLink>
           {!isAuth ?
@@ -51,9 +92,6 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
               </SidebarSignButton>
             </> :
             <>
-              <SidebarLink to="/profile" onClick={toggle}>
-                Profile
-              </SidebarLink>
               <SidebarSignButton onClick={(e) => {
                 signUserOut(e)
                 toggle()
