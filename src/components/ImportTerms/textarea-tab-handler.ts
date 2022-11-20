@@ -1,6 +1,9 @@
 import React from "react";
 
-const textareaTabHandler = (e: React.KeyboardEvent<HTMLTextAreaElement>, textareaRef: any) => {
+const textareaTabHandler = (
+  e: React.KeyboardEvent<HTMLTextAreaElement>,
+  textareaRef: React.RefObject<HTMLTextAreaElement>
+) => {
   if (e.key === 'Tab' && !e.shiftKey) {
     e.preventDefault();
     const value = textareaRef.current!.value;

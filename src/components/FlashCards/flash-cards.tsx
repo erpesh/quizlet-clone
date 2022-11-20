@@ -16,7 +16,7 @@ interface Props extends React.PropsWithChildren {
   studySet: IStudySet,
   setStudySet: (studySet: IStudySet) => void,
   progressNumber: number,
-  setProgressNumber: (num: any) => void,
+  setProgressNumber: (num: number | ((num: number) => number)) => void,
   height: string
 }
 

@@ -6,7 +6,7 @@ interface Props {
   activePage: string,
   id: string,
   toggleModulesDropDown: () => void,
-  buttonRef: React.Ref<HTMLButtonElement>
+  buttonRef: React.RefObject<HTMLButtonElement>
 }
 
 const ModulesDropDown: React.FC<Props> = ({activePage, id, toggleModulesDropDown, buttonRef}) => {

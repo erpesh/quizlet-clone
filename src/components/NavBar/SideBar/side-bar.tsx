@@ -85,7 +85,7 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
           {!isAuth ?
             <>
               <SidebarSignButton onClick={(e) => {
-                signInWithGoogle(e)
+                signInWithGoogle()
                 toggle()
               }}>
                 Log in
@@ -93,7 +93,7 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
             </> :
             <>
               <SidebarSignButton onClick={(e) => {
-                signUserOut(e)
+                signUserOut()
                 toggle()
               }}>
                 Logout

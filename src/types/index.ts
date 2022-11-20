@@ -9,7 +9,7 @@ export interface ILearnTerm extends ITerm{
   questions: string[]
 }
 
-interface IAuthor {
+export interface IAuthor {
   id: string | null | undefined,
   name: string | null | undefined,
   photoURL: string | null | undefined

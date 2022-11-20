@@ -16,7 +16,7 @@ import useOutsideClickAndScroll from "../../../hooks/useOutsideClickAndScroll";
 
 interface Props {
   toggleLibrary: () => void,
-  buttonRef: React.Ref<HTMLDivElement>
+  buttonRef: React.RefObject<HTMLDivElement>
 }
 
 const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {

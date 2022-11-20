@@ -4,6 +4,7 @@ import {INITIAL_CREATE_STATE} from "./initial-state";
 import {useNavigate, useParams} from "react-router-dom";
 import {collection, getDocs} from "firebase/firestore";
 import {auth, db} from "../../firebase-config";
+import {IStudySet} from "../../types";
 
 interface Props {
   isCreate: boolean
@@ -14,7 +15,7 @@ const CreateOrEdit: FC<Props> = ({isCreate}) => {
   const {id} = useParams();
   const navigate = useNavigate();
   const studySetsCollectionRef = collection(db, "studySets");
-  const [data, setData] = useState<any>(isCreate ? INITIAL_CREATE_STATE : null);
+  const [data, setData] = useState<IStudySet | null>(isCreate ? INITIAL_CREATE_STATE : null);
 
   const getStudySets = async () => {
     const data = await getDocs(studySetsCollectionRef);

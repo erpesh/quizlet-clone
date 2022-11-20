@@ -102,7 +102,6 @@ export const LibraryContainer = styled.div`
   border-top-color: ${colors.whiteColor};
   border-bottom-color: ${colors.whiteColor};
   margin-top: .5rem;
-  //border-radius: .5rem;
   width: 100%;
   flex-direction: column;
   padding: 1rem 0;
