@@ -1,6 +1,28 @@
 import styled from "styled-components";
 import colors from "../../assets/colors";
 
+export const ImportContainer = styled.div<{isShowing: boolean}>`
+  background-color: #f6f7fb;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-100%);
+  transition: transform .5s;
+  visibility: hidden;
+  z-index: -1;
+  ${props => props.isShowing ? 
+  `-webkit-overflow-scrolling: touch;
+    animation: slideDown .5s;
+    overflow-y: scroll;
+    position: fixed;
+    transform: translateY(0);
+    visibility: visible;
+    z-index: 110;` : ""
+}
+`
 export const ContainerWrap = styled.div`
   background-color: #fff;
   padding: 2.5rem 0 1.25rem;

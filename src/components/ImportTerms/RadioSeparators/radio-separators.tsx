@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {Dispatch, FC, useState} from 'react';
 import {
   FormGroup,
   FormGroupWrap,
@@ -14,20 +14,19 @@ import {
   UIInputLabel,
   UIRadioLabel
 } from "./radio-separators.styles";
+import {ImportTermsTextAction} from "../../../reducers/import-terms-text";
 
 interface Props {
   firstSeparator: string,
-  setFirstSeparator: (sep: string) => void,
   secondSeparator: string,
-  setSecondSeparator: (sep: string) => void,
+  dispatch: Dispatch<ImportTermsTextAction>,
 }
 
 const RadioSeparators: FC<Props> = (props) => {
   const {
     firstSeparator,
-    setFirstSeparator,
     secondSeparator,
-    setSecondSeparator
+    dispatch
   } = props;
 
   const [isFirstCustom, setIsFirstCustom] = useState(false);
@@ -45,7 +44,7 @@ const RadioSeparators: FC<Props> = (props) => {
               value={"\t"}
               checked={firstSeparator === "\t" && !isFirstCustom}
               onChange={(e) => {
-                setFirstSeparator(e.target.value)
+                dispatch({type: "SET_FIRST_SEPARATOR", payload: e.target.value})
                 setIsFirstCustom(false)
               }}
             />
@@ -59,7 +58,7 @@ const RadioSeparators: FC<Props> = (props) => {
               value=","
               checked={firstSeparator === "," && !isFirstCustom}
               onChange={(e) => {
-                setFirstSeparator(e.target.value)
+                dispatch({type: "SET_FIRST_SEPARATOR", payload: e.target.value})
                 setIsFirstCustom(false)
               }}
             />
@@ -74,7 +73,7 @@ const RadioSeparators: FC<Props> = (props) => {
               checked={isFirstCustom}
               onChange={e => {
                 setIsFirstCustom(true)
-                setFirstSeparator("")
+                dispatch({type: "SET_FIRST_SEPARATOR", payload: ""})
               }}
             />
             <RadioButtonLabel/>
@@ -83,10 +82,10 @@ const RadioSeparators: FC<Props> = (props) => {
                 <UIInputContainer>
                   <UIInputContent>
                     <UIInput
-                      onChange={e => setFirstSeparator(e.target.value)}
+                      onChange={e => dispatch({type: "SET_FIRST_SEPARATOR", payload: e.target.value})}
                       onFocus={e => {
                         setIsFirstCustom(true)
-                        setFirstSeparator("")
+                        dispatch({type: "SET_FIRST_SEPARATOR", payload: ""})
                       }}
                       value={!isFirstCustom ? "" : firstSeparator}
                     />
@@ -111,7 +110,7 @@ const RadioSeparators: FC<Props> = (props) => {
               value={"\n"}
               checked={secondSeparator === "\n" && !isSecondCustom}
               onChange={(e) => {
-                setSecondSeparator(e.target.value)
+                dispatch({type: "SET_SECOND_SEPARATOR", payload: e.target.value})
                 setIsSecondCustom(false)
               }}
             />
@@ -125,7 +124,7 @@ const RadioSeparators: FC<Props> = (props) => {
               value=";"
               checked={secondSeparator === ";" && !isSecondCustom}
               onChange={(e) => {
-                setSecondSeparator(e.target.value)
+                dispatch({type: "SET_SECOND_SEPARATOR", payload: e.target.value})
                 setIsSecondCustom(false)
               }}
             />
@@ -140,7 +139,7 @@ const RadioSeparators: FC<Props> = (props) => {
               checked={isSecondCustom}
               onChange={e => {
                 setIsSecondCustom(true)
-                setSecondSeparator("")
+                dispatch({type: "SET_SECOND_SEPARATOR", payload: ""})
               }}
             />
             <RadioButtonLabel/>
@@ -149,10 +148,10 @@ const RadioSeparators: FC<Props> = (props) => {
                 <UIInputContainer>
                   <UIInputContent>
                     <UIInput
-                      onChange={e => setSecondSeparator(e.target.value)}
+                      onChange={e => dispatch({type: "SET_SECOND_SEPARATOR", payload: e.target.value})}
                       onFocus={e => {
                         setIsSecondCustom(true)
-                        setSecondSeparator("")
+                        dispatch({type: "SET_SECOND_SEPARATOR", payload: ""})
                       }}
                       value={!isSecondCustom ? "" : secondSeparator}
                     />

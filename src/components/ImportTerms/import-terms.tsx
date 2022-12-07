@@ -1,6 +1,6 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
-import "./styles.css";
+import React, {FC, useRef} from 'react';
 import {
+  ImportContainer,
   ButtonTextWrap,
   ContainerWrap,
   ImportButton,
@@ -16,12 +16,12 @@ import {
   UIContainer,
   UILinkButton
 } from "./import-terms.styles";
-import {IStudySet, ITerm} from "../../types";
+import {IStudySet} from "../../types";
 import textareaTabHandler from "./textarea-tab-handler";
 import RadioSeparators from "./RadioSeparators/radio-separators";
 import ImportTermCard from "./ImportTermCard/import-term-card";
-import {parseTextInput, placeHolderHandler} from "./text-parsers";
-import {importButtonHandler} from "./import-button-handler";
+import {placeHolderHandler} from "./text-parsers";
+import useImportTerms from "../../hooks/useImportTerms";
 
 interface Props {
   data: IStudySet,
@@ -33,29 +33,18 @@ interface Props {
 const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImportModalActive}) => {
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const [textInput, setTextInput] = useState("");
-  const [firstSeparator, setFirstSeparator] = useState("\t");
-  const [secondSeparator, setSecondSeparator] = useState('\n');
-  const [termsArray, setTermsArray] = useState<ITerm[]>([]);
+  const {state, dispatch, handleImportButtonBase} = useImportTerms(data, setData);
 
   const handleImportButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    let items = importButtonHandler(data, termsArray);
-    setTextInput("");
-    setTermsArray([]);
-    setData({...data, terms: items})
+    handleImportButtonBase(e);
     setIsImportModalActive(false);
     if (textareaRef.current) {
       textareaRef.current.value = "";
     }
   }
 
-  useEffect(() => {
-    setTermsArray(parseTextInput(textInput, firstSeparator, secondSeparator));
-  }, [textInput, firstSeparator, secondSeparator])
-
   return (
-    <div className={isImportModalActive ? "import__terms is__showing" : "import__terms"}>
+    <ImportContainer isShowing={isImportModalActive}>
       <ContainerWrap>
         <UIContainer>
           <div style={{marginBottom: "2rem"}}>
@@ -71,24 +60,23 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
           </ImportTermsInstruction>
           <ImportTermsForm>
             <TextArea
-              placeholder={placeHolderHandler(firstSeparator, secondSeparator)}
+              placeholder={placeHolderHandler(state.firstSeparator, state.secondSeparator)}
               ref={textareaRef}
-              onChange={(e) => setTextInput(e.target.value)}
+              onChange={(e) => dispatch({ type:"SET_TEXT", payload: e.target.value })}
               onKeyDown={(e) => textareaTabHandler(e, textareaRef)}
             />
             <ImportButtonWrap>
               <ImportButton
-                disabled={!textInput}
+                disabled={!state.textInput}
                 onClick={handleImportButton}
               >
                 <ButtonTextWrap>Import</ButtonTextWrap>
               </ImportButton>
             </ImportButtonWrap>
             <RadioSeparators
-              firstSeparator={firstSeparator}
-              setFirstSeparator={setFirstSeparator}
-              secondSeparator={secondSeparator}
-              setSecondSeparator={setSecondSeparator}
+              firstSeparator={state.firstSeparator}
+              secondSeparator={state.secondSeparator}
+              dispatch={dispatch}
             />
           </ImportTermsForm>
         </UIContainer>
@@ -98,12 +86,12 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
           <PreviewHeading>
             <span>Preview</span>
             <PreviewNumTerms>
-              <span>{termsArray.length > 0 ? termsArray.length : ""}</span>
+              <span>{state.termsArray.length > 0 ? state.termsArray.length : ""}</span>
             </PreviewNumTerms>
           </PreviewHeading>
           <PreviewRows>
             <div style={{pointerEvents: "none"}}>
-              {termsArray.length > 0 ? termsArray.map(item => {
+              {state.termsArray.length > 0 ? state.termsArray.map(item => {
                 return <ImportTermCard
                   term={item.term}
                   definition={item.definition}
@@ -114,7 +102,7 @@ const ImportTerms: FC<Props> = ({data, setData, isImportModalActive, setIsImport
           </PreviewRows>
         </UIContainer>
       </PreviewContainer>
-    </div>
+    </ImportContainer>
   );
 };
 
