@@ -34,7 +34,6 @@ const FlashCards: React.FC<Props> = (props) => {
   const [state, dispatch] = useReducer(cardsLogicReducer, initialState);
 
   const toggleTermSide = () => dispatch({type: "TOGGLE_SIDE"});
-
   const flipWithNoAnimation = () => dispatch({type: "FLIP_SIDE"});
 
   const handleLeftButton = () => {

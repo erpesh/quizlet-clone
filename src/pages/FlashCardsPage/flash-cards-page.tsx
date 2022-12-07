@@ -1,18 +1,15 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import FlashCards from "../../components/FlashCards/flash-cards";
 import {Centring, Container} from './flash-cards-page.styles';
 import useGetStudySets from "../../hooks/useGetStudySets";
-import AuthContext from "../../context/auth-context";
+import useCardsProgressBar from "../../hooks/useCardsProgressBar";
 
 const FlashCardsPage = () => {
 
-  const {setProgressBarWidth} = useContext(AuthContext);
   const [studySet, setStudySet] = useGetStudySets();
   const [progressNumber, setProgressNumber] = useState(0);
 
-  useEffect(() => {
-    if (studySet) setProgressBarWidth((progressNumber + 1) * 100 / studySet.terms.length);
-  }, [progressNumber])
+  useCardsProgressBar(studySet, progressNumber);
 
   return (
     <Container>

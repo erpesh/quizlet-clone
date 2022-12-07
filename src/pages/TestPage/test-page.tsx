@@ -1,21 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import generateTest from './test-generator';
+import React from 'react';
 import {PageContainer, PageContentWrap, PageWrapper,} from './test-page.styles';
 import PageContent from './page-content';
-import useProgressBarLength from "../../hooks/useProgressBarLength";
-import useGetStudySets from "../../hooks/useGetStudySets";
-import {ITestSet} from "../../types";
+import useTestPage from "../../hooks/useTestPage";
 
 
 const TestPage = () => {
 
-  const [testSet, setTestSet] = useState<ITestSet | null>(null);
-  const [studySet, setStudySet] = useGetStudySets();
-  useProgressBarLength(testSet);
-
-  useEffect(() => {
-    if (studySet) setTestSet(generateTest([...studySet.terms]));
-  }, [studySet])
+  const {testSet, setTestSet} = useTestPage();
 
   return (
     <>

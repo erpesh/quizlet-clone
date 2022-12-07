@@ -1,23 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React from 'react';
 import {Container, MediaStyling, NestedContainer,} from './learn-page.styles';
 import QuestionBox from "./QuestionBox/question-box";
-import {ILearnTerm} from "../../types";
-import generateQuestions from "./generate-questions";
-import AuthContext from "../../context/auth-context";
-import useGetStudySets from "../../hooks/useGetStudySets";
+import useLearnPage from "../../hooks/useLearnPage";
 
 
 const LearnPage = () => {
 
-  const {setProgressBarWidth} = useContext(AuthContext);
-  const [studySet, setStudySet] = useGetStudySets();
-
-  const [questions, setQuestions] = useState<ILearnTerm[]>([]);
-
-  useEffect(() => {
-    if (studySet) setQuestions(generateQuestions([...studySet.terms]));
-    setProgressBarWidth(0);
-  }, [studySet])
+  const questions = useLearnPage();
 
   return (
     <Container>
