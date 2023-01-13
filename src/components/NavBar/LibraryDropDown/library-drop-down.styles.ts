@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "../../../assets/colors";
 
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 1099;
   left: 228px;
   top: 68px;
@@ -63,9 +63,6 @@ export const ItemTitle = styled.span`
   color: ${colors.UIColorGray};
   font-size: 1rem;
   font-weight: 700;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1.5;
   overflow: hidden;
@@ -91,9 +88,6 @@ export const ItemAuthorName = styled.div`
   font-weight: 600;
   -webkit-justify-content: flex-start;
   justify-content: flex-start;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1.3333333333333333;
   width: 100%;

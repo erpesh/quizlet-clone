@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  min-height: calc(100vh - 66px);
   height: 100%;
   margin: 0 auto;
   width: 100%;
@@ -17,7 +18,7 @@ export const NestedContainer = styled.div`
   -ms-flex: 1;
   flex: 1;
   margin-left: 0;
-  padding: 2rem 1.5rem 1.5rem;
+  padding: 2rem 1.5rem 0 1.5rem;
   position: relative;
   width: 100%;
   @media (max-width: 64rem) {
@@ -31,7 +32,6 @@ export const NestedContainer = styled.div`
 export const MediaStyling = styled.div`
   height: auto;
   margin: 0 auto;
-  min-height: 80vh;
   position: relative;
   @media (max-width: 48rem) {
     border-radius: 0;

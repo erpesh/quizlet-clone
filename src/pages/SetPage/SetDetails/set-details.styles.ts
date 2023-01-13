@@ -25,8 +25,8 @@ export const MarginRight = styled.div`
 `
 export const DetailsSection = styled.section`
   min-height: 2.5rem;
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  //padding-bottom: 2rem;
+  //padding-top: 2rem;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: 38.75em) {
@@ -100,7 +100,6 @@ export const AssemblyAvatar = styled.img<{url: string}>`
   margin: 0;
   overflow: hidden;
   padding: 0;
-  -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);
   transform: translateZ(0);
   vertical-align: middle;
@@ -130,7 +129,6 @@ export const AssemblyButton = styled.button`
   -ms-flex-pack: center;
   -webkit-align-items: center;
   align-items: center;
-  border: none;
   box-sizing: border-box;
   cursor: pointer;
   display: -webkit-box;
@@ -144,9 +142,6 @@ export const AssemblyButton = styled.button`
   width: -moz-fit-content;
   font-size: .875rem;
   font-weight: 600;
-  -webkit-letter-spacing: normal;
-  -moz-letter-spacing: normal;
-  -ms-letter-spacing: normal;
   letter-spacing: normal;
   line-height: 1.4285714285714286;
   min-height: 2.5rem;

@@ -3,6 +3,7 @@ import colors from "../../assets/colors";
 
 export const SetPageWrapper = styled.div`
   background-color: ${colors.pageBackgroundColor};
+  min-height: calc(100vh - 65px);
 `
 export const SetPageContainer = styled.div`
   margin: 0 auto;

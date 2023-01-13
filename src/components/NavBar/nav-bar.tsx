@@ -21,7 +21,6 @@ const NavBar = () => {
   const toggleModulesDropDown = () => dispatch({type: "MODULES"});
 
   // Header for learning modules
-  console.log(splitPath[2]);
   if (MODULES_PATHS.includes(splitPath[splitPath.length - 1])){
     return <>
       <ModulesHeader
