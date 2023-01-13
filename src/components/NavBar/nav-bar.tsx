@@ -21,21 +21,23 @@ const NavBar = () => {
   const toggleModulesDropDown = () => dispatch({type: "MODULES"});
 
   // Header for learning modules
-  if (splitPath.length === 3 && MODULES_PATHS.includes(splitPath[2]))
+  console.log(splitPath[2]);
+  if (MODULES_PATHS.includes(splitPath[splitPath.length - 1])){
     return <>
       <ModulesHeader
-        activePage={splitPath[2]}
-        id={splitPath[1]}
+        activePage={splitPath[splitPath.length - 1]}
+        id={splitPath[splitPath.length - 2]}
         toggleModulesDropDown={toggleModulesDropDown}
         buttonRef={modulesButtonRef}
       />
       {state.isModulesDropDownOpen && <ModulesDropDown
-        activePage={splitPath[2]}
-        id={splitPath[1]}
+        activePage={splitPath[splitPath.length - 1]}
+        id={splitPath[splitPath.length - 2]}
         toggleModulesDropDown={toggleModulesDropDown}
         buttonRef={modulesButtonRef}
       />}
     </>
+  }
   // Default header and sidebar
   return (
     <>

@@ -15,7 +15,7 @@ const Search = () => {
 
   return (
     <SearchContainer onSubmit={searchSubmit}>
-      <LogoContainer>
+      <LogoContainer onClick={searchSubmit}>
         <SearchIcon/>
       </LogoContainer>
       <SearchInput

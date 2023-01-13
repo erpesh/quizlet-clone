@@ -12,6 +12,7 @@ export const SearchContainer = styled.form`
   gap: 0.3rem;
 `
 export const LogoContainer = styled.span`
+  cursor: pointer;
   > svg {
     transform: scale(0.75);
   }
