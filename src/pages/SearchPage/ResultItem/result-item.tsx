@@ -14,6 +14,7 @@ import {
 import {IStudySet} from "../../../types";
 import {Button} from '../search-page.styles';
 import {useNavigate} from "react-router-dom";
+import useWindowDimensions from "../../../hooks/useWindowDimensions";
 
 interface Props {
   studySet: IStudySet,
@@ -25,10 +26,12 @@ interface Props {
 const ResultItem: React.FC<Props> = ({studySet, activeSet, setActiveSet, setIsMobilePreview}) => {
 
   const navigate = useNavigate();
+  const {width, height} = useWindowDimensions();
 
   const handlePreviewClick = () => {
     setActiveSet(studySet);
-    setIsMobilePreview(true);
+    if (width <= 768)
+      setIsMobilePreview(true);
   }
   const navigateToStudySet = () => navigate(`/${studySet.id}`);
 
