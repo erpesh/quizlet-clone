@@ -20,7 +20,6 @@ function useSearch() : ISearchHook{
 
   useEffect(() => {
     if (studySets) {
-      setActiveSet(studySets[0])
       setSearchedStudySets(studySets);
       const value = query.get('value');
       setSearchInputValue(value ? value : "");
@@ -34,6 +33,7 @@ function useSearch() : ISearchHook{
       return item.title.toLowerCase().includes(searchInputValue?.toLowerCase()) ||
         item.description.toLowerCase().includes(searchInputValue?.toLowerCase());
     });
+    setActiveSet(studySetsClone[0])
     setSearchedStudySets(studySetsClone);
     setQuery({value: searchInputValue});
   }, [searchInputValue, studySets])

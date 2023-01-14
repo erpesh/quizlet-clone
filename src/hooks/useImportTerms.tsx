@@ -17,7 +17,7 @@ function useImportTerms(data: IStudySet, setData: (data: IStudySet) => void) {
 
   useEffect(() => {
     dispatch({type: "SET_TERMS_ARRAY", payload: parseTextInput(state.textInput, state.firstSeparator, state.secondSeparator)})
-  }, [state])
+  }, [state.textInput, state.firstSeparator, state.secondSeparator])
 
   return {state, dispatch, handleImportButtonBase};
 }

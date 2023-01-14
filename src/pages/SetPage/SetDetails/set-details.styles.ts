@@ -51,13 +51,7 @@ export const DetailsHeaderContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 81.25em;
-  padding: 0;
-  @media screen and (max-width: 38.75em) {
-    padding: 0 1rem;
-  }
-  @media screen and (max-width: 85.25em) {
-    padding: 0 2.5rem;
-  }
+  padding: 0 .25rem;
 `
 export const DetailsHeaderWrapper = styled.div`
   display: inline-block;

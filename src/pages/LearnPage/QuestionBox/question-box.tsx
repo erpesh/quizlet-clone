@@ -23,6 +23,7 @@ import {FiX} from "react-icons/fi";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import BlueButton from '../../../layouts/blue-button.styles';
 import AuthContext from "../../../context/auth-context";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface Props {
   questions: ILearnTerm[]
@@ -30,16 +31,22 @@ interface Props {
 
 const QuestionBox: React.FC<Props> = ({questions}) => {
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const {setProgressBarWidth} = useContext(AuthContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const [userAnswer, setUserAnswer] = useState<string>("");
-  const {width, height} = useWindowDimensions();
+  const {width} = useWindowDimensions();
 
   const moveToNextQuestion = (delay: number) => {
     setTimeout(() => {
-      setUserAnswer("");
-      setActiveIndex(prevState => prevState + 1);
-      setProgressBarWidth((activeIndex + 1) * 100 / questions.length);
+      if (activeIndex === questions.length - 1)
+        navigate(location.pathname.replace("/learn", ""));
+      else {
+        setUserAnswer("");
+        setActiveIndex(prevState => prevState + 1);
+        setProgressBarWidth((activeIndex + 1) * 100 / questions.length);
+      }
     }, delay);
   }
 
@@ -110,7 +117,7 @@ const QuestionBox: React.FC<Props> = ({questions}) => {
               fontSize={"1rem"}
               onClick={() => moveToNextQuestion(300)}
             >
-              Continue
+              {activeIndex === questions.length - 1 ? "Finish" : "Continue"}
             </BlueButton>
           </SlideUpContainer>
         </IncorrectAnswerSlideUp>
