@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import {Container, DownContainer, Item, Link} from './modules-drop-down.styles';
+import {Container, DownContainer, Item, LinkStyled} from './modules-drop-down.styles';
 import useOutsideClickAndScroll from "../../../hooks/useOutsideClickAndScroll";
 
 interface Props {
@@ -31,11 +31,15 @@ const ModulesDropDown: React.FC<Props> = ({activePage, id, toggleModulesDropDown
           minWidth: "16.25rem"
         }}>
           <Item>
-            {links.map(item => <Link key={item.name} href={item.link}>{item.name}</Link>)}
+            {links.map(item => <LinkStyled
+              key={item.name}
+              to={item.link}
+              onClick={toggleModulesDropDown}
+            >{item.name}</LinkStyled>)}
           </Item>
           <Item>
-            <Link href={"/"}>Home</Link>
-            <Link href={`/${id}`}>Set page</Link>
+            <LinkStyled onClick={toggleModulesDropDown} to={"/"}>Home</LinkStyled>
+            <LinkStyled onClick={toggleModulesDropDown} to={`/${id}`}>Set page</LinkStyled>
           </Item>
         </div>
       </DownContainer>

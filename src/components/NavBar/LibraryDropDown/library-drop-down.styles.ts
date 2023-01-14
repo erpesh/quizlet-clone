@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../../assets/colors";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div`
   position: fixed;
@@ -25,7 +26,7 @@ export const ScrollContentContainer = styled.div`
   min-width: 30rem;
   padding: 0.5rem 0;
 `
-export const Item = styled.a`
+export const Item = styled(Link)`
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-box-pack: justify;

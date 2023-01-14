@@ -38,7 +38,7 @@ const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
               {studySets.map((studySet: IStudySet) => (
                 <React.Fragment key={studySet.id}>
                   {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
-                    <Item href={`/${studySet.id}`}>
+                    <Item to={`/${studySet.id}`} onClick={toggleLibrary}>
                       <ItemContainer>
                         <ItemTitle>{studySet.title}</ItemTitle>
                         <ItemAuthorName>{studySet.author.name}</ItemAuthorName>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import colors from "../../../assets/colors";
+import {Link} from "react-router-dom";
 
 export const Container = styled.div`
   position: fixed;
@@ -31,7 +32,7 @@ export const Item = styled.div`
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
 `
-export const Link = styled.a`
+export const LinkStyled = styled(Link)`
   background: none;
   display: -webkit-box;
   display: -webkit-flex;
