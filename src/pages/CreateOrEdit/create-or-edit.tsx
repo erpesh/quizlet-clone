@@ -24,7 +24,7 @@ const CreateOrEdit: FC<Props> = ({isCreate}) => {
     if (filteredSet.author.id === auth.currentUser?.uid)
       setData(filteredSet)
     else
-      navigate(`/${id}`);
+      navigate(`/set/${id}`);
   }
 
   useEffect(() => {

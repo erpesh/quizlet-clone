@@ -13,6 +13,7 @@ import useGetStudySets from "../../../hooks/useGetStudySets";
 import {IStudySet} from "../../../types";
 import {auth} from "../../../firebase-config";
 import useOutsideClickAndScroll from "../../../hooks/useOutsideClickAndScroll";
+import {useLocation} from "react-router-dom";
 
 interface Props {
   toggleLibrary: () => void,
@@ -21,6 +22,7 @@ interface Props {
 
 const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
 
+  const location = useLocation();
   const [studySets, setStudySets] = useGetStudySets(true, true);
   const ref = useRef<HTMLDivElement>(null);
   useOutsideClickAndScroll(ref, buttonRef, toggleLibrary);
@@ -38,7 +40,11 @@ const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
               {studySets.map((studySet: IStudySet) => (
                 <React.Fragment key={studySet.id}>
                   {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
-                    <Item to={`/${studySet.id}`} onClick={toggleLibrary}>
+                    <Item
+                      to={`/set/${studySet.id}`}
+                      state={{prevPath: location.pathname}}
+                      onClick={toggleLibrary}
+                    >
                       <ItemContainer>
                         <ItemTitle>{studySet.title}</ItemTitle>
                         <ItemAuthorName>{studySet.author.name}</ItemAuthorName>

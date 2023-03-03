@@ -60,7 +60,7 @@ const ModulesHeader: React.FC<Props> = ({activePage, id, toggleModulesDropDown, 
             </ChooseModuleContainer>
             <MainContentSeparator/>
             <CloseButtonContainer>
-              <CloseButton onClick={() => navigate("/" + id)}><FiX/></CloseButton>
+              <CloseButton onClick={() => navigate("/set/" + id)}><FiX/></CloseButton>
             </CloseButtonContainer>
           </MainContentContainer>
           <ProgressBarContainer>

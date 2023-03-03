@@ -19,12 +19,12 @@ const Navigation = () => {
         <Route path="/" element={<Home/>}/>
         <Route path="/create" element={<CreateOrEdit isCreate={true}/>}/>
         <Route path="/search/:request" element={<SearchPage/>}/>
-        <Route path="/:id" element={<SetPage/>}/>
-        <Route path="/:id/edit" element={<CreateOrEdit isCreate={false}/>}/>
-        <Route path="/:id/test" element={<TestPage/>}/>
-        <Route path="/:id/flashcards" element={<FlashCardsPage/>}/>
-        <Route path="/:id/learn" element={<LearnPage/>}/>
-        <Route path="/:id/match" element={<MatchPage/>}/>
+        <Route path="/set/:id" element={<SetPage/>}/>
+        <Route path="/set/:id/edit" element={<CreateOrEdit isCreate={false}/>}/>
+        <Route path="/set/:id/test" element={<TestPage/>}/>
+        <Route path="/set/:id/flashcards" element={<FlashCardsPage/>}/>
+        <Route path="/set/:id/learn" element={<LearnPage/>}/>
+        <Route path="/set/:id/match" element={<MatchPage/>}/>
       </Routes>
     </Suspense>
   );

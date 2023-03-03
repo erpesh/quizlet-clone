@@ -33,13 +33,13 @@ const Preview: React.FC<Props> = ({studySet}) => {
           <PreviewPaddings>
             <div>
               <PreviewHeader>
-                <PreviewSetLink to={`/${studySet.id}`}>{studySet.title}</PreviewSetLink>
+                <PreviewSetLink to={`/set/${studySet.id}`}>{studySet.title}</PreviewSetLink>
                 <ButtonContainer>
                   <BlueButton
                     padding={".625rem 1rem"}
                     radius={".5rem"}
                     fontSize={".875rem"}
-                    onClick={() => navigate(`/${studySet.id}`)}
+                    onClick={() => navigate(`/set/${studySet.id}`)}
                   >
                     Study
                   </BlueButton>

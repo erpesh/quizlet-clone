@@ -33,7 +33,7 @@ const ResultItem: React.FC<Props> = ({studySet, activeSet, setActiveSet, setIsMo
     if (width <= 768)
       setIsMobilePreview(true);
   }
-  const navigateToStudySet = () => navigate(`/${studySet.id}`);
+  const navigateToStudySet = () => navigate(`/set/${studySet.id}`);
 
   return (
     <Container>

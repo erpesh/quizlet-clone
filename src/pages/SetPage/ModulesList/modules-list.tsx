@@ -22,10 +22,10 @@ const ModulesList: React.FC<Props> = ({id}) => {
   const navigate = useNavigate();
 
   const modules = [
-    {name: "Flashcards", link: `/${id}/flashcards`, image: flashCardsIcon},
-    {name: "Learn", link: `/${id}/learn`, image: learnIcon},
-    {name: "Test", link: `/${id}/test`, image: testIcon},
-    {name: "Match", link: `/${id}/match`, image: matchingIcon}
+    {name: "Flashcards", link: `/set/${id}/flashcards`, image: flashCardsIcon},
+    {name: "Learn", link: `/set/${id}/learn`, image: learnIcon},
+    {name: "Test", link: `/set/${id}/test`, image: testIcon},
+    {name: "Match", link: `/set/${id}/match`, image: matchingIcon}
   ]
 
   return (

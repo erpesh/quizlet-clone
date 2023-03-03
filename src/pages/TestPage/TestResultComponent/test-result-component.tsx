@@ -120,7 +120,7 @@ const TestResultComponent: React.FC<Props> = ({testSet, setTestSet, setIsTestChe
             <ContentItemContainer>
               <ContentItemHeader>Next steps</ContentItemHeader>
               <SecondPartContent>
-                <Link to={`/${id}/learn`} style={{textDecoration: "none"}}>
+                <Link to={`/set/${id}/learn`} style={{textDecoration: "none"}}>
                   <ReferenceItemContainer>
                     <IconContainer>
                       <IconContent img={learnModeIcon}/>

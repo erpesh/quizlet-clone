@@ -78,7 +78,7 @@ const MultipleChoice: FC<Props> = ({testSet, index, setTestSet, reference, handl
           <AnswerContainer>
             {testSet.multipleChoice[index].possibleAnswers.map((item: ITerm) => (
               <AnswerItem
-                key={item.term}
+                key={item.id}
                 tabIndex={0}
                 isFocus={focusValue === item.term}
                 onClick={() => toggleFocus(item.term)}

@@ -37,7 +37,7 @@ const Header: FC<Props> = ({toggle, toggleLibrary, buttonRef}) => {
         <NavItem>
           <Link to="/">Home</Link>
         </NavItem>
-        <NavItem
+        {isAuth && <NavItem
           ref={buttonRef}
           onClick={toggleLibrary}
           style={{cursor: "pointer"}}
@@ -45,7 +45,7 @@ const Header: FC<Props> = ({toggle, toggleLibrary, buttonRef}) => {
           <div>
             Your library&nbsp;<ChevronIcon/>
           </div>
-        </NavItem>
+        </NavItem>}
         <DefaultContainer>
           <BlueButton
             onClick={

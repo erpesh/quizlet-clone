@@ -29,7 +29,7 @@ const SetDetails: React.FC<Props> = ({studySet}) => {
   const navigate = useNavigate();
 
   const onEditClick = () => {
-    navigate(`/${studySet.id}/edit`);
+    navigate(`/set/${studySet.id}/edit`);
   }
 
   return (

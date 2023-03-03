@@ -21,7 +21,7 @@ const PreviewMobile: React.FC<Props> = ({studySet, setIsMobilePreview}) => {
           <Wrap>
             <Container>
               <div>
-                <PreviewSetLink to={`/${studySet.id}`}>{studySet.title}</PreviewSetLink>
+                <PreviewSetLink to={`/set/${studySet.id}`}>{studySet.title}</PreviewSetLink>
               </div>
               <OverflowContainer>
                 {studySet.terms.map((item: ITerm) =>

@@ -9,7 +9,7 @@ import {getAuth, GoogleAuthProvider} from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementID is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAo5-0oEJrPJeS_4tBx3kgvNRzxMSZnkyc",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "quizlet-clone-a76fe.firebaseapp.com",
   projectId: "quizlet-clone-a76fe",
   storageBucket: "quizlet-clone-a76fe.appspot.com",

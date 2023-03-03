@@ -57,18 +57,18 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
           <SidebarLink to="/" onClick={toggle}>
             Home
           </SidebarLink>
-          <SideBarDropDownButton
+          {isAuth && <SideBarDropDownButton
             onClick={toggleLibrary}
             ref={buttonRef}
           >
             Your library&nbsp;<ChevronIcon/>
-          </SideBarDropDownButton>
-          {isLibraryDropDown && <LibraryContainer>
+          </SideBarDropDownButton>}
+          {isAuth && isLibraryDropDown && <LibraryContainer>
             {studySets.map((studySet: IStudySet) => (
               <React.Fragment key={studySet.id}>
                 {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
                   <Item
-                    href={`/${studySet.id}`}
+                    href={`/set/${studySet.id}`}
                     onClick={toggle}
                   >
                     <ItemContainer>
