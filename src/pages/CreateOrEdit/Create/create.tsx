@@ -53,7 +53,7 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
     const ref = data.ref;
     delete data.ref;
     await updateDoc(ref, data);
-    navigate(`/${data.id}`)
+    navigate(`/set/${data.id}`)
   }
 
   const addStudySet = async () => {

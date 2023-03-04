@@ -21,7 +21,8 @@ export interface IStudySet {
   title: string,
   description: string,
   terms: ITerm[],
-  isPrivate: boolean
+  isPrivate: boolean,
+  ref: any
 }
 
 interface IBaseTest extends ITerm {

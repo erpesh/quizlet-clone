@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import {CardsCarouselContainer, CardsCarouselWrap, GridContainer} from "./cards-carousel.styles";
 import CardSide from "./CardSide/card-side";
 import {IStudySet, ITerm} from "../../../types";
+import {updateDoc} from "firebase/firestore";
+import firebase from "firebase/compat";
 
 interface Props {
   activeCard: ITerm | null,
@@ -32,10 +34,17 @@ const CardsCarousel: FC<Props> = (props) => {
     handleRightButton
   } = props;
 
-  const toggleCardMark = (cardIndex: number) => {
+  const ref = studySet.ref;
+
+  const toggleCardMark = async (cardIndex: number) => {
+
     let terms = [...studySet.terms];
     terms[cardIndex].isMarked = !terms[cardIndex].isMarked;
-    setStudySet({...studySet, terms: terms});
+    let studySetCopy = {...studySet, terms: terms};
+
+    delete studySetCopy.ref;
+    await updateDoc(ref, studySetCopy);
+    setStudySet({...studySetCopy, ref: ref})
   }
 
   return (

@@ -12,5 +12,6 @@ export const INITIAL_CREATE_STATE = {
     {id: Math.random(), term: "", definition: "", isMarked: false},
     {id: Math.random(), term: "", definition: "", isMarked: false},
   ],
-  isPrivate: true
+  isPrivate: true,
+  ref: null
 }

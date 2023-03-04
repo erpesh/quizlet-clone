@@ -13,7 +13,7 @@ function useGetStudySets(isMultiple?: boolean, isPrivateNeeded?: boolean) {
 
   const getStudySet = async () => {
     const data = await getDocs(studySetsCollectionRef);
-    const sets = data.docs.map(doc => doc.data());
+    const sets = data.docs.map((doc): any => ({...doc.data(), ref: doc.ref}));
     if (isMultiple) {
       if (!isPrivateNeeded){
         setStudySet(sets.filter(item => auth.currentUser?.uid === item.author.id || !item.isPrivate));
