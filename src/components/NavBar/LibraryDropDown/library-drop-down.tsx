@@ -22,7 +22,6 @@ interface Props {
 
 const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
 
-  const location = useLocation();
   const [studySets, setStudySets] = useGetStudySets(true, true);
   const ref = useRef<HTMLDivElement>(null);
   useOutsideClickAndScroll(ref, buttonRef, toggleLibrary);
@@ -42,7 +41,6 @@ const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
                   {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
                     <Item
                       to={`/set/${studySet.id}`}
-                      state={{prevPath: location.pathname}}
                       onClick={toggleLibrary}
                     >
                       <ItemContainer>
