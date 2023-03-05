@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/quizlet-clone/static/css/main.445c8a8f.css",
-    "main.js": "/quizlet-clone/static/js/main.e47546ad.js",
+    "main.js": "/quizlet-clone/static/js/main.0e4c34d1.js",
     "static/js/77.8ea89a79.chunk.js": "/quizlet-clone/static/js/77.8ea89a79.chunk.js",
-    "static/js/583.bd7b1da9.chunk.js": "/quizlet-clone/static/js/583.bd7b1da9.chunk.js",
+    "static/js/583.b1c3870b.chunk.js": "/quizlet-clone/static/js/583.b1c3870b.chunk.js",
     "static/js/845.83995d4c.chunk.js": "/quizlet-clone/static/js/845.83995d4c.chunk.js",
     "static/css/901.387655b8.chunk.css": "/quizlet-clone/static/css/901.387655b8.chunk.css",
     "static/js/901.d20b7133.chunk.js": "/quizlet-clone/static/js/901.d20b7133.chunk.js",
@@ -36,9 +36,9 @@
     "static/media/chevron-down.svg": "/quizlet-clone/static/media/chevron-down.3e1f5f883e749fe488f36f31cecc01a3.svg",
     "static/media/plus-icon.svg": "/quizlet-clone/static/media/plus-icon.99e1ba82dd40982a9b5b3fa89ded61a1.svg",
     "main.445c8a8f.css.map": "/quizlet-clone/static/css/main.445c8a8f.css.map",
-    "main.e47546ad.js.map": "/quizlet-clone/static/js/main.e47546ad.js.map",
+    "main.0e4c34d1.js.map": "/quizlet-clone/static/js/main.0e4c34d1.js.map",
     "77.8ea89a79.chunk.js.map": "/quizlet-clone/static/js/77.8ea89a79.chunk.js.map",
-    "583.bd7b1da9.chunk.js.map": "/quizlet-clone/static/js/583.bd7b1da9.chunk.js.map",
+    "583.b1c3870b.chunk.js.map": "/quizlet-clone/static/js/583.b1c3870b.chunk.js.map",
     "845.83995d4c.chunk.js.map": "/quizlet-clone/static/js/845.83995d4c.chunk.js.map",
     "901.387655b8.chunk.css.map": "/quizlet-clone/static/css/901.387655b8.chunk.css.map",
     "901.d20b7133.chunk.js.map": "/quizlet-clone/static/js/901.d20b7133.chunk.js.map",
@@ -54,6 +54,6 @@
   },
   "entrypoints": [
     "static/css/main.445c8a8f.css",
-    "static/js/main.e47546ad.js"
+    "static/js/main.0e4c34d1.js"
   ]
 }
