@@ -34,7 +34,7 @@ const SearchPage = () => {
 
   return (
     <PageContainer>
-      {searchedStudySets && activeSet && <div style={{width: "100%"}}>
+      <div style={{width: "100%"}}>
         <section style={{backgroundColor: colors.whiteColor, paddingBottom: "2rem"}}>
           <SearchContainer>
             <SearchForm>
@@ -61,9 +61,9 @@ const SearchPage = () => {
         <PageMainSection>
           <MainContainer>
             <ResultCardsContainer>
-              <H3>Study sets</H3>
+              <H3>{searchedStudySets.length ? "Study sets" : "No results"}</H3>
               <ResultListContainer>
-                {searchedStudySets.map((item: IStudySet) =>
+                {activeSet && searchedStudySets.map((item: IStudySet) =>
                   <ResultItem
                     key={item.id}
                     studySet={item}
@@ -73,11 +73,13 @@ const SearchPage = () => {
                   />)}
               </ResultListContainer>
             </ResultCardsContainer>
-            <Preview studySet={activeSet}/>
-            {isMobilePreview && <PreviewMobile studySet={activeSet} setIsMobilePreview={setIsMobilePreview}/>}
+            {activeSet && <>
+              <Preview studySet={activeSet}/>
+              {isMobilePreview && <PreviewMobile studySet={activeSet} setIsMobilePreview={setIsMobilePreview}/>}
+            </>}
           </MainContainer>
         </PageMainSection>
-      </div>}
+      </div>
     </PageContainer>
   );
 };
