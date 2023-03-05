@@ -106,7 +106,7 @@ export const LibraryContainer = styled.div`
   flex-direction: column;
   padding: 1rem 0;
 `
-export const Item = styled.a`
+export const Item = styled(Link)`
   -webkit-box-align: center;
   -ms-flex-align: center;
   -webkit-box-pack: justify;

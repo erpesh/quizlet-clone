@@ -37,7 +37,10 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [isLibraryDropDown, setIsLibraryDropDown] = useState(false);
 
-  const toggleLibrary = () => setIsLibraryDropDown(!isLibraryDropDown);
+  const toggleLibrary = () => {
+    if (studySets.length > 0)
+      setIsLibraryDropDown(!isLibraryDropDown)
+  };
 
   const logoOnClick = () => {
     navigate("/");
@@ -57,6 +60,9 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
           <SidebarLink to="/" onClick={toggle}>
             Home
           </SidebarLink>
+          <SidebarLink to="/search/search?value=" onClick={toggle}>
+            Search
+          </SidebarLink>
           {isAuth && <SideBarDropDownButton
             onClick={toggleLibrary}
             ref={buttonRef}
@@ -68,7 +74,7 @@ const SideBar: FC<Props> = ({isOpen, toggle}) => {
               <React.Fragment key={studySet.id}>
                 {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
                   <Item
-                    href={`/set/${studySet.id}`}
+                    to={`/set/${studySet.id}`}
                     onClick={toggle}
                   >
                     <ItemContainer>

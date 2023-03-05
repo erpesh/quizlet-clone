@@ -37,6 +37,9 @@ const Header: FC<Props> = ({toggle, toggleLibrary, buttonRef}) => {
         <NavItem>
           <Link to="/">Home</Link>
         </NavItem>
+        <NavItem>
+          <Link to="/search/search?value=">Search</Link>
+        </NavItem>
         {isAuth && <NavItem
           ref={buttonRef}
           onClick={toggleLibrary}
