@@ -32,7 +32,6 @@ const SetPage = () => {
     if (!filteredSet.isPrivate || auth.currentUser?.uid === filteredSet.author.id) {
       setStudySet(filteredSet)
     }
-
   }
 
   useEffect(() => {
