@@ -8,7 +8,6 @@ import firebase from "firebase/compat";
 interface Props {
   activeCard: ITerm | null,
   studySet: IStudySet,
-  setStudySet: (studySet: IStudySet) => void,
   progressNumber: number,
   isTermSide: boolean,
   animate: boolean,
@@ -23,7 +22,6 @@ const CardsCarousel: FC<Props> = (props) => {
   const {
     activeCard,
     studySet,
-    setStudySet,
     progressNumber,
     isTermSide,
     animate,
@@ -33,19 +31,6 @@ const CardsCarousel: FC<Props> = (props) => {
     handleLeftButton,
     handleRightButton
   } = props;
-
-  const ref = studySet.ref;
-
-  const toggleCardMark = async (cardIndex: number) => {
-
-    let terms = [...studySet.terms];
-    terms[cardIndex].isMarked = !terms[cardIndex].isMarked;
-    let studySetCopy = {...studySet, terms: terms};
-
-    delete studySetCopy.ref;
-    await updateDoc(ref, studySetCopy);
-    setStudySet({...studySetCopy, ref: ref})
-  }
 
   return (
     <CardsCarouselWrap>
@@ -64,8 +49,6 @@ const CardsCarousel: FC<Props> = (props) => {
             toggleTermSide={toggleTermSide}
             handleLeftButton={handleLeftButton}
             handleRightButton={handleRightButton}
-            toggleCardMark={toggleCardMark}
-            isMarked={activeCard?.isMarked}
           />
         </GridContainer>
         <GridContainer
@@ -82,8 +65,6 @@ const CardsCarousel: FC<Props> = (props) => {
             toggleTermSide={toggleTermSide}
             handleLeftButton={handleLeftButton}
             handleRightButton={handleRightButton}
-            toggleCardMark={toggleCardMark}
-            isMarked={activeCard?.isMarked}
           />
         </GridContainer>
       </CardsCarouselContainer>

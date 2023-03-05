@@ -65,7 +65,6 @@ const FlashCards: React.FC<Props> = (props) => {
                 <CardsCarousel
                   activeCard={studySet.terms[progressNumber]}
                   studySet={studySet}
-                  setStudySet={setStudySet}
                   progressNumber={progressNumber}
                   isTermSide={state.isTermSide}
                   animation={state.animation}

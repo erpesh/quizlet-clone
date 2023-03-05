@@ -5,13 +5,11 @@ import {
   CarouselButtonsWrap,
   NavButtonContainer,
   NavButtonSpan,
-  SavedIconButton,
   TermOrDefData,
   TermOrDefDataContent,
   TextFormater
 } from "./card-side.styles";
 import {FaChevronLeft, FaChevronRight} from "react-icons/fa";
-import {AiFillStar} from "react-icons/ai";
 
 interface Props {
   progressNumber: number,
@@ -20,9 +18,7 @@ interface Props {
   length: number,
   toggleTermSide: () => void,
   handleLeftButton: () => void,
-  handleRightButton: () => void,
-  toggleCardMark: (index: number) => void,
-  isMarked: boolean | undefined
+  handleRightButton: () => void
 }
 
 const CardSide: FC<Props> = (props) => {
@@ -31,11 +27,9 @@ const CardSide: FC<Props> = (props) => {
     isTerm,
     value,
     length,
-    isMarked,
     toggleTermSide,
     handleLeftButton,
-    handleRightButton,
-    toggleCardMark
+    handleRightButton
   } = props
 
   return (
@@ -48,14 +42,6 @@ const CardSide: FC<Props> = (props) => {
       }}>{isTerm ? "Term" : "Definition"}</div>
       <div style={{gridColumn: 2, gridRow: 1, display: "flex", justifyContent: "center", alignItems: "center"}}>
         {`${progressNumber + 1} / ${length}`}
-      </div>
-      <div style={{gridColumn: 3, gridRow: 1, display: "flex", justifyContent: "flex-end"}}>
-        <SavedIconButton
-          isActive={!!isMarked}
-          onClick={() => toggleCardMark(progressNumber)}
-        >
-          <AiFillStar style={{width: "100%", height: "100%"}}/>
-        </SavedIconButton>
       </div>
       <TermOrDefData onClick={toggleTermSide}>
         <TermOrDefDataContent>
