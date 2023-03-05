@@ -32,7 +32,12 @@ const ModulesList: React.FC<Props> = ({id}) => {
     <StudyModulesWrapper>
       <StudyModulesContainer>
         <UnorderedList>
-          {modules.map(item => <ListItem onClick={() => navigate(item.link)} key={item.name}>
+          {modules.map(item => <ListItem
+            onClick={() => item.name === "Match" ? console.log("Disabled") : navigate(item.link)}
+            key={item.name}
+            style={{cursor: item.name === "Match" ? "not-allowed" : "pointer"}}
+            isDisabled={item.name === "Match"}
+          >
             <div>
               <ItemHeader>
                 <img

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <Container>
       <SpanCover>
-        <span>© 2022 Quizlet Inc.</span>
+        <span>Original website: <a href={"https://quizlet.com"}>Quizlet</a></span>
       </SpanCover>
       <img alt="img" src={footerImage}/>
     </Container>
