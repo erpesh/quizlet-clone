@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/517.e07eb7e9.chunk.js","mappings":"8IAWA,UARkB,WAChB,OACE,kBAIH,C","sources":["pages/MatchPage/match-page.tsx"],"sourcesContent":["import React from 'react';\r\n\r\n\r\nconst MatchPage = () => {\r\n  return (\r\n    <div>\r\n      \r\n    </div>\r\n  );\r\n};\r\n\r\nexport default MatchPage;"],"names":[],"sourceRoot":""}
