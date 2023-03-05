@@ -35,6 +35,9 @@ export const PreviewPaddings = styled(DisplayFlex)`
   height: 100%;
   padding: 1.5rem 0;
 `
+export const PreviewHeaderWrap = styled.div`
+  border-bottom: 0.125rem solid ${colors.neutralInk200};
+`
 export const PreviewHeader = styled(DisplayFlex)`
   -ms-flex-negative: 0;
   -webkit-box-pack: justify;
@@ -73,6 +76,7 @@ export const OverflowContainer = styled.div`
   flex-shrink: 1;
   overflow: auto;
   padding-top: 1.25rem;
+  border-top: 0.125rem solid ${colors.gray600};
 `
 export const ItemContainer = styled.div`
   -webkit-box-pack: justify;

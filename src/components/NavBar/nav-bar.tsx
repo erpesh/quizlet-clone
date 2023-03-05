@@ -17,8 +17,10 @@ const NavBar = () => {
   const splitPath = useSplitPath();
 
   const toggleSideBar = () => dispatch({type: "MOBILE"});
-  const toggleLibrary = () => dispatch({type: "LIBRARY"});
   const toggleModulesDropDown = () => dispatch({type: "MODULES"});
+  const toggleLibrary = () => {
+    dispatch({type: "LIBRARY"});
+  };
 
   // Header for learning modules
   if (MODULES_PATHS.includes(splitPath[splitPath.length - 1])){

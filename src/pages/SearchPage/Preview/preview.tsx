@@ -6,6 +6,7 @@ import {
   ItemText,
   OverflowContainer,
   PreviewCardShadows,
+  PreviewHeaderWrap,
   PreviewHeader,
   PreviewMainContainer,
   PreviewPaddings,
@@ -31,7 +32,7 @@ const Preview: React.FC<Props> = ({studySet}) => {
       <PreviewMainContainer>
         <PreviewCardShadows>
           <PreviewPaddings>
-            <div>
+            <PreviewHeaderWrap>
               <PreviewHeader>
                 <PreviewSetLink to={`/set/${studySet.id}`}>{studySet.title}</PreviewSetLink>
                 <ButtonContainer>
@@ -45,7 +46,7 @@ const Preview: React.FC<Props> = ({studySet}) => {
                   </BlueButton>
                 </ButtonContainer>
               </PreviewHeader>
-            </div>
+            </PreviewHeaderWrap>
             <OverflowContainer>
               {studySet.terms.map((item: ITerm) =>
                 <ItemContainer key={item.id}>

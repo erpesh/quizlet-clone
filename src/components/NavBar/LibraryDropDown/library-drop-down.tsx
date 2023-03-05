@@ -36,7 +36,7 @@ const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
         }}>
           <ScrollContainer>
             <ScrollContentContainer>
-              {studySets.map((studySet: IStudySet) => (
+              {studySets.length > 0 ? studySets.map((studySet: IStudySet) => (
                 <React.Fragment key={studySet.id}>
                   {(!studySet.isPrivate || studySet.author.id === auth.currentUser?.uid) &&
                     <Item
@@ -49,7 +49,10 @@ const LibraryDropDown: React.FC<Props> = ({toggleLibrary, buttonRef}) => {
                       </ItemContainer>
                     </Item>
                   }
-                </React.Fragment>))}
+                </React.Fragment>)) :
+                <p style={{padding: ".375rem 1rem"}}>
+                  Your library is empty
+                </p>}
             </ScrollContentContainer>
           </ScrollContainer>
         </div>
