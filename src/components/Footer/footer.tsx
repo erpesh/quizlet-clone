@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <Container>
       <SpanCover>
-        <span>Original website: <a href={"https://quizlet.com"}>Quizlet</a></span>
+        <span>Original website: <a href={"https://quizlet.com"} target="_blank">Quizlet</a></span>
       </SpanCover>
       <img alt="img" src={footerImage}/>
     </Container>

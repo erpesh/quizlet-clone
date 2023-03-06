@@ -18,7 +18,7 @@ export const Wrapper = styled.div`
   width: 100%;
   z-index: 901;
   @media (max-width: 64rem) {
-    position: relative;
+    position: sticky;
   }
 `
 export const BorderBottom = styled.div`
