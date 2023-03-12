@@ -24,7 +24,7 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
 
   const navigate = useNavigate();
   const [isModalImportActive, setIsModalImportActive] = useState(false);
-  const [exception, setException] = useState<StudySetExceptions | null>(null);
+  const [exception, setException] = useState<string | null>(null);
 
   const studySetsCollectionRef = collection(db, "studySets");
 
@@ -35,11 +35,13 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
     if (data.description.length < 5){
       return StudySetExceptions.DESCRIPTION;
     }
-    if (data.terms.length !== data.terms.filter((item: ITerm) => !!item.term && !!item.definition).length){
-      return StudySetExceptions.TERMS;
-    }
     if (data.terms.length < 3){
       return StudySetExceptions.TERMS_NUMBER;
+    }
+    for (let i = 0; i < data.terms.length; i++) {
+      console.log(data);
+      if (data.terms[i].term.length === 0 || data.terms[i].definition.length === 0)
+        return `Term ${i} is empty!`
     }
     return null;
   }
@@ -72,7 +74,7 @@ const Create: FC<Props> = ({data, setData, isCreate}) => {
             photoURL: auth.currentUser?.photoURL,
           }
       });
-    navigate(`/${data.id}`)
+    navigate(`/set/${data.id}`)
   }
 
   const handleDrop = (droppedItem: any) => {
